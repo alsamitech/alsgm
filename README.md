@@ -18,6 +18,7 @@ Premable:
 
 **How Does it work?**
 
+![](docs/processes.jpg)
 
 
 I also don't think this should be the only game engine you should ever use. If you know C++ or C, try experimenting with making your own game engine!

@@ -1,0 +1,10 @@
+In (Codename Yin) Engine, Logs and messages are formatted like this
+
+--LOG--
+INFO: ALSAMI LOGGER (CODENAME YIN RENDERING ENGINE EDITION)
+APPLICATION MESSAGE? [message app sent here]
+IMPORTANCE? [the app decides this]
+END LOG([any other info here])
+
+This uses a question mark to deferientiate between specifier and log
+

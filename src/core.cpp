@@ -1,5 +1,7 @@
 #include <GL/gl.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <pthread.h>
 #include "expansion.h"
 #include "m-sbx.h"
 #include "logfiles.h"
@@ -8,13 +10,16 @@
 
 int ALSAMI_GAME_ENGINE_STRTR ();
 
-int main() {
+int main(int argc, char** argv) {
 
   SBX* sbX;// = new SBX();
   //sbX->Run();
 
+
+
   FileInit("Initializing Process...");
 
+  // Entry point
   int err= ALSAMI_GAME_ENGINE_STRTR ();
 
   switch(err) {

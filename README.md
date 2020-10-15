@@ -19,4 +19,8 @@ Premable:
 
 I also don't think this should be the only game engine you should ever use. If you know C++ or C, try experimenting with making your own game engine!
 Learning Resources:
-  
+  https://www.youtube.com/watch?v=dZr-53LAlOw&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=6
+  *The Cherno's Videos did help me with this project, but if you want to develop a game engine for Linux like me, you will need other resources and a good knowledge of OpenGL and Xlib. If you really want, I will put some of the key components of this rendering engine in a seperate GitHub Repository
+
+Official Public Mirror (GitHub):
+  https://github.com/alsamitech/alsgm

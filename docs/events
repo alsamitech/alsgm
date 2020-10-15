@@ -1,0 +1,20 @@
+ALSAMI CODENAME YIN
+
+GAME ENGINE
+
+Codename Yin uses a costoum events system, Desinged for the project by Sami Alameddine.
+
+Author's Note:
+	Don't ask why I excessively use the word "Yin", it's a very, VERY long story. However, this is how the events module work.
+
+
+Name of the events module: YEM (codename Yin Event Module)
+
+When an event occurs inside the window, Our window class (wcls.h) will recive an event callback. After that, it constructs a ALS_GMEV (ALSami GaMe Event). which would be handled by our run function.
+
+In the window class, when
+
+Event Listener:
+	The Event listener checks if tehre is any events
+
+The Event system.

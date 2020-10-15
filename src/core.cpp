@@ -12,13 +12,13 @@ int ALSAMI_GAME_ENGINE_STRTR ();
 
 int main(int argc, char** argv) {
 
+  pthread_t USR_GME;
+
   SBX* sbX;// = new SBX();
   //sbX->Run();
 
-
-
   FileInit("Initializing Process...");
-
+  
   // Entry point
   int err= ALSAMI_GAME_ENGINE_STRTR ();
 
@@ -29,6 +29,8 @@ int main(int argc, char** argv) {
       char GEN_ERR[] = "ERROR: Program had an undefined issue and needs to stop.";
       WRT_TO_FL(GEN_ERR);
   }
+
+  pthread_join(USR_GME, NULL);
 
   // This part just frees memor
   //delete sbX;

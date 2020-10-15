@@ -37,3 +37,6 @@
 *.exe
 *.out
 *.app
+
+# Direcotries to ignore
+debugbin/

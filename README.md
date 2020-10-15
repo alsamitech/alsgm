@@ -2,6 +2,9 @@
 
 This is a game engine I am working on as a simple project. This game engine contains a few componetents that we will get into after this section about what makes this game engine different than most game engines
 
+NOTE BEFORE READING:
+  This engine is likely to go through a ton of rewrites. I'm learning with every line of C++ and C I write.
+
 Premable:
   Game Engines are not supposed to be one-size-fits-all engines. While this can be done efficiently with a lot of effort, I don't see the point in trying to use one engine for a ton of use cases.
   Game Engines are supposed to assist with game rendering, but not abstract the APIs away. You should still be to use OpenGL functions.

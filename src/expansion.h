@@ -5,6 +5,7 @@ class Module{
   public:
     Module(){}
     ~Module(){}
+    unsigned int MODULE_ID;
 
 };
 

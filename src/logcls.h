@@ -1,6 +1,5 @@
 #ifndef ALSAMI_GAMENGINE_YINORSOMETHING
 #define ALSAMI_GAMENGINE_YINORSOMETHING
-#include <pthread.h>
 #include "expansion.h"
 
 /*

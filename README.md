@@ -28,3 +28,6 @@ Learning Resources:
 
 Official Public Mirror (GitHub):
   https://github.com/alsamitech/alsgm
+
+
+>>> NOTE: Don't ask why there are so many  mentions of the word "Yin", it's a long story that I don't feel like explaining.

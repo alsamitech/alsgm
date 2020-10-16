@@ -1,14 +1,13 @@
-#include <GL/gl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <pthread.h>
+#include "ihdr.h"
 #include "expansion.h"
 #include "m-sbx.h"
 #include "logfiles.h"
 
-#define START ALSAMI_GAME_ENGINE_STRTR
+#define STRT ALSAMI_GAME_ENGINE_STRTR
 
-int ALSAMI_GAME_ENGINE_STRTR ();
+void *ALSAMI_GAME_ENGINE_STRTR(void *ptr);
+
+int err=0;
 
 int main(int argc, char** argv) {
 
@@ -20,7 +19,7 @@ int main(int argc, char** argv) {
   FileInit("Initializing Process...");
   
   // Entry point
-  int err= ALSAMI_GAME_ENGINE_STRTR ();
+  pthread_create(&USR_GME, NULL, &ALSAMI_GAME_ENGINE_STRTR, NULL);
 
   switch(err) {
     case 0:
@@ -28,6 +27,7 @@ int main(int argc, char** argv) {
     case 1:
       char GEN_ERR[] = "ERROR: Program had an undefined issue and needs to stop.";
       WRT_TO_FL(GEN_ERR);
+      break;
   }
 
   pthread_join(USR_GME, NULL);

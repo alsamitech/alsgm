@@ -1,8 +1,6 @@
 #ifndef ALSAMI_GAMENGINE_FILEPRGM_HDR
 #define ALSAMI_GAMENGINE_FILEPRGM_HDR
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "ihdr.h"
 int FileInit(const char INIT_MSG[]) {
   FILE *yin;
 
@@ -42,14 +40,12 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
 
   FRMT_LG=fopen("log.ascii", "a");
   if(FRMT_LG==NULL){return 1;}
-
-  }
   switch(FRMT_MD) {
     case 1:
       fprintf(FRMT_LG,"--LOG--\nSTATUS?%s\nINFO: ALSAMI LOGGER(CODENAME YIN RENDERING ENGINE EDITION)\nAPPLICATION MESSAGE?%s\nIMPORTANCE? %s\nEND-LOG (%s)",YIN_ARG_1,YIN_ARG_2,YIN_ARG_3,YIN_ARG_4);
       break;
     case 5:
-      fprintf(FRMT_LG, );
+      fprintf(FRMT_LG, "hi");
 
   }
   return 0;

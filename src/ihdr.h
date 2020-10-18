@@ -17,6 +17,22 @@
 #include "logfile.h"
 #include "coremod.h"
 
+/*Defines*/
+
+// Complaint Types
+
+// Standard Logger Complaint
+#define GAME_ENGINE_COMPLAINT_STDLOG 1
+
+// Logger Complaint From App
+#define GAME_ENGINE_LGR_CMPLNT_FR_APP 6
+
+// Logger Complaint From Core std module
+#define GAME_ENGINE_LGR_COMPLNT_CORE_MODULE 40
+
+// For the sake of santiy
+#define uchar unsigned char
+
 
 /*
  *	TODO:

@@ -8,14 +8,19 @@
 #include <stdlib.h>
 #include <time.h>
 /*Pthread (The Library for Multithreading), requires you to use the compiler option -lpthread to link the library*/
+#include <string.h>
 #include <pthread.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 
 /*Local Links*/
 // Config File
 #include "config.h"
 #include "logfile.h"
+#include "logcon.h"
 #include "coremod.h"
+#include "logcls.h"
+#include "logobj.h"
 
 /*Defines*/
 

@@ -1,6 +1,7 @@
 # IDE files
 *.cbp
 *.replit
+*.sln
 
 # Swap files
 *.swp
@@ -40,6 +41,10 @@
 *.exe
 *.out
 *.app
+
+# Files to intentionally be ignored
+*.ftgn
+# File To iGNore
 
 # Direcotries to ignore
 debugbin/

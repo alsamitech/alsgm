@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
   return EXIT_SUCCESS;
 }
 
-int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
+uchar YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
 	int NUNXZ=YIN_IDK_WHATEVER;
 	int YIN_CONJECT_CTR;
 	for(;;){
@@ -58,3 +58,5 @@ int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
 	}
 	return YIN_CONJECT_CTR;
 }
+
+uchar list_add(*uchar callback)

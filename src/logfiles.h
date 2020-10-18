@@ -57,4 +57,21 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
   return 0;
 }
 
+uchar loge(const char* fmt, ...) {
+	FILE *fnx;
+	va_list ap;
+	char *out;
+	if(FRMT_LG==NULL){return 1;}
+
+	fnx=fopen("session.log", "w+");
+	va_start(ap,fmt);
+	vfprintf(stdout, fmt, ap);
+	vfprintf(stdout, fmt, ap);
+	va_end(ap);
+	vfprintf(stdout, fmt, ap);
+
+	fclose(f);
+	return 1;
+}
+void logi(const char *fmt, ...);
 #endif

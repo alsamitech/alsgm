@@ -30,6 +30,9 @@
 // Logger Complaint From Core std module
 #define GAME_ENGINE_LGR_COMPLNT_CORE_MODULE 40
 
+// Loggger Rquest from anything
+#define GAME_ENGINE_RQ_ANY 13
+
 // For the sake of santiy
 #define uchar unsigned char
 

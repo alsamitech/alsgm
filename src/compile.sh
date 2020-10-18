@@ -6,4 +6,4 @@ echo "Please Enter Game Source Path: "
 read sourcepath
 echo "Please Enter Game Target Path: "
 read targetpath
-g++ -o $targetpath $sourcepath -lpthread -Wwrite-strings
+g++ -o $targetpath $sourcepath -lpthread -lX11 -Wwrite-strings

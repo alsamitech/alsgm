@@ -41,11 +41,17 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
   FRMT_LG=fopen("log.ascii", "a");
   if(FRMT_LG==NULL){return 1;}
   switch(FRMT_MD) {
-    case 1:
+    case GAME_ENGINE_COMPLAINT_STDLOG:
       fprintf(FRMT_LG,"--LOG--\nSTATUS?%s\nINFO: ALSAMI LOGGER(CODENAME YIN RENDERING ENGINE EDITION)\nAPPLICATION MESSAGE?%s\nIMPORTANCE? %s\nEND-LOG (%s)",YIN_ARG_1,YIN_ARG_2,YIN_ARG_3,YIN_ARG_4);
       break;
-    case 5:
-      fprintf(FRMT_LG, "hi");
+    case GAME_ENGINE_LFT_CMPLNT_FR_APP:
+        // TODO: We Should finish this before the year (insert 64 bit integer limit here).
+        break;
+    case GAME_ENGINE_LFT_CMPNT_CORE_MODULE:
+	fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
+	break;		// out of the MY_LIFE loop
+
+  
 
   }
   return 0;

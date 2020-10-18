@@ -4,6 +4,9 @@
 
 # Swap files
 *.swp
+*.swm
+*.swn
+*.swo
 
 # Prerequisites
 *.d

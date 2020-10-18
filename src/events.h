@@ -1,23 +1,28 @@
-#ifmdef YIN_YIN_YIN_EVNT_HNDLR
+#ifndef YIN_YIN_YIN_EVNT_HNDLR
 #define YIN_YIN_YIN_EVNT_HNDLR
+#include "ihdr.h"
 
 /*
  *	TODO:
- *		Add Blocking events somehtime
+ *		Add Blocking events sometime
  *
  *	Events in this engine are buffered. This means that the event process is able to run while the game is still running. This is because The project designer (Sami Alameddine) Decided that the engine should prioritize runing rahter than accepting input.
  *
  * 	What this means:
- * 		The Event handling will be in a seperate process
+ * 		The Event handling will be in a seperate process. Whenever the listner calls the event handler, The Event Handler will put that in a buffer that is in a for(;;) loop. When the action is registered, the corresponding functions will be called. 
  *
  *
  **/
 
 /*Event Handler Boilerplate*/
 /*Boilerplate sources should be in the README*/
+
 enum class EventType{
   None=0,
-  WindowClose, WindowResize,WindowFocus,WindowLostFocus,WindowMoved,AppTick,AppUpdate,AppRender,KeyPressed,KeyReleased,MouseButtonPressed,MouseButtonReleased,MouseMoved,MouseScrolled
+  WindowClose, WindowResize,WindowFocus,WindowLostFocus,WindowMoved,		/*Window*/
+  AppTick,AppUpdate,AppRender,
+  KeyPressed,KeyReleased,
+  MouseButtonPressed,MouseButtonReleased,MouseMoved,MouseScrolled
 };
 
 enum EventCategory{
@@ -45,9 +50,18 @@ public:
 protected:
 	bool m_Handled=flase;
 }
+/*Code Adapted From Hazel Engine (repo: https://github.com/TheCherno/Hazel*/
 class evntdisptr{
 	template<typename T>
-	using EventFn
+	using EventFn=std::function<bool(T&)>;
+public:
+	bool Dispatch(EventFn<t> func) {
+		if(m_Event.GetEventType()==T::GetStaticType()) {
+			m_Event.m_Handled = func(*(T*);
+			return true;
+		}
+	}
 }
+/*End of Hazel Module*/
 
 #endif

@@ -1,0 +1,18 @@
+Contributing to alsgm
+
+By Sami Alameddine
+
+So, you want to contribute to this game engine project? Please read this document before pull requesting.
+
+Tips to make contributing easier:
+	Read the docs to get the general idea on how the engine works.
+	Go to the issues page on the GitHub repository ( https://github.com/alsamitech/alsgm ) to get ideas on what you might want to work on.
+	
+	I intentionally ignored the .locl directory so you can put something like a TODO file in that dierectory. This makes it easier to keep track of what it is you need to work.
+
+Example of what a .locl/TODO might look like
+
+Fix the bug at src/ExampleHeader.h - DONE
+
+Add some better logging - IN PROGRESS
+

@@ -34,6 +34,7 @@
 
 // Logger Complaint From Core std module
 #define GAME_ENGINE_LGR_COMPLNT_CORE_MODULE 40
+#define GAME_ENGINE_LFT_CMPLNT_CORE_MODULE 39
 
 // Loggger Rquest from anything
 #define GAME_ENGINE_RQ_ANY 13

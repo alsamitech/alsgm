@@ -47,7 +47,7 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
     case GAME_ENGINE_LFT_CMPLNT_FR_APP:
         // TODO: We Should finish this before the year (insert 64 bit integer limit here).
         break;
-    case GAME_ENGINE_LFT_CMPNT_CORE_MODULE:
+    case GAME_ENGINE_LFT_CMPLNT_CORE_MODULE:
 	fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
 	break;		// out of the MY_LIFE loop
 
@@ -60,18 +60,47 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
 uchar loge(const char* fmt, ...) {
 	FILE *fnx;
 	va_list ap;
-	char *out;
+	char *out[512];
 	if(FRMT_LG==NULL){return 1;}
-
+	struct tm tm ={0};
+	char *after_date=&out[22]
+	tm=*localtime(&t);
+	strftime(out, 22, "%Y-%m-%d:%H:%M:%S",&tm);
+	out[21] ' ';
+	strcpy(after_date,"[ERROR]");
 	fnx=fopen("session.log", "w+");
 	va_start(ap,fmt);
-	vfprintf(stdout, fmt, ap);
-	vfprintf(stdout, fmt, ap);
+	vsprintf(after_date+0, fmt, ap);
 	va_end(ap);
-	vfprintf(stdout, fmt, ap);
+	out[28]=' ';
+	fprintf(stdout, "%s\n", out);
+	fprintf(fnx, "%s\n", out);
+	// vfprintf(stdout, fmt, ap);
 
 	fclose(f);
 	return 1;
 }
-void logi(const char *fmt, ...);
+void logi(const char *fmt, ...){
+	FILE *fnx;
+	va_list ap;
+	char *out[512];
+	if(FRMT_LG==NULL){return 1;}
+	struct tm tm ={0};
+	char *after_date=&out[22]
+	tm=*localtime(&t);
+	strftime(out, 22, "%Y-%m-%d:%H:%M:%S",&tm);
+	out[21] ' ';
+	strcpy(after_date,"[ERROR]");
+	fnx=fopen("session.log", "w+");
+	va_start(ap,fmt);
+	vsprintf(after_date+0, fmt, ap);
+	va_end(ap);
+	out[28]=' ';
+	fprintf(stdout, "%s\n", out);
+	fprintf(fnx, "%s\n", out);
+	// vfprintf(stdout, fmt, ap);
+
+	fclose(f);
+	return 1;
+}
 #endif

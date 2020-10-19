@@ -54,8 +54,19 @@ void msg_sub(const char *name, msg_callback callback){
 
 		t->listeners=listeners;
 		strncpy(t->name, name, MSG_NAME_MAX);
+	} 
+	/*if head taken, use tail*/
+	if(NULL==t&&NULL!=table[index].listeners){
+		struct list *listeners=list_new(sizeof(msg_callback));
+		struct msg_type *tail=&table[index];
+		t=malloc(sizeof(struct msg_type));
 
+		while(NULL!=tail->next)
+			tail=tail->next;
+		t->listeners=listeners;
+		strncpy(t->name,name,MSG_NAME_MAX);
 		tail->next=t;
+	
 	}
 }
 void msg_unsub(const char *name, msg_callback callback);
@@ -65,9 +76,10 @@ void msg_emit(const char *name){
 	msg_callback cb=NULL;
 	msg_callback *list=NULL;
 	if(NULL==t) {
-		fprintf(stderr, "tried to emit non-existing msg type: %s\n");
+		fprintf(stderr, "tried to emit non-existing msg type: %s\n", name);
 	}
 }
 
 
 #endif
+

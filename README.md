@@ -13,7 +13,7 @@ Premable:
   ALSGM intends to fix all that.
   
 **What is it?**
-	ALSGM is a module-based game engine, Moduels can be both written in C or C++. 
+	ALSGM is a module-based game engine, Moduels can be both written in C or C++. Unlike most game engines, it's actually compiled with the game itself. This helps because the game studio can easily make new modules and extend the engine's functionality.  
 
 **What Does it do?**
 

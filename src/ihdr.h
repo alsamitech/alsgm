@@ -1,7 +1,10 @@
 #ifndef ALSAMI_GAME_ENGINE_INTEGRATED_HDR
 #define ALSAMI_GAME_ENGINE_INTEGRATED_HDR
 /*Standard Library Links. All have*/
+#ifdef ALS_OPENGL
+// see config.h if you dont know what this is or want to use vulkan instead
 #include <GL/gl.h>
+#endif
 #include <X11/Xlib.h>
 /*Xlib (The Window System For Linux x.org) Requires you to use -lX11 in the compiler opetions to link the library*/
 #include <stdio.h>
@@ -41,6 +44,8 @@
 
 // For the sake of santiy
 #define uchar unsigned char
+
+#define unt unsigned int
 
 
 /*

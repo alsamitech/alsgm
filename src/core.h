@@ -40,9 +40,13 @@ int main(int argc, char** argv) {
 
   return EXIT_SUCCESS;
 }
-
-uchar YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
-	int NUNXZ=YIN_IDK_WHATEVER;
+/*
+ *	Uses a mathematical conjecture to represnt numbers
+ *	This 
+ *
+ * */
+int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
+	int NUMXZ=YIN_IDK_WHATEVER;
 	int YIN_CONJECT_CTR;
 	for(;;){
 		if(NUMXZ % 2 == 0){
@@ -59,4 +63,4 @@ uchar YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
 	return YIN_CONJECT_CTR;
 }
 
-uchar list_add(*uchar callback)
+uchar list_add(*uchar callback);

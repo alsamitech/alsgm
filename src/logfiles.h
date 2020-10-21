@@ -41,7 +41,7 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
   FRMT_LG=fopen("log.ascii", "a");
   if(FRMT_LG==NULL){return 1;}
   switch(FRMT_MD) {
-    case GAME_ENGINE_COMPLAINT_STDLOG:
+    case /* {NOTE: ill see what I did wrong later but the c++ compiler hates me}GAME_ENGINE_COMPLAINT_STDLOG*/1:
       fprintf(FRMT_LG,"--LOG--\nSTATUS?%s\nINFO: ALSAMI LOGGER(CODENAME YIN RENDERING ENGINE EDITION)\nAPPLICATION MESSAGE?%s\nIMPORTANCE? %s\nEND-LOG (%s)",YIN_ARG_1,YIN_ARG_2,YIN_ARG_3,YIN_ARG_4);
       break;
     case GAME_ENGINE_LFT_CMPLNT_FR_APP:
@@ -49,7 +49,9 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
         break;
     case GAME_ENGINE_LFT_CMPLNT_CORE_MODULE:
 	fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
-	break;		// out of the MY_LIFE loop
+	      break;		// out of the MY_LIFE loop
+    case 23:
+      fprintf(FRMT_LG,"%s", YIN_ARG_1);
 
   
 
@@ -60,8 +62,8 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
 uchar loge(const char* fmt, ...) {
 	FILE *fnx;
 	va_list ap;
-	char *out[512];
-	if(FRMT_LG==NULL){return 1;}
+	char out[512];
+	if(FRMT_LOG==NULL){return 1;}
 	struct tm tm ={0};
 	char *after_date=&out[22]
 	tm=*localtime(&t);
@@ -80,7 +82,7 @@ uchar loge(const char* fmt, ...) {
 	fclose(f);
 	return 1;
 }
-void logi(const char *fmt, ...){
+uchar logi(const char *fmt, ...){
 	FILE *fnx;
 	va_list ap;
 	char *out[512];
@@ -100,7 +102,7 @@ void logi(const char *fmt, ...){
 	fprintf(fnx, "%s\n", out);
 	// vfprintf(stdout, fmt, ap);
 
-	fclose(f);
+	fclose(fnx);
 	return 1;
 }
 #endif

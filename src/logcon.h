@@ -27,7 +27,7 @@ uchar LOG_TO_CON(uchar YIN_TYPE, const char* MSG, uchar IMP){
 	switch(YIN_TYPE){
 		/*1 would just mean that it is a standard thing to log to console (ie. "Processing Message" or "Got that keypress (key x)")*/
 		case 1:
-			frpintf(stdout,"ALSGM-LOG\nApplication Process: %s\n", MSG);
+			fprintf(stdout,"ALSGM-LOG\nApplication Process: %s\n", MSG);
 			break;
 		/*2 would be an application complaint like "I can't find that saved map!!!" or "The Program is almost out or RAM"*/
 		case 2:

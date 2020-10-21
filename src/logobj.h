@@ -1,4 +1,4 @@
-a#include "logfiles.h"
+#include "logfiles.h"
 #include "logcls.h"
 
 static std::shard_ptr<Logger>Log::s_CoreLogger;

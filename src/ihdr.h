@@ -13,17 +13,9 @@
 /*Pthread (The Library for Multithreading), requires you to use the compiler option -lpthread to link the library*/
 #include <string.h>
 #include <pthread.h>
+#include <stdarg.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-
-/*Local Links*/
-// Config File
-#include "config.h"
-#include "logfile.h"
-#include "logcon.h"
-#include "coremod.h"
-#include "logcls.h"
-#include "logobj.h"
 
 /*Defines*/
 
@@ -35,6 +27,8 @@
 // Logger Complaint From App
 #define GAME_ENGINE_LGR_CMPLNT_FR_APP 6
 
+#define GAME_ENGINE_LFT_CMPLNT_FR_APP 6
+
 // Logger Complaint From Core std module
 #define GAME_ENGINE_LGR_COMPLNT_CORE_MODULE 40
 #define GAME_ENGINE_LFT_CMPLNT_CORE_MODULE 39
@@ -43,9 +37,20 @@
 #define GAME_ENGINE_RQ_ANY 13
 
 // For the sake of santiy
+
 #define uchar unsigned char
 
 #define unt unsigned int
+
+
+/*Local Links*/
+// Config File
+#include "config.h"
+#include "logfiles.h"
+#include "logcon.h"
+#include "coremod.h"
+//#include "logcls.h"
+//#include "logobj.h"
 
 
 /*

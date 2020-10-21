@@ -3,10 +3,10 @@
 
 class Core{
 public:
-	Core{
+	Core(){
 		
 	}
-	~Core{}
+	~Core(){}
 };
 
 #endif

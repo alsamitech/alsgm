@@ -34,6 +34,6 @@ Please read the CONTRIBUTING file before pull-reqesting alsgm. While it is not r
 Official Public Mirror (GitHub):
   https://github.com/alsamitech/alsgm
 
-_if you want a good alternative of alsgm for Windows, see https://github.com/thecherno/Hazel __
+__if you want a good alternative of alsgm for Windows, see https://github.com/thecherno/Hazel__
 
 >>> NOTE: Don't ask why there are so many  mentions of the word "Yin", it's a long story that I don't feel like explaining.

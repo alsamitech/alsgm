@@ -18,6 +18,7 @@
 #include <sys/socket.h>
 
 /*Defines*/
+typedef unsigned char uchar;
 
 // Complaint Types
 
@@ -38,7 +39,6 @@
 
 // For the sake of santiy
 
-#define uchar unsigned char
 
 #define unt unsigned int
 

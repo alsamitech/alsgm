@@ -1,5 +1,5 @@
 CC=gcc
-CFlags= -o2 -lpthread -lX11
+CFlags= -o2 -lpthread -lX11 -lGL
 RESULTS=completesrc.c plain nodeadcode
 
 all: $(RESULTS)

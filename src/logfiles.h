@@ -1,6 +1,8 @@
 #ifndef ALSAMI_GAMENGINE_FILEPRGM_HDR
 #define ALSAMI_GAMENGINE_FILEPRGM_HDR
+
 #include "ihdr.h"
+
 int FileInit(const char INIT_MSG[]) {
   FILE *yin;
 
@@ -59,39 +61,17 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
   return 0;
 }
 
-uchar loge(const char* fmt, ...) {
+// i will finish this later i promise
+/*unsigned char loge(const char* fmt, ...) {
 	FILE *fnx;
 	va_list ap;
 	char out[512];
 	if(FRMT_LOG==NULL){return 1;}
 	struct tm tm ={0};
-	char *after_date=&out[22]
-	tm=*localtime(&t);
+	char *after_date=&out[22];
+	tm=*localtime(&tm);
 	strftime(out, 22, "%Y-%m-%d:%H:%M:%S",&tm);
-	out[21] ' ';
-	strcpy(after_date,"[ERROR]");
-	fnx=fopen("session.log", "w+");
-	va_start(ap,fmt);
-	vsprintf(after_date+0, fmt, ap);
-	va_end(ap);
-	out[28]=' ';
-	fprintf(stdout, "%s\n", out);
-	fprintf(fnx, "%s\n", out);
-	// vfprintf(stdout, fmt, ap);
-
-	fclose(f);
-	return 1;
-}
-uchar logi(const char *fmt, ...){
-	FILE *fnx;
-	va_list ap;
-	char *out[512];
-	if(FRMT_LG==NULL){return 1;}
-	struct tm tm ={0};
-	char *after_date=&out[22]
-	tm=*localtime(&t);
-	strftime(out, 22, "%Y-%m-%d:%H:%M:%S",&tm);
-	out[21] ' ';
+	*out[21]= ' ';
 	strcpy(after_date,"[ERROR]");
 	fnx=fopen("session.log", "w+");
 	va_start(ap,fmt);
@@ -105,4 +85,27 @@ uchar logi(const char *fmt, ...){
 	fclose(fnx);
 	return 1;
 }
+unsigned char logi(const char *fmt, ...){
+	FILE *fnx;
+	va_list ap;
+	char *out[512];
+	if(FRMT_LOG==NULL){return 1;}
+	struct tm tm ={0};
+	char *after_date=out[22];
+	tm=*localtime(&tm);
+	strftime(out, 22, "%Y-%m-%d:%H:%M:%S",&tm);
+	*out[21] = ' ';
+	strcpy(after_date,"[ERROR]");
+	fnx=fopen("session.log", "w+");
+	va_start(ap,fmt);
+	vsprintf(after_date+0, fmt, ap);
+	va_end(ap);
+	*out[28]=' ';
+	fprintf(stdout, "%s\n", out);
+	fprintf(fnx, "%s\n", out);
+	// vfprintf(stdout, fmt, ap);
+
+	fclose(fnx);
+	return 1;
+}*/
 #endif

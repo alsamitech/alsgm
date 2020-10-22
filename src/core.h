@@ -57,10 +57,10 @@ int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
 		YIN_CONJECT_CTR++;
 		if(NUMXZ==1) {
 			break;
-		} else if(NUMXZ==0) {LOG_TO_FL("Operation Failed!!!\n");return NULL;}
+		} else if(NUMXZ==0) {LOG_TO_CON(20,"Operation Failed!!!\n",NULL);return NULL;}
 	
 	}
 	return YIN_CONJECT_CTR;
 }
 
-uchar list_add(*uchar callback);
+uchar list_add(unsigned char *callback);

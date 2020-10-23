@@ -3,9 +3,14 @@
 /*Standard Library Links. All have*/
 #ifdef ALS_OPENGL
 // see config.h if you dont know what this is or want to use vulkan instead
-#include <GL/gl.h>
-#endif
 #include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <Xos.h>
+#include <Xatom.h>
+
+#include <GL/gl.h>
+#include "glgraphics.h"
+#endif
 /*Xlib (The Window System For Linux x.org) Requires you to use -lX11 in the compiler opetions to link the library*/
 #include <stdio.h>
 #include <stdlib.h>

@@ -8,8 +8,13 @@
 #include <Xos.h>
 #include <Xatom.h>
 
+// -lX11 -lGL -lGLU
+
 #include <GL/gl.h>
-#include "glgraphics.h"
+/*Other OpenGL Stuff*/
+
+#include <GL/glx.h>
+#include <GL/glu.h>
 #endif
 /*Xlib (The Window System For Linux x.org) Requires you to use -lX11 in the compiler opetions to link the library*/
 #include <stdio.h>
@@ -53,6 +58,10 @@ typedef unsigned char uchar;
 #include "config.h"
 #include "logfiles.h"
 #include "logcon.h"
+#ifdef ALS_OPENGL
+// see config.h if you dont know what this is or want to use vulkan instead
+#include "glgraphics.h"
+#endif
 #include "coremod.h"
 //#include "logcls.h"
 //#include "logobj.h"

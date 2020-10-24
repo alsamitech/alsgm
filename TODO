@@ -1,0 +1,6 @@
+Things to work on:
+	
+	Vulkan Support along with openGL support
+	The X window header
+	The win module
+  Communication between the processes (should be done with a 1000 byte buffer)

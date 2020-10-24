@@ -1,5 +1,5 @@
 CC=gcc
-CFlags=Wall
+CFlags= -o2 -lpthread -lX11 -lGL
 RESULTS=completesrc.c plain nodeadcode
 
 all: $(RESULTS)

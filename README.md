@@ -3,7 +3,7 @@
 This is a game engine I am working on as a simple project. This game engine contains a few componetents that we will get into after this section about what makes this game engine different than most game engines
 
 NOTE BEFORE READING:
-  This engine is likely to go through a ton of rewrites. I'm learning with every line of C++ and C I write.
+  This engine is likely to go through a ton of rewrites. I'm learning with every line of C++ and C I write. This engine will probably not be stable for a few months.
 
 Premable:
   Game Engines are not supposed to be one-size-fits-all engines. While this can be done efficiently with a lot of effort, I don't see the point in trying to use one engine for a ton of use cases.
@@ -13,7 +13,7 @@ Premable:
   ALSGM intends to fix all that.
   
 **What is it?**
-	ALSGM is a module-based game engine, Moduels can be both written in C or C++. 
+	ALSGM is a module-based game engine, Moduels can be both written in C or C++. Unlike most game engines, it's actually compiled with the game itself. This helps because the game studio can easily make new modules and extend the engine's functionality.  
 
 **What Does it do?**
 
@@ -28,9 +28,12 @@ Learning Resources:
   https://www.youtube.com/watch?v=dZr-53LAlOw&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=6
   *The Cherno's Videos did help me with this project, but if you want to develop a game engine for Linux like me, you will need other resources and a good knowledge of OpenGL and Xlib. If you really want, I will put some of the key components of this rendering engine in a seperate GitHub Repository
 
+Note Before Contributing:
+Please read the CONTRIBUTING file before pull-reqesting alsgm. While it is not required, it is __highly__ reccomended to do so as it will give you a ton of good advice
+
 Official Public Mirror (GitHub):
   https://github.com/alsamitech/alsgm
 
-_if you want a good alternative of alsgm for Windows, see https://github.com/thecherno/Hazel __
+__if you want a good alternative of alsgm for Windows, see https://github.com/thecherno/Hazel__
 
 >>> NOTE: Don't ask why there are so many  mentions of the word "Yin", it's a long story that I don't feel like explaining.

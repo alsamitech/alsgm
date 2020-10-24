@@ -12,6 +12,9 @@
 # Prerequisites
 *.d
 
+# Files from other languages
+*.py
+
 # Compiled Object files
 *.slo
 *.lo
@@ -43,8 +46,14 @@
 *.app
 
 # Files to intentionally be ignored
-*.ftgn
+
 # File To iGNore
+*.ftgn
+
+# Local Repository
+*.lr
 
 # Direcotries to ignore
 debugbin/
+.yin/
+.locl/

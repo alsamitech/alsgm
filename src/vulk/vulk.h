@@ -1,7 +1,8 @@
 #ifndef ALSAMI_VULKAN_MAIN_HEADER_OPENGL
 #define ALSAMI_VULKAN_MAIN_HEADER_OPENGL
 
-VkInstance vulk_init;
+#define ALS_RUNTIME_ERROR 50
+
 
 /*
  *      ALSGM CODENAME YIN
@@ -17,6 +18,38 @@ VkInstance vulk_init;
 
 #include <vulkan/vulkan.h>
 #include <GLFW/glfw3.h>
+
+ FILE *vulk_filelgr;
+
+/*
+ *  The Vulkan module for ALSGM (Codename Yin) Overwrites the Runtime Logs every time it starts.
+ *  This is just to save space. If something is truly critical, the module will just log it to console.
+ *
+ **/
+
+/*verification stuff*/
+#ifdef NDEBUG
+  const bool enableValidationLayers=false;
+#else
+  const bool enableValidationLayers=true;
+#endif
+
+bool checkValidationLayerSupport(){
+  uint32_t layerCount;
+  vkEnumerateInstanceLayerProperties(&layerCount);
+  vkEnumerateInstanceLayerProperties(&layerCount,availableLayers.data());
+  return false;
+}
+
+void vulkanlogger_alsami(unsigned int lgr_md, const char* lgr_msg){
+   
+    vulk_filelgr=fopen("vulk_runtime.als.log", w+);
+
+    fprintf(vulk_filelgr, "%s\n", lgr_msg);
+
+}
+
+VkInstance vulk_instance;
 
 const uint32_t WIDTH=800;
 const uint32_t HEIGHT=600;
@@ -46,7 +79,16 @@ void vulk_inst_create(){
   vkInstanceCreateInfo vulk_cinfo{};
   vulk_cinfo.sType=VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   vulk_cinfo.pApplicationInfo=&vulk_appinfo;
-
+  glfwExtensions=glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+  vulk_cinfo.enabledExtensionCount=glfwExtensionCount;
+  vulk_cinfo=ppEnabledExtensionNames=glfwExtensions;
+  vulk_cinfo.enabledLayerCount=0;
+  // not needed until I screw something up really bad
+  //VkResult result=vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance));
+  if(vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance))!=VK_SUCSESS) {
+    vulkanlogger_alsami(ALS_RUNTIME_ERROR,"Failed to create instance!");
+  }
+  
 }
 
 void vulk_init(){
@@ -61,8 +103,10 @@ void vulk_wlp(){
 }
 
 void vulk_cleanup(){
+  vkDestroyInstance(vulk_instance, nullptr);
   glfwDestroyWindow(window);
   glfwTerminate();
+  fclose(vulk_filelgr);
 }
 
 void vulk_run(){

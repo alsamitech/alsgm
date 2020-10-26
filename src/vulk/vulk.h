@@ -54,7 +54,7 @@ VkInstance vulk_instance;
 const uint32_t WIDTH=800;
 const uint32_t HEIGHT=600;
 uint32_t glfwExtensionCount=0;
-const char glfwExtensions;
+const char** glfwExtensions;
 
 int vern1;
 int vern2;
@@ -70,7 +70,7 @@ void win_init(){
 
 void vulk_inst_create(){
   VkApplicationInfo vulk_appinfo{};
-  vulk_appinfo.sType-VK_STRUCTURE_TYPE_APPLICATION_INFO;
+  vulk_appinfo.sType=VK_STRUCTURE_TYPE_APPLICATION_INFO;
   vulk_appinfo.pApplicationInfo= vulk_als_appnm;
   appInfo.applicationVersion=VK_MAKE_VERSION(vern1,vern2,vern3);
   appInfo.pEngineName="alsgm-vulk";
@@ -91,9 +91,15 @@ void vulk_inst_create(){
   
 }
 
+void setupDebugMessenger(){
+	if(!enableValidationLayers)return;
+}
+
 void vulk_init(){
   vulk_inst_create();
 
+  // Oh God it's time to do the debug stuff (nice)
+  SETUP_DBG_MSNGR();
 }
 
 void vulk_wlp(){
@@ -109,6 +115,10 @@ void vulk_cleanup(){
   fclose(vulk_filelgr);
 }
 
+
+/*
+ * Initial vulkan drawing step
+ **/
 void vulk_run(){
         win_init();
         vulk_init();
@@ -116,5 +126,14 @@ void vulk_run(){
         vulk_cleanup();
         
 }       
+
+
+/*
+ *  The Vulkan Procedure Must be spun off into it's own process.
+ **/
+void vulk_proc_init(void *Yin){
+  vulk_run();
+  return NULL;
+}
 
 #endif

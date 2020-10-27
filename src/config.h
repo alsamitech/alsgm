@@ -19,3 +19,5 @@
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
 #define ALS_OPENGL
+
+#define DEBUG_RLS

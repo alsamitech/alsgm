@@ -8,13 +8,22 @@
  *	Dynamic Array Struct in C
  * */
 
+typedef int type_yin;
+typedef struct{
+	type_yin *als_li;
+	size_t arr_len;
+	size_t alloc;
+} dals_t;
+
+inline dals_t darr_init(size_t array_init_sz);
+
 inline dals_t darr_init(size_t array_init_sz){
 	dals_t *t_n2=malloc(sizeof(dals_t));
 	t_n2->als_li=malloc(sizeof(int)*array_init_sz);
 	t_n2->alloc=array_init_sz;
 	t_n2->arr_len=0;
 
-	return t_n2;
+	return t_n2
 }
 
 int grow(dals_t* t){
@@ -23,7 +32,7 @@ int grow(dals_t* t){
 
 	type_yin* new_li=malloc(2*t->alloc);		// doubles the amount of memory allocated to the new_li from als_li
 	// that makes sure the memory is allocated
-	if(newli==NULL)
+	if(new_li==NULL)
 		return 1; // failiure to allocate
 	// security vunerability that I will **totally** fix later
 	memcpy(new_li,t->als_li,sizeof(type_yin)*t->arr_len);		// memcpys the contents of the old list into the new list
@@ -34,14 +43,7 @@ int grow(dals_t* t){
 	return 0;	// sucsess
 }
 
-typedef int type_yin;
-typedef struct{
-	type_yin *als_li;
-	size_t arr_len;
-	size_t alloc;
-} dals_t;
 
-inline darr_init(size_t array_init_sz);
 
 void destroy(dals_t* T);
 

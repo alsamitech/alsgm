@@ -6,6 +6,6 @@
 
 class WindowResizeEvent: public evnt{
 	
-}
+};
 
 #endif

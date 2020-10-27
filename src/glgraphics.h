@@ -1,5 +1,7 @@
 #ifndef ALSAMI_OPNEGL_GAME_ENGINE_MAIN_HEADER_FILE
 #define ALSAMI_OPNEGL_GAME_ENGINE_MAIN_HEADER_FILE
+// to get rid of the ihdr being annoying
+#include <X11/Xlib.h>
 
 #include "ihdr.h"
 

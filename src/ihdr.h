@@ -10,8 +10,8 @@
 // see config.h if you dont know what this is or want to use vulkan instead
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-#include <Xos.h>
-#include <Xatom.h>
+//#include <Xos.h>
+//#include <Xatom.h>
 
 // -lX11 -lGL -lGLU
 

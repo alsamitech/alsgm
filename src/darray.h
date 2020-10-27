@@ -15,15 +15,15 @@ typedef struct{
 	size_t alloc;
 } dals_t;
 
-inline dals_t darr_init(size_t array_init_sz);
+inline dals_t* darr_init(size_t array_init_sz);
 
-inline dals_t darr_init(size_t array_init_sz){
+inline dals_t* darr_init(size_t array_init_sz){
 	dals_t *t_n2=malloc(sizeof(dals_t));
 	t_n2->als_li=malloc(sizeof(int)*array_init_sz);
 	t_n2->alloc=array_init_sz;
 	t_n2->arr_len=0;
 
-	return t_n2
+	return t_n2;
 }
 
 int grow(dals_t* t){

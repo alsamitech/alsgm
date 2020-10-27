@@ -3,6 +3,7 @@
 
 #define ALS_RUNTIME_ERROR 50
 
+#include "tarray.h"
 
 /*
  *      ALSGM CODENAME YIN

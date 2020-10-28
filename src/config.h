@@ -1,3 +1,7 @@
+#pragma once
+// Replace #pragma once with include guards if your compiler needs it.
+
+
 /**
  *      Sami M. Alameddine, 2020
  *
@@ -20,4 +24,20 @@
  * */
 #define ALS_VULK
 
+
+/*
+ * 	The Debug Release Option is just for cases of debugging. This makes debugging less of a pain
+ * 	Debugger Sami Used: GDB
+ *
+ * 	If you plan to use alsgm for a real projecect, change it to ALS_RLS after you're done debugging
+ **/
 #define DEBUG_RLS
+
+
+/*
+ *	This option chooses what model to use. It can either be a sprite_based model (SPRITE_MODEL)
+ *	Or alsgm can be configured for a draw-shape model (FUNC_MODEL)
+ *
+ * */
+
+#define SPRITE_MODEL

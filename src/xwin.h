@@ -18,7 +18,7 @@ uint xinit(){
 	}
 	// However, if we have a connection, then we will get the screen
 	screen=DefaultScreen(dpy);
-	win = XCreateWindow()
+	win = XCreateWindow();
 }
 
 #include "ihdr.h"

@@ -12,6 +12,16 @@ Premable:
   
   ALSGM intends to fix all that.
   
+## Dependencies
+*AlsGM (Codename Yin) Relies on mulitple dependencies for redenring and API implementation*
+* Vulkan Must be linked (if vulkan selected in config.h file)
+* OpenGL Must be linked (if opengl selecting in config.h file)
+* GLFW (if vulkan) 
+* Xlib Header Files (This makes alsgm practically gnu/(linux or hurd) exclusive)
+* Pthread and `sys/` files (This makes alsgm POSIX-Exclusive)
+
+
+
 **What is it?**
 	ALSGM is a module-based game engine, Moduels can be both written in C or C++. Unlike most game engines, it's actually compiled with the game itself. This helps because the game studio can easily make new modules and extend the engine's functionality.  
 
@@ -26,7 +36,7 @@ Premable:
 I also don't think this should be the only game engine you should ever use. If you know C++ or C, try experimenting with making your own game engine!
 Learning Resources:
   https://www.youtube.com/watch?v=dZr-53LAlOw&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=6
-  *The Cherno's Videos did help me with this project, but if you want to develop a game engine for Linux like me, you will need other resources and a good knowledge of OpenGL and Xlib. If you really want, I will put some of the key components of this rendering engine in a seperate GitHub Repository
+  *The Cherno's Videos did help me with this project, but if you want to develop a game engine for Linux like me, you will need other resources and a good knowledge of OpenGL or Vulkan and Xlib. If you really want, I will put some of the key components of this rendering engine in a seperate GitHub Repository
 
 Note Before Contributing:
 Please read the CONTRIBUTING file before pull-reqesting alsgm. While it is not required, it is __highly__ reccomended to do so as it will give you a ton of good advice

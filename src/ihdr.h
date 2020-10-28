@@ -1,12 +1,17 @@
 #ifndef ALSAMI_GAME_ENGINE_INTEGRATED_HDR
 #define ALSAMI_GAME_ENGINE_INTEGRATED_HDR
+
+// The Config File has full authority to decide what is libraries are used
+// Config File
+#include "config.h"
+
 /*Standard Library Links. All have*/
 #ifdef ALS_OPENGL
 // see config.h if you dont know what this is or want to use vulkan instead
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-#include <Xos.h>
-#include <Xatom.h>
+//#include <Xos.h>
+//#include <Xatom.h>
 
 // -lX11 -lGL -lGLU
 
@@ -23,6 +28,13 @@
 /*Pthread (The Library for Multithreading), requires you to use the compiler option -lpthread to link the library*/
 #include <string.h>
 #include <pthread.h>
+
+// TO make debugging less painful
+#ifdef DEBUG_RLS
+#include <assert.h>
+#endif
+
+
 #include <stdarg.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -54,8 +66,12 @@ typedef unsigned char uchar;
 
 
 /*Local Links*/
-// Config File
-#include "config.h"
+
+
+/* Dyanic Array Handling Headers */
+#include "tarray.h"
+#include "darray.h"
+
 #include "logfiles.h"
 #include "logcon.h"
 #ifdef ALS_OPENGL
@@ -63,6 +79,14 @@ typedef unsigned char uchar;
 #include "glgraphics.h"
 #endif
 #include "coremod.h"
+#include "appevent.h"
+
+#ifdef ALS_VULK
+
+#include "vulk/vulk.h"
+
+#endif
+
 //#include "logcls.h"
 //#include "logobj.h"
 

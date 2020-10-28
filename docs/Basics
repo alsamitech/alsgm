@@ -3,6 +3,10 @@ Alsami Game Engine (ALSGM) Documentation
 Entry Point:
 	ALSGM abstracts the entry point and puts in in core.h. This gives it buit in error handling right at the starting point. To start the program, do this
 
+Error Handling:
+  ALSGM has one of the most powerful error handling systems.
+  *Documentation here before version 1!*
+
 ```
 
 #include "alsgm/src/include.h"

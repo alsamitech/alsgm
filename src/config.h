@@ -18,6 +18,6 @@
  *	Define ALS_VULK to use Vulkan
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
-#define ALS_OPENGL
+#define ALS_VULK
 
 #define DEBUG_RLS

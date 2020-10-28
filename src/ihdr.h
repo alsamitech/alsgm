@@ -81,6 +81,12 @@ typedef unsigned char uchar;
 #include "coremod.h"
 #include "appevent.h"
 
+#ifdef ALS_VULK
+
+#include "vulk/vulk.h"
+
+#endif
+
 //#include "logcls.h"
 //#include "logobj.h"
 

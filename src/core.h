@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
 
   pthread_join(USR_GME, NULL);
 
-  // This part just frees memor
+  // This part just frees memory
   //delete sbX;
 
   return EXIT_SUCCESS;

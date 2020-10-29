@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Requires Vulkan SDK
+// https://vulkan.lunarg.com/sdk/home#linux
 #include <vulkan/vulkan.h>
 #include <GLFW/glfw3.h>
 
@@ -62,9 +64,9 @@ int vern2;
 int vern3;
 
 void win_init(){
-        // Tells GLFW to not create an OpenGL context
-        glfwWindowHint(GLFW_CLIENT_API,GLFW_NO_API);
-        glgwWindowHint(GLFW_RESIZABLE,GLFW_FALSE);
+  // Tells GLFW to not create an OpenGL context
+  glfwWindowHint(GLFW_CLIENT_API,GLFW_NO_API);
+  glfwWindowHint(GLFW_RESIZABLE,GLFW_FALSE);
 
 
 }
@@ -73,10 +75,10 @@ void vulk_inst_create(){
   VkApplicationInfo vulk_appinfo{};
   vulk_appinfo.sType=VK_STRUCTURE_TYPE_APPLICATION_INFO;
   vulk_appinfo.pApplicationInfo= vulk_als_appnm;
-  appInfo.applicationVersion=VK_MAKE_VERSION(vern1,vern2,vern3);
-  appInfo.pEngineName="alsgm-vulk";
-  appInfo.engineVersion=VK_MAKE_VERSION(1,2,9);
-  appInfo.apiVersion=VK_API_VERSION_1_0;
+  vulk_appinfo.applicationVersion=VK_MAKE_VERSION(vern1,vern2,vern3);
+  vulk_appinfo.pEngineName="alsgm-vulk";
+  vulk_appinfo.engineVersion=VK_MAKE_VERSION(1,2,9);
+  vulk_appinfo.apiVersion=VK_API_VERSION_1_0;
   vkInstanceCreateInfo vulk_cinfo{};
   vulk_cinfo.sType=VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   vulk_cinfo.pApplicationInfo=&vulk_appinfo;
@@ -121,16 +123,21 @@ void vulk_cleanup(){
  * Initial vulkan drawing step
  **/
 void vulk_run(){
-        win_init();
-        vulk_init();
-        vulk_wlp();
-        vulk_cleanup();
-        
+  win_init();
+  vulk_init();
+  vulk_wlp();
+  vulk_cleanup();        
 }       
 
 
+uint graphics_start(){
+  win_init();
+  vulk_init();
+  return 0; 
+}
+
 /*
- *  The Vulkan Procedure Must be spun off into it's own process.
+ *  The Vulkan Procedure can be spun off into it's own process.
  **/
 void vulk_proc_init(void *Yin){
   vulk_run();

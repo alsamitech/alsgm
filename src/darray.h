@@ -23,12 +23,12 @@ inline dals_t* darr_init(size_t array_init_sz){
 	t_n2->alloc=array_init_sz;
 	t_n2->arr_len=0;
 
-	return t_n2;
+	return t_2;
 }
 
 int grow(dals_t* t){
 	assert(t!=NULL);		// Asserts these conditions (just in case something goes wrong and I need to debug, I don't want to lose my last brain cell debugging this)
-	assert(t-als_li!=NULL);		// and helps the reader to know what the precoditions are
+	assert(t->als_li!=NULL);		// and helps the reader to know what the precoditions are
 
 	type_yin* new_li=malloc(2*t->alloc);		// doubles the amount of memory allocated to the new_li from als_li
 	// that makes sure the memory is allocated

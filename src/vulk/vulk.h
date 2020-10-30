@@ -67,10 +67,22 @@ void win_init(){
   // Tells GLFW to not create an OpenGL context
   glfwWindowHint(GLFW_CLIENT_API,GLFW_NO_API);
   glfwWindowHint(GLFW_RESIZABLE,GLFW_FALSE);
-
-
 }
 
+void vulk_inst_create_mod(){
+  VkApplicationInfo vulk_appinfo{};
+  vulk_appinfo.sType=VK_STRUCTURE_TYPE_APPLICATION_INFO;
+  vulk_appinfo.pApplicationInfo= "Alsami Game Engine - Vulkan";
+  vulk_appinfo.applicationVersion=VK_MAKE_VERSION(vern1,vern2,vern3);
+  vulk_appinfo.pEngineName="alsgm-vulk";
+  vulk_appinfo.engineVersion=VK_MAKE_VERSION(1,2,9);
+  vulk_appinfo.apiVersion=VK_API_VERSION_1_0;
+  // not needed until I screw something up really bad
+  //VkResult result=vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance));
+  /*if(vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance))!=VK_SUCSESS) {
+    vulkanlogger_alsami(ALS_RUNTIME_ERROR,"Failed to create instance!");
+  }*/
+}
 void vulk_inst_create(){
   VkApplicationInfo vulk_appinfo{};
   vulk_appinfo.sType=VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -80,7 +92,7 @@ void vulk_inst_create(){
   vulk_appinfo.engineVersion=VK_MAKE_VERSION(1,2,9);
   vulk_appinfo.apiVersion=VK_API_VERSION_1_0;
   vkInstanceCreateInfo vulk_cinfo{};
-  vulk_cinfo.sType=VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+  kvulk_cinfo.sType=VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   vulk_cinfo.pApplicationInfo=&vulk_appinfo;
   glfwExtensions=glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
   vulk_cinfo.enabledExtensionCount=glfwExtensionCount;
@@ -127,21 +139,21 @@ void vulk_run(){
   vulk_init();
   vulk_wlp();
   vulk_cleanup();        
-}       
+}      
 
 
-uint graphics_start(){
+/*uint graphics_start(){
   win_init();
   vulk_init();
   return 0; 
-}
+}*/
 
 /*
  *  The Vulkan Procedure can be spun off into it's own process.
  **/
-void vulk_proc_init(void *Yin){
+/*void vulk_proc_init(void *Yin){
   vulk_run();
   return NULL;
-}
+}*/
 
 #endif

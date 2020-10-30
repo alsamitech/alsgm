@@ -13,9 +13,9 @@ template<typename YI, size_t SNX>
 class yinarray{
 public:
 	// Constructor
-	Array(){
+	Array(int init_sznx){
 		// allocate some memory for 2 elements
-		yin_ralloc(2);
+		yin_ralloc(init_sznx);
 	}
 	void YIN_PUSHBACK(const YI& pval_yin){
 		if(yin_size>=yin_capacity){

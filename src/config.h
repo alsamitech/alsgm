@@ -6,7 +6,7 @@
  *      Sami M. Alameddine, 2020
  *
  *      This is the configuration file. Here, you can change defines to be whatever you want, because thats what modulatriy should be
- *
+ *	If you're cofused by the wording here, Please read the README
  */
 
 // Defines Here
@@ -22,14 +22,14 @@
  *	Define ALS_VULK to use Vulkan
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
-#define ALS_VULK
+#define IGNORE_GRAPHICS
 
 
 /*
  * 	The Debug Release Option is just for cases of debugging. This makes debugging less of a pain
  * 	Debugger Sami Used: GDB
  *
- * 	If you plan to use alsgm for a real projecect, change it to ALS_RLS after you're done debugging
+ * 	If you plan to use alsgm for a real project, change it to ALS_RLS after you're done debugging
  **/
 #define DEBUG_RLS
 

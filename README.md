@@ -28,10 +28,16 @@ Premable:
 **What Does it do?**
 
 **How Does it work?**
-	ALSGM has 2 types of modules, core modules and expandability modules. Core modules are things like the Event System, the Logging System, and the Interface with OpenGL. These are all considered extremly critical for the stable operation of aslgm. These are all loaded before the Application's entry point is spun off onto a new process. Also, ALSGM has a differnt kind of module called expandability modules. These modules, while also loaded before the app spins off into it's own process, are considred much less critical, have a less privliges than the core modules, but also can have more integration with things that are not strictly part of the app/engine
+	ALSGM has 2 types of modules, core modules and expandability modules. Core modules are things like the Event System, the Logging System, and the Interface with OpenGL or Vulkan. These are all considered extremly critical for the stable operation of aslgm. These are all loaded before the Application's entry point is spun off onto a new process. Also, ALSGM has a differnt kind of module called expandability modules. These modules, while also loaded before the app spins off into it's own process, are considred much less critical, have a less privliges than the core modules, but also can have more integration with things that are not strictly part of the app/engine
 
 ![](docs/processes.jpg)
 
+Assumed Timeline:
+	1. November - Finish the core components, and do some basic Vulkan and OpenGL implmentation, and expand documentation
+	2. December - The enginerring part, take the (essentially) template for the game engine and turn it into a full engine and fully document every function, variable
+	3. Early 2021 - Flush out the engine, by this time, the engine should be suitable for large game projects
+	4. Mid 2021 - Bug fixes, expanding the logging system, and turn some of the code from C to platform-specific Assemby (Risc-V and x84-64(amd64))
+	5. Late 2021 and after - Bug fixes, efficeincy fixes, and making a designer and IDE for alsgm.
 
 I also don't think this should be the only game engine you should ever use. If you know C++ or C, try experimenting with making your own game engine!
 Learning Resources:

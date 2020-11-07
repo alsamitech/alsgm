@@ -6,10 +6,10 @@
 #include "ihdr.h"
 
 /*
- *	OpenGL implemntation of X11.
+ *	OpenGL implementation of X11.
  *	Sami Alameddine
  *
- *	compier options for this
+ *	Compiler options for this
  *	-lX11 -lGL
  * */
 
@@ -27,15 +27,18 @@ GLint att[]={GLX_RGBA,GLX_DEPTH_SIZE,24,GLX_DOUBLEBUFFER,None};
 XVisualInfo *alsami_xvis;
 GLXContext glc;
 
-// Drw triangle function
+// Draw triangle function
 void drawTriangle(GLfloat CordX,GLfloat CordY,GLfloat CordZ){
 	glColor3f(0.0f,0.0f,0.0f);
 
 	glBegin(GL_TRIANGLES);
 		glVertex3f(0.0f,0.0f,0.0f);
 		// glVertex3f(negativeX,positiveX,Z)
-		glVertex3f();
+		glVertex3f(CordX,CordY,CordZ);
 		//glVertex3f(-0.5f,0.0f,0.0f);
+		// yes I'm using libc and im not gonna stop
+		glVertex3f(fabs(CordX),CordY,CordZ);
+
 
 	glEnd();
 }
@@ -55,13 +58,13 @@ uchar X_WIN_INIT(char arg1, uchar arg2) {
 	x_attrs.background_pixel=WhitePixel(alsami_dpy,screen);
 	x_attrs.override_redirect=True;
 	/*x_attrs.colormap=CopyFromParent;*/
-	x_attrs.colormap=XCreateColorMap;
+	x_attrs.colormap=XCreateColormap;
 	x_attrs.EventMask=ExposureMask|KeyPressMask;
 	// root window
 	app_win=XCreateWindow(dpy,root_win,200,200,500,300,0,depth,InputOutput,CopyFromParent,CWBackPixel|CWColormap|CWBorderPixel|CWEventMask|CWBorderPixel|CWEventMask,&x_attrs);
 	XMapWindow(alsami_dpy,app_win);
-	
-	glc = glXCreateContext(dpy, visual, NULL, GL_TRUE);
+
+	glc = glXCreateContext(dpy, /*visual*/Visual, NULL, GL_TRUE);
 	glXMakeCurrent(alsami_dpy,app_win);
 
 	// makes OpenGL do the integration with X11
@@ -73,11 +76,13 @@ uchar X_WIN_INIT(char arg1, uchar arg2) {
 		if(app_xev==Expose){
 			XGetWindowAttributes(dpy,win,&winattr);
 			glViewport(0,0,winattr.width,winattr.height);
-			
+
 			// glClearColor(red,green,blue,alpha)
 			glClearColor(0.7f,0.7f,0.7f,0.7f);
 			glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-			drawTriangle();
+#ifdef EXAMPLE
+			drawTriangle(0.5f,0.5f,0.0f);
+#endif
 		}
 	}
 }

@@ -1,11 +1,22 @@
 Alsami Game Engine (ALSGM) Documentation
 
+AlsGM Basics Page Note:
+	For novices to graphcis, engines, or AlsGM
+	AlsGM assumes advanced knowledge of the C and C++ programming languages
+	After reading the README, this should be the very next thing that you read.
+
 AlsGM (as of now) depends on libc
 
 Entry Point:
 	ALSGM abstracts the entry point and puts in in core.h. This gives it buit in error handling right at the starting point. To start the program, do this
 Error Handling:
   ALSGM has one of the most powerful error handling systems.
+
+  End-Of-Program:
+    It's already happend countless times before. You see that something went horribly wrong in your game and want to stop it. But you also want to let the user know what happend. How do you do this?
+
+    After the start function returns, alsgm will check what the function returned exactly to see if there was an error and how to handle it
+
   *Documentation here before version 1!*
 
 ```

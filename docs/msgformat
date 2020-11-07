@@ -8,3 +8,4 @@ END LOG([any other info here])
 
 This uses a question mark to deferientiate between specifier and log
 
+You (assuming you are a game developer) can use whatever message formatting you want, but it is reccomended that you make your logs descriptive yet consise. If there is an error that would take too long to read in a local log file, you can just pass an error code and put the error code information on your website.

@@ -2,7 +2,7 @@ ALSAMI CODENAME YIN
 
 GAME ENGINE
 
-Codename Yin uses a costoum events system, Desinged for the project by Sami Alameddine.
+AlsGM uses a costoum events system, Desinged for the project by Sami Alameddine.
 
 Author's Note:
 	Don't ask why I excessively use the word "Yin", it's a very, VERY long story. However, this is how the events module work.
@@ -23,5 +23,6 @@ if((strcmp(oldEventQueue,EventQueue)!=0)){
 	// Code not included for the sake of simplicity
 }
 ```
+There are two ways AlsGM can handle events (configured in the config.h file)
 
 The Event system.

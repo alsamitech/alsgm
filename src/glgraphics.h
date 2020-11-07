@@ -17,7 +17,7 @@
 static Display *alsami_dpy;		// X Display
 static int screen;			// X Screen
 static Window app_win, root_win;			// App Main(root) Window
-static XEvent app_xev			// X event thingy
+/*static*/ XEvent app_xev			// X event thingy
 static XSetWindowAttributes x_attrs;
 static unsigned int depth
 XWindowAttributes winattr;
@@ -52,7 +52,7 @@ uchar X_WIN_INIT(char arg1, uchar arg2) {
 	depth=DefaultDepth(alsami_dpy,screen);
 	root_win=RootWindow(alsami_dpy,screen);
 
-	alsami_xvis=glXVChooseVisual(dpy,screen,att);
+	alsami_xvis=glXChooseVisual(dpy,screen,att);
 
 	x_attrs.border_pixel=BlackPixel(alsami_dpy,screen);
 	x_attrs.background_pixel=WhitePixel(alsami_dpy,screen);

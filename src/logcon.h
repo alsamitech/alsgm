@@ -21,8 +21,7 @@
  * 		A complaint happens when a process wants to ask the user to fix a case of user-error if the program wants to log a potentical unknown bug, it should log to the file instead of the console. A complaint is differnt than a log. A log is meant to to inform the user that something is happening, a complaint is meant to complain to the suer that something is not working and may be a pottential case of end-suer error.
  * */
 
-
-// unsigned char Log To COnsole args: unsigned char yin type(just the type of varibale) const char* msg and the imporntace variable)
+// unsigned char Log To Console args: unsigned char yin type(just the type of varibale) const char* msg and the imporntace variable)
 uchar LOG_TO_CON(uchar YIN_TYPE, const char* MSG, uchar IMP){
 	switch(YIN_TYPE){
 		/*1 would just mean that it is a standard thing to log to console (ie. "Processing Message" or "Got that keypress (key x)")*/

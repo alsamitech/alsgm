@@ -4,8 +4,8 @@
 
 #include "ihdr.h"
 
-class WindowResizeEvent: public evnt{
+//class WindowResizeEvent: public evnt{
 	
-};
+//};
 
 #endif

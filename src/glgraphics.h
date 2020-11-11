@@ -41,6 +41,7 @@ void drawTriangle(GLfloat CordX,GLfloat CordY,GLfloat CordZ){
 
 
 	glEnd();
+    glSwapBuffers(alsami_dpy,app_win);
 }
 
 uchar X_WIN_INIT(char arg1, uchar arg2) {
@@ -74,7 +75,7 @@ uchar X_WIN_INIT(char arg1, uchar arg2) {
 	for(;;){
 		XNextEvent(alsami_dpy,&app_xev);
 		if(app_xev==Expose){
-			XGetWindowAttributes(dpy,win,&winattr);
+			XGetWindowAttributes(alsami_dpy,app_win,&winattr);
 			glViewport(0,0,winattr.width,winattr.height);
 
 			// glClearColor(red,green,blue,alpha)

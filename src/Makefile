@@ -1,4 +1,4 @@
-CC=gcc
+CC=g++
 CFlags= -o2 -lpthread -lX11 -lGL
 RESULTS=completesrc.c plain nodeadcode
 

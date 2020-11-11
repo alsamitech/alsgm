@@ -2,7 +2,7 @@ ALSAMI CODENAME YIN
 
 GAME ENGINE
 
-Codename Yin uses a costoum events system, Desinged for the project by Sami Alameddine.
+AlsGM uses a costoum events system, Desinged for the project by Sami Alameddine.
 
 Author's Note:
 	Don't ask why I excessively use the word "Yin", it's a very, VERY long story. However, this is how the events module work.
@@ -12,9 +12,17 @@ Name of the events module: YEM (codename Yin Event Module)
 
 When an event occurs inside the window, Our window class (wcls.h) will recive an event callback. After that, it constructs a ALS_GMEV (ALSami GaMe Event). which would be handled by our run function.
 
-In the window class, when
+At the end of the Main loop in the window classs, the class will check to see if there are any events queued in the buffer. The buffer that it reads from is a heap allocated buffer, so a game/user can queue up as many actions as desired without causing an offerflow (provided that 1. the game developer does not make a queued event without giving the event length size 2. the operating system/machine will  allow alsgm to acsess more RAM)
 
-Event Listener:
-	The Event listener checks if tehre is any events
+Event Checker:
+	The Event checker checks if tehre is any events in the Queue.
+
+	This is done with an if statement at the end of each iteration of the window's main loop
+```
+if((strcmp(oldEventQueue,EventQueue)!=0)){
+	// Code not included for the sake of simplicity
+}
+```
+There are two ways AlsGM can handle events (configured in the config.h file)
 
 The Event system.

@@ -14,7 +14,7 @@
 
 /*
  *	alsgm supports both OpenGL and Vulkan.
- *	
+ *
  *	The define below is for choosing which one to use
  *	this is all decided at compile time for the sake of efficiency
  *
@@ -23,6 +23,7 @@
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
 #define IGNORE_GRAPHICS
+#define ALS_OPENGL
 
 
 /*
@@ -41,3 +42,9 @@
  * */
 
 #define SPRITE_MODEL
+
+/*
+ *  Remove this if this is a release buiild, but this is just for testing, and declares specific things in the header files
+ *
+ **/
+#define EXAMPLE

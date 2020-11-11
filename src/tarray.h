@@ -9,11 +9,12 @@
  *	This is a dynamic array, but is not as complex as std::vector
  * */
 
-template<typename YI, size_t SNX>
+template <typename YI, size_t SNX>
+
 class yinarray{
 public:
 	// Constructor
-	Array(){
+	yinarray(){
 		// allocate some memory for 2 elements
 		yin_ralloc(2);
 	}

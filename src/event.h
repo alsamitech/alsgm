@@ -75,7 +75,7 @@ void msg_emit(const char *name){
 	struct msg_type *t = get_msg_type(name);
 	msg_callback cb=NULL;
 	msg_callback *list=NULL;
-	if(NULL==t) {
+	if(t==NULL) {
 		fprintf(stderr, "tried to emit non-existing msg type: %s\n", name);
 	}
 }

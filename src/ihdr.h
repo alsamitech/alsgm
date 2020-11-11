@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 /*Pthread (The Library for Multithreading), requires you to use the compiler option -lpthread to link the library*/
 #include <string.h>
 #include <pthread.h>
@@ -79,7 +80,8 @@ typedef unsigned char uchar;
 #include "glgraphics.h"
 #endif
 #include "coremod.h"
-#include "appevent.h"
+// Excluded for now
+//#include "appevent.h"
 
 #ifdef ALS_VULK
 

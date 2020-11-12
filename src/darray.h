@@ -44,9 +44,13 @@ int grow(dals_t* t){
 	return 0;	// Operation Sucsessful
 }
 
+type_yin append(dals_t *t, type_yin val){
+	if(t->len->alloc-1){assert(grow(t)!=0);}
+	// refernces the link, and does the side effect of iincrementing the value. It returns the old value, which is the first slot in the array
+	t->li[t->len++]=val;
+	return val;}
 
-
-void destroy(dals_t* T);
+void destroy(dals_t* T){free(t->li);free(t);}
 
 int grow(dals_t* t);
 

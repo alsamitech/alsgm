@@ -1,0 +1,43 @@
+Alsami Game Engine Documentaton
+11/7/20
+
+The Sprite Model
+
+IMPLEMENTATION STATUS: 2/10
+
+Often, bitmap objects in games engines are called "sprites". This means that the game engine follows the sprite model.
+
+There are two concepts of displaying bitmap art AlsGM supports:
+- The Sprite Model
+- The Procdeural, callback function Model
+
+What is The Sprite Model:
+	The Sprite Model dictates that all bitmap objects displayed on the screen is a sprite.
+	A sprite (in AlsGM) is a class. The sprites can be moved around, hidden, or destroyed to the game designer's liking.
+	If a sprite has an event (Let's say someone clicks on the sprite), AlsGM would buffer the sprite into a queue, than call the callback function.
+
+	A sprite (still) is a bitmap object, so it needs to display something.
+
+(note for contributors: the documentation for AlsGM is what you should follow while building parts of AlsGM. If you want to tweak these documents, feel free to do so. All you need to do is make the changes, and pull request them on the AlsGM official public repository (https://github.com/alsamitech/alsgm))
+
+The implementation I chose to use:
+	The sprite can either display 
+	primitve shapes (ie. *agons, quadlaterals, squares, circles, triangles) and thier 3D countrparts
+	-OR-
+	Complex 3D objects made in the Alsami 3D modeler.
+
+	The Sprite's "costume" is what it displays. As of now, AlsGM can't load textures (oh boy that would be fun to implement), but AlsGM can load primitve patterns and solid colors. All of this configuration can be passed in with the constuctor or it can load a solid color.
+	
+Example Implementation
+```C_PLUS_PLUS
+
+for(;;){
+	Sprite *Yin= new Sprites();
+	
+}
+
+
+
+
+
+```

@@ -10,7 +10,7 @@
  *
  *	(oh god this is not gonna be fun)
  * */
-// It won't hurt to use some namesapces
+// It won't hurt to use some namespaces
 void vulkanlogger_alsami(unsigned int lgr_md, const char* lgr_msg);
 void vulk_inst_create_mod();
 
@@ -25,7 +25,7 @@ namespace Renderer{
 
   void InitInstance();
   void dInitInstance();
-  
+
   void InitDevice();
   void dInitDevice();
 
@@ -73,14 +73,47 @@ namespace Renderer{
     rederer_vulk_inst = nullptr;
   }
   void InitDevice(){
-    uint32_t gpu_count=0;
-    vkEnumeratePhysicalDevices(rederer_vulk_inst,&gpu_count,nullptr);
-    VkPhysicalDevice[15] gpu_list;
-    vkEnumeratePhysicalDevices(rederer_vulk_inst, &gpu_count, &gpu_list);
-    a_gpu=gpu_list[ 0 ];
+    {
+        uint32_t gpu_count=0;
+        vkEnumeratePhysicalDevices(rederer_vulk_inst,&gpu_count,nullptr);
+        VkPhysicalDevice[15] gpu_list;
+        vkEnumeratePhysicalDevices(rederer_vulk_inst, &gpu_count, &gpu_list);
+        a_gpu=gpu_list[ 0 ];
+    }
 
-    vkCreateDevice(,  ,nullptr,&a_device);
-    
+    {
+        // this instance is created to ask vulkan what kind of families does it have
+        uint32_t family_count=0;
+        // Gets us how many families are there in this GPU
+        vkGetPhysicalDeviceQueueFamilyProperties(a_gpu, /*uint32_t*/family_count,nullptr);
+        VkQueueFamilyProperties* family_property_list   =   malloc((sizeof((VkQueueFamilyProperties)*10));
+    }
+
+    /*
+     *  the graphics queue stuff (oh boy is this not going to be fun)
+     **/
+
+    // malloc so we can free this later
+    float* queue_priorities=malloc(sizeof(float)*1);
+    queue_priorities[1]=1.0f;
+
+    VkDeviceQueueCreateInfo dq_cinfo { };
+    dq_cinfo.sType                      = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+    // In the GPU, there are queue families and those families different kinds of things. You need to select one of these queue families and than you need to tell Vulkan how many queues in that family you want to use
+    // In the DeviceCreateInfo Structure we are going to introduce one QueueCreateInfo Structure. and in this structure, we are going to use one queue of one family index.
+    // We need to figure out (for this structure), which family we are going to use
+    dq_cinfo.queueFamilyIndex           =
+    dq_cinfo.queueCount                 =1;
+    // pQueuePriorities is a list of floats
+    dq_cinfo.pQueuePriorities           =queue_priorities;
+
+    VkDeviceCreateInfo als_d_cinfo{ };
+    als_d_cinfo.sType           = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    als_d_cinfo.queueCreateInfoCount    =1;
+    als_d_cinfo.pQueueCreatePos         = &dq_cinfo;
+
+    vkCreateDevice(a_gpu,&als_d_cinfo,nullptr,&a_device);
+
   }
   void init(){
     /*assign memory and initalize the vulan instance*/

@@ -5,7 +5,7 @@ AlsGM Basics Page Note:
 	AlsGM assumes advanced knowledge of the C and C++ programming languages
 	After reading the README, this should be the very next thing that you read.
 
-AlsGM (as of now) depends on libc
+AlsGM (as of now) depends on libc (might change in the future)
 
 Entry Point:
 	ALSGM abstracts the entry point and puts in in core.h. This gives it buit in error handling right at the starting point. To start the program, do this
@@ -28,5 +28,12 @@ int START() {
 }
 
 ```
+
+Networking(check the networking documentation for more information):
+	Game engines are not supposed to just handle graphics, logging, and errors for you.
+	Let's say you wanted to design a multiplayer online game but you don't want to handle sockets and protocols manually.
+	AlsGM includes a modified version of the Alsami Web Server (AlsWS) Written in C for this purpose.
+	AlsWS official public repository:
+		https://github.com/alsamitech/alsws
 
 (c) AlsamiTechnologies, 2020

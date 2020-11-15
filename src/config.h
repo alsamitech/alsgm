@@ -23,7 +23,7 @@
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
 #define IGNORE_GRAPHICS
-#define ALS_OPENGL
+#define ALS_VULK
 
 
 /*

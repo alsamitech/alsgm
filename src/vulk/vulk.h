@@ -3,7 +3,7 @@
 
 #define ALS_RUNTIME_ERROR 50
 
-#include "tarray.h"
+//#include "tarray.h"
 
 /*
  *      ALSGM CODENAME YIN
@@ -20,9 +20,10 @@
 // Requires Vulkan SDK
 // https://vulkan.lunarg.com/sdk/home#linux
 #include <vulkan/vulkan.h>
+#ifdef GLFW_VULK
 #include <GLFW/glfw3.h>
-
- FILE *vulk_filelgr;
+#endif
+FILE *vulk_filelgr;
 
 /*
  *  The Vulkan module for ALSGM (Codename Yin) Overwrites the Runtime Logs every time it starts.
@@ -37,6 +38,7 @@
   const bool enableValidationLayers=true;
 #endif
 
+#ifdef GLFW_VULK
 bool checkValidationLayerSupport(){
   uint32_t layerCount;
   vkEnumerateInstanceLayerProperties(&layerCount);
@@ -84,5 +86,5 @@ void win_init(){
   vulk_run();
   return NULL;
 }*/
-
+#endif
 #endif

@@ -2,7 +2,7 @@
 #define ALSAMI_VULKAN_GM_RENDERER_H
 
 #include <stdlib.h>
-#include "tarray.h"
+//#include "tarray.h"
 
 /*
  *	This is the vulkan renderer. It integrates with X11 to make this vulkan instance.

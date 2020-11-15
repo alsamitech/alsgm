@@ -70,7 +70,7 @@ typedef unsigned char uchar;
 
 
 /* Dyanic Array Handling Headers */
-#include "tarray.h"
+//#include "tarray.h"
 #include "darray.h"
 
 #include "logfiles.h"

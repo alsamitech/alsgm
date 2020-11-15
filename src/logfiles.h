@@ -50,13 +50,10 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
         // TODO: We Should finish this before the year (insert 64 bit integer limit here).
         break;
     case GAME_ENGINE_LFT_CMPLNT_CORE_MODULE:
-	fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
-	      break;		// out of the MY_LIFE loop
+        fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
+        break;		// out of the MY_LIFE loop
     case 23:
       fprintf(FRMT_LG,"%s", YIN_ARG_1);
-
-  
-
   }
   return 0;
 }

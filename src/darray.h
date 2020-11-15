@@ -18,12 +18,12 @@ typedef struct{
 inline dals_t* darr_init(size_t array_init_sz);
 
 inline dals_t* darr_init(size_t array_init_sz){
-	dals_t *t_n2=malloc(sizeof(dals_t));
-	t_n2->als_li=malloc(sizeof(int)*array_init_sz);
+	dals_t *t_n2= (dals_t*) malloc(sizeof(dals_t));
+	t_n2->als_li=(type_yin *) malloc(sizeof(type_yin)*array_init_sz);
 	t_n2->alloc=array_init_sz;
 	t_n2->arr_len=0;
 
-	return t_2;
+	return t_n2;
 }
 
 int grow(dals_t* t){
@@ -31,7 +31,7 @@ int grow(dals_t* t){
 
 	assert(t->als_li!=NULL);		// and helps the reader to know what the preconditions are
 
-	type_yin* new_li=malloc(2*t->alloc);		// doubles the amount of memory allocated to the new_li from als_li
+	type_yin* new_li=(type_yin*) malloc(2*t->alloc);		// doubles the amount of memory allocated to the new_li from als_li
 	// that makes sure the memory is allocated
 	if(new_li==NULL)
 		return 1; // failiure to allocate
@@ -45,12 +45,12 @@ int grow(dals_t* t){
 }
 
 type_yin append(dals_t *t, type_yin val){
-	if(t->len->alloc-1){assert(grow(t)!=0);}
+	if(t->arr_len > t->alloc-1){assert(grow(t)!=0);}
 	// refernces the link, and does the side effect of iincrementing the value. It returns the old value, which is the first slot in the array
-	t->li[t->len++]=val;
+	t->als_li[t->arr_len++]=val;
 	return val;}
 
-void destroy(dals_t* T){free(t->li);free(t);}
+void destroy(dals_t* T){free(T->als_li);free(T);}
 
 int grow(dals_t* t);
 

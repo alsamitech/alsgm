@@ -45,7 +45,7 @@ bool checkValidationLayerSupport(){
 }
 
 void vulkanlogger_alsami(unsigned int lgr_md, const char* lgr_msg){
-   
+
     vulk_filelgr=fopen("vulk_runtime.als.log", w+);
 
     fprintf(vulk_filelgr, "%s\n", lgr_msg);
@@ -69,83 +69,12 @@ void win_init(){
   glfwWindowHint(GLFW_RESIZABLE,GLFW_FALSE);
 }
 
-void vulk_inst_create_mod(){
-  VkApplicationInfo vulk_appinfo{};
-  vulk_appinfo.sType=VK_STRUCTURE_TYPE_APPLICATION_INFO;
-  vulk_appinfo.pApplicationInfo= "Alsami Game Engine - Vulkan";
-  vulk_appinfo.applicationVersion=VK_MAKE_VERSION(vern1,vern2,vern3);
-  vulk_appinfo.pEngineName="alsgm-vulk";
-  vulk_appinfo.engineVersion=VK_MAKE_VERSION(1,2,9);
-  vulk_appinfo.apiVersion=VK_API_VERSION_1_0;
-  // not needed until I screw something up really bad
-  //VkResult result=vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance));
-  /*if(vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance))!=VK_SUCSESS) {
-    vulkanlogger_alsami(ALS_RUNTIME_ERROR,"Failed to create instance!");
-  }*/
-}
-void vulk_inst_create(){
-  VkApplicationInfo vulk_appinfo{};
-  vulk_appinfo.sType=VK_STRUCTURE_TYPE_APPLICATION_INFO;
-  vulk_appinfo.pApplicationInfo= vulk_als_appnm;
-  vulk_appinfo.applicationVersion=VK_MAKE_VERSION(vern1,vern2,vern3);
-  vulk_appinfo.pEngineName="alsgm-vulk";
-  vulk_appinfo.engineVersion=VK_MAKE_VERSION(1,2,9);
-  vulk_appinfo.apiVersion=VK_API_VERSION_1_0;
-  vkInstanceCreateInfo vulk_cinfo{};
-  kvulk_cinfo.sType=VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-  vulk_cinfo.pApplicationInfo=&vulk_appinfo;
-  glfwExtensions=glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-  vulk_cinfo.enabledExtensionCount=glfwExtensionCount;
-  vulk_cinfo=ppEnabledExtensionNames=glfwExtensions;
-  vulk_cinfo.enabledLayerCount=0;
-  // not needed until I screw something up really bad
-  //VkResult result=vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance));
-  if(vkCreateInstance(vkCreateInstance(&vulk_cinfo,nullptr,&vulk_instance))!=VK_SUCSESS) {
-    vulkanlogger_alsami(ALS_RUNTIME_ERROR,"Failed to create instance!");
-  }
-  
-}
-
-void setupDebugMessenger(){
-	if(!enableValidationLayers)return;
-}
-
-void vulk_init(){
-  vulk_inst_create();
-
-  // Oh God it's time to do the debug stuff (nice)
-  SETUP_DBG_MSNGR();
-}
-
-void vulk_wlp(){
-  while(!glfwWindowShouldClose(window)){
-    glfwPollEvents();
-  }
-}
-
-void vulk_cleanup(){
-  vkDestroyInstance(vulk_instance, nullptr);
-  glfwDestroyWindow(window);
-  glfwTerminate();
-  fclose(vulk_filelgr);
-}
-
-
-/*
- * Initial vulkan drawing step
- **/
-void vulk_run(){
-  win_init();
-  vulk_init();
-  vulk_wlp();
-  vulk_cleanup();        
-}      
 
 
 /*uint graphics_start(){
   win_init();
   vulk_init();
-  return 0; 
+  return 0;
 }*/
 
 /*

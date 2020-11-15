@@ -21,7 +21,8 @@ namespace Renderer{
 
   VkInstance        rederer_vulk_inst=nullptr;
   VkPhysicalDevice  a_gpu=nullptr;
-  VkDevice a_device=nullptr;
+  VkDevice          a_device=nullptr;
+  uint32_t          vulk_graphics_family_index
 
   void InitInstance();
   void dInitInstance();
@@ -56,7 +57,7 @@ namespace Renderer{
     vulk_rd_appinfo.pApplicationInfo= "Alsami Game Engine - Vulkan";
     vulk_rd_appinfo.applicationVersion=VK_MAKE_VERSION(1,0,0);
     vulk_rd_appinfo.pEngineName="alsgm-vulk";
-    vulk_rd_appinfo.engineVersion=VK_MAKE_VERSION(1,2,9);
+    vulk_rd_appinfo.engineVersion=VK_MAKE_VERSION(1,3,9);
     vulk_rd_appinfo.apiVersion=VK_API_VERSION;
     VkInstanceCreateInfo Renderer_Create_Info{};
     Renderer_Create_Info.sType        = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -86,7 +87,22 @@ namespace Renderer{
         uint32_t family_count=0;
         // Gets us how many families are there in this GPU
         vkGetPhysicalDeviceQueueFamilyProperties(a_gpu, /*uint32_t*/family_count,nullptr);
-        VkQueueFamilyProperties* family_property_list   =   malloc((sizeof((VkQueueFamilyProperties)*10));
+        VkQueueFamilyProperties* family_property_list   =   malloc((sizeof((VkQueueFamilyProperties)*family_count));
+        vkGetPhysicalDeviceQueueFamilyProperties(a_gpu, &family_count, family_property_list);
+
+        // loops through the Queue families list and goes through every single one of the queue families and check which one supports the traffics bit
+        bool QFound=false;
+        for(uint32_t f_i=0< family_count;f_i++){
+            if(family_property_list(f_i).queueFlags & VK_QUEUE_GRAPHICS_BIT){
+                QFound=true;
+                vulk_graphics_family_index=f_i;
+            }
+        } if(!QFound){
+            // should print out:
+            // [AlsGM RenderC] ERROR: AlsGM could not find a queue family supporting graphics
+            // and tan try to resolve the issue
+            exit(1);
+        }
     }
 
     /*
@@ -115,11 +131,14 @@ namespace Renderer{
     vkCreateDevice(a_gpu,&als_d_cinfo,nullptr,&a_device);
 
   }
+  void dInitDevice(){
+    vkDestroyDevice(a_device, nullptr);
+  }
   void init(){
-    /*assign memory and initalize the vulan instance*/
+    /*assign memory and initalize the vulkan instance*/
     InitInstance();
   } void dinit(){
-    /* You know the dirll, just clean up memory after everything is done*/
+    /* You know the drill, just clean up memory after everything is done*/
     dInitInstance();
   }
 }

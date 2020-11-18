@@ -34,6 +34,13 @@
  **/
 #define DEBUG_RLS
 
+/*
+ *	This option selects which ISA that your game gets compiled to. Mostly used for functions that are definied in ISA-specific assmebly
+ *	i386					elf32 x86_32 IA_32
+ *	i386_64					elf64 x84_64 IA_64
+ * */
+#define i386_64
+
 
 /*
  *	This option chooses what model to use. It can either be a sprite_based model (SPRITE_MODEL)

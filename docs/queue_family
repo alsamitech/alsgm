@@ -1,0 +1,14 @@
+AlsGM Documentation
+Not a Standard
+Implementation Status: Implemented (vulk/)
+
+A queue is a buffer that can hold command or information waiting to be processed.
+
+Visualisation:
+[gamer clicks]->[Q_PACKET_56]
+[Q_PACKET_56][Q_PACKET_35][Q_COMMAND_STOP][C_RUNNINGMEM]->[AlsGM parser]->[AlsGM]->[action]
+
+You can submit to the queue from one process at a time.
+However, different processes can submit work to different queues simoulatenously.
+
+NOTE: Vulkan is a low-level, C API. if this documentation ever refers to vulkan structs as objects, please feel free to correct the documentation and pull request the public repository (https://github.com/alsamitech/alsgm)

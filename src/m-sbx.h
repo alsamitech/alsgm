@@ -16,3 +16,5 @@ class SBX: public Module{
       // Free all the memory taken up by the sandbox
     }
 };
+
+#endif

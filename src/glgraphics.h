@@ -41,7 +41,7 @@ void drawTriangle(GLfloat CordX,GLfloat CordY,GLfloat CordZ){
 
 
 	glEnd();
-    glSwapBuffers(alsami_dpy,app_win);
+    glXSwapBuffers(alsami_dpy,app_win);
 }
 
 uchar X_WIN_INIT(char arg1, uchar arg2) {

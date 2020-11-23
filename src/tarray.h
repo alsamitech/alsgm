@@ -33,8 +33,7 @@ public:
 		}
 		return yin_data[yindex];
 	}
-	YI& operator[](size_t yindex) const
-	{
+	YI& operatorn[](size_t yindex) const{
 		return yin_data[yindex];
 	}
 

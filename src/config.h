@@ -23,7 +23,7 @@
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
 #define IGNORE_GRAPHICS
-#define ALS_OPENGL
+#define ALS_VULK
 
 
 /*
@@ -33,6 +33,13 @@
  * 	If you plan to use alsgm for a real project, change it to ALS_RLS after you're done debugging
  **/
 #define DEBUG_RLS
+
+/*
+ *	This option selects which ISA that your game gets compiled to. Mostly used for functions that are definied in ISA-specific assmebly
+ *	i386					elf32 x86_32 IA_32
+ *	i386_64					elf64 x84_64 IA_64
+ * */
+#define i386_64
 
 
 /*

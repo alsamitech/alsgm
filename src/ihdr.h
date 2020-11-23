@@ -5,6 +5,11 @@
 // Config File
 #include "config.h"
 
+// links to external object files if an IA_64 architecture is defined in config.h
+#ifdef i386_64
+
+#endif
+
 /*Standard Library Links. All have*/
 #ifdef ALS_OPENGL
 // see config.h if you dont know what this is or want to use vulkan instead
@@ -70,7 +75,7 @@ typedef unsigned char uchar;
 
 
 /* Dyanic Array Handling Headers */
-#include "tarray.h"
+//#include "tarray.h"
 #include "darray.h"
 
 #include "logfiles.h"

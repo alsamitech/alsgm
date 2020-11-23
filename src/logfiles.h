@@ -3,6 +3,21 @@
 
 #include "ihdr.h"
 
+typedef struct LOGGER_STRUCT{
+	char* msg;
+} logger_T;
+
+logger_T* init_logger(char* msg_src){
+	logger_T* logger=(logger_T*)calloc(1, (sizeof(LOGGER_STRUCT)+strlen(msg_src)));
+	logger->msg=msg_src;
+
+	return logger;
+}
+
+void logger_destroy(logger_T* logger){
+	free(logger);
+}
+
 int FileInit(const char INIT_MSG[]) {
   FILE *yin;
 
@@ -20,16 +35,13 @@ int FileInit(const char INIT_MSG[]) {
   return 0;
 }
 
-int WRT_TO_FL(const char msg[]) {
+int WRT_TO_FL(const char* msg) {
   FILE *YIN;
 
-  YIN = fopen("log.ascii", "a");
-  if(YIN==NULL){
-    return 1;
-  }
+  YIN = fopen("log.gm", "a");
+  if(YIN==NULL){return 1;}
 
   fprintf(YIN,"%s\n", msg);
-
   fclose(YIN);
   return 0;
 

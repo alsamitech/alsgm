@@ -3,13 +3,13 @@ DO THIS MONTH:
 
 Things to work on:
 	
-	Vulkan Support along with openGL support
-	The X window header
-	The win module
+	Vulkan Support along with openGL support	- implementation is far from complete
+	The X window header 				- also far from complete
+	The win module					- not started yet
   Communication between the processes (should be done with a 1000 byte buffer)
-	Rewrie the core of alsgm to remove the dependence on libc
+	Rewrie the core of alsgm to remove the dependence on libc	- after a few rewrites, maybe
 
 
 DO ANYTIME
 
-Make an alsgm designer and IDE
+Make an alsgm designer and IDE - not expected until 2021

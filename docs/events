@@ -1,18 +1,11 @@
-ALSAMI CODENAME YIN
+The AlsGM game engine Events System (v3)
 
-GAME ENGINE
+AlsGM uses it's own events system. This event system is queue-based.
+While using the re-written events system is prefferred, you may also use the older, (less efficient and stable) event system. However, Documentation will not be provided for the older events systems and the headers will likely be removed soon
 
-AlsGM uses a costoum events system, Desinged for the project by Sami Alameddine.
+Whenever an event occurs, AlsGM would create a event structure element (event_T). which than can be parsed with gm_event_parse. AlsGM will than check the event type. After that, it will call a callback function and pass a uint32_t specifying what happend so the game can deal with it.
 
-Author's Note:
-	Don't ask why I excessively use the word "Yin", it's a very, VERY long story. However, this is how the events module work.
-
-
-Name of the events module: YEM (codename Yin Event Module)
-
-When an event occurs inside the window, Our window class (wcls.h) will recive an event callback. After that, it constructs a ALS_GMEV (ALSami GaMe Event). which would be handled by our run function.
-
-At the end of the Main loop in the window classs, the class will check to see if there are any events queued in the buffer. The buffer that it reads from is a heap allocated buffer, so a game/user can queue up as many actions as desired without causing an offerflow (provided that 1. the game developer does not make a queued event without giving the event length size 2. the operating system/machine will  allow alsgm to acsess more RAM)
+At the end of the Main loop in the window class, the class will check to see if there are any events queued in the buffer. The buffer that it reads from is a heap allocated buffer, so a game/user can queue up as many actions as desired without causing an offerflow (provided that 1. the game developer does not make a queued event without giving the event length size 2. the operating system/machine will  allow alsgm to acsess more RAM)
 
 Event Checker:
 	The Event checker checks if tehre is any events in the Queue.
@@ -25,4 +18,3 @@ if((strcmp(oldEventQueue,EventQueue)!=0)){
 ```
 There are two ways AlsGM can handle events (configured in the config.h file)
 
-The Event system.

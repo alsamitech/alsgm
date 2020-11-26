@@ -7,10 +7,21 @@
 #define EVM_INITALIZE 3
 #define EVM_MOUSECLICK 4
 
+// Event token definitions for numerical types used in switch statements
+#define EVT_INITALIZE 1
+#define EVT_CREATE 2
+#define EVT_TICK 3
+#define EVT_WINDOWEXPOSE 4
+#define EVT_MOUSECLICK 5
+#define EVT_WINDOWRESIZE 6
+
+
 typedef struct EVTOKEN_STRUCT{
     enum{
 		INITALIZE,CREATE,TICK,WINDOWEXPOSE,MOUSECLICK,WINDOWRESIZE
 	}type;
+    // numerical type for use in switch statements
+    int nt;
 } evtoken_T;
 
 evtoken_T* evtoken_init(){

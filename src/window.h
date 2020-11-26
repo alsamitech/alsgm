@@ -12,8 +12,6 @@
  * 	This header is designed for those kinds of people
  * */
 
-struct App_dialog{
-	char[] title;
-};
+
 
 #endif

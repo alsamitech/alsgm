@@ -4,9 +4,7 @@
 #include "ihdr.h"
 
 /*
- *      Alternative Event Handling Module, not object oriented, and quite flexible.
- *      Modules from other sources:
- *              NONE
+ *      Alternative Event Handling Module, not object oriented, and quite flexible. (Implementation in C)
  *
  * */
 

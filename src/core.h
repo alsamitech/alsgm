@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
 
   pthread_t USR_GME;
 
-  SBX* sbX;// = new SBX();
+  SBX* sbX = new SBX();
   //sbX->Run();
 
   FileInit("Initializing Process...");

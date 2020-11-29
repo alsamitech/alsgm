@@ -70,6 +70,7 @@ typedef unsigned char uchar;
 
 #define unt unsigned int
 
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
 
 /*Local Links*/
 
@@ -100,8 +101,12 @@ typedef unsigned char uchar;
 
 #endif
 
-//#include "logcls.h"
-//#include "logobj.h"
+#ifdef i386
+#define isa_mint uint32_t
+#endif
+#ifdef i386_64
+#define isa_mint uint32_t
+#endif
 
 
 /*

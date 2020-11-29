@@ -9399,7 +9399,13 @@ extern int isfdtype (int __fd, int __fdtype) throw ();
 typedef unsigned char uchar;
 # 80 "ihdr.h"
 # 1 "darray.h" 1
-# 11 "darray.h"
+
+
+
+
+
+
+
 typedef int type_yin;
 typedef struct{
  type_yin *als_li;
@@ -9418,41 +9424,41 @@ inline dals_t* darr_init(size_t array_init_sz){
  return t_n2;
 }
 
-int grow(dals_t* t){
+int darr_grow(dals_t* t){
  
-# 30 "darray.h" 3 4
+# 27 "darray.h" 3 4
 (static_cast <bool> (
-# 30 "darray.h"
+# 27 "darray.h"
 t!=
-# 30 "darray.h" 3 4
+# 27 "darray.h" 3 4
 __null) ? void (0) : __assert_fail (
-# 30 "darray.h"
+# 27 "darray.h"
 "t!=NULL"
-# 30 "darray.h" 3 4
-, "darray.h", 30, __extension__ __PRETTY_FUNCTION__))
-# 30 "darray.h"
+# 27 "darray.h" 3 4
+, "darray.h", 27, __extension__ __PRETTY_FUNCTION__))
+# 27 "darray.h"
                ;
 
  
-# 32 "darray.h" 3 4
+# 29 "darray.h" 3 4
 (static_cast <bool> (
-# 32 "darray.h"
+# 29 "darray.h"
 t->als_li!=
-# 32 "darray.h" 3 4
+# 29 "darray.h" 3 4
 __null) ? void (0) : __assert_fail (
-# 32 "darray.h"
+# 29 "darray.h"
 "t->als_li!=NULL"
-# 32 "darray.h" 3 4
-, "darray.h", 32, __extension__ __PRETTY_FUNCTION__))
-# 32 "darray.h"
+# 29 "darray.h" 3 4
+, "darray.h", 29, __extension__ __PRETTY_FUNCTION__))
+# 29 "darray.h"
                        ;
 
  type_yin* new_li=(type_yin*) malloc(2*t->alloc);
 
  if(new_li==
-# 36 "darray.h" 3 4
+# 33 "darray.h" 3 4
            __null
-# 36 "darray.h"
+# 33 "darray.h"
                )
   return 1;
 
@@ -9464,19 +9470,19 @@ __null) ? void (0) : __assert_fail (
  return 0;
 }
 
-type_yin append(dals_t *t, type_yin val){
+type_yin darr_append(dals_t *t, type_yin val){
  if(t->arr_len > t->alloc-1){
-# 48 "darray.h" 3 4
+# 45 "darray.h" 3 4
                             (static_cast <bool> (
-# 48 "darray.h"
+# 45 "darray.h"
                             grow(t)!=0
-# 48 "darray.h" 3 4
+# 45 "darray.h" 3 4
                             ) ? void (0) : __assert_fail (
-# 48 "darray.h"
+# 45 "darray.h"
                             "grow(t)!=0"
-# 48 "darray.h" 3 4
-                            , "darray.h", 48, __extension__ __PRETTY_FUNCTION__))
-# 48 "darray.h"
+# 45 "darray.h" 3 4
+                            , "darray.h", 45, __extension__ __PRETTY_FUNCTION__))
+# 45 "darray.h"
                                               ;}
 
  t->als_li[t->arr_len++]=val;
@@ -9484,9 +9490,9 @@ type_yin append(dals_t *t, type_yin val){
 
 void destroy(dals_t* T){free(T->als_li);free(T);}
 
-int grow(dals_t* t);
+int darr_grow(dals_t* t);
 
-void print(dals_t* t);
+void darr_print(dals_t* t);
 # 81 "ihdr.h" 2
 
 # 1 "window.h" 1
@@ -9495,10 +9501,6 @@ void print(dals_t* t);
 
 # 1 "ihdr.h" 1
 # 5 "window.h" 2
-# 15 "window.h"
-struct App_dialog{
- char[] title;
-};
 # 83 "ihdr.h" 2
 
 # 1 "logfiles.h" 1
@@ -9587,11 +9589,13 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
 }
 # 85 "ihdr.h" 2
 # 1 "queue.h" 1
-# 10 "queue.h"
+# 19 "queue.h"
 typedef struct EVTOKEN_STRUCT{
     enum{
   INITALIZE,CREATE,TICK,WINDOWEXPOSE,MOUSECLICK,WINDOWRESIZE
  }type;
+
+    int nt;
 } evtoken_T;
 
 evtoken_T* evtoken_init(){
@@ -9618,10 +9622,11 @@ void gm_destroy_event(event_T* event_i){
     free(event_i);
 }
 
-evtoken_T* gm_parse_event(event_T* event_i, void (*msg_callback)(uint32_t)){
-    switch(event_i->token->type){
+evtoken_T* gm_parse_event(event_T* event_i, void (*msg_callback)(u_int32_t)){
+    switch(event_i->token.type){
     case INITALIZE:
         WRT_TO_FL("AlsGM event INITALIZE: a event was created");
+        msg_callback(3);
         break;
     case TICK:
         msg_callback(2);
@@ -9629,72 +9634,72 @@ evtoken_T* gm_parse_event(event_T* event_i, void (*msg_callback)(uint32_t)){
 }
 # 86 "ihdr.h" 2
 # 1 "logcon.h" 1
-# 25 "logcon.h"
-uchar LOG_TO_CON(uchar YIN_TYPE, const char* MSG, uchar IMP){
- switch(YIN_TYPE){
+# 13 "logcon.h"
+uint8_t gm_logtocon(const char* msg, uint8_t flags){
 
-  case 1:
-   fprintf(
-# 29 "logcon.h" 3 4
-          stdout
-# 29 "logcon.h"
-                ,"ALSGM-LOG\nApplication Process: %s\n", MSG);
-   break;
-
-  case 2:
-   fprintf(
-# 33 "logcon.h" 3 4
-          stdout
-# 33 "logcon.h"
-                ,"ALSGM-LOG\nAPPLICATION SENT A COMPLAINT\nREAD THE MESSAGE AND FIX THE ISSUE TO PREVENT THIS WARNING\n%s\n\n--Alsami Technologies - alsgm (Codename Yin)--");
-   break;
+ if(flags&0x02){
 
 
-  case 20:
-   fprintf(
-# 38 "logcon.h" 3 4
-          stderr
-# 38 "logcon.h"
-                ,"CODENAME YIN\nCORE-MODULE-LOG: %s\nIMPORTANCE: %u\n", MSG,IMP);
-   break;
 
-  case 21:
-   fprintf(
-# 42 "logcon.h" 3 4
-          stderr
-# 42 "logcon.h"
-                ,"ERROR OF URGENCY %u\nA CORE MODULE IS COMPLANING\n%s)");
-   break;
+  printf("Game Log (AlsGM Engine)\n");
+
  }
+ if(flags&0x08){
+  printf("\033[1;31m%s\033[0m\n", msg);
+ }else{}
+
 }
 # 87 "ihdr.h" 2
 # 1 "sprites.hpp" 1
-# 9 "sprites.hpp"
+# 13 "sprites.hpp"
 float asgn_nm_cntr=0;
 
-float ASSIGN_SPRITE_NUM(){
- asgn_nm_cntr++;
- return asgn_nm_cntr;
+typedef struct SPRITED_STRUCT{
+ isa_mint d;
+} sprited_T;
+
+sprited_T* sprited_alloc(){
+ sprited_T* sprited_i=(sprited_T*)calloc(1,sizeof(struct SPRITED_STRUCT));
 }
 
 class Sprite{
 public:
+ char* ppm_frontend;
+
  Sprite();
  ~Sprite();
 protected:
 private:
- float SPRITE_ID;
-}
+
+
+ uint64_t SPRITED;
+
+
+
+
+
+};
 
 Sprite::Sprite(){
 
 
- float yin_sprite_als_xn = assgn_nm_cntr();
+ float yin_sprite_als_xn = asgn_nm_cntr();
 }
 
 Sprite::~Sprite(){
 
 }
+
+const uint8_t gm_4colorbox[] = {
+ 'p', '6', '\n',
+ '#', 'b', 'y', ' ', 'k', 'h', 'o', 'r', 'a', 's', 'k', 'i', '\n',
+ '2', ' ', '2', '\n',
+ '2', '5', '5', '\n',
+ 255,0,0,
+ 0,255,255,
+ 0,0,255,
+ 255,0,255
+};
 # 88 "ihdr.h" 2
 
 
@@ -18526,7 +18531,7 @@ int main(int argc, char** argv) {
 
   pthread_t USR_GME;
 
-  SBX* sbX;
+  SBX* sbX = new SBX();
 
 
   FileInit("Initializing Process...");
@@ -18623,4 +18628,9 @@ char *bin2hex(const unsigned char *input, size_t len){
 }
 # 2 "test.c" 2
 
-int main(){X_WIN_INIT();return 0;}
+
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
+
+void* ALSAMI_GAME_ENGINE_STRTR(void* Yin){
+ gm_logtocon("test", 0x02|0x08);
+}

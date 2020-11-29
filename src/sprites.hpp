@@ -13,12 +13,14 @@
 float asgn_nm_cntr=0;
 
 typedef struct SPRITED_STRUCT{
-	isa_mint d;
+	uint32_t d;
 } sprited_T;
+//  SPRITE Descriptor
 
 sprited_T* sprited_alloc(){
 	sprited_T* sprited_i=(sprited_T*)calloc(1,sizeof(struct SPRITED_STRUCT));
 }
+
 
 class Sprite{
 public:
@@ -41,7 +43,7 @@ private:
 Sprite::Sprite(){
 	// The constructor should assign the sprite's ID.
 	// (among other things that I will define later)
-	float yin_sprite_als_xn = asgn_nm_cntr();
+	//float yin_sprite_als_xn = asgn_nm_cntr();
 }
 
 Sprite::~Sprite(){

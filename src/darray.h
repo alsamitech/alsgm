@@ -42,7 +42,7 @@ int darr_grow(dals_t* t){
 }
 
 type_yin darr_append(dals_t *t, type_yin val){
-	if(t->arr_len > t->alloc-1){assert(grow(t)!=0);}
+	if(t->arr_len > t->alloc-1){assert(darr_grow(t)!=0);}
 	// refernces the link, and does the side effect of iincrementing the value. It returns the old value, which is the first slot in the array
 	t->als_li[t->arr_len++]=val;
 	return val;}

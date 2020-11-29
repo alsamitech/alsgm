@@ -50,11 +50,11 @@ void gm_destroy_event(event_T* event_i){
 
 evtoken_T* gm_parse_event(event_T* event_i, void (*msg_callback)(u_int32_t)){
     switch(event_i->token.type){
-    case INITALIZE:
+    case /*define*/EVT_INITALIZE:
         WRT_TO_FL("AlsGM event INITALIZE: a event was created");
         msg_callback(EVM_INITALIZE);
         break;
-    case TICK:
+    case /*define*/EVT_TICK:
         msg_callback(EVM_TICK);
     }
 }

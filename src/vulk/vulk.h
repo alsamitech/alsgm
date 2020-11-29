@@ -19,7 +19,7 @@
 
 // Requires Vulkan SDK
 // https://vulkan.lunarg.com/sdk/home#linux
-#include <vulkan/vulkan.h>
+#include <vulkan/vulkan.hpp>
 #ifdef GLFW_VULK
 #include <GLFW/glfw3.h>
 #endif

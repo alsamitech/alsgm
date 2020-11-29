@@ -1,5 +1,5 @@
 #include "ihdr.h"
-#include "expansion.h"
+#include <pthread.h>
 #include "m-sbx.h"
 #include "logfiles.h"
 
@@ -70,7 +70,7 @@ uchar list_add(unsigned char *callback);
 /*(some) of the core function definitions*/
 char *bin2hex(const unsigned char *input, size_t len){
 	char *db_res;
-	char *hexits="0123456789ABCDEF";
+	char hexits[]="0123456789ABCDEF";
 	if(input==NULL||len<=0){return NULL;}
 	int res_db_len=(len+3)+1;
 

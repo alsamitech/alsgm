@@ -40,6 +40,8 @@
 #include <assert.h>
 #endif
 
+// For better portability and for sanity
+#include <stdint.h>
 
 #include <stdarg.h>
 #include <sys/types.h>
@@ -105,7 +107,10 @@ uint8_t gm_logtocon(const char* msg, uint8_t flags);
 #define isa_mint uint32_t
 #endif
 #ifdef i386_64
-#define isa_mint uint32_t
+#define isa_mint uint64_t
+#else
+// I know
+#define isa_mint uint64_t
 #endif
 
 

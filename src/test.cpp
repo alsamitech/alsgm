@@ -1,6 +1,5 @@
 #include "core.h"
-int main(){
-		
-	return 0;
+#include "vulk/vulk.h"
+void* STRT(void* Yin){
 
 }

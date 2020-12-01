@@ -1,5 +1,5 @@
-#ifndef ALSAMI_GAME_ENGINE_INTEGRATED_HDR
-#define ALSAMI_GAME_ENGINE_INTEGRATED_HDR
+#ifndef ALSGM_INTEGRATED_HDR
+#define ALSGM_INTEGRATED_HDR
 
 // The Config File has full authority to decide what is libraries are used
 // Config File
@@ -94,6 +94,7 @@ uint8_t gm_logtocon(const char* msg, uint8_t flags);
 #include "glgraphics.h"
 #endif
 #include "coremod.h"
+#include "aar.h"
 // Excluded for now
 //#include "appevent.h"
 

@@ -22,8 +22,8 @@
  *	Define ALS_VULK to use Vulkan
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
-#define IGNORE_GRAPHICS
-#define ALS_VULK
+//#define IGNORE_GRAPHICS
+#define ALS_OPENGL
 
 
 /*

@@ -9,18 +9,26 @@
  * */
 
 #include "ihdr.h"
+#include "aar.h"
+
 
 float asgn_nm_cntr=0;
 
 typedef struct SPRITED_STRUCT{
 	uint32_t d;
+	float width;
+	float height;
+	float r;	// red
+	float g;	// green
+	float b;	// blue
+	float a;	// Alpha
+	darray_T* textures;	
 } sprited_T;
-//  SPRITE Descriptor
+//  SPRITE Description
 
 sprited_T* sprited_alloc(){
 	sprited_T* sprited_i=(sprited_T*)calloc(1,sizeof(struct SPRITED_STRUCT));
 }
-
 
 class Sprite{
 public:
@@ -60,5 +68,7 @@ const uint8_t gm_4colorbox[] = {
 	0,0,255,
 	255,0,255
 };
+
+
 
 #endif

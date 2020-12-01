@@ -1,0 +1,25 @@
+#!/bin/sh
+# AlsGM Project Build Script
+
+# I would make it g++, but this is fine for the sake of versatility
+CC=c++
+
+SOURCE=main.c
+TARGET=game.out
+
+# -g for debug code, -o so it can return a result. Keep -g until you do a final compile. After  that, it is STRONGLY reccomded you remove the -g flag
+PREFLAGS=-g -o
+
+CFLAGS=
+LFLAGS=-lvulkan -lpthread -lX11
+
+if [ $# -eq 2 ] then
+
+	if (( $1 = 'REL' )) then
+		$CC -o $TARGET $SOURCE $CFLAGS $LFLAGS
+	fi
+
+
+else
+	$CC $PREFLAGS $TARGET $SOURCE $CFLAGS $LFLAGS
+fi

@@ -1,0 +1,24 @@
+AlsGM Documentation
+
+AlsGM is a lib-style game engine.
+As of now, you have to directly include the source for AlsGM in your project's directory.
+
+The AlsGM repository is meant to house all of the major components of AlsGM, even if they archived and not included AlsGM at the moment. the src/ directory contains the engine itself. If you plan on just using the AlsGM engine itself and none of the other goodies in the repostitory, move the rename the src directory to alsgm and include it in your project.
+
+AlsGM is written in C++, and is only certified to work with clang++ and g++.
+
+Now that we have acsess to AlsGM in our project, lets set it up. In your main project file (assuming it is in the home directory), include "alsgm/core.h". Note that you must all the dependencies specified in the README set up. At this point, you can go along and start using AlsGM... but DONT
+
+What good is AlsGM if you're not going to configure the library to your liking?
+go to the config.h file and configure AlsGM according to your desires.
+
+After that and reading the rest of the documentation, you're ready to go!
+
+However, if you still want to check out some of the goodies AlsGM provides in it's central repository, here is a not-so-brief explinaton of what you can use in the repository
+
+.experimental/ (formerly .yin/): Is where the AlsGM developers play around with new ideas.
+Shaders/: is where the Alsgm GLSL shaders are stored. For now, they aren't filled with much, but I am planning to write more GLSL shaders in the future.
+docs/: is where you are! this is the official AlsGM documentation, made to help people understand how AlsGM works without having to read through it's source code.
+scripts/: is where implementation assistance scripts live. These scripts do everything from setting up AlsGM-Based projects to building an AlsGM-based soloution.
+src/: Explained earlier.
+buildopts: Scritps that build AlsGM soloutions, along with Makefiles

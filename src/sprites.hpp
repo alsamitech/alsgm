@@ -26,8 +26,16 @@ typedef struct SPRITED_STRUCT{
 } sprited_T;
 //  SPRITE Description
 
-sprited_T* sprited_alloc(){
+sprited_T* sprited_alloc(darray_T* textures, float frame_delay, float width, float height){
 	sprited_T* sprited_i=(sprited_T*)calloc(1,sizeof(struct SPRITED_STRUCT));
+	sprited_i->width=width;
+	sprited_i->height=height;
+	sprited_i->r=255;
+	sprited_i->g=255;
+	sprited_i->b=255;
+	sprited_i->a=1.0f;
+
+	return sprited_i;
 }
 
 class Sprite{

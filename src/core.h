@@ -2,18 +2,28 @@
 #include <pthread.h>
 #include "m-sbx.h"
 #include "logfiles.h"
+#include <unistd.h>
 
 #define STRT ALSAMI_GAME_ENGINE_STRTR
 
 void *ALSAMI_GAME_ENGINE_STRTR(void *ptr);
+
+#define stdout_fd 1
+#define stderr_fd 2
+#define stdin_fd 0
+
+
+void write_c(unsigned int fd,char* s){
+	write(fd, s, strlen(s));
+}
 
 int err=0;
 
 /*Core Function Prototypes*/
 int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER);
 char *bin2hex(const unsigned char *input, size_t len);
-uint8_t gm_logtocon(const char* msg, uint8_t flags);
 
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
 int main(int argc, char** argv) {
 
   pthread_t USR_GME;

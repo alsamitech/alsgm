@@ -9,6 +9,10 @@
 
 #define darray_del(x) free(x)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct DYANMIC_ARR_STRUCT{
 
 	size_t size;
@@ -41,5 +45,8 @@ void darr_free(darray_T* darray_i, void (*free_method)(void* item)){
 
 }
 
-
+#ifdef __cplusplus
+}
 #endif
+
+#endif	// ALSGM_ARR

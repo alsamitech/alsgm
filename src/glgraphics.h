@@ -9,7 +9,7 @@
  *	OpenGL implementation of X11.
  *	Sami Alameddine
  *
- *	Compiler options for this
+ *	Linker Args
  *	-lX11 -lGL
  * */
 
@@ -50,19 +50,24 @@ uint8_t X_WIN_INIT(char arg1, uchar arg2) {
 	depth=DefaultDepth(alsami_dpy,screen);
 	root_win=RootWindow(alsami_dpy,screen);
 
-	alsami_xvis=glXChooseVisual(alsami_dpy,screen,att);
+
 
 	x_attrs.border_pixel=BlackPixel(alsami_dpy,screen);
 	x_attrs.background_pixel=WhitePixel(alsami_dpy,screen);
 	x_attrs.override_redirect=True;
 	/*x_attrs.colormap=CopyFromParent;*/
+	
+	alsami_xvis=glXChooseVisual(alsami_dpy,screen,att);
+	
 	x_attrs.colormap=XCreateColormap(alsami_dpy, root_win, alsami_xvis->visual, AllocNone);
 	x_attrs.event_mask=ExposureMask|KeyPressMask;
 	// root window
+	
+	glc = glXCreateContext(alsami_dpy, /*visual*/alsami_xvis, NULL, GL_TRUE);
+	
 	app_win=XCreateWindow(alsami_dpy,root_win,200,200,500,300,0,depth,InputOutput,CopyFromParent,CWBackPixel|CWColormap|CWBorderPixel|CWEventMask|CWBorderPixel|CWEventMask,&x_attrs);
 	XMapWindow(alsami_dpy,app_win);
 
-	glc = glXCreateContext(alsami_dpy, /*visual*/alsami_xvis, NULL, GL_TRUE);
 	glXMakeCurrent(alsami_dpy,app_win,glc);
 
 	// makes OpenGL do the integration with X11
@@ -84,8 +89,5 @@ uint8_t X_WIN_INIT(char arg1, uchar arg2) {
 		}
 	}
 }
-
-// For testing purposes
-//int main(){}
 
 #endif

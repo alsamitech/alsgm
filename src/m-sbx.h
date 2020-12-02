@@ -13,7 +13,7 @@
 
 class SBX: public Module{
   public:
-	  pthread_t thread;
+    pthread_t thread;
     void (*module_callback)(int resp);
     uint16_t Run();
     static void* srun(void *Yin);

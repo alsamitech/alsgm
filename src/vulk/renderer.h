@@ -2,7 +2,6 @@
 #define ALSAMI_VULKAN_GM_RENDERER_H
 
 #include <stdlib.h>
-//#include "tarray.h"
 
 /*
  *	This is the vulkan renderer. It integrates with X11 to make this vulkan instance.
@@ -11,8 +10,12 @@
  *	(oh god this is not gonna be fun)
  * */
 // It won't hurt to use some namespaces
+extern "C"{
 void vulkanlogger_alsami(unsigned int lgr_md, const char* lgr_msg);
+}
 void vulk_inst_create_mod();
+
+void APP_QUIT();
 
 // AlsGM Developers, PLEASE DON'T DO using namespace Renderer; WHATEVER YOU DO. Please don't do it
 namespace Renderer{
@@ -87,12 +90,12 @@ namespace Renderer{
         uint32_t family_count=0;
         // Gets us how many families are there in this GPU
         vkGetPhysicalDeviceQueueFamilyProperties(a_gpu, /*uint32_t*/&family_count,nullptr);
-        VkQueueFamilyProperties* family_property_list   =   malloc((sizeof((VkQueueFamilyProperties) * family_count));
+        VkQueueFamilyProperties* family_property_list   =  (VkQueueFamilyProperties*) malloc((sizeof(VkQueueFamilyProperties)*family_count));
         vkGetPhysicalDeviceQueueFamilyProperties(a_gpu, &family_count, family_property_list);
 
         // loops through the Queue families list and goes through every single one of the queue families and check which one supports the traffics bit
         bool QFound=false;
-        for(uint32_t f_i=0< family_count;f_i++){
+        for(uint32_t f_i=0;f_i< family_count;f_i++){
             if(family_property_list[f_i].queueFlags & VK_QUEUE_GRAPHICS_BIT){
                 QFound=true;
                 vulk_graphics_family_index=f_i;
@@ -124,9 +127,9 @@ namespace Renderer{
     dq_cinfo.pQueuePriorities           =queue_priorities;
 
     VkDeviceCreateInfo als_d_cinfo{ };
-    als_d_cinfo.sType           = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-    als_d_cinfo.queueCreateInfoCount    =1;
-    als_d_cinfo.pQueueCreatePos         = &dq_cinfo;
+    als_d_cinfo.sType        	          =VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    als_d_cinfo.queueCreateInfoCount      =1;
+    als_d_cinfo.pQueueCreateInfos         = &dq_cinfo;
 
     vkCreateDevice(a_gpu,&als_d_cinfo,nullptr,&a_device);
 
@@ -142,6 +145,11 @@ namespace Renderer{
     /* You know the drill, just clean up memory after everything is done*/
     dInitInstance();
   }
+}
+void APP_QUIT(){
+	Renderer::dInitInstance();
+	Renderer::dInitDevice();
+	exit(1);
 }
 
 #endif

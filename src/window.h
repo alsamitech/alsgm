@@ -13,5 +13,8 @@
  * */
 
 
+typedef struct WINDOW_INFORMATION_GM_STRUCT{
+
+} gm_wininf_T;
 
 #endif

@@ -35,6 +35,24 @@ int FileInit(const char INIT_MSG[]) {
   return 0;
 }
 
+char* gm_read_file(char* filename){
+	char* buffer=0;
+	long f_len;
+	FILE* gmf=fopen(filename, "rb");
+
+	if(gmf){
+		fseek(gmf, 0, SEEK_END);
+		f_len=ftell(gmf);
+
+		buffer=(char*)calloc(f_len, f_len);
+		
+		if(buffer)
+			fread(buffer, 1, f_len, gmf);
+
+		fclose(gmf);
+	}
+}
+
 int WRT_TO_FL(const char* msg) {
   FILE *YIN;
 
@@ -46,7 +64,7 @@ int WRT_TO_FL(const char* msg) {
   return 0;
 
 }
-/*Formatted Logger*/
+/*Formatted Logger (deprecated)*/
 int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[],int YINMODE) {
   FILE *FRMT_LG;
 
@@ -56,18 +74,19 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
   if(FRMT_LG==NULL){return 1;}
   switch(FRMT_MD) {
     case /* {NOTE: ill see what I did wrong later but the c++ compiler hates me}GAME_ENGINE_COMPLAINT_STDLOG*/1:
-      fprintf(FRMT_LG,"--LOG--\nSTATUS?%s\nINFO: ALSAMI LOGGER(CODENAME YIN RENDERING ENGINE EDITION)\nAPPLICATION MESSAGE?%s\nIMPORTANCE? %s\nEND-LOG (%s)",YIN_ARG_1,YIN_ARG_2,YIN_ARG_3,YIN_ARG_4);
+      fprintf(FRMT_LG,"--LOG--\nSTATUS?%s\nINFO: AlsGM LOGGER\nAPPLICATION MESSAGE?%s\nIMPORTANCE? %s\nEND-LOG (%s)",YIN_ARG_1,YIN_ARG_2,YIN_ARG_3,YIN_ARG_4);
       break;
     case GAME_ENGINE_LFT_CMPLNT_FR_APP:
         // TODO: We Should finish this before the year (insert 64 bit integer limit here).
         break;
     case GAME_ENGINE_LFT_CMPLNT_CORE_MODULE:
         fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
-        break;		// out of the MY_LIFE loop
+        break;
     case 23:
       fprintf(FRMT_LG,"%s", YIN_ARG_1);
   }
   return 0;
+  fclose(FRMT_LG);
 }
 
 // i will finish this later i promise

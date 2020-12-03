@@ -2,8 +2,11 @@
 #define ALSAMI_OPNEGL_GAME_ENGINE_MAIN_HEADER_FILE
 // to get rid of the ihdr being annoying
 #include <X11/Xlib.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <GL/glu.h>
 
-#include "ihdr.h"
+//#include "ihdr.h"
 
 /*
  *	OpenGL implementation of X11.
@@ -33,12 +36,13 @@ void drawTriangle(GLfloat CordX,GLfloat CordY,GLfloat CordZ){
 
 	glBegin(GL_TRIANGLES);
 		glVertex3f(0.0f,0.0f,0.0f);
-		// glVertex3f(negativeX,positiveX,Z)
-		glVertex3f(CordX,CordY,CordZ);
-		//glVertex3f(-0.5f,0.0f,0.0f);
-		// yes I'm using libc and im not gonna stop
-		glVertex3f(fabs(CordX),CordY,CordZ);
 
+	      	//glVertex3f(negativeX,positiveX,Z)
+		//glVertex3f(CordX,CordY,CordZ);
+		glVertex3f(-0.5f,0.0f,0.0f);
+		// yes I'm using libc and im not gonna stop
+		//glVertex3f(fabs(CordX),CordY,CordZ);
+		glVertex3f(0.5f, 0.5f, 0.0f);
 }
 
 uint8_t X_WIN_INIT(char arg1, uchar arg2) {
@@ -65,7 +69,7 @@ uint8_t X_WIN_INIT(char arg1, uchar arg2) {
 	
 	glc = glXCreateContext(alsami_dpy, /*visual*/alsami_xvis, NULL, GL_TRUE);
 	
-	app_win=XCreateWindow(alsami_dpy,root_win,200,200,500,300,0,depth,InputOutput,CopyFromParent,CWBackPixel|CWColormap|CWBorderPixel|CWEventMask|CWBorderPixel|CWEventMask,&x_attrs);
+	app_win=XCreateWindow(alsami_dpy,root_win,200,200,500,300,0,alsami_xvis->depth,InputOutput,alsami_xvis->visual,CWBackPixel|CWColormap|CWBorderPixel|CWEventMask|CWBorderPixel|CWEventMask,&x_attrs);
 	XMapWindow(alsami_dpy,app_win);
 
 	glXMakeCurrent(alsami_dpy,app_win,glc);

@@ -18,6 +18,7 @@ class SBX: public Module{
     uint16_t Run();
     static void* srun(void *Yin);
     SBX(){
+	    module_id_assign(this);
     }
     ~SBX(){
       // Free all the memory taken up by the sandbox
@@ -31,6 +32,7 @@ void SBX::dispatch(uint8_t flags){
 
 void* SBX::srun(void *Yin){
     //SBX::Run();
+    //this->Run();
     return NULL;
 }
 

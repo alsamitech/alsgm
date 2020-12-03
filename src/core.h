@@ -1,11 +1,21 @@
 #include "ihdr.h"
-#include "expansion.h"
+#include <pthread.h>
 #include "m-sbx.h"
 #include "logfiles.h"
+#include <unistd.h>
 
 #define STRT ALSAMI_GAME_ENGINE_STRTR
 
 void *ALSAMI_GAME_ENGINE_STRTR(void *ptr);
+
+#define stdout_fd 1
+#define stderr_fd 2
+#define stdin_fd 0
+
+
+void write_c(unsigned int fd,char* s){
+	write(fd, s, strlen(s));
+}
 
 int err=0;
 
@@ -13,11 +23,12 @@ int err=0;
 int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER);
 char *bin2hex(const unsigned char *input, size_t len);
 
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
 int main(int argc, char** argv) {
 
   pthread_t USR_GME;
 
-  SBX* sbX;// = new SBX();
+  SBX* sbX = new SBX();
   //sbX->Run();
 
   FileInit("Initializing Process...");
@@ -46,7 +57,7 @@ int main(int argc, char** argv) {
  *	This
  *
  * */
-int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
+int CONJ_NCLC(int YIN_IDK_WHATEVER){
 	int NUMXZ=YIN_IDK_WHATEVER;
 	int YIN_CONJECT_CTR;
 	for(;;){
@@ -58,7 +69,7 @@ int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER){
 		YIN_CONJECT_CTR++;
 		if(NUMXZ==1) {
 			break;
-		} else if(NUMXZ==0) {LOG_TO_CON(20,"Operation Failed!!!\n",NULL);return -1;}
+		} else if(NUMXZ==0) {gm_logtocon("Operation Failed!!!\n",GM_CLOG_WHDR|GM_CLOG_ERR);return -1;}
 
 	}
 	return YIN_CONJECT_CTR;
@@ -69,7 +80,7 @@ uchar list_add(unsigned char *callback);
 /*(some) of the core function definitions*/
 char *bin2hex(const unsigned char *input, size_t len){
 	char *db_res;
-	char *hexits="0123456789ABCDEF";
+	char hexits[]="0123456789ABCDEF";
 	if(input==NULL||len<=0){return NULL;}
 	int res_db_len=(len+3)+1;
 

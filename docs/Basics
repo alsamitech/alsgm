@@ -29,6 +29,10 @@ int START() {
 
 ```
 
+Global Set Options (GSO):
+	Global Set Options are options that are (optionally) able to be defined.
+	These defines tell the engine 
+
 Networking(check the networking documentation for more information):
 	Game engines are not supposed to just handle graphics, logging, and errors for you.
 	Let's say you wanted to design a multiplayer online game but you don't want to handle sockets and protocols manually.

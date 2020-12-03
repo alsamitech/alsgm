@@ -1,6 +1,7 @@
 AlsGM Shader Componenent 
-This are primaraly for OpenGL and are written in GLSL
+This are primaraly for OpenGL and the shaders are written in GLSL.
 
+Basics of Shaders (For Developers)
 
 
 Contributors:

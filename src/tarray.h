@@ -1,5 +1,5 @@
-#ifndef ALSAMI_GM_YIN_ARRAY
-#define ALSAMI_GM_YIN_ARRAY
+#ifndef ALSGM_DYNAMIC_CPP_ARR
+#define ALSGM_DYNAMIC_CPP_ARR
 
 /*
  *	(c) Sami Alameddine, 2020

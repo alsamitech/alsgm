@@ -1,16 +1,16 @@
 # _AlsGM_ Game Engine
 
-This is a game engine I am working on as a simple project. This game engine contains a few componetents that we will get into after this section about what makes this game engine different than most game engines
+This is a game engine that I am working on as one of my projects. (TLDR: this is meant to be a simple game engine that still does a good job of abstracting away most of the complexity involved in low-level graphics!)
 
 NOTE BEFORE READING:
-  This engine is likely to go through a ton of rewrites. I'm learning with every line of C++ and C I write. This engine will probably not be stable for a few months.
+  This engine is likely to go through a ton of rewrites. I'm learning with every line of C++ and C I write. This engine will probably not be stable for a few months (or longer!).
   Also, while I plan to work on this as often as possible, for the first month or so, I would probably spend most of the time reading about how to pull off a project as large as this.
 
 Premable:
   Game Engines are not supposed to be one-size-fits-all engines. While this can be done efficiently with a lot of effort, I don't see the point in trying to use one engine for a ton of use cases.
   Game Engines are supposed to assist with game rendering, but not abstract the APIs away. You should still be to use OpenGL functions.
   Game Engines are also supposed to be open source. Why would you make a game on a engine which has source code that you dont even know or cant even modify to your needs?
-  Game Engines are supposed to be written as low-level as possible. While this isin't too much of a problem with engines like Unity or Unreal, smaller game engine projects are sometimes wirrtin in excessive C++ 
+  Game Engines are supposed to be written as low-level as possible. While this isin't too much of a problem with engines like Unity or Unreal, smaller game engine projects are sometimes wirrtin in excessive C++. While Class-Based game engines make life easier, they are often slower and harder to port to C.
   
   ALSGM intends to fix all that.
   
@@ -34,9 +34,9 @@ Premable:
   _alsgm_ does the low-level implementation work that would normally be have to be done on it's own if you were do design a game without a game engine. AlsGM also intends to standardize logging (both to console and to files). AlsGM is also responsible for utilizing multiple threads using pthreads. The game can spin off more threads from it's one thread. However, AlsGM does not abstract away pthead.h __(thankfully)__. AlsGM also can run on either a sprite model, or a function-based model. In the sprite model, everything (depending on the configuration). is a struct or object that has functions for handling the sprite.
   Example (in C++):
   ```cpp
-  gm_sprite *foo = new Sprite(/*intial position*/100,130,/*states that the object would not be able to be dragged by a mouse*/STATIC,/*nmv states that this object is unchanging*/NMV);
-  foo->Hide();
-  // Hides the sprite
+  gm_sprite *foo = new gm_sprite(/*intial position*/100,130,/*states that the object would not be able to be dragged by a mouse*/STATIC,/*nmv states that this object is unchanging*/NMV);
+  foo->Show();
+  // Shows the sprite
   ```
   The function model provides the fuctions to draw , move, and destroy objects. It also provides a comprehensive event system. However, it does take more code.
 

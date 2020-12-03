@@ -1,11 +1,8 @@
-#ifndef YIN_C_DYNAMIC_ARR
-#define YIN_C_DYNAMIC_ARR
+#ifndef GM_C_DYNAMIC_ARR
+#define GM_C_DYNAMIC_ARR
 
 /*
- *	Sami Alameddine
- *	Alsami Technologies
- *
- *	Dynamic Array Struct in C
+ *	Dynamic Array Handling for AlsGM
  * */
 
 typedef int type_yin;
@@ -26,7 +23,7 @@ inline dals_t* darr_init(size_t array_init_sz){
 	return t_n2;
 }
 
-int grow(dals_t* t){
+int darr_grow(dals_t* t){
 	assert(t!=NULL);		// Asserts these conditions (just in case something goes wrong and I need to debug, I don't want to lose my last brain cell debugging this)
 
 	assert(t->als_li!=NULL);		// and helps the reader to know what the preconditions are
@@ -44,16 +41,16 @@ int grow(dals_t* t){
 	return 0;	// Operation Sucsessful
 }
 
-type_yin append(dals_t *t, type_yin val){
-	if(t->arr_len > t->alloc-1){assert(grow(t)!=0);}
+type_yin darr_append(dals_t *t, type_yin val){
+	if(t->arr_len > t->alloc-1){assert(darr_grow(t)!=0);}
 	// refernces the link, and does the side effect of iincrementing the value. It returns the old value, which is the first slot in the array
 	t->als_li[t->arr_len++]=val;
 	return val;}
 
 void destroy(dals_t* T){free(T->als_li);free(T);}
 
-int grow(dals_t* t);
+int darr_grow(dals_t* t);
 
-void print(dals_t* t);
+void darr_print(dals_t* t);
 
 #endif

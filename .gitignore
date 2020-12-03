@@ -2,6 +2,7 @@
 *.cbp
 *.replit
 *.sln
+*.pro
 
 # Swap files
 *.swp

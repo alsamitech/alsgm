@@ -12,8 +12,14 @@
  * 	This header is designed for those kinds of people
  * */
 
-struct App_dialog{
-	char[] title;
-};
+
+typedef struct WINDOW_INFORMATION_GM_STRUCT{
+	const char* WindowTitle;
+} gm_wininf_T;
+
+gm_wininf_T* gmwinf_init(const char* wintitle){
+	gm_wininf_T* wininf_i = (gm_wininf_T*)calloc(1, sizeof(gm_wininf_T));
+	wininf_i->WindowTitle=wintitle;
+}
 
 #endif

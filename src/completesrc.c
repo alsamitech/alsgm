@@ -4,10 +4,17 @@
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 1 "<command-line>" 2
 # 1 "test.c"
-# 1 "glgraphics.h" 1
+# 1 "core.h" 1
+# 1 "ihdr.h" 1
 
 
 
+
+
+# 1 "config.h" 1
+       
+# 7 "ihdr.h" 2
+# 16 "ihdr.h"
 # 1 "/usr/include/X11/Xlib.h" 1 3 4
 # 38 "/usr/include/X11/Xlib.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/sys/types.h" 1 3 4
@@ -4561,18 +4568,5183 @@ extern void XFreeEventData(
 
 
 }
-# 5 "glgraphics.h" 2
+# 17 "ihdr.h" 2
+# 1 "/usr/include/X11/Xutil.h" 1 3 4
+# 54 "/usr/include/X11/Xutil.h" 3 4
+# 1 "/usr/include/X11/keysym.h" 1 3 4
+# 73 "/usr/include/X11/keysym.h" 3 4
+# 1 "/usr/include/X11/keysymdef.h" 1 3 4
+# 74 "/usr/include/X11/keysym.h" 2 3 4
+# 55 "/usr/include/X11/Xutil.h" 2 3 4
+# 81 "/usr/include/X11/Xutil.h" 3 4
+typedef struct {
+     long flags;
+ int x, y;
+ int width, height;
+ int min_width, min_height;
+ int max_width, max_height;
+     int width_inc, height_inc;
+ struct {
+  int x;
+  int y;
+ } min_aspect, max_aspect;
+ int base_width, base_height;
+ int win_gravity;
+} XSizeHints;
+# 119 "/usr/include/X11/Xutil.h" 3 4
+typedef struct {
+ long flags;
+ int input;
 
-# 1 "ihdr.h" 1
+ int initial_state;
+ Pixmap icon_pixmap;
+ Window icon_window;
+ int icon_x, icon_y;
+ Pixmap icon_mask;
+ XID window_group;
+
+} XWMHints;
+# 163 "/usr/include/X11/Xutil.h" 3 4
+typedef struct {
+    unsigned char *value;
+    Atom encoding;
+    int format;
+    unsigned long nitems;
+} XTextProperty;
 
 
 
 
 
-# 1 "config.h" 1
-       
-# 7 "ihdr.h" 2
-# 25 "ihdr.h"
+typedef enum {
+    XStringStyle,
+    XCompoundTextStyle,
+    XTextStyle,
+    XStdICCTextStyle,
+
+    XUTF8StringStyle
+} XICCEncodingStyle;
+
+typedef struct {
+ int min_width, min_height;
+ int max_width, max_height;
+ int width_inc, height_inc;
+} XIconSize;
+
+typedef struct {
+ char *res_name;
+ char *res_class;
+} XClassHint;
+# 231 "/usr/include/X11/Xutil.h" 3 4
+typedef struct _XComposeStatus {
+    XPointer compose_ptr;
+    int chars_matched;
+} XComposeStatus;
+# 273 "/usr/include/X11/Xutil.h" 3 4
+typedef struct _XRegion *Region;
+# 287 "/usr/include/X11/Xutil.h" 3 4
+typedef struct {
+  Visual *visual;
+  VisualID visualid;
+  int screen;
+  int depth;
+
+  int c_class;
+
+
+
+  unsigned long red_mask;
+  unsigned long green_mask;
+  unsigned long blue_mask;
+  int colormap_size;
+  int bits_per_rgb;
+} XVisualInfo;
+# 320 "/usr/include/X11/Xutil.h" 3 4
+typedef struct {
+ Colormap colormap;
+ unsigned long red_max;
+ unsigned long red_mult;
+ unsigned long green_max;
+ unsigned long green_mult;
+ unsigned long blue_max;
+ unsigned long blue_mult;
+ unsigned long base_pixel;
+ VisualID visualid;
+ XID killid;
+} XStandardColormap;
+# 357 "/usr/include/X11/Xutil.h" 3 4
+typedef int XContext;
+
+
+
+
+extern "C" {
+
+
+
+extern XClassHint *XAllocClassHint (
+    void
+);
+
+extern XIconSize *XAllocIconSize (
+    void
+);
+
+extern XSizeHints *XAllocSizeHints (
+    void
+);
+
+extern XStandardColormap *XAllocStandardColormap (
+    void
+);
+
+extern XWMHints *XAllocWMHints (
+    void
+);
+
+extern int XClipBox(
+    Region ,
+    XRectangle*
+);
+
+extern Region XCreateRegion(
+    void
+);
+
+extern const char *XDefaultString (void);
+
+extern int XDeleteContext(
+    Display* ,
+    XID ,
+    XContext
+);
+
+extern int XDestroyRegion(
+    Region
+);
+
+extern int XEmptyRegion(
+    Region
+);
+
+extern int XEqualRegion(
+    Region ,
+    Region
+);
+
+extern int XFindContext(
+    Display* ,
+    XID ,
+    XContext ,
+    XPointer*
+);
+
+extern int XGetClassHint(
+    Display* ,
+    Window ,
+    XClassHint*
+);
+
+extern int XGetIconSizes(
+    Display* ,
+    Window ,
+    XIconSize** ,
+    int*
+);
+
+extern int XGetNormalHints(
+    Display* ,
+    Window ,
+    XSizeHints*
+);
+
+extern int XGetRGBColormaps(
+    Display* ,
+    Window ,
+    XStandardColormap** ,
+    int* ,
+    Atom
+);
+
+extern int XGetSizeHints(
+    Display* ,
+    Window ,
+    XSizeHints* ,
+    Atom
+);
+
+extern int XGetStandardColormap(
+    Display* ,
+    Window ,
+    XStandardColormap* ,
+    Atom
+);
+
+extern int XGetTextProperty(
+    Display* ,
+    Window ,
+    XTextProperty* ,
+    Atom
+);
+
+extern XVisualInfo *XGetVisualInfo(
+    Display* ,
+    long ,
+    XVisualInfo* ,
+    int*
+);
+
+extern int XGetWMClientMachine(
+    Display* ,
+    Window ,
+    XTextProperty*
+);
+
+extern XWMHints *XGetWMHints(
+    Display* ,
+    Window
+);
+
+extern int XGetWMIconName(
+    Display* ,
+    Window ,
+    XTextProperty*
+);
+
+extern int XGetWMName(
+    Display* ,
+    Window ,
+    XTextProperty*
+);
+
+extern int XGetWMNormalHints(
+    Display* ,
+    Window ,
+    XSizeHints* ,
+    long*
+);
+
+extern int XGetWMSizeHints(
+    Display* ,
+    Window ,
+    XSizeHints* ,
+    long* ,
+    Atom
+);
+
+extern int XGetZoomHints(
+    Display* ,
+    Window ,
+    XSizeHints*
+);
+
+extern int XIntersectRegion(
+    Region ,
+    Region ,
+    Region
+);
+
+extern void XConvertCase(
+    KeySym ,
+    KeySym* ,
+    KeySym*
+);
+
+extern int XLookupString(
+    XKeyEvent* ,
+    char* ,
+    int ,
+    KeySym* ,
+    XComposeStatus*
+);
+
+extern int XMatchVisualInfo(
+    Display* ,
+    int ,
+    int ,
+    int ,
+    XVisualInfo*
+);
+
+extern int XOffsetRegion(
+    Region ,
+    int ,
+    int
+);
+
+extern int XPointInRegion(
+    Region ,
+    int ,
+    int
+);
+
+extern Region XPolygonRegion(
+    XPoint* ,
+    int ,
+    int
+);
+
+extern int XRectInRegion(
+    Region ,
+    int ,
+    int ,
+    unsigned int ,
+    unsigned int
+);
+
+extern int XSaveContext(
+    Display* ,
+    XID ,
+    XContext ,
+    const char*
+);
+
+extern int XSetClassHint(
+    Display* ,
+    Window ,
+    XClassHint*
+);
+
+extern int XSetIconSizes(
+    Display* ,
+    Window ,
+    XIconSize* ,
+    int
+);
+
+extern int XSetNormalHints(
+    Display* ,
+    Window ,
+    XSizeHints*
+);
+
+extern void XSetRGBColormaps(
+    Display* ,
+    Window ,
+    XStandardColormap* ,
+    int ,
+    Atom
+);
+
+extern int XSetSizeHints(
+    Display* ,
+    Window ,
+    XSizeHints* ,
+    Atom
+);
+
+extern int XSetStandardProperties(
+    Display* ,
+    Window ,
+    const char* ,
+    const char* ,
+    Pixmap ,
+    char** ,
+    int ,
+    XSizeHints*
+);
+
+extern void XSetTextProperty(
+    Display* ,
+    Window ,
+    XTextProperty* ,
+    Atom
+);
+
+extern void XSetWMClientMachine(
+    Display* ,
+    Window ,
+    XTextProperty*
+);
+
+extern int XSetWMHints(
+    Display* ,
+    Window ,
+    XWMHints*
+);
+
+extern void XSetWMIconName(
+    Display* ,
+    Window ,
+    XTextProperty*
+);
+
+extern void XSetWMName(
+    Display* ,
+    Window ,
+    XTextProperty*
+);
+
+extern void XSetWMNormalHints(
+    Display* ,
+    Window ,
+    XSizeHints*
+);
+
+extern void XSetWMProperties(
+    Display* ,
+    Window ,
+    XTextProperty* ,
+    XTextProperty* ,
+    char** ,
+    int ,
+    XSizeHints* ,
+    XWMHints* ,
+    XClassHint*
+);
+
+extern void XmbSetWMProperties(
+    Display* ,
+    Window ,
+    const char* ,
+    const char* ,
+    char** ,
+    int ,
+    XSizeHints* ,
+    XWMHints* ,
+    XClassHint*
+);
+
+extern void Xutf8SetWMProperties(
+    Display* ,
+    Window ,
+    const char* ,
+    const char* ,
+    char** ,
+    int ,
+    XSizeHints* ,
+    XWMHints* ,
+    XClassHint*
+);
+
+extern void XSetWMSizeHints(
+    Display* ,
+    Window ,
+    XSizeHints* ,
+    Atom
+);
+
+extern int XSetRegion(
+    Display* ,
+    GC ,
+    Region
+);
+
+extern void XSetStandardColormap(
+    Display* ,
+    Window ,
+    XStandardColormap* ,
+    Atom
+);
+
+extern int XSetZoomHints(
+    Display* ,
+    Window ,
+    XSizeHints*
+);
+
+extern int XShrinkRegion(
+    Region ,
+    int ,
+    int
+);
+
+extern int XStringListToTextProperty(
+    char** ,
+    int ,
+    XTextProperty*
+);
+
+extern int XSubtractRegion(
+    Region ,
+    Region ,
+    Region
+);
+
+extern int XmbTextListToTextProperty(
+    Display* display,
+    char** list,
+    int count,
+    XICCEncodingStyle style,
+    XTextProperty* text_prop_return
+);
+
+extern int XwcTextListToTextProperty(
+    Display* display,
+    wchar_t** list,
+    int count,
+    XICCEncodingStyle style,
+    XTextProperty* text_prop_return
+);
+
+extern int Xutf8TextListToTextProperty(
+    Display* display,
+    char** list,
+    int count,
+    XICCEncodingStyle style,
+    XTextProperty* text_prop_return
+);
+
+extern void XwcFreeStringList(
+    wchar_t** list
+);
+
+extern int XTextPropertyToStringList(
+    XTextProperty* ,
+    char*** ,
+    int*
+);
+
+extern int XmbTextPropertyToTextList(
+    Display* display,
+    const XTextProperty* text_prop,
+    char*** list_return,
+    int* count_return
+);
+
+extern int XwcTextPropertyToTextList(
+    Display* display,
+    const XTextProperty* text_prop,
+    wchar_t*** list_return,
+    int* count_return
+);
+
+extern int Xutf8TextPropertyToTextList(
+    Display* display,
+    const XTextProperty* text_prop,
+    char*** list_return,
+    int* count_return
+);
+
+extern int XUnionRectWithRegion(
+    XRectangle* ,
+    Region ,
+    Region
+);
+
+extern int XUnionRegion(
+    Region ,
+    Region ,
+    Region
+);
+
+extern int XWMGeometry(
+    Display* ,
+    int ,
+    const char* ,
+    const char* ,
+    unsigned int ,
+    XSizeHints* ,
+    int* ,
+    int* ,
+    int* ,
+    int* ,
+    int*
+);
+
+extern int XXorRegion(
+    Region ,
+    Region ,
+    Region
+);
+
+
+
+
+
+}
+# 18 "ihdr.h" 2
+
+
+
+
+
+# 1 "/usr/include/GL/gl.h" 1 3 4
+# 102 "/usr/include/GL/gl.h" 3 4
+extern "C" {
+# 116 "/usr/include/GL/gl.h" 3 4
+typedef unsigned int GLenum;
+typedef unsigned char GLboolean;
+typedef unsigned int GLbitfield;
+typedef void GLvoid;
+typedef signed char GLbyte;
+typedef short GLshort;
+typedef int GLint;
+typedef unsigned char GLubyte;
+typedef unsigned short GLushort;
+typedef unsigned int GLuint;
+typedef int GLsizei;
+typedef float GLfloat;
+typedef float GLclampf;
+typedef double GLdouble;
+typedef double GLclampd;
+# 743 "/usr/include/GL/gl.h" 3 4
+__attribute__((visibility("default"))) void glClearIndex( GLfloat c );
+
+__attribute__((visibility("default"))) void glClearColor( GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha );
+
+__attribute__((visibility("default"))) void glClear( GLbitfield mask );
+
+__attribute__((visibility("default"))) void glIndexMask( GLuint mask );
+
+__attribute__((visibility("default"))) void glColorMask( GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha );
+
+__attribute__((visibility("default"))) void glAlphaFunc( GLenum func, GLclampf ref );
+
+__attribute__((visibility("default"))) void glBlendFunc( GLenum sfactor, GLenum dfactor );
+
+__attribute__((visibility("default"))) void glLogicOp( GLenum opcode );
+
+__attribute__((visibility("default"))) void glCullFace( GLenum mode );
+
+__attribute__((visibility("default"))) void glFrontFace( GLenum mode );
+
+__attribute__((visibility("default"))) void glPointSize( GLfloat size );
+
+__attribute__((visibility("default"))) void glLineWidth( GLfloat width );
+
+__attribute__((visibility("default"))) void glLineStipple( GLint factor, GLushort pattern );
+
+__attribute__((visibility("default"))) void glPolygonMode( GLenum face, GLenum mode );
+
+__attribute__((visibility("default"))) void glPolygonOffset( GLfloat factor, GLfloat units );
+
+__attribute__((visibility("default"))) void glPolygonStipple( const GLubyte *mask );
+
+__attribute__((visibility("default"))) void glGetPolygonStipple( GLubyte *mask );
+
+__attribute__((visibility("default"))) void glEdgeFlag( GLboolean flag );
+
+__attribute__((visibility("default"))) void glEdgeFlagv( const GLboolean *flag );
+
+__attribute__((visibility("default"))) void glScissor( GLint x, GLint y, GLsizei width, GLsizei height);
+
+__attribute__((visibility("default"))) void glClipPlane( GLenum plane, const GLdouble *equation );
+
+__attribute__((visibility("default"))) void glGetClipPlane( GLenum plane, GLdouble *equation );
+
+__attribute__((visibility("default"))) void glDrawBuffer( GLenum mode );
+
+__attribute__((visibility("default"))) void glReadBuffer( GLenum mode );
+
+__attribute__((visibility("default"))) void glEnable( GLenum cap );
+
+__attribute__((visibility("default"))) void glDisable( GLenum cap );
+
+__attribute__((visibility("default"))) GLboolean glIsEnabled( GLenum cap );
+
+
+__attribute__((visibility("default"))) void glEnableClientState( GLenum cap );
+
+__attribute__((visibility("default"))) void glDisableClientState( GLenum cap );
+
+
+__attribute__((visibility("default"))) void glGetBooleanv( GLenum pname, GLboolean *params );
+
+__attribute__((visibility("default"))) void glGetDoublev( GLenum pname, GLdouble *params );
+
+__attribute__((visibility("default"))) void glGetFloatv( GLenum pname, GLfloat *params );
+
+__attribute__((visibility("default"))) void glGetIntegerv( GLenum pname, GLint *params );
+
+
+__attribute__((visibility("default"))) void glPushAttrib( GLbitfield mask );
+
+__attribute__((visibility("default"))) void glPopAttrib( void );
+
+
+__attribute__((visibility("default"))) void glPushClientAttrib( GLbitfield mask );
+
+__attribute__((visibility("default"))) void glPopClientAttrib( void );
+
+
+__attribute__((visibility("default"))) GLint glRenderMode( GLenum mode );
+
+__attribute__((visibility("default"))) GLenum glGetError( void );
+
+__attribute__((visibility("default"))) const GLubyte * glGetString( GLenum name );
+
+__attribute__((visibility("default"))) void glFinish( void );
+
+__attribute__((visibility("default"))) void glFlush( void );
+
+__attribute__((visibility("default"))) void glHint( GLenum target, GLenum mode );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glClearDepth( GLclampd depth );
+
+__attribute__((visibility("default"))) void glDepthFunc( GLenum func );
+
+__attribute__((visibility("default"))) void glDepthMask( GLboolean flag );
+
+__attribute__((visibility("default"))) void glDepthRange( GLclampd near_val, GLclampd far_val );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glClearAccum( GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha );
+
+__attribute__((visibility("default"))) void glAccum( GLenum op, GLfloat value );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glMatrixMode( GLenum mode );
+
+__attribute__((visibility("default"))) void glOrtho( GLdouble left, GLdouble right,
+                                 GLdouble bottom, GLdouble top,
+                                 GLdouble near_val, GLdouble far_val );
+
+__attribute__((visibility("default"))) void glFrustum( GLdouble left, GLdouble right,
+                                   GLdouble bottom, GLdouble top,
+                                   GLdouble near_val, GLdouble far_val );
+
+__attribute__((visibility("default"))) void glViewport( GLint x, GLint y,
+                                    GLsizei width, GLsizei height );
+
+__attribute__((visibility("default"))) void glPushMatrix( void );
+
+__attribute__((visibility("default"))) void glPopMatrix( void );
+
+__attribute__((visibility("default"))) void glLoadIdentity( void );
+
+__attribute__((visibility("default"))) void glLoadMatrixd( const GLdouble *m );
+__attribute__((visibility("default"))) void glLoadMatrixf( const GLfloat *m );
+
+__attribute__((visibility("default"))) void glMultMatrixd( const GLdouble *m );
+__attribute__((visibility("default"))) void glMultMatrixf( const GLfloat *m );
+
+__attribute__((visibility("default"))) void glRotated( GLdouble angle,
+                                   GLdouble x, GLdouble y, GLdouble z );
+__attribute__((visibility("default"))) void glRotatef( GLfloat angle,
+                                   GLfloat x, GLfloat y, GLfloat z );
+
+__attribute__((visibility("default"))) void glScaled( GLdouble x, GLdouble y, GLdouble z );
+__attribute__((visibility("default"))) void glScalef( GLfloat x, GLfloat y, GLfloat z );
+
+__attribute__((visibility("default"))) void glTranslated( GLdouble x, GLdouble y, GLdouble z );
+__attribute__((visibility("default"))) void glTranslatef( GLfloat x, GLfloat y, GLfloat z );
+
+
+
+
+
+
+__attribute__((visibility("default"))) GLboolean glIsList( GLuint list );
+
+__attribute__((visibility("default"))) void glDeleteLists( GLuint list, GLsizei range );
+
+__attribute__((visibility("default"))) GLuint glGenLists( GLsizei range );
+
+__attribute__((visibility("default"))) void glNewList( GLuint list, GLenum mode );
+
+__attribute__((visibility("default"))) void glEndList( void );
+
+__attribute__((visibility("default"))) void glCallList( GLuint list );
+
+__attribute__((visibility("default"))) void glCallLists( GLsizei n, GLenum type,
+                                     const GLvoid *lists );
+
+__attribute__((visibility("default"))) void glListBase( GLuint base );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glBegin( GLenum mode );
+
+__attribute__((visibility("default"))) void glEnd( void );
+
+
+__attribute__((visibility("default"))) void glVertex2d( GLdouble x, GLdouble y );
+__attribute__((visibility("default"))) void glVertex2f( GLfloat x, GLfloat y );
+__attribute__((visibility("default"))) void glVertex2i( GLint x, GLint y );
+__attribute__((visibility("default"))) void glVertex2s( GLshort x, GLshort y );
+
+__attribute__((visibility("default"))) void glVertex3d( GLdouble x, GLdouble y, GLdouble z );
+__attribute__((visibility("default"))) void glVertex3f( GLfloat x, GLfloat y, GLfloat z );
+__attribute__((visibility("default"))) void glVertex3i( GLint x, GLint y, GLint z );
+__attribute__((visibility("default"))) void glVertex3s( GLshort x, GLshort y, GLshort z );
+
+__attribute__((visibility("default"))) void glVertex4d( GLdouble x, GLdouble y, GLdouble z, GLdouble w );
+__attribute__((visibility("default"))) void glVertex4f( GLfloat x, GLfloat y, GLfloat z, GLfloat w );
+__attribute__((visibility("default"))) void glVertex4i( GLint x, GLint y, GLint z, GLint w );
+__attribute__((visibility("default"))) void glVertex4s( GLshort x, GLshort y, GLshort z, GLshort w );
+
+__attribute__((visibility("default"))) void glVertex2dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glVertex2fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glVertex2iv( const GLint *v );
+__attribute__((visibility("default"))) void glVertex2sv( const GLshort *v );
+
+__attribute__((visibility("default"))) void glVertex3dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glVertex3fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glVertex3iv( const GLint *v );
+__attribute__((visibility("default"))) void glVertex3sv( const GLshort *v );
+
+__attribute__((visibility("default"))) void glVertex4dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glVertex4fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glVertex4iv( const GLint *v );
+__attribute__((visibility("default"))) void glVertex4sv( const GLshort *v );
+
+
+__attribute__((visibility("default"))) void glNormal3b( GLbyte nx, GLbyte ny, GLbyte nz );
+__attribute__((visibility("default"))) void glNormal3d( GLdouble nx, GLdouble ny, GLdouble nz );
+__attribute__((visibility("default"))) void glNormal3f( GLfloat nx, GLfloat ny, GLfloat nz );
+__attribute__((visibility("default"))) void glNormal3i( GLint nx, GLint ny, GLint nz );
+__attribute__((visibility("default"))) void glNormal3s( GLshort nx, GLshort ny, GLshort nz );
+
+__attribute__((visibility("default"))) void glNormal3bv( const GLbyte *v );
+__attribute__((visibility("default"))) void glNormal3dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glNormal3fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glNormal3iv( const GLint *v );
+__attribute__((visibility("default"))) void glNormal3sv( const GLshort *v );
+
+
+__attribute__((visibility("default"))) void glIndexd( GLdouble c );
+__attribute__((visibility("default"))) void glIndexf( GLfloat c );
+__attribute__((visibility("default"))) void glIndexi( GLint c );
+__attribute__((visibility("default"))) void glIndexs( GLshort c );
+__attribute__((visibility("default"))) void glIndexub( GLubyte c );
+
+__attribute__((visibility("default"))) void glIndexdv( const GLdouble *c );
+__attribute__((visibility("default"))) void glIndexfv( const GLfloat *c );
+__attribute__((visibility("default"))) void glIndexiv( const GLint *c );
+__attribute__((visibility("default"))) void glIndexsv( const GLshort *c );
+__attribute__((visibility("default"))) void glIndexubv( const GLubyte *c );
+
+__attribute__((visibility("default"))) void glColor3b( GLbyte red, GLbyte green, GLbyte blue );
+__attribute__((visibility("default"))) void glColor3d( GLdouble red, GLdouble green, GLdouble blue );
+__attribute__((visibility("default"))) void glColor3f( GLfloat red, GLfloat green, GLfloat blue );
+__attribute__((visibility("default"))) void glColor3i( GLint red, GLint green, GLint blue );
+__attribute__((visibility("default"))) void glColor3s( GLshort red, GLshort green, GLshort blue );
+__attribute__((visibility("default"))) void glColor3ub( GLubyte red, GLubyte green, GLubyte blue );
+__attribute__((visibility("default"))) void glColor3ui( GLuint red, GLuint green, GLuint blue );
+__attribute__((visibility("default"))) void glColor3us( GLushort red, GLushort green, GLushort blue );
+
+__attribute__((visibility("default"))) void glColor4b( GLbyte red, GLbyte green,
+                                   GLbyte blue, GLbyte alpha );
+__attribute__((visibility("default"))) void glColor4d( GLdouble red, GLdouble green,
+                                   GLdouble blue, GLdouble alpha );
+__attribute__((visibility("default"))) void glColor4f( GLfloat red, GLfloat green,
+                                   GLfloat blue, GLfloat alpha );
+__attribute__((visibility("default"))) void glColor4i( GLint red, GLint green,
+                                   GLint blue, GLint alpha );
+__attribute__((visibility("default"))) void glColor4s( GLshort red, GLshort green,
+                                   GLshort blue, GLshort alpha );
+__attribute__((visibility("default"))) void glColor4ub( GLubyte red, GLubyte green,
+                                    GLubyte blue, GLubyte alpha );
+__attribute__((visibility("default"))) void glColor4ui( GLuint red, GLuint green,
+                                    GLuint blue, GLuint alpha );
+__attribute__((visibility("default"))) void glColor4us( GLushort red, GLushort green,
+                                    GLushort blue, GLushort alpha );
+
+
+__attribute__((visibility("default"))) void glColor3bv( const GLbyte *v );
+__attribute__((visibility("default"))) void glColor3dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glColor3fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glColor3iv( const GLint *v );
+__attribute__((visibility("default"))) void glColor3sv( const GLshort *v );
+__attribute__((visibility("default"))) void glColor3ubv( const GLubyte *v );
+__attribute__((visibility("default"))) void glColor3uiv( const GLuint *v );
+__attribute__((visibility("default"))) void glColor3usv( const GLushort *v );
+
+__attribute__((visibility("default"))) void glColor4bv( const GLbyte *v );
+__attribute__((visibility("default"))) void glColor4dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glColor4fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glColor4iv( const GLint *v );
+__attribute__((visibility("default"))) void glColor4sv( const GLshort *v );
+__attribute__((visibility("default"))) void glColor4ubv( const GLubyte *v );
+__attribute__((visibility("default"))) void glColor4uiv( const GLuint *v );
+__attribute__((visibility("default"))) void glColor4usv( const GLushort *v );
+
+
+__attribute__((visibility("default"))) void glTexCoord1d( GLdouble s );
+__attribute__((visibility("default"))) void glTexCoord1f( GLfloat s );
+__attribute__((visibility("default"))) void glTexCoord1i( GLint s );
+__attribute__((visibility("default"))) void glTexCoord1s( GLshort s );
+
+__attribute__((visibility("default"))) void glTexCoord2d( GLdouble s, GLdouble t );
+__attribute__((visibility("default"))) void glTexCoord2f( GLfloat s, GLfloat t );
+__attribute__((visibility("default"))) void glTexCoord2i( GLint s, GLint t );
+__attribute__((visibility("default"))) void glTexCoord2s( GLshort s, GLshort t );
+
+__attribute__((visibility("default"))) void glTexCoord3d( GLdouble s, GLdouble t, GLdouble r );
+__attribute__((visibility("default"))) void glTexCoord3f( GLfloat s, GLfloat t, GLfloat r );
+__attribute__((visibility("default"))) void glTexCoord3i( GLint s, GLint t, GLint r );
+__attribute__((visibility("default"))) void glTexCoord3s( GLshort s, GLshort t, GLshort r );
+
+__attribute__((visibility("default"))) void glTexCoord4d( GLdouble s, GLdouble t, GLdouble r, GLdouble q );
+__attribute__((visibility("default"))) void glTexCoord4f( GLfloat s, GLfloat t, GLfloat r, GLfloat q );
+__attribute__((visibility("default"))) void glTexCoord4i( GLint s, GLint t, GLint r, GLint q );
+__attribute__((visibility("default"))) void glTexCoord4s( GLshort s, GLshort t, GLshort r, GLshort q );
+
+__attribute__((visibility("default"))) void glTexCoord1dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glTexCoord1fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glTexCoord1iv( const GLint *v );
+__attribute__((visibility("default"))) void glTexCoord1sv( const GLshort *v );
+
+__attribute__((visibility("default"))) void glTexCoord2dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glTexCoord2fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glTexCoord2iv( const GLint *v );
+__attribute__((visibility("default"))) void glTexCoord2sv( const GLshort *v );
+
+__attribute__((visibility("default"))) void glTexCoord3dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glTexCoord3fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glTexCoord3iv( const GLint *v );
+__attribute__((visibility("default"))) void glTexCoord3sv( const GLshort *v );
+
+__attribute__((visibility("default"))) void glTexCoord4dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glTexCoord4fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glTexCoord4iv( const GLint *v );
+__attribute__((visibility("default"))) void glTexCoord4sv( const GLshort *v );
+
+
+__attribute__((visibility("default"))) void glRasterPos2d( GLdouble x, GLdouble y );
+__attribute__((visibility("default"))) void glRasterPos2f( GLfloat x, GLfloat y );
+__attribute__((visibility("default"))) void glRasterPos2i( GLint x, GLint y );
+__attribute__((visibility("default"))) void glRasterPos2s( GLshort x, GLshort y );
+
+__attribute__((visibility("default"))) void glRasterPos3d( GLdouble x, GLdouble y, GLdouble z );
+__attribute__((visibility("default"))) void glRasterPos3f( GLfloat x, GLfloat y, GLfloat z );
+__attribute__((visibility("default"))) void glRasterPos3i( GLint x, GLint y, GLint z );
+__attribute__((visibility("default"))) void glRasterPos3s( GLshort x, GLshort y, GLshort z );
+
+__attribute__((visibility("default"))) void glRasterPos4d( GLdouble x, GLdouble y, GLdouble z, GLdouble w );
+__attribute__((visibility("default"))) void glRasterPos4f( GLfloat x, GLfloat y, GLfloat z, GLfloat w );
+__attribute__((visibility("default"))) void glRasterPos4i( GLint x, GLint y, GLint z, GLint w );
+__attribute__((visibility("default"))) void glRasterPos4s( GLshort x, GLshort y, GLshort z, GLshort w );
+
+__attribute__((visibility("default"))) void glRasterPos2dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glRasterPos2fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glRasterPos2iv( const GLint *v );
+__attribute__((visibility("default"))) void glRasterPos2sv( const GLshort *v );
+
+__attribute__((visibility("default"))) void glRasterPos3dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glRasterPos3fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glRasterPos3iv( const GLint *v );
+__attribute__((visibility("default"))) void glRasterPos3sv( const GLshort *v );
+
+__attribute__((visibility("default"))) void glRasterPos4dv( const GLdouble *v );
+__attribute__((visibility("default"))) void glRasterPos4fv( const GLfloat *v );
+__attribute__((visibility("default"))) void glRasterPos4iv( const GLint *v );
+__attribute__((visibility("default"))) void glRasterPos4sv( const GLshort *v );
+
+
+__attribute__((visibility("default"))) void glRectd( GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2 );
+__attribute__((visibility("default"))) void glRectf( GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2 );
+__attribute__((visibility("default"))) void glRecti( GLint x1, GLint y1, GLint x2, GLint y2 );
+__attribute__((visibility("default"))) void glRects( GLshort x1, GLshort y1, GLshort x2, GLshort y2 );
+
+
+__attribute__((visibility("default"))) void glRectdv( const GLdouble *v1, const GLdouble *v2 );
+__attribute__((visibility("default"))) void glRectfv( const GLfloat *v1, const GLfloat *v2 );
+__attribute__((visibility("default"))) void glRectiv( const GLint *v1, const GLint *v2 );
+__attribute__((visibility("default"))) void glRectsv( const GLshort *v1, const GLshort *v2 );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glVertexPointer( GLint size, GLenum type,
+                                       GLsizei stride, const GLvoid *ptr );
+
+__attribute__((visibility("default"))) void glNormalPointer( GLenum type, GLsizei stride,
+                                       const GLvoid *ptr );
+
+__attribute__((visibility("default"))) void glColorPointer( GLint size, GLenum type,
+                                      GLsizei stride, const GLvoid *ptr );
+
+__attribute__((visibility("default"))) void glIndexPointer( GLenum type, GLsizei stride,
+                                      const GLvoid *ptr );
+
+__attribute__((visibility("default"))) void glTexCoordPointer( GLint size, GLenum type,
+                                         GLsizei stride, const GLvoid *ptr );
+
+__attribute__((visibility("default"))) void glEdgeFlagPointer( GLsizei stride, const GLvoid *ptr );
+
+__attribute__((visibility("default"))) void glGetPointerv( GLenum pname, GLvoid **params );
+
+__attribute__((visibility("default"))) void glArrayElement( GLint i );
+
+__attribute__((visibility("default"))) void glDrawArrays( GLenum mode, GLint first, GLsizei count );
+
+__attribute__((visibility("default"))) void glDrawElements( GLenum mode, GLsizei count,
+                                      GLenum type, const GLvoid *indices );
+
+__attribute__((visibility("default"))) void glInterleavedArrays( GLenum format, GLsizei stride,
+                                           const GLvoid *pointer );
+
+
+
+
+
+__attribute__((visibility("default"))) void glShadeModel( GLenum mode );
+
+__attribute__((visibility("default"))) void glLightf( GLenum light, GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glLighti( GLenum light, GLenum pname, GLint param );
+__attribute__((visibility("default"))) void glLightfv( GLenum light, GLenum pname,
+                                 const GLfloat *params );
+__attribute__((visibility("default"))) void glLightiv( GLenum light, GLenum pname,
+                                 const GLint *params );
+
+__attribute__((visibility("default"))) void glGetLightfv( GLenum light, GLenum pname,
+                                    GLfloat *params );
+__attribute__((visibility("default"))) void glGetLightiv( GLenum light, GLenum pname,
+                                    GLint *params );
+
+__attribute__((visibility("default"))) void glLightModelf( GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glLightModeli( GLenum pname, GLint param );
+__attribute__((visibility("default"))) void glLightModelfv( GLenum pname, const GLfloat *params );
+__attribute__((visibility("default"))) void glLightModeliv( GLenum pname, const GLint *params );
+
+__attribute__((visibility("default"))) void glMaterialf( GLenum face, GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glMateriali( GLenum face, GLenum pname, GLint param );
+__attribute__((visibility("default"))) void glMaterialfv( GLenum face, GLenum pname, const GLfloat *params );
+__attribute__((visibility("default"))) void glMaterialiv( GLenum face, GLenum pname, const GLint *params );
+
+__attribute__((visibility("default"))) void glGetMaterialfv( GLenum face, GLenum pname, GLfloat *params );
+__attribute__((visibility("default"))) void glGetMaterialiv( GLenum face, GLenum pname, GLint *params );
+
+__attribute__((visibility("default"))) void glColorMaterial( GLenum face, GLenum mode );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glPixelZoom( GLfloat xfactor, GLfloat yfactor );
+
+__attribute__((visibility("default"))) void glPixelStoref( GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glPixelStorei( GLenum pname, GLint param );
+
+__attribute__((visibility("default"))) void glPixelTransferf( GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glPixelTransferi( GLenum pname, GLint param );
+
+__attribute__((visibility("default"))) void glPixelMapfv( GLenum map, GLsizei mapsize,
+                                    const GLfloat *values );
+__attribute__((visibility("default"))) void glPixelMapuiv( GLenum map, GLsizei mapsize,
+                                     const GLuint *values );
+__attribute__((visibility("default"))) void glPixelMapusv( GLenum map, GLsizei mapsize,
+                                     const GLushort *values );
+
+__attribute__((visibility("default"))) void glGetPixelMapfv( GLenum map, GLfloat *values );
+__attribute__((visibility("default"))) void glGetPixelMapuiv( GLenum map, GLuint *values );
+__attribute__((visibility("default"))) void glGetPixelMapusv( GLenum map, GLushort *values );
+
+__attribute__((visibility("default"))) void glBitmap( GLsizei width, GLsizei height,
+                                GLfloat xorig, GLfloat yorig,
+                                GLfloat xmove, GLfloat ymove,
+                                const GLubyte *bitmap );
+
+__attribute__((visibility("default"))) void glReadPixels( GLint x, GLint y,
+                                    GLsizei width, GLsizei height,
+                                    GLenum format, GLenum type,
+                                    GLvoid *pixels );
+
+__attribute__((visibility("default"))) void glDrawPixels( GLsizei width, GLsizei height,
+                                    GLenum format, GLenum type,
+                                    const GLvoid *pixels );
+
+__attribute__((visibility("default"))) void glCopyPixels( GLint x, GLint y,
+                                    GLsizei width, GLsizei height,
+                                    GLenum type );
+
+
+
+
+
+__attribute__((visibility("default"))) void glStencilFunc( GLenum func, GLint ref, GLuint mask );
+
+__attribute__((visibility("default"))) void glStencilMask( GLuint mask );
+
+__attribute__((visibility("default"))) void glStencilOp( GLenum fail, GLenum zfail, GLenum zpass );
+
+__attribute__((visibility("default"))) void glClearStencil( GLint s );
+
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glTexGend( GLenum coord, GLenum pname, GLdouble param );
+__attribute__((visibility("default"))) void glTexGenf( GLenum coord, GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glTexGeni( GLenum coord, GLenum pname, GLint param );
+
+__attribute__((visibility("default"))) void glTexGendv( GLenum coord, GLenum pname, const GLdouble *params );
+__attribute__((visibility("default"))) void glTexGenfv( GLenum coord, GLenum pname, const GLfloat *params );
+__attribute__((visibility("default"))) void glTexGeniv( GLenum coord, GLenum pname, const GLint *params );
+
+__attribute__((visibility("default"))) void glGetTexGendv( GLenum coord, GLenum pname, GLdouble *params );
+__attribute__((visibility("default"))) void glGetTexGenfv( GLenum coord, GLenum pname, GLfloat *params );
+__attribute__((visibility("default"))) void glGetTexGeniv( GLenum coord, GLenum pname, GLint *params );
+
+
+__attribute__((visibility("default"))) void glTexEnvf( GLenum target, GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glTexEnvi( GLenum target, GLenum pname, GLint param );
+
+__attribute__((visibility("default"))) void glTexEnvfv( GLenum target, GLenum pname, const GLfloat *params );
+__attribute__((visibility("default"))) void glTexEnviv( GLenum target, GLenum pname, const GLint *params );
+
+__attribute__((visibility("default"))) void glGetTexEnvfv( GLenum target, GLenum pname, GLfloat *params );
+__attribute__((visibility("default"))) void glGetTexEnviv( GLenum target, GLenum pname, GLint *params );
+
+
+__attribute__((visibility("default"))) void glTexParameterf( GLenum target, GLenum pname, GLfloat param );
+__attribute__((visibility("default"))) void glTexParameteri( GLenum target, GLenum pname, GLint param );
+
+__attribute__((visibility("default"))) void glTexParameterfv( GLenum target, GLenum pname,
+                                          const GLfloat *params );
+__attribute__((visibility("default"))) void glTexParameteriv( GLenum target, GLenum pname,
+                                          const GLint *params );
+
+__attribute__((visibility("default"))) void glGetTexParameterfv( GLenum target,
+                                           GLenum pname, GLfloat *params);
+__attribute__((visibility("default"))) void glGetTexParameteriv( GLenum target,
+                                           GLenum pname, GLint *params );
+
+__attribute__((visibility("default"))) void glGetTexLevelParameterfv( GLenum target, GLint level,
+                                                GLenum pname, GLfloat *params );
+__attribute__((visibility("default"))) void glGetTexLevelParameteriv( GLenum target, GLint level,
+                                                GLenum pname, GLint *params );
+
+
+__attribute__((visibility("default"))) void glTexImage1D( GLenum target, GLint level,
+                                    GLint internalFormat,
+                                    GLsizei width, GLint border,
+                                    GLenum format, GLenum type,
+                                    const GLvoid *pixels );
+
+__attribute__((visibility("default"))) void glTexImage2D( GLenum target, GLint level,
+                                    GLint internalFormat,
+                                    GLsizei width, GLsizei height,
+                                    GLint border, GLenum format, GLenum type,
+                                    const GLvoid *pixels );
+
+__attribute__((visibility("default"))) void glGetTexImage( GLenum target, GLint level,
+                                     GLenum format, GLenum type,
+                                     GLvoid *pixels );
+
+
+
+
+__attribute__((visibility("default"))) void glGenTextures( GLsizei n, GLuint *textures );
+
+__attribute__((visibility("default"))) void glDeleteTextures( GLsizei n, const GLuint *textures);
+
+__attribute__((visibility("default"))) void glBindTexture( GLenum target, GLuint texture );
+
+__attribute__((visibility("default"))) void glPrioritizeTextures( GLsizei n,
+                                            const GLuint *textures,
+                                            const GLclampf *priorities );
+
+__attribute__((visibility("default"))) GLboolean glAreTexturesResident( GLsizei n,
+                                                  const GLuint *textures,
+                                                  GLboolean *residences );
+
+__attribute__((visibility("default"))) GLboolean glIsTexture( GLuint texture );
+
+
+__attribute__((visibility("default"))) void glTexSubImage1D( GLenum target, GLint level,
+                                       GLint xoffset,
+                                       GLsizei width, GLenum format,
+                                       GLenum type, const GLvoid *pixels );
+
+
+__attribute__((visibility("default"))) void glTexSubImage2D( GLenum target, GLint level,
+                                       GLint xoffset, GLint yoffset,
+                                       GLsizei width, GLsizei height,
+                                       GLenum format, GLenum type,
+                                       const GLvoid *pixels );
+
+
+__attribute__((visibility("default"))) void glCopyTexImage1D( GLenum target, GLint level,
+                                        GLenum internalformat,
+                                        GLint x, GLint y,
+                                        GLsizei width, GLint border );
+
+
+__attribute__((visibility("default"))) void glCopyTexImage2D( GLenum target, GLint level,
+                                        GLenum internalformat,
+                                        GLint x, GLint y,
+                                        GLsizei width, GLsizei height,
+                                        GLint border );
+
+
+__attribute__((visibility("default"))) void glCopyTexSubImage1D( GLenum target, GLint level,
+                                           GLint xoffset, GLint x, GLint y,
+                                           GLsizei width );
+
+
+__attribute__((visibility("default"))) void glCopyTexSubImage2D( GLenum target, GLint level,
+                                           GLint xoffset, GLint yoffset,
+                                           GLint x, GLint y,
+                                           GLsizei width, GLsizei height );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glMap1d( GLenum target, GLdouble u1, GLdouble u2,
+                               GLint stride,
+                               GLint order, const GLdouble *points );
+__attribute__((visibility("default"))) void glMap1f( GLenum target, GLfloat u1, GLfloat u2,
+                               GLint stride,
+                               GLint order, const GLfloat *points );
+
+__attribute__((visibility("default"))) void glMap2d( GLenum target,
+       GLdouble u1, GLdouble u2, GLint ustride, GLint uorder,
+       GLdouble v1, GLdouble v2, GLint vstride, GLint vorder,
+       const GLdouble *points );
+__attribute__((visibility("default"))) void glMap2f( GLenum target,
+       GLfloat u1, GLfloat u2, GLint ustride, GLint uorder,
+       GLfloat v1, GLfloat v2, GLint vstride, GLint vorder,
+       const GLfloat *points );
+
+__attribute__((visibility("default"))) void glGetMapdv( GLenum target, GLenum query, GLdouble *v );
+__attribute__((visibility("default"))) void glGetMapfv( GLenum target, GLenum query, GLfloat *v );
+__attribute__((visibility("default"))) void glGetMapiv( GLenum target, GLenum query, GLint *v );
+
+__attribute__((visibility("default"))) void glEvalCoord1d( GLdouble u );
+__attribute__((visibility("default"))) void glEvalCoord1f( GLfloat u );
+
+__attribute__((visibility("default"))) void glEvalCoord1dv( const GLdouble *u );
+__attribute__((visibility("default"))) void glEvalCoord1fv( const GLfloat *u );
+
+__attribute__((visibility("default"))) void glEvalCoord2d( GLdouble u, GLdouble v );
+__attribute__((visibility("default"))) void glEvalCoord2f( GLfloat u, GLfloat v );
+
+__attribute__((visibility("default"))) void glEvalCoord2dv( const GLdouble *u );
+__attribute__((visibility("default"))) void glEvalCoord2fv( const GLfloat *u );
+
+__attribute__((visibility("default"))) void glMapGrid1d( GLint un, GLdouble u1, GLdouble u2 );
+__attribute__((visibility("default"))) void glMapGrid1f( GLint un, GLfloat u1, GLfloat u2 );
+
+__attribute__((visibility("default"))) void glMapGrid2d( GLint un, GLdouble u1, GLdouble u2,
+                                   GLint vn, GLdouble v1, GLdouble v2 );
+__attribute__((visibility("default"))) void glMapGrid2f( GLint un, GLfloat u1, GLfloat u2,
+                                   GLint vn, GLfloat v1, GLfloat v2 );
+
+__attribute__((visibility("default"))) void glEvalPoint1( GLint i );
+
+__attribute__((visibility("default"))) void glEvalPoint2( GLint i, GLint j );
+
+__attribute__((visibility("default"))) void glEvalMesh1( GLenum mode, GLint i1, GLint i2 );
+
+__attribute__((visibility("default"))) void glEvalMesh2( GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2 );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glFogf( GLenum pname, GLfloat param );
+
+__attribute__((visibility("default"))) void glFogi( GLenum pname, GLint param );
+
+__attribute__((visibility("default"))) void glFogfv( GLenum pname, const GLfloat *params );
+
+__attribute__((visibility("default"))) void glFogiv( GLenum pname, const GLint *params );
+
+
+
+
+
+
+__attribute__((visibility("default"))) void glFeedbackBuffer( GLsizei size, GLenum type, GLfloat *buffer );
+
+__attribute__((visibility("default"))) void glPassThrough( GLfloat token );
+
+__attribute__((visibility("default"))) void glSelectBuffer( GLsizei size, GLuint *buffer );
+
+__attribute__((visibility("default"))) void glInitNames( void );
+
+__attribute__((visibility("default"))) void glLoadName( GLuint name );
+
+__attribute__((visibility("default"))) void glPushName( GLuint name );
+
+__attribute__((visibility("default"))) void glPopName( void );
+# 1488 "/usr/include/GL/gl.h" 3 4
+__attribute__((visibility("default"))) void glDrawRangeElements( GLenum mode, GLuint start,
+ GLuint end, GLsizei count, GLenum type, const GLvoid *indices );
+
+__attribute__((visibility("default"))) void glTexImage3D( GLenum target, GLint level,
+                                      GLint internalFormat,
+                                      GLsizei width, GLsizei height,
+                                      GLsizei depth, GLint border,
+                                      GLenum format, GLenum type,
+                                      const GLvoid *pixels );
+
+__attribute__((visibility("default"))) void glTexSubImage3D( GLenum target, GLint level,
+                                         GLint xoffset, GLint yoffset,
+                                         GLint zoffset, GLsizei width,
+                                         GLsizei height, GLsizei depth,
+                                         GLenum format,
+                                         GLenum type, const GLvoid *pixels);
+
+__attribute__((visibility("default"))) void glCopyTexSubImage3D( GLenum target, GLint level,
+                                             GLint xoffset, GLint yoffset,
+                                             GLint zoffset, GLint x,
+                                             GLint y, GLsizei width,
+                                             GLsizei height );
+
+typedef void ( * PFNGLDRAWRANGEELEMENTSPROC) (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const GLvoid *indices);
+typedef void ( * PFNGLTEXIMAGE3DPROC) (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const GLvoid *pixels);
+typedef void ( * PFNGLTEXSUBIMAGE3DPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const GLvoid *pixels);
+typedef void ( * PFNGLCOPYTEXSUBIMAGE3DPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+# 1598 "/usr/include/GL/gl.h" 3 4
+__attribute__((visibility("default"))) void glColorTable( GLenum target, GLenum internalformat,
+                                    GLsizei width, GLenum format,
+                                    GLenum type, const GLvoid *table );
+
+__attribute__((visibility("default"))) void glColorSubTable( GLenum target,
+                                       GLsizei start, GLsizei count,
+                                       GLenum format, GLenum type,
+                                       const GLvoid *data );
+
+__attribute__((visibility("default"))) void glColorTableParameteriv(GLenum target, GLenum pname,
+                                              const GLint *params);
+
+__attribute__((visibility("default"))) void glColorTableParameterfv(GLenum target, GLenum pname,
+                                              const GLfloat *params);
+
+__attribute__((visibility("default"))) void glCopyColorSubTable( GLenum target, GLsizei start,
+                                           GLint x, GLint y, GLsizei width );
+
+__attribute__((visibility("default"))) void glCopyColorTable( GLenum target, GLenum internalformat,
+                                        GLint x, GLint y, GLsizei width );
+
+__attribute__((visibility("default"))) void glGetColorTable( GLenum target, GLenum format,
+                                       GLenum type, GLvoid *table );
+
+__attribute__((visibility("default"))) void glGetColorTableParameterfv( GLenum target, GLenum pname,
+                                                  GLfloat *params );
+
+__attribute__((visibility("default"))) void glGetColorTableParameteriv( GLenum target, GLenum pname,
+                                                  GLint *params );
+
+__attribute__((visibility("default"))) void glBlendEquation( GLenum mode );
+
+__attribute__((visibility("default"))) void glBlendColor( GLclampf red, GLclampf green,
+                                    GLclampf blue, GLclampf alpha );
+
+__attribute__((visibility("default"))) void glHistogram( GLenum target, GLsizei width,
+       GLenum internalformat, GLboolean sink );
+
+__attribute__((visibility("default"))) void glResetHistogram( GLenum target );
+
+__attribute__((visibility("default"))) void glGetHistogram( GLenum target, GLboolean reset,
+          GLenum format, GLenum type,
+          GLvoid *values );
+
+__attribute__((visibility("default"))) void glGetHistogramParameterfv( GLenum target, GLenum pname,
+       GLfloat *params );
+
+__attribute__((visibility("default"))) void glGetHistogramParameteriv( GLenum target, GLenum pname,
+       GLint *params );
+
+__attribute__((visibility("default"))) void glMinmax( GLenum target, GLenum internalformat,
+    GLboolean sink );
+
+__attribute__((visibility("default"))) void glResetMinmax( GLenum target );
+
+__attribute__((visibility("default"))) void glGetMinmax( GLenum target, GLboolean reset,
+                                   GLenum format, GLenum types,
+                                   GLvoid *values );
+
+__attribute__((visibility("default"))) void glGetMinmaxParameterfv( GLenum target, GLenum pname,
+           GLfloat *params );
+
+__attribute__((visibility("default"))) void glGetMinmaxParameteriv( GLenum target, GLenum pname,
+           GLint *params );
+
+__attribute__((visibility("default"))) void glConvolutionFilter1D( GLenum target,
+ GLenum internalformat, GLsizei width, GLenum format, GLenum type,
+ const GLvoid *image );
+
+__attribute__((visibility("default"))) void glConvolutionFilter2D( GLenum target,
+ GLenum internalformat, GLsizei width, GLsizei height, GLenum format,
+ GLenum type, const GLvoid *image );
+
+__attribute__((visibility("default"))) void glConvolutionParameterf( GLenum target, GLenum pname,
+ GLfloat params );
+
+__attribute__((visibility("default"))) void glConvolutionParameterfv( GLenum target, GLenum pname,
+ const GLfloat *params );
+
+__attribute__((visibility("default"))) void glConvolutionParameteri( GLenum target, GLenum pname,
+ GLint params );
+
+__attribute__((visibility("default"))) void glConvolutionParameteriv( GLenum target, GLenum pname,
+ const GLint *params );
+
+__attribute__((visibility("default"))) void glCopyConvolutionFilter1D( GLenum target,
+ GLenum internalformat, GLint x, GLint y, GLsizei width );
+
+__attribute__((visibility("default"))) void glCopyConvolutionFilter2D( GLenum target,
+ GLenum internalformat, GLint x, GLint y, GLsizei width,
+ GLsizei height);
+
+__attribute__((visibility("default"))) void glGetConvolutionFilter( GLenum target, GLenum format,
+ GLenum type, GLvoid *image );
+
+__attribute__((visibility("default"))) void glGetConvolutionParameterfv( GLenum target, GLenum pname,
+ GLfloat *params );
+
+__attribute__((visibility("default"))) void glGetConvolutionParameteriv( GLenum target, GLenum pname,
+ GLint *params );
+
+__attribute__((visibility("default"))) void glSeparableFilter2D( GLenum target,
+ GLenum internalformat, GLsizei width, GLsizei height, GLenum format,
+ GLenum type, const GLvoid *row, const GLvoid *column );
+
+__attribute__((visibility("default"))) void glGetSeparableFilter( GLenum target, GLenum format,
+ GLenum type, GLvoid *row, GLvoid *column, GLvoid *span );
+# 1818 "/usr/include/GL/gl.h" 3 4
+__attribute__((visibility("default"))) void glActiveTexture( GLenum texture );
+
+__attribute__((visibility("default"))) void glClientActiveTexture( GLenum texture );
+
+__attribute__((visibility("default"))) void glCompressedTexImage1D( GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const GLvoid *data );
+
+__attribute__((visibility("default"))) void glCompressedTexImage2D( GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const GLvoid *data );
+
+__attribute__((visibility("default"))) void glCompressedTexImage3D( GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const GLvoid *data );
+
+__attribute__((visibility("default"))) void glCompressedTexSubImage1D( GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const GLvoid *data );
+
+__attribute__((visibility("default"))) void glCompressedTexSubImage2D( GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const GLvoid *data );
+
+__attribute__((visibility("default"))) void glCompressedTexSubImage3D( GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const GLvoid *data );
+
+__attribute__((visibility("default"))) void glGetCompressedTexImage( GLenum target, GLint lod, GLvoid *img );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1d( GLenum target, GLdouble s );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1dv( GLenum target, const GLdouble *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1f( GLenum target, GLfloat s );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1fv( GLenum target, const GLfloat *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1i( GLenum target, GLint s );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1iv( GLenum target, const GLint *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1s( GLenum target, GLshort s );
+
+__attribute__((visibility("default"))) void glMultiTexCoord1sv( GLenum target, const GLshort *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2d( GLenum target, GLdouble s, GLdouble t );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2dv( GLenum target, const GLdouble *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2f( GLenum target, GLfloat s, GLfloat t );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2fv( GLenum target, const GLfloat *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2i( GLenum target, GLint s, GLint t );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2iv( GLenum target, const GLint *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2s( GLenum target, GLshort s, GLshort t );
+
+__attribute__((visibility("default"))) void glMultiTexCoord2sv( GLenum target, const GLshort *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3d( GLenum target, GLdouble s, GLdouble t, GLdouble r );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3dv( GLenum target, const GLdouble *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3f( GLenum target, GLfloat s, GLfloat t, GLfloat r );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3fv( GLenum target, const GLfloat *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3i( GLenum target, GLint s, GLint t, GLint r );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3iv( GLenum target, const GLint *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3s( GLenum target, GLshort s, GLshort t, GLshort r );
+
+__attribute__((visibility("default"))) void glMultiTexCoord3sv( GLenum target, const GLshort *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4d( GLenum target, GLdouble s, GLdouble t, GLdouble r, GLdouble q );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4dv( GLenum target, const GLdouble *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4f( GLenum target, GLfloat s, GLfloat t, GLfloat r, GLfloat q );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4fv( GLenum target, const GLfloat *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4i( GLenum target, GLint s, GLint t, GLint r, GLint q );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4iv( GLenum target, const GLint *v );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4s( GLenum target, GLshort s, GLshort t, GLshort r, GLshort q );
+
+__attribute__((visibility("default"))) void glMultiTexCoord4sv( GLenum target, const GLshort *v );
+
+
+__attribute__((visibility("default"))) void glLoadTransposeMatrixd( const GLdouble m[16] );
+
+__attribute__((visibility("default"))) void glLoadTransposeMatrixf( const GLfloat m[16] );
+
+__attribute__((visibility("default"))) void glMultTransposeMatrixd( const GLdouble m[16] );
+
+__attribute__((visibility("default"))) void glMultTransposeMatrixf( const GLfloat m[16] );
+
+__attribute__((visibility("default"))) void glSampleCoverage( GLclampf value, GLboolean invert );
+
+
+typedef void ( * PFNGLACTIVETEXTUREPROC) (GLenum texture);
+typedef void ( * PFNGLSAMPLECOVERAGEPROC) (GLclampf value, GLboolean invert);
+typedef void ( * PFNGLCOMPRESSEDTEXIMAGE3DPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const GLvoid *data);
+typedef void ( * PFNGLCOMPRESSEDTEXIMAGE2DPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const GLvoid *data);
+typedef void ( * PFNGLCOMPRESSEDTEXIMAGE1DPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const GLvoid *data);
+typedef void ( * PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const GLvoid *data);
+typedef void ( * PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const GLvoid *data);
+typedef void ( * PFNGLCOMPRESSEDTEXSUBIMAGE1DPROC) (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const GLvoid *data);
+typedef void ( * PFNGLGETCOMPRESSEDTEXIMAGEPROC) (GLenum target, GLint level, GLvoid *img);
+# 1966 "/usr/include/GL/gl.h" 3 4
+__attribute__((visibility("default"))) void glActiveTextureARB(GLenum texture);
+__attribute__((visibility("default"))) void glClientActiveTextureARB(GLenum texture);
+__attribute__((visibility("default"))) void glMultiTexCoord1dARB(GLenum target, GLdouble s);
+__attribute__((visibility("default"))) void glMultiTexCoord1dvARB(GLenum target, const GLdouble *v);
+__attribute__((visibility("default"))) void glMultiTexCoord1fARB(GLenum target, GLfloat s);
+__attribute__((visibility("default"))) void glMultiTexCoord1fvARB(GLenum target, const GLfloat *v);
+__attribute__((visibility("default"))) void glMultiTexCoord1iARB(GLenum target, GLint s);
+__attribute__((visibility("default"))) void glMultiTexCoord1ivARB(GLenum target, const GLint *v);
+__attribute__((visibility("default"))) void glMultiTexCoord1sARB(GLenum target, GLshort s);
+__attribute__((visibility("default"))) void glMultiTexCoord1svARB(GLenum target, const GLshort *v);
+__attribute__((visibility("default"))) void glMultiTexCoord2dARB(GLenum target, GLdouble s, GLdouble t);
+__attribute__((visibility("default"))) void glMultiTexCoord2dvARB(GLenum target, const GLdouble *v);
+__attribute__((visibility("default"))) void glMultiTexCoord2fARB(GLenum target, GLfloat s, GLfloat t);
+__attribute__((visibility("default"))) void glMultiTexCoord2fvARB(GLenum target, const GLfloat *v);
+__attribute__((visibility("default"))) void glMultiTexCoord2iARB(GLenum target, GLint s, GLint t);
+__attribute__((visibility("default"))) void glMultiTexCoord2ivARB(GLenum target, const GLint *v);
+__attribute__((visibility("default"))) void glMultiTexCoord2sARB(GLenum target, GLshort s, GLshort t);
+__attribute__((visibility("default"))) void glMultiTexCoord2svARB(GLenum target, const GLshort *v);
+__attribute__((visibility("default"))) void glMultiTexCoord3dARB(GLenum target, GLdouble s, GLdouble t, GLdouble r);
+__attribute__((visibility("default"))) void glMultiTexCoord3dvARB(GLenum target, const GLdouble *v);
+__attribute__((visibility("default"))) void glMultiTexCoord3fARB(GLenum target, GLfloat s, GLfloat t, GLfloat r);
+__attribute__((visibility("default"))) void glMultiTexCoord3fvARB(GLenum target, const GLfloat *v);
+__attribute__((visibility("default"))) void glMultiTexCoord3iARB(GLenum target, GLint s, GLint t, GLint r);
+__attribute__((visibility("default"))) void glMultiTexCoord3ivARB(GLenum target, const GLint *v);
+__attribute__((visibility("default"))) void glMultiTexCoord3sARB(GLenum target, GLshort s, GLshort t, GLshort r);
+__attribute__((visibility("default"))) void glMultiTexCoord3svARB(GLenum target, const GLshort *v);
+__attribute__((visibility("default"))) void glMultiTexCoord4dARB(GLenum target, GLdouble s, GLdouble t, GLdouble r, GLdouble q);
+__attribute__((visibility("default"))) void glMultiTexCoord4dvARB(GLenum target, const GLdouble *v);
+__attribute__((visibility("default"))) void glMultiTexCoord4fARB(GLenum target, GLfloat s, GLfloat t, GLfloat r, GLfloat q);
+__attribute__((visibility("default"))) void glMultiTexCoord4fvARB(GLenum target, const GLfloat *v);
+__attribute__((visibility("default"))) void glMultiTexCoord4iARB(GLenum target, GLint s, GLint t, GLint r, GLint q);
+__attribute__((visibility("default"))) void glMultiTexCoord4ivARB(GLenum target, const GLint *v);
+__attribute__((visibility("default"))) void glMultiTexCoord4sARB(GLenum target, GLshort s, GLshort t, GLshort r, GLshort q);
+__attribute__((visibility("default"))) void glMultiTexCoord4svARB(GLenum target, const GLshort *v);
+
+typedef void ( * PFNGLACTIVETEXTUREARBPROC) (GLenum texture);
+typedef void ( * PFNGLCLIENTACTIVETEXTUREARBPROC) (GLenum texture);
+typedef void ( * PFNGLMULTITEXCOORD1DARBPROC) (GLenum target, GLdouble s);
+typedef void ( * PFNGLMULTITEXCOORD1DVARBPROC) (GLenum target, const GLdouble *v);
+typedef void ( * PFNGLMULTITEXCOORD1FARBPROC) (GLenum target, GLfloat s);
+typedef void ( * PFNGLMULTITEXCOORD1FVARBPROC) (GLenum target, const GLfloat *v);
+typedef void ( * PFNGLMULTITEXCOORD1IARBPROC) (GLenum target, GLint s);
+typedef void ( * PFNGLMULTITEXCOORD1IVARBPROC) (GLenum target, const GLint *v);
+typedef void ( * PFNGLMULTITEXCOORD1SARBPROC) (GLenum target, GLshort s);
+typedef void ( * PFNGLMULTITEXCOORD1SVARBPROC) (GLenum target, const GLshort *v);
+typedef void ( * PFNGLMULTITEXCOORD2DARBPROC) (GLenum target, GLdouble s, GLdouble t);
+typedef void ( * PFNGLMULTITEXCOORD2DVARBPROC) (GLenum target, const GLdouble *v);
+typedef void ( * PFNGLMULTITEXCOORD2FARBPROC) (GLenum target, GLfloat s, GLfloat t);
+typedef void ( * PFNGLMULTITEXCOORD2FVARBPROC) (GLenum target, const GLfloat *v);
+typedef void ( * PFNGLMULTITEXCOORD2IARBPROC) (GLenum target, GLint s, GLint t);
+typedef void ( * PFNGLMULTITEXCOORD2IVARBPROC) (GLenum target, const GLint *v);
+typedef void ( * PFNGLMULTITEXCOORD2SARBPROC) (GLenum target, GLshort s, GLshort t);
+typedef void ( * PFNGLMULTITEXCOORD2SVARBPROC) (GLenum target, const GLshort *v);
+typedef void ( * PFNGLMULTITEXCOORD3DARBPROC) (GLenum target, GLdouble s, GLdouble t, GLdouble r);
+typedef void ( * PFNGLMULTITEXCOORD3DVARBPROC) (GLenum target, const GLdouble *v);
+typedef void ( * PFNGLMULTITEXCOORD3FARBPROC) (GLenum target, GLfloat s, GLfloat t, GLfloat r);
+typedef void ( * PFNGLMULTITEXCOORD3FVARBPROC) (GLenum target, const GLfloat *v);
+typedef void ( * PFNGLMULTITEXCOORD3IARBPROC) (GLenum target, GLint s, GLint t, GLint r);
+typedef void ( * PFNGLMULTITEXCOORD3IVARBPROC) (GLenum target, const GLint *v);
+typedef void ( * PFNGLMULTITEXCOORD3SARBPROC) (GLenum target, GLshort s, GLshort t, GLshort r);
+typedef void ( * PFNGLMULTITEXCOORD3SVARBPROC) (GLenum target, const GLshort *v);
+typedef void ( * PFNGLMULTITEXCOORD4DARBPROC) (GLenum target, GLdouble s, GLdouble t, GLdouble r, GLdouble q);
+typedef void ( * PFNGLMULTITEXCOORD4DVARBPROC) (GLenum target, const GLdouble *v);
+typedef void ( * PFNGLMULTITEXCOORD4FARBPROC) (GLenum target, GLfloat s, GLfloat t, GLfloat r, GLfloat q);
+typedef void ( * PFNGLMULTITEXCOORD4FVARBPROC) (GLenum target, const GLfloat *v);
+typedef void ( * PFNGLMULTITEXCOORD4IARBPROC) (GLenum target, GLint s, GLint t, GLint r, GLint q);
+typedef void ( * PFNGLMULTITEXCOORD4IVARBPROC) (GLenum target, const GLint *v);
+typedef void ( * PFNGLMULTITEXCOORD4SARBPROC) (GLenum target, GLshort s, GLshort t, GLshort r, GLshort q);
+typedef void ( * PFNGLMULTITEXCOORD4SVARBPROC) (GLenum target, const GLshort *v);
+# 2050 "/usr/include/GL/gl.h" 3 4
+# 1 "/usr/include/GL/glext.h" 1 3 4
+
+
+
+
+extern "C" {
+# 56 "/usr/include/GL/glext.h" 3 4
+# 1 "/usr/include/KHR/khrplatform.h" 1 3 4
+# 151 "/usr/include/KHR/khrplatform.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h" 1 3 4
+# 9 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h" 3 4
+# 1 "/usr/include/stdint.h" 1 3 4
+# 26 "/usr/include/stdint.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 27 "/usr/include/stdint.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/wchar.h" 1 3 4
+# 29 "/usr/include/stdint.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 30 "/usr/include/stdint.h" 2 3 4
+
+
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h" 3 4
+typedef __uint8_t uint8_t;
+typedef __uint16_t uint16_t;
+typedef __uint32_t uint32_t;
+typedef __uint64_t uint64_t;
+# 38 "/usr/include/stdint.h" 2 3 4
+
+
+
+
+
+typedef signed char int_least8_t;
+typedef short int int_least16_t;
+typedef int int_least32_t;
+
+typedef long int int_least64_t;
+
+
+
+
+
+
+typedef unsigned char uint_least8_t;
+typedef unsigned short int uint_least16_t;
+typedef unsigned int uint_least32_t;
+
+typedef unsigned long int uint_least64_t;
+# 68 "/usr/include/stdint.h" 3 4
+typedef signed char int_fast8_t;
+
+typedef long int int_fast16_t;
+typedef long int int_fast32_t;
+typedef long int int_fast64_t;
+# 81 "/usr/include/stdint.h" 3 4
+typedef unsigned char uint_fast8_t;
+
+typedef unsigned long int uint_fast16_t;
+typedef unsigned long int uint_fast32_t;
+typedef unsigned long int uint_fast64_t;
+# 97 "/usr/include/stdint.h" 3 4
+typedef long int intptr_t;
+
+
+typedef unsigned long int uintptr_t;
+# 111 "/usr/include/stdint.h" 3 4
+typedef __intmax_t intmax_t;
+typedef __uintmax_t uintmax_t;
+# 10 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h" 2 3 4
+# 152 "/usr/include/KHR/khrplatform.h" 2 3 4
+typedef int32_t khronos_int32_t;
+typedef uint32_t khronos_uint32_t;
+typedef int64_t khronos_int64_t;
+typedef uint64_t khronos_uint64_t;
+# 230 "/usr/include/KHR/khrplatform.h" 3 4
+typedef signed char khronos_int8_t;
+typedef unsigned char khronos_uint8_t;
+typedef signed short int khronos_int16_t;
+typedef unsigned short int khronos_uint16_t;
+# 246 "/usr/include/KHR/khrplatform.h" 3 4
+typedef signed long int khronos_intptr_t;
+typedef unsigned long int khronos_uintptr_t;
+typedef signed long int khronos_ssize_t;
+typedef unsigned long int khronos_usize_t;
+
+
+
+
+
+
+typedef float khronos_float_t;
+# 269 "/usr/include/KHR/khrplatform.h" 3 4
+typedef khronos_uint64_t khronos_utime_nanoseconds_t;
+typedef khronos_int64_t khronos_stime_nanoseconds_t;
+# 286 "/usr/include/KHR/khrplatform.h" 3 4
+typedef enum {
+    KHRONOS_FALSE = 0,
+    KHRONOS_TRUE = 1,
+    KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = 0x7FFFFFFF
+} khronos_boolean_enum_t;
+# 57 "/usr/include/GL/glext.h" 2 3 4
+# 369 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDFUNCSEPARATEPROC) (GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha);
+typedef void ( * PFNGLMULTIDRAWARRAYSPROC) (GLenum mode, const GLint *first, const GLsizei *count, GLsizei drawcount);
+typedef void ( * PFNGLMULTIDRAWELEMENTSPROC) (GLenum mode, const GLsizei *count, GLenum type, const void *const*indices, GLsizei drawcount);
+typedef void ( * PFNGLPOINTPARAMETERFPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLPOINTPARAMETERFVPROC) (GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLPOINTPARAMETERIPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLPOINTPARAMETERIVPROC) (GLenum pname, const GLint *params);
+typedef void ( * PFNGLFOGCOORDFPROC) (GLfloat coord);
+typedef void ( * PFNGLFOGCOORDFVPROC) (const GLfloat *coord);
+typedef void ( * PFNGLFOGCOORDDPROC) (GLdouble coord);
+typedef void ( * PFNGLFOGCOORDDVPROC) (const GLdouble *coord);
+typedef void ( * PFNGLFOGCOORDPOINTERPROC) (GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLSECONDARYCOLOR3BPROC) (GLbyte red, GLbyte green, GLbyte blue);
+typedef void ( * PFNGLSECONDARYCOLOR3BVPROC) (const GLbyte *v);
+typedef void ( * PFNGLSECONDARYCOLOR3DPROC) (GLdouble red, GLdouble green, GLdouble blue);
+typedef void ( * PFNGLSECONDARYCOLOR3DVPROC) (const GLdouble *v);
+typedef void ( * PFNGLSECONDARYCOLOR3FPROC) (GLfloat red, GLfloat green, GLfloat blue);
+typedef void ( * PFNGLSECONDARYCOLOR3FVPROC) (const GLfloat *v);
+typedef void ( * PFNGLSECONDARYCOLOR3IPROC) (GLint red, GLint green, GLint blue);
+typedef void ( * PFNGLSECONDARYCOLOR3IVPROC) (const GLint *v);
+typedef void ( * PFNGLSECONDARYCOLOR3SPROC) (GLshort red, GLshort green, GLshort blue);
+typedef void ( * PFNGLSECONDARYCOLOR3SVPROC) (const GLshort *v);
+typedef void ( * PFNGLSECONDARYCOLOR3UBPROC) (GLubyte red, GLubyte green, GLubyte blue);
+typedef void ( * PFNGLSECONDARYCOLOR3UBVPROC) (const GLubyte *v);
+typedef void ( * PFNGLSECONDARYCOLOR3UIPROC) (GLuint red, GLuint green, GLuint blue);
+typedef void ( * PFNGLSECONDARYCOLOR3UIVPROC) (const GLuint *v);
+typedef void ( * PFNGLSECONDARYCOLOR3USPROC) (GLushort red, GLushort green, GLushort blue);
+typedef void ( * PFNGLSECONDARYCOLOR3USVPROC) (const GLushort *v);
+typedef void ( * PFNGLSECONDARYCOLORPOINTERPROC) (GLint size, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLWINDOWPOS2DPROC) (GLdouble x, GLdouble y);
+typedef void ( * PFNGLWINDOWPOS2DVPROC) (const GLdouble *v);
+typedef void ( * PFNGLWINDOWPOS2FPROC) (GLfloat x, GLfloat y);
+typedef void ( * PFNGLWINDOWPOS2FVPROC) (const GLfloat *v);
+typedef void ( * PFNGLWINDOWPOS2IPROC) (GLint x, GLint y);
+typedef void ( * PFNGLWINDOWPOS2IVPROC) (const GLint *v);
+typedef void ( * PFNGLWINDOWPOS2SPROC) (GLshort x, GLshort y);
+typedef void ( * PFNGLWINDOWPOS2SVPROC) (const GLshort *v);
+typedef void ( * PFNGLWINDOWPOS3DPROC) (GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLWINDOWPOS3DVPROC) (const GLdouble *v);
+typedef void ( * PFNGLWINDOWPOS3FPROC) (GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLWINDOWPOS3FVPROC) (const GLfloat *v);
+typedef void ( * PFNGLWINDOWPOS3IPROC) (GLint x, GLint y, GLint z);
+typedef void ( * PFNGLWINDOWPOS3IVPROC) (const GLint *v);
+typedef void ( * PFNGLWINDOWPOS3SPROC) (GLshort x, GLshort y, GLshort z);
+typedef void ( * PFNGLWINDOWPOS3SVPROC) (const GLshort *v);
+typedef void ( * PFNGLBLENDCOLORPROC) (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
+typedef void ( * PFNGLBLENDEQUATIONPROC) (GLenum mode);
+# 469 "/usr/include/GL/glext.h" 3 4
+typedef khronos_ssize_t GLsizeiptr;
+typedef khronos_intptr_t GLintptr;
+# 521 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGENQUERIESPROC) (GLsizei n, GLuint *ids);
+typedef void ( * PFNGLDELETEQUERIESPROC) (GLsizei n, const GLuint *ids);
+typedef GLboolean ( * PFNGLISQUERYPROC) (GLuint id);
+typedef void ( * PFNGLBEGINQUERYPROC) (GLenum target, GLuint id);
+typedef void ( * PFNGLENDQUERYPROC) (GLenum target);
+typedef void ( * PFNGLGETQUERYIVPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETQUERYOBJECTIVPROC) (GLuint id, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETQUERYOBJECTUIVPROC) (GLuint id, GLenum pname, GLuint *params);
+typedef void ( * PFNGLBINDBUFFERPROC) (GLenum target, GLuint buffer);
+typedef void ( * PFNGLDELETEBUFFERSPROC) (GLsizei n, const GLuint *buffers);
+typedef void ( * PFNGLGENBUFFERSPROC) (GLsizei n, GLuint *buffers);
+typedef GLboolean ( * PFNGLISBUFFERPROC) (GLuint buffer);
+typedef void ( * PFNGLBUFFERDATAPROC) (GLenum target, GLsizeiptr size, const void *data, GLenum usage);
+typedef void ( * PFNGLBUFFERSUBDATAPROC) (GLenum target, GLintptr offset, GLsizeiptr size, const void *data);
+typedef void ( * PFNGLGETBUFFERSUBDATAPROC) (GLenum target, GLintptr offset, GLsizeiptr size, void *data);
+typedef void *( * PFNGLMAPBUFFERPROC) (GLenum target, GLenum access);
+typedef GLboolean ( * PFNGLUNMAPBUFFERPROC) (GLenum target);
+typedef void ( * PFNGLGETBUFFERPARAMETERIVPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETBUFFERPOINTERVPROC) (GLenum target, GLenum pname, void **params);
+# 565 "/usr/include/GL/glext.h" 3 4
+typedef char GLchar;
+# 650 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDEQUATIONSEPARATEPROC) (GLenum modeRGB, GLenum modeAlpha);
+typedef void ( * PFNGLDRAWBUFFERSPROC) (GLsizei n, const GLenum *bufs);
+typedef void ( * PFNGLSTENCILOPSEPARATEPROC) (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass);
+typedef void ( * PFNGLSTENCILFUNCSEPARATEPROC) (GLenum face, GLenum func, GLint ref, GLuint mask);
+typedef void ( * PFNGLSTENCILMASKSEPARATEPROC) (GLenum face, GLuint mask);
+typedef void ( * PFNGLATTACHSHADERPROC) (GLuint program, GLuint shader);
+typedef void ( * PFNGLBINDATTRIBLOCATIONPROC) (GLuint program, GLuint index, const GLchar *name);
+typedef void ( * PFNGLCOMPILESHADERPROC) (GLuint shader);
+typedef GLuint ( * PFNGLCREATEPROGRAMPROC) (void);
+typedef GLuint ( * PFNGLCREATESHADERPROC) (GLenum type);
+typedef void ( * PFNGLDELETEPROGRAMPROC) (GLuint program);
+typedef void ( * PFNGLDELETESHADERPROC) (GLuint shader);
+typedef void ( * PFNGLDETACHSHADERPROC) (GLuint program, GLuint shader);
+typedef void ( * PFNGLDISABLEVERTEXATTRIBARRAYPROC) (GLuint index);
+typedef void ( * PFNGLENABLEVERTEXATTRIBARRAYPROC) (GLuint index);
+typedef void ( * PFNGLGETACTIVEATTRIBPROC) (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name);
+typedef void ( * PFNGLGETACTIVEUNIFORMPROC) (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name);
+typedef void ( * PFNGLGETATTACHEDSHADERSPROC) (GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders);
+typedef GLint ( * PFNGLGETATTRIBLOCATIONPROC) (GLuint program, const GLchar *name);
+typedef void ( * PFNGLGETPROGRAMIVPROC) (GLuint program, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETPROGRAMINFOLOGPROC) (GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
+typedef void ( * PFNGLGETSHADERIVPROC) (GLuint shader, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETSHADERINFOLOGPROC) (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
+typedef void ( * PFNGLGETSHADERSOURCEPROC) (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source);
+typedef GLint ( * PFNGLGETUNIFORMLOCATIONPROC) (GLuint program, const GLchar *name);
+typedef void ( * PFNGLGETUNIFORMFVPROC) (GLuint program, GLint location, GLfloat *params);
+typedef void ( * PFNGLGETUNIFORMIVPROC) (GLuint program, GLint location, GLint *params);
+typedef void ( * PFNGLGETVERTEXATTRIBDVPROC) (GLuint index, GLenum pname, GLdouble *params);
+typedef void ( * PFNGLGETVERTEXATTRIBFVPROC) (GLuint index, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETVERTEXATTRIBIVPROC) (GLuint index, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVERTEXATTRIBPOINTERVPROC) (GLuint index, GLenum pname, void **pointer);
+typedef GLboolean ( * PFNGLISPROGRAMPROC) (GLuint program);
+typedef GLboolean ( * PFNGLISSHADERPROC) (GLuint shader);
+typedef void ( * PFNGLLINKPROGRAMPROC) (GLuint program);
+typedef void ( * PFNGLSHADERSOURCEPROC) (GLuint shader, GLsizei count, const GLchar *const*string, const GLint *length);
+typedef void ( * PFNGLUSEPROGRAMPROC) (GLuint program);
+typedef void ( * PFNGLUNIFORM1FPROC) (GLint location, GLfloat v0);
+typedef void ( * PFNGLUNIFORM2FPROC) (GLint location, GLfloat v0, GLfloat v1);
+typedef void ( * PFNGLUNIFORM3FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
+typedef void ( * PFNGLUNIFORM4FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
+typedef void ( * PFNGLUNIFORM1IPROC) (GLint location, GLint v0);
+typedef void ( * PFNGLUNIFORM2IPROC) (GLint location, GLint v0, GLint v1);
+typedef void ( * PFNGLUNIFORM3IPROC) (GLint location, GLint v0, GLint v1, GLint v2);
+typedef void ( * PFNGLUNIFORM4IPROC) (GLint location, GLint v0, GLint v1, GLint v2, GLint v3);
+typedef void ( * PFNGLUNIFORM1FVPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM2FVPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM3FVPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM4FVPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM1IVPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORM2IVPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORM3IVPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORM4IVPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORMMATRIX2FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX3FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX4FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLVALIDATEPROGRAMPROC) (GLuint program);
+typedef void ( * PFNGLVERTEXATTRIB1DPROC) (GLuint index, GLdouble x);
+typedef void ( * PFNGLVERTEXATTRIB1DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB1FPROC) (GLuint index, GLfloat x);
+typedef void ( * PFNGLVERTEXATTRIB1FVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB1SPROC) (GLuint index, GLshort x);
+typedef void ( * PFNGLVERTEXATTRIB1SVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB2DPROC) (GLuint index, GLdouble x, GLdouble y);
+typedef void ( * PFNGLVERTEXATTRIB2DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB2FPROC) (GLuint index, GLfloat x, GLfloat y);
+typedef void ( * PFNGLVERTEXATTRIB2FVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB2SPROC) (GLuint index, GLshort x, GLshort y);
+typedef void ( * PFNGLVERTEXATTRIB2SVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB3DPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLVERTEXATTRIB3DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB3FPROC) (GLuint index, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLVERTEXATTRIB3FVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB3SPROC) (GLuint index, GLshort x, GLshort y, GLshort z);
+typedef void ( * PFNGLVERTEXATTRIB3SVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4NBVPROC) (GLuint index, const GLbyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4NIVPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIB4NSVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4NUBPROC) (GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w);
+typedef void ( * PFNGLVERTEXATTRIB4NUBVPROC) (GLuint index, const GLubyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4NUIVPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIB4NUSVPROC) (GLuint index, const GLushort *v);
+typedef void ( * PFNGLVERTEXATTRIB4BVPROC) (GLuint index, const GLbyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4DPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLVERTEXATTRIB4DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB4FPROC) (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLVERTEXATTRIB4FVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB4IVPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIB4SPROC) (GLuint index, GLshort x, GLshort y, GLshort z, GLshort w);
+typedef void ( * PFNGLVERTEXATTRIB4SVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4UBVPROC) (GLuint index, const GLubyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4UIVPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIB4USVPROC) (GLuint index, const GLushort *v);
+typedef void ( * PFNGLVERTEXATTRIBPOINTERPROC) (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
+# 865 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLUNIFORMMATRIX2X3FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX3X2FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX2X4FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX4X2FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX3X4FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX4X3FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+# 883 "/usr/include/GL/glext.h" 3 4
+typedef khronos_uint16_t GLhalf;
+# 1121 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOLORMASKIPROC) (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a);
+typedef void ( * PFNGLGETBOOLEANI_VPROC) (GLenum target, GLuint index, GLboolean *data);
+typedef void ( * PFNGLGETINTEGERI_VPROC) (GLenum target, GLuint index, GLint *data);
+typedef void ( * PFNGLENABLEIPROC) (GLenum target, GLuint index);
+typedef void ( * PFNGLDISABLEIPROC) (GLenum target, GLuint index);
+typedef GLboolean ( * PFNGLISENABLEDIPROC) (GLenum target, GLuint index);
+typedef void ( * PFNGLBEGINTRANSFORMFEEDBACKPROC) (GLenum primitiveMode);
+typedef void ( * PFNGLENDTRANSFORMFEEDBACKPROC) (void);
+typedef void ( * PFNGLBINDBUFFERRANGEPROC) (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
+typedef void ( * PFNGLBINDBUFFERBASEPROC) (GLenum target, GLuint index, GLuint buffer);
+typedef void ( * PFNGLTRANSFORMFEEDBACKVARYINGSPROC) (GLuint program, GLsizei count, const GLchar *const*varyings, GLenum bufferMode);
+typedef void ( * PFNGLGETTRANSFORMFEEDBACKVARYINGPROC) (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *type, GLchar *name);
+typedef void ( * PFNGLCLAMPCOLORPROC) (GLenum target, GLenum clamp);
+typedef void ( * PFNGLBEGINCONDITIONALRENDERPROC) (GLuint id, GLenum mode);
+typedef void ( * PFNGLENDCONDITIONALRENDERPROC) (void);
+typedef void ( * PFNGLVERTEXATTRIBIPOINTERPROC) (GLuint index, GLint size, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLGETVERTEXATTRIBIIVPROC) (GLuint index, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVERTEXATTRIBIUIVPROC) (GLuint index, GLenum pname, GLuint *params);
+typedef void ( * PFNGLVERTEXATTRIBI1IPROC) (GLuint index, GLint x);
+typedef void ( * PFNGLVERTEXATTRIBI2IPROC) (GLuint index, GLint x, GLint y);
+typedef void ( * PFNGLVERTEXATTRIBI3IPROC) (GLuint index, GLint x, GLint y, GLint z);
+typedef void ( * PFNGLVERTEXATTRIBI4IPROC) (GLuint index, GLint x, GLint y, GLint z, GLint w);
+typedef void ( * PFNGLVERTEXATTRIBI1UIPROC) (GLuint index, GLuint x);
+typedef void ( * PFNGLVERTEXATTRIBI2UIPROC) (GLuint index, GLuint x, GLuint y);
+typedef void ( * PFNGLVERTEXATTRIBI3UIPROC) (GLuint index, GLuint x, GLuint y, GLuint z);
+typedef void ( * PFNGLVERTEXATTRIBI4UIPROC) (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w);
+typedef void ( * PFNGLVERTEXATTRIBI1IVPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI2IVPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI3IVPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI4IVPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI1UIVPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI2UIVPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI3UIVPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI4UIVPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI4BVPROC) (GLuint index, const GLbyte *v);
+typedef void ( * PFNGLVERTEXATTRIBI4SVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIBI4UBVPROC) (GLuint index, const GLubyte *v);
+typedef void ( * PFNGLVERTEXATTRIBI4USVPROC) (GLuint index, const GLushort *v);
+typedef void ( * PFNGLGETUNIFORMUIVPROC) (GLuint program, GLint location, GLuint *params);
+typedef void ( * PFNGLBINDFRAGDATALOCATIONPROC) (GLuint program, GLuint color, const GLchar *name);
+typedef GLint ( * PFNGLGETFRAGDATALOCATIONPROC) (GLuint program, const GLchar *name);
+typedef void ( * PFNGLUNIFORM1UIPROC) (GLint location, GLuint v0);
+typedef void ( * PFNGLUNIFORM2UIPROC) (GLint location, GLuint v0, GLuint v1);
+typedef void ( * PFNGLUNIFORM3UIPROC) (GLint location, GLuint v0, GLuint v1, GLuint v2);
+typedef void ( * PFNGLUNIFORM4UIPROC) (GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3);
+typedef void ( * PFNGLUNIFORM1UIVPROC) (GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLUNIFORM2UIVPROC) (GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLUNIFORM3UIVPROC) (GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLUNIFORM4UIVPROC) (GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLTEXPARAMETERIIVPROC) (GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLTEXPARAMETERIUIVPROC) (GLenum target, GLenum pname, const GLuint *params);
+typedef void ( * PFNGLGETTEXPARAMETERIIVPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETTEXPARAMETERIUIVPROC) (GLenum target, GLenum pname, GLuint *params);
+typedef void ( * PFNGLCLEARBUFFERIVPROC) (GLenum buffer, GLint drawbuffer, const GLint *value);
+typedef void ( * PFNGLCLEARBUFFERUIVPROC) (GLenum buffer, GLint drawbuffer, const GLuint *value);
+typedef void ( * PFNGLCLEARBUFFERFVPROC) (GLenum buffer, GLint drawbuffer, const GLfloat *value);
+typedef void ( * PFNGLCLEARBUFFERFIPROC) (GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil);
+typedef const GLubyte *( * PFNGLGETSTRINGIPROC) (GLenum name, GLuint index);
+typedef GLboolean ( * PFNGLISRENDERBUFFERPROC) (GLuint renderbuffer);
+typedef void ( * PFNGLBINDRENDERBUFFERPROC) (GLenum target, GLuint renderbuffer);
+typedef void ( * PFNGLDELETERENDERBUFFERSPROC) (GLsizei n, const GLuint *renderbuffers);
+typedef void ( * PFNGLGENRENDERBUFFERSPROC) (GLsizei n, GLuint *renderbuffers);
+typedef void ( * PFNGLRENDERBUFFERSTORAGEPROC) (GLenum target, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLGETRENDERBUFFERPARAMETERIVPROC) (GLenum target, GLenum pname, GLint *params);
+typedef GLboolean ( * PFNGLISFRAMEBUFFERPROC) (GLuint framebuffer);
+typedef void ( * PFNGLBINDFRAMEBUFFERPROC) (GLenum target, GLuint framebuffer);
+typedef void ( * PFNGLDELETEFRAMEBUFFERSPROC) (GLsizei n, const GLuint *framebuffers);
+typedef void ( * PFNGLGENFRAMEBUFFERSPROC) (GLsizei n, GLuint *framebuffers);
+typedef GLenum ( * PFNGLCHECKFRAMEBUFFERSTATUSPROC) (GLenum target);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURE1DPROC) (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURE2DPROC) (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURE3DPROC) (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset);
+typedef void ( * PFNGLFRAMEBUFFERRENDERBUFFERPROC) (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer);
+typedef void ( * PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC) (GLenum target, GLenum attachment, GLenum pname, GLint *params);
+typedef void ( * PFNGLGENERATEMIPMAPPROC) (GLenum target);
+typedef void ( * PFNGLBLITFRAMEBUFFERPROC) (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+typedef void ( * PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURELAYERPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer);
+typedef void *( * PFNGLMAPBUFFERRANGEPROC) (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access);
+typedef void ( * PFNGLFLUSHMAPPEDBUFFERRANGEPROC) (GLenum target, GLintptr offset, GLsizeiptr length);
+typedef void ( * PFNGLBINDVERTEXARRAYPROC) (GLuint array);
+typedef void ( * PFNGLDELETEVERTEXARRAYSPROC) (GLsizei n, const GLuint *arrays);
+typedef void ( * PFNGLGENVERTEXARRAYSPROC) (GLsizei n, GLuint *arrays);
+typedef GLboolean ( * PFNGLISVERTEXARRAYPROC) (GLuint array);
+# 1356 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWARRAYSINSTANCEDPROC) (GLenum mode, GLint first, GLsizei count, GLsizei instancecount);
+typedef void ( * PFNGLDRAWELEMENTSINSTANCEDPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei instancecount);
+typedef void ( * PFNGLTEXBUFFERPROC) (GLenum target, GLenum internalformat, GLuint buffer);
+typedef void ( * PFNGLPRIMITIVERESTARTINDEXPROC) (GLuint index);
+typedef void ( * PFNGLCOPYBUFFERSUBDATAPROC) (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+typedef void ( * PFNGLGETUNIFORMINDICESPROC) (GLuint program, GLsizei uniformCount, const GLchar *const*uniformNames, GLuint *uniformIndices);
+typedef void ( * PFNGLGETACTIVEUNIFORMSIVPROC) (GLuint program, GLsizei uniformCount, const GLuint *uniformIndices, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETACTIVEUNIFORMNAMEPROC) (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformName);
+typedef GLuint ( * PFNGLGETUNIFORMBLOCKINDEXPROC) (GLuint program, const GLchar *uniformBlockName);
+typedef void ( * PFNGLGETACTIVEUNIFORMBLOCKIVPROC) (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC) (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformBlockName);
+typedef void ( * PFNGLUNIFORMBLOCKBINDINGPROC) (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding);
+# 1386 "/usr/include/GL/glext.h" 3 4
+typedef struct __GLsync *GLsync;
+typedef khronos_uint64_t GLuint64;
+typedef khronos_int64_t GLint64;
+# 1453 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWELEMENTSBASEVERTEXPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLint basevertex);
+typedef void ( * PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC) (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void *indices, GLint basevertex);
+typedef void ( * PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei instancecount, GLint basevertex);
+typedef void ( * PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC) (GLenum mode, const GLsizei *count, GLenum type, const void *const*indices, GLsizei drawcount, const GLint *basevertex);
+typedef void ( * PFNGLPROVOKINGVERTEXPROC) (GLenum mode);
+typedef GLsync ( * PFNGLFENCESYNCPROC) (GLenum condition, GLbitfield flags);
+typedef GLboolean ( * PFNGLISSYNCPROC) (GLsync sync);
+typedef void ( * PFNGLDELETESYNCPROC) (GLsync sync);
+typedef GLenum ( * PFNGLCLIENTWAITSYNCPROC) (GLsync sync, GLbitfield flags, GLuint64 timeout);
+typedef void ( * PFNGLWAITSYNCPROC) (GLsync sync, GLbitfield flags, GLuint64 timeout);
+typedef void ( * PFNGLGETINTEGER64VPROC) (GLenum pname, GLint64 *data);
+typedef void ( * PFNGLGETSYNCIVPROC) (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei *length, GLint *values);
+typedef void ( * PFNGLGETINTEGER64I_VPROC) (GLenum target, GLuint index, GLint64 *data);
+typedef void ( * PFNGLGETBUFFERPARAMETERI64VPROC) (GLenum target, GLenum pname, GLint64 *params);
+typedef void ( * PFNGLFRAMEBUFFERTEXTUREPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level);
+typedef void ( * PFNGLTEXIMAGE2DMULTISAMPLEPROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLTEXIMAGE3DMULTISAMPLEPROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLGETMULTISAMPLEFVPROC) (GLenum pname, GLuint index, GLfloat *val);
+typedef void ( * PFNGLSAMPLEMASKIPROC) (GLuint maskNumber, GLbitfield mask);
+# 1513 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBINDFRAGDATALOCATIONINDEXEDPROC) (GLuint program, GLuint colorNumber, GLuint index, const GLchar *name);
+typedef GLint ( * PFNGLGETFRAGDATAINDEXPROC) (GLuint program, const GLchar *name);
+typedef void ( * PFNGLGENSAMPLERSPROC) (GLsizei count, GLuint *samplers);
+typedef void ( * PFNGLDELETESAMPLERSPROC) (GLsizei count, const GLuint *samplers);
+typedef GLboolean ( * PFNGLISSAMPLERPROC) (GLuint sampler);
+typedef void ( * PFNGLBINDSAMPLERPROC) (GLuint unit, GLuint sampler);
+typedef void ( * PFNGLSAMPLERPARAMETERIPROC) (GLuint sampler, GLenum pname, GLint param);
+typedef void ( * PFNGLSAMPLERPARAMETERIVPROC) (GLuint sampler, GLenum pname, const GLint *param);
+typedef void ( * PFNGLSAMPLERPARAMETERFPROC) (GLuint sampler, GLenum pname, GLfloat param);
+typedef void ( * PFNGLSAMPLERPARAMETERFVPROC) (GLuint sampler, GLenum pname, const GLfloat *param);
+typedef void ( * PFNGLSAMPLERPARAMETERIIVPROC) (GLuint sampler, GLenum pname, const GLint *param);
+typedef void ( * PFNGLSAMPLERPARAMETERIUIVPROC) (GLuint sampler, GLenum pname, const GLuint *param);
+typedef void ( * PFNGLGETSAMPLERPARAMETERIVPROC) (GLuint sampler, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETSAMPLERPARAMETERIIVPROC) (GLuint sampler, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETSAMPLERPARAMETERFVPROC) (GLuint sampler, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETSAMPLERPARAMETERIUIVPROC) (GLuint sampler, GLenum pname, GLuint *params);
+typedef void ( * PFNGLQUERYCOUNTERPROC) (GLuint id, GLenum target);
+typedef void ( * PFNGLGETQUERYOBJECTI64VPROC) (GLuint id, GLenum pname, GLint64 *params);
+typedef void ( * PFNGLGETQUERYOBJECTUI64VPROC) (GLuint id, GLenum pname, GLuint64 *params);
+typedef void ( * PFNGLVERTEXATTRIBDIVISORPROC) (GLuint index, GLuint divisor);
+typedef void ( * PFNGLVERTEXATTRIBP1UIPROC) (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void ( * PFNGLVERTEXATTRIBP1UIVPROC) (GLuint index, GLenum type, GLboolean normalized, const GLuint *value);
+typedef void ( * PFNGLVERTEXATTRIBP2UIPROC) (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void ( * PFNGLVERTEXATTRIBP2UIVPROC) (GLuint index, GLenum type, GLboolean normalized, const GLuint *value);
+typedef void ( * PFNGLVERTEXATTRIBP3UIPROC) (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void ( * PFNGLVERTEXATTRIBP3UIVPROC) (GLuint index, GLenum type, GLboolean normalized, const GLuint *value);
+typedef void ( * PFNGLVERTEXATTRIBP4UIPROC) (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void ( * PFNGLVERTEXATTRIBP4UIVPROC) (GLuint index, GLenum type, GLboolean normalized, const GLuint *value);
+typedef void ( * PFNGLVERTEXP2UIPROC) (GLenum type, GLuint value);
+typedef void ( * PFNGLVERTEXP2UIVPROC) (GLenum type, const GLuint *value);
+typedef void ( * PFNGLVERTEXP3UIPROC) (GLenum type, GLuint value);
+typedef void ( * PFNGLVERTEXP3UIVPROC) (GLenum type, const GLuint *value);
+typedef void ( * PFNGLVERTEXP4UIPROC) (GLenum type, GLuint value);
+typedef void ( * PFNGLVERTEXP4UIVPROC) (GLenum type, const GLuint *value);
+typedef void ( * PFNGLTEXCOORDP1UIPROC) (GLenum type, GLuint coords);
+typedef void ( * PFNGLTEXCOORDP1UIVPROC) (GLenum type, const GLuint *coords);
+typedef void ( * PFNGLTEXCOORDP2UIPROC) (GLenum type, GLuint coords);
+typedef void ( * PFNGLTEXCOORDP2UIVPROC) (GLenum type, const GLuint *coords);
+typedef void ( * PFNGLTEXCOORDP3UIPROC) (GLenum type, GLuint coords);
+typedef void ( * PFNGLTEXCOORDP3UIVPROC) (GLenum type, const GLuint *coords);
+typedef void ( * PFNGLTEXCOORDP4UIPROC) (GLenum type, GLuint coords);
+typedef void ( * PFNGLTEXCOORDP4UIVPROC) (GLenum type, const GLuint *coords);
+typedef void ( * PFNGLMULTITEXCOORDP1UIPROC) (GLenum texture, GLenum type, GLuint coords);
+typedef void ( * PFNGLMULTITEXCOORDP1UIVPROC) (GLenum texture, GLenum type, const GLuint *coords);
+typedef void ( * PFNGLMULTITEXCOORDP2UIPROC) (GLenum texture, GLenum type, GLuint coords);
+typedef void ( * PFNGLMULTITEXCOORDP2UIVPROC) (GLenum texture, GLenum type, const GLuint *coords);
+typedef void ( * PFNGLMULTITEXCOORDP3UIPROC) (GLenum texture, GLenum type, GLuint coords);
+typedef void ( * PFNGLMULTITEXCOORDP3UIVPROC) (GLenum texture, GLenum type, const GLuint *coords);
+typedef void ( * PFNGLMULTITEXCOORDP4UIPROC) (GLenum texture, GLenum type, GLuint coords);
+typedef void ( * PFNGLMULTITEXCOORDP4UIVPROC) (GLenum texture, GLenum type, const GLuint *coords);
+typedef void ( * PFNGLNORMALP3UIPROC) (GLenum type, GLuint coords);
+typedef void ( * PFNGLNORMALP3UIVPROC) (GLenum type, const GLuint *coords);
+typedef void ( * PFNGLCOLORP3UIPROC) (GLenum type, GLuint color);
+typedef void ( * PFNGLCOLORP3UIVPROC) (GLenum type, const GLuint *color);
+typedef void ( * PFNGLCOLORP4UIPROC) (GLenum type, GLuint color);
+typedef void ( * PFNGLCOLORP4UIVPROC) (GLenum type, const GLuint *color);
+typedef void ( * PFNGLSECONDARYCOLORP3UIPROC) (GLenum type, GLuint color);
+typedef void ( * PFNGLSECONDARYCOLORP3UIVPROC) (GLenum type, const GLuint *color);
+# 1712 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMINSAMPLESHADINGPROC) (GLfloat value);
+typedef void ( * PFNGLBLENDEQUATIONIPROC) (GLuint buf, GLenum mode);
+typedef void ( * PFNGLBLENDEQUATIONSEPARATEIPROC) (GLuint buf, GLenum modeRGB, GLenum modeAlpha);
+typedef void ( * PFNGLBLENDFUNCIPROC) (GLuint buf, GLenum src, GLenum dst);
+typedef void ( * PFNGLBLENDFUNCSEPARATEIPROC) (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
+typedef void ( * PFNGLDRAWARRAYSINDIRECTPROC) (GLenum mode, const void *indirect);
+typedef void ( * PFNGLDRAWELEMENTSINDIRECTPROC) (GLenum mode, GLenum type, const void *indirect);
+typedef void ( * PFNGLUNIFORM1DPROC) (GLint location, GLdouble x);
+typedef void ( * PFNGLUNIFORM2DPROC) (GLint location, GLdouble x, GLdouble y);
+typedef void ( * PFNGLUNIFORM3DPROC) (GLint location, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLUNIFORM4DPROC) (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLUNIFORM1DVPROC) (GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLUNIFORM2DVPROC) (GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLUNIFORM3DVPROC) (GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLUNIFORM4DVPROC) (GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX2DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX3DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX4DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX2X3DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX2X4DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX3X2DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX3X4DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX4X2DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLUNIFORMMATRIX4X3DVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLGETUNIFORMDVPROC) (GLuint program, GLint location, GLdouble *params);
+typedef GLint ( * PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC) (GLuint program, GLenum shadertype, const GLchar *name);
+typedef GLuint ( * PFNGLGETSUBROUTINEINDEXPROC) (GLuint program, GLenum shadertype, const GLchar *name);
+typedef void ( * PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC) (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint *values);
+typedef void ( * PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC) (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei *length, GLchar *name);
+typedef void ( * PFNGLGETACTIVESUBROUTINENAMEPROC) (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei *length, GLchar *name);
+typedef void ( * PFNGLUNIFORMSUBROUTINESUIVPROC) (GLenum shadertype, GLsizei count, const GLuint *indices);
+typedef void ( * PFNGLGETUNIFORMSUBROUTINEUIVPROC) (GLenum shadertype, GLint location, GLuint *params);
+typedef void ( * PFNGLGETPROGRAMSTAGEIVPROC) (GLuint program, GLenum shadertype, GLenum pname, GLint *values);
+typedef void ( * PFNGLPATCHPARAMETERIPROC) (GLenum pname, GLint value);
+typedef void ( * PFNGLPATCHPARAMETERFVPROC) (GLenum pname, const GLfloat *values);
+typedef void ( * PFNGLBINDTRANSFORMFEEDBACKPROC) (GLenum target, GLuint id);
+typedef void ( * PFNGLDELETETRANSFORMFEEDBACKSPROC) (GLsizei n, const GLuint *ids);
+typedef void ( * PFNGLGENTRANSFORMFEEDBACKSPROC) (GLsizei n, GLuint *ids);
+typedef GLboolean ( * PFNGLISTRANSFORMFEEDBACKPROC) (GLuint id);
+typedef void ( * PFNGLPAUSETRANSFORMFEEDBACKPROC) (void);
+typedef void ( * PFNGLRESUMETRANSFORMFEEDBACKPROC) (void);
+typedef void ( * PFNGLDRAWTRANSFORMFEEDBACKPROC) (GLenum mode, GLuint id);
+typedef void ( * PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC) (GLenum mode, GLuint id, GLuint stream);
+typedef void ( * PFNGLBEGINQUERYINDEXEDPROC) (GLenum target, GLuint index, GLuint id);
+typedef void ( * PFNGLENDQUERYINDEXEDPROC) (GLenum target, GLuint index);
+typedef void ( * PFNGLGETQUERYINDEXEDIVPROC) (GLenum target, GLuint index, GLenum pname, GLint *params);
+# 1845 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLRELEASESHADERCOMPILERPROC) (void);
+typedef void ( * PFNGLSHADERBINARYPROC) (GLsizei count, const GLuint *shaders, GLenum binaryformat, const void *binary, GLsizei length);
+typedef void ( * PFNGLGETSHADERPRECISIONFORMATPROC) (GLenum shadertype, GLenum precisiontype, GLint *range, GLint *precision);
+typedef void ( * PFNGLDEPTHRANGEFPROC) (GLfloat n, GLfloat f);
+typedef void ( * PFNGLCLEARDEPTHFPROC) (GLfloat d);
+typedef void ( * PFNGLGETPROGRAMBINARYPROC) (GLuint program, GLsizei bufSize, GLsizei *length, GLenum *binaryFormat, void *binary);
+typedef void ( * PFNGLPROGRAMBINARYPROC) (GLuint program, GLenum binaryFormat, const void *binary, GLsizei length);
+typedef void ( * PFNGLPROGRAMPARAMETERIPROC) (GLuint program, GLenum pname, GLint value);
+typedef void ( * PFNGLUSEPROGRAMSTAGESPROC) (GLuint pipeline, GLbitfield stages, GLuint program);
+typedef void ( * PFNGLACTIVESHADERPROGRAMPROC) (GLuint pipeline, GLuint program);
+typedef GLuint ( * PFNGLCREATESHADERPROGRAMVPROC) (GLenum type, GLsizei count, const GLchar *const*strings);
+typedef void ( * PFNGLBINDPROGRAMPIPELINEPROC) (GLuint pipeline);
+typedef void ( * PFNGLDELETEPROGRAMPIPELINESPROC) (GLsizei n, const GLuint *pipelines);
+typedef void ( * PFNGLGENPROGRAMPIPELINESPROC) (GLsizei n, GLuint *pipelines);
+typedef GLboolean ( * PFNGLISPROGRAMPIPELINEPROC) (GLuint pipeline);
+typedef void ( * PFNGLGETPROGRAMPIPELINEIVPROC) (GLuint pipeline, GLenum pname, GLint *params);
+typedef void ( * PFNGLPROGRAMUNIFORM1IPROC) (GLuint program, GLint location, GLint v0);
+typedef void ( * PFNGLPROGRAMUNIFORM1IVPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM1FPROC) (GLuint program, GLint location, GLfloat v0);
+typedef void ( * PFNGLPROGRAMUNIFORM1FVPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM1DPROC) (GLuint program, GLint location, GLdouble v0);
+typedef void ( * PFNGLPROGRAMUNIFORM1DVPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORM1UIPROC) (GLuint program, GLint location, GLuint v0);
+typedef void ( * PFNGLPROGRAMUNIFORM1UIVPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2IPROC) (GLuint program, GLint location, GLint v0, GLint v1);
+typedef void ( * PFNGLPROGRAMUNIFORM2IVPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2FPROC) (GLuint program, GLint location, GLfloat v0, GLfloat v1);
+typedef void ( * PFNGLPROGRAMUNIFORM2FVPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2DPROC) (GLuint program, GLint location, GLdouble v0, GLdouble v1);
+typedef void ( * PFNGLPROGRAMUNIFORM2DVPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2UIPROC) (GLuint program, GLint location, GLuint v0, GLuint v1);
+typedef void ( * PFNGLPROGRAMUNIFORM2UIVPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3IPROC) (GLuint program, GLint location, GLint v0, GLint v1, GLint v2);
+typedef void ( * PFNGLPROGRAMUNIFORM3IVPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3FPROC) (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
+typedef void ( * PFNGLPROGRAMUNIFORM3FVPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3DPROC) (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2);
+typedef void ( * PFNGLPROGRAMUNIFORM3DVPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3UIPROC) (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2);
+typedef void ( * PFNGLPROGRAMUNIFORM3UIVPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4IPROC) (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3);
+typedef void ( * PFNGLPROGRAMUNIFORM4IVPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4FPROC) (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
+typedef void ( * PFNGLPROGRAMUNIFORM4FVPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4DPROC) (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3);
+typedef void ( * PFNGLPROGRAMUNIFORM4DVPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4UIPROC) (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3);
+typedef void ( * PFNGLPROGRAMUNIFORM4UIVPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X4DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLVALIDATEPROGRAMPIPELINEPROC) (GLuint pipeline);
+typedef void ( * PFNGLGETPROGRAMPIPELINEINFOLOGPROC) (GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
+typedef void ( * PFNGLVERTEXATTRIBL1DPROC) (GLuint index, GLdouble x);
+typedef void ( * PFNGLVERTEXATTRIBL2DPROC) (GLuint index, GLdouble x, GLdouble y);
+typedef void ( * PFNGLVERTEXATTRIBL3DPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLVERTEXATTRIBL4DPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLVERTEXATTRIBL1DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBL2DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBL3DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBL4DVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBLPOINTERPROC) (GLuint index, GLint size, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLGETVERTEXATTRIBLDVPROC) (GLuint index, GLenum pname, GLdouble *params);
+typedef void ( * PFNGLVIEWPORTARRAYVPROC) (GLuint first, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLVIEWPORTINDEXEDFPROC) (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h);
+typedef void ( * PFNGLVIEWPORTINDEXEDFVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLSCISSORARRAYVPROC) (GLuint first, GLsizei count, const GLint *v);
+typedef void ( * PFNGLSCISSORINDEXEDPROC) (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height);
+typedef void ( * PFNGLSCISSORINDEXEDVPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLDEPTHRANGEARRAYVPROC) (GLuint first, GLsizei count, const GLdouble *v);
+typedef void ( * PFNGLDEPTHRANGEINDEXEDPROC) (GLuint index, GLdouble n, GLdouble f);
+typedef void ( * PFNGLGETFLOATI_VPROC) (GLenum target, GLuint index, GLfloat *data);
+typedef void ( * PFNGLGETDOUBLEI_VPROC) (GLenum target, GLuint index, GLdouble *data);
+# 2139 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC) (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance);
+typedef void ( * PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei instancecount, GLuint baseinstance);
+typedef void ( * PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance);
+typedef void ( * PFNGLGETINTERNALFORMATIVPROC) (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint *params);
+typedef void ( * PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC) (GLuint program, GLuint bufferIndex, GLenum pname, GLint *params);
+typedef void ( * PFNGLBINDIMAGETEXTUREPROC) (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format);
+typedef void ( * PFNGLMEMORYBARRIERPROC) (GLbitfield barriers);
+typedef void ( * PFNGLTEXSTORAGE1DPROC) (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width);
+typedef void ( * PFNGLTEXSTORAGE2DPROC) (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLTEXSTORAGE3DPROC) (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth);
+typedef void ( * PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC) (GLenum mode, GLuint id, GLsizei instancecount);
+typedef void ( * PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC) (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount);
+# 2169 "/usr/include/GL/glext.h" 3 4
+typedef void ( *GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+# 2429 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCLEARBUFFERDATAPROC) (GLenum target, GLenum internalformat, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLCLEARBUFFERSUBDATAPROC) (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLDISPATCHCOMPUTEPROC) (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z);
+typedef void ( * PFNGLDISPATCHCOMPUTEINDIRECTPROC) (GLintptr indirect);
+typedef void ( * PFNGLCOPYIMAGESUBDATAPROC) (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth);
+typedef void ( * PFNGLFRAMEBUFFERPARAMETERIPROC) (GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLGETFRAMEBUFFERPARAMETERIVPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETINTERNALFORMATI64VPROC) (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 *params);
+typedef void ( * PFNGLINVALIDATETEXSUBIMAGEPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth);
+typedef void ( * PFNGLINVALIDATETEXIMAGEPROC) (GLuint texture, GLint level);
+typedef void ( * PFNGLINVALIDATEBUFFERSUBDATAPROC) (GLuint buffer, GLintptr offset, GLsizeiptr length);
+typedef void ( * PFNGLINVALIDATEBUFFERDATAPROC) (GLuint buffer);
+typedef void ( * PFNGLINVALIDATEFRAMEBUFFERPROC) (GLenum target, GLsizei numAttachments, const GLenum *attachments);
+typedef void ( * PFNGLINVALIDATESUBFRAMEBUFFERPROC) (GLenum target, GLsizei numAttachments, const GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLMULTIDRAWARRAYSINDIRECTPROC) (GLenum mode, const void *indirect, GLsizei drawcount, GLsizei stride);
+typedef void ( * PFNGLMULTIDRAWELEMENTSINDIRECTPROC) (GLenum mode, GLenum type, const void *indirect, GLsizei drawcount, GLsizei stride);
+typedef void ( * PFNGLGETPROGRAMINTERFACEIVPROC) (GLuint program, GLenum programInterface, GLenum pname, GLint *params);
+typedef GLuint ( * PFNGLGETPROGRAMRESOURCEINDEXPROC) (GLuint program, GLenum programInterface, const GLchar *name);
+typedef void ( * PFNGLGETPROGRAMRESOURCENAMEPROC) (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name);
+typedef void ( * PFNGLGETPROGRAMRESOURCEIVPROC) (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum *props, GLsizei bufSize, GLsizei *length, GLint *params);
+typedef GLint ( * PFNGLGETPROGRAMRESOURCELOCATIONPROC) (GLuint program, GLenum programInterface, const GLchar *name);
+typedef GLint ( * PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC) (GLuint program, GLenum programInterface, const GLchar *name);
+typedef void ( * PFNGLSHADERSTORAGEBLOCKBINDINGPROC) (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding);
+typedef void ( * PFNGLTEXBUFFERRANGEPROC) (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size);
+typedef void ( * PFNGLTEXSTORAGE2DMULTISAMPLEPROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLTEXSTORAGE3DMULTISAMPLEPROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLTEXTUREVIEWPROC) (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers);
+typedef void ( * PFNGLBINDVERTEXBUFFERPROC) (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride);
+typedef void ( * PFNGLVERTEXATTRIBFORMATPROC) (GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXATTRIBIFORMATPROC) (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXATTRIBLFORMATPROC) (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXATTRIBBINDINGPROC) (GLuint attribindex, GLuint bindingindex);
+typedef void ( * PFNGLVERTEXBINDINGDIVISORPROC) (GLuint bindingindex, GLuint divisor);
+typedef void ( * PFNGLDEBUGMESSAGECONTROLPROC) (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint *ids, GLboolean enabled);
+typedef void ( * PFNGLDEBUGMESSAGEINSERTPROC) (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *buf);
+typedef void ( * PFNGLDEBUGMESSAGECALLBACKPROC) (GLDEBUGPROC callback, const void *userParam);
+typedef GLuint ( * PFNGLGETDEBUGMESSAGELOGPROC) (GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog);
+typedef void ( * PFNGLPUSHDEBUGGROUPPROC) (GLenum source, GLuint id, GLsizei length, const GLchar *message);
+typedef void ( * PFNGLPOPDEBUGGROUPPROC) (void);
+typedef void ( * PFNGLOBJECTLABELPROC) (GLenum identifier, GLuint name, GLsizei length, const GLchar *label);
+typedef void ( * PFNGLGETOBJECTLABELPROC) (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label);
+typedef void ( * PFNGLOBJECTPTRLABELPROC) (const void *ptr, GLsizei length, const GLchar *label);
+typedef void ( * PFNGLGETOBJECTPTRLABELPROC) (const void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label);
+# 2540 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBUFFERSTORAGEPROC) (GLenum target, GLsizeiptr size, const void *data, GLbitfield flags);
+typedef void ( * PFNGLCLEARTEXIMAGEPROC) (GLuint texture, GLint level, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLCLEARTEXSUBIMAGEPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLBINDBUFFERSBASEPROC) (GLenum target, GLuint first, GLsizei count, const GLuint *buffers);
+typedef void ( * PFNGLBINDBUFFERSRANGEPROC) (GLenum target, GLuint first, GLsizei count, const GLuint *buffers, const GLintptr *offsets, const GLsizeiptr *sizes);
+typedef void ( * PFNGLBINDTEXTURESPROC) (GLuint first, GLsizei count, const GLuint *textures);
+typedef void ( * PFNGLBINDSAMPLERSPROC) (GLuint first, GLsizei count, const GLuint *samplers);
+typedef void ( * PFNGLBINDIMAGETEXTURESPROC) (GLuint first, GLsizei count, const GLuint *textures);
+typedef void ( * PFNGLBINDVERTEXBUFFERSPROC) (GLuint first, GLsizei count, const GLuint *buffers, const GLintptr *offsets, const GLsizei *strides);
+# 2586 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCLIPCONTROLPROC) (GLenum origin, GLenum depth);
+typedef void ( * PFNGLCREATETRANSFORMFEEDBACKSPROC) (GLsizei n, GLuint *ids);
+typedef void ( * PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC) (GLuint xfb, GLuint index, GLuint buffer);
+typedef void ( * PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC) (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
+typedef void ( * PFNGLGETTRANSFORMFEEDBACKIVPROC) (GLuint xfb, GLenum pname, GLint *param);
+typedef void ( * PFNGLGETTRANSFORMFEEDBACKI_VPROC) (GLuint xfb, GLenum pname, GLuint index, GLint *param);
+typedef void ( * PFNGLGETTRANSFORMFEEDBACKI64_VPROC) (GLuint xfb, GLenum pname, GLuint index, GLint64 *param);
+typedef void ( * PFNGLCREATEBUFFERSPROC) (GLsizei n, GLuint *buffers);
+typedef void ( * PFNGLNAMEDBUFFERSTORAGEPROC) (GLuint buffer, GLsizeiptr size, const void *data, GLbitfield flags);
+typedef void ( * PFNGLNAMEDBUFFERDATAPROC) (GLuint buffer, GLsizeiptr size, const void *data, GLenum usage);
+typedef void ( * PFNGLNAMEDBUFFERSUBDATAPROC) (GLuint buffer, GLintptr offset, GLsizeiptr size, const void *data);
+typedef void ( * PFNGLCOPYNAMEDBUFFERSUBDATAPROC) (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+typedef void ( * PFNGLCLEARNAMEDBUFFERDATAPROC) (GLuint buffer, GLenum internalformat, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLCLEARNAMEDBUFFERSUBDATAPROC) (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void *data);
+typedef void *( * PFNGLMAPNAMEDBUFFERPROC) (GLuint buffer, GLenum access);
+typedef void *( * PFNGLMAPNAMEDBUFFERRANGEPROC) (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access);
+typedef GLboolean ( * PFNGLUNMAPNAMEDBUFFERPROC) (GLuint buffer);
+typedef void ( * PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC) (GLuint buffer, GLintptr offset, GLsizeiptr length);
+typedef void ( * PFNGLGETNAMEDBUFFERPARAMETERIVPROC) (GLuint buffer, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETNAMEDBUFFERPARAMETERI64VPROC) (GLuint buffer, GLenum pname, GLint64 *params);
+typedef void ( * PFNGLGETNAMEDBUFFERPOINTERVPROC) (GLuint buffer, GLenum pname, void **params);
+typedef void ( * PFNGLGETNAMEDBUFFERSUBDATAPROC) (GLuint buffer, GLintptr offset, GLsizeiptr size, void *data);
+typedef void ( * PFNGLCREATEFRAMEBUFFERSPROC) (GLsizei n, GLuint *framebuffers);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC) (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC) (GLuint framebuffer, GLenum pname, GLint param);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTUREPROC) (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC) (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC) (GLuint framebuffer, GLenum buf);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC) (GLuint framebuffer, GLsizei n, const GLenum *bufs);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC) (GLuint framebuffer, GLenum src);
+typedef void ( * PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC) (GLuint framebuffer, GLsizei numAttachments, const GLenum *attachments);
+typedef void ( * PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC) (GLuint framebuffer, GLsizei numAttachments, const GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLCLEARNAMEDFRAMEBUFFERIVPROC) (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLint *value);
+typedef void ( * PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC) (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLuint *value);
+typedef void ( * PFNGLCLEARNAMEDFRAMEBUFFERFVPROC) (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLfloat *value);
+typedef void ( * PFNGLCLEARNAMEDFRAMEBUFFERFIPROC) (GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil);
+typedef void ( * PFNGLBLITNAMEDFRAMEBUFFERPROC) (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+typedef GLenum ( * PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC) (GLuint framebuffer, GLenum target);
+typedef void ( * PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC) (GLuint framebuffer, GLenum pname, GLint *param);
+typedef void ( * PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC) (GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params);
+typedef void ( * PFNGLCREATERENDERBUFFERSPROC) (GLsizei n, GLuint *renderbuffers);
+typedef void ( * PFNGLNAMEDRENDERBUFFERSTORAGEPROC) (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC) (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC) (GLuint renderbuffer, GLenum pname, GLint *params);
+typedef void ( * PFNGLCREATETEXTURESPROC) (GLenum target, GLsizei n, GLuint *textures);
+typedef void ( * PFNGLTEXTUREBUFFERPROC) (GLuint texture, GLenum internalformat, GLuint buffer);
+typedef void ( * PFNGLTEXTUREBUFFERRANGEPROC) (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size);
+typedef void ( * PFNGLTEXTURESTORAGE1DPROC) (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width);
+typedef void ( * PFNGLTEXTURESTORAGE2DPROC) (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLTEXTURESTORAGE3DPROC) (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth);
+typedef void ( * PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC) (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC) (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLTEXTURESUBIMAGE1DPROC) (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXTURESUBIMAGE2DPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXTURESUBIMAGE3DPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC) (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOPYTEXTURESUBIMAGE1DPROC) (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
+typedef void ( * PFNGLCOPYTEXTURESUBIMAGE2DPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLCOPYTEXTURESUBIMAGE3DPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLTEXTUREPARAMETERFPROC) (GLuint texture, GLenum pname, GLfloat param);
+typedef void ( * PFNGLTEXTUREPARAMETERFVPROC) (GLuint texture, GLenum pname, const GLfloat *param);
+typedef void ( * PFNGLTEXTUREPARAMETERIPROC) (GLuint texture, GLenum pname, GLint param);
+typedef void ( * PFNGLTEXTUREPARAMETERIIVPROC) (GLuint texture, GLenum pname, const GLint *params);
+typedef void ( * PFNGLTEXTUREPARAMETERIUIVPROC) (GLuint texture, GLenum pname, const GLuint *params);
+typedef void ( * PFNGLTEXTUREPARAMETERIVPROC) (GLuint texture, GLenum pname, const GLint *param);
+typedef void ( * PFNGLGENERATETEXTUREMIPMAPPROC) (GLuint texture);
+typedef void ( * PFNGLBINDTEXTUREUNITPROC) (GLuint unit, GLuint texture);
+typedef void ( * PFNGLGETTEXTUREIMAGEPROC) (GLuint texture, GLint level, GLenum format, GLenum type, GLsizei bufSize, void *pixels);
+typedef void ( * PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC) (GLuint texture, GLint level, GLsizei bufSize, void *pixels);
+typedef void ( * PFNGLGETTEXTURELEVELPARAMETERFVPROC) (GLuint texture, GLint level, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETTEXTURELEVELPARAMETERIVPROC) (GLuint texture, GLint level, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETTEXTUREPARAMETERFVPROC) (GLuint texture, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETTEXTUREPARAMETERIIVPROC) (GLuint texture, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETTEXTUREPARAMETERIUIVPROC) (GLuint texture, GLenum pname, GLuint *params);
+typedef void ( * PFNGLGETTEXTUREPARAMETERIVPROC) (GLuint texture, GLenum pname, GLint *params);
+typedef void ( * PFNGLCREATEVERTEXARRAYSPROC) (GLsizei n, GLuint *arrays);
+typedef void ( * PFNGLDISABLEVERTEXARRAYATTRIBPROC) (GLuint vaobj, GLuint index);
+typedef void ( * PFNGLENABLEVERTEXARRAYATTRIBPROC) (GLuint vaobj, GLuint index);
+typedef void ( * PFNGLVERTEXARRAYELEMENTBUFFERPROC) (GLuint vaobj, GLuint buffer);
+typedef void ( * PFNGLVERTEXARRAYVERTEXBUFFERPROC) (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride);
+typedef void ( * PFNGLVERTEXARRAYVERTEXBUFFERSPROC) (GLuint vaobj, GLuint first, GLsizei count, const GLuint *buffers, const GLintptr *offsets, const GLsizei *strides);
+typedef void ( * PFNGLVERTEXARRAYATTRIBBINDINGPROC) (GLuint vaobj, GLuint attribindex, GLuint bindingindex);
+typedef void ( * PFNGLVERTEXARRAYATTRIBFORMATPROC) (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXARRAYATTRIBIFORMATPROC) (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXARRAYATTRIBLFORMATPROC) (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXARRAYBINDINGDIVISORPROC) (GLuint vaobj, GLuint bindingindex, GLuint divisor);
+typedef void ( * PFNGLGETVERTEXARRAYIVPROC) (GLuint vaobj, GLenum pname, GLint *param);
+typedef void ( * PFNGLGETVERTEXARRAYINDEXEDIVPROC) (GLuint vaobj, GLuint index, GLenum pname, GLint *param);
+typedef void ( * PFNGLGETVERTEXARRAYINDEXED64IVPROC) (GLuint vaobj, GLuint index, GLenum pname, GLint64 *param);
+typedef void ( * PFNGLCREATESAMPLERSPROC) (GLsizei n, GLuint *samplers);
+typedef void ( * PFNGLCREATEPROGRAMPIPELINESPROC) (GLsizei n, GLuint *pipelines);
+typedef void ( * PFNGLCREATEQUERIESPROC) (GLenum target, GLsizei n, GLuint *ids);
+typedef void ( * PFNGLGETQUERYBUFFEROBJECTI64VPROC) (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+typedef void ( * PFNGLGETQUERYBUFFEROBJECTIVPROC) (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+typedef void ( * PFNGLGETQUERYBUFFEROBJECTUI64VPROC) (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+typedef void ( * PFNGLGETQUERYBUFFEROBJECTUIVPROC) (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+typedef void ( * PFNGLMEMORYBARRIERBYREGIONPROC) (GLbitfield barriers);
+typedef void ( * PFNGLGETTEXTURESUBIMAGEPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, GLsizei bufSize, void *pixels);
+typedef void ( * PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void *pixels);
+typedef GLenum ( * PFNGLGETGRAPHICSRESETSTATUSPROC) (void);
+typedef void ( * PFNGLGETNCOMPRESSEDTEXIMAGEPROC) (GLenum target, GLint lod, GLsizei bufSize, void *pixels);
+typedef void ( * PFNGLGETNTEXIMAGEPROC) (GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, void *pixels);
+typedef void ( * PFNGLGETNUNIFORMDVPROC) (GLuint program, GLint location, GLsizei bufSize, GLdouble *params);
+typedef void ( * PFNGLGETNUNIFORMFVPROC) (GLuint program, GLint location, GLsizei bufSize, GLfloat *params);
+typedef void ( * PFNGLGETNUNIFORMIVPROC) (GLuint program, GLint location, GLsizei bufSize, GLint *params);
+typedef void ( * PFNGLGETNUNIFORMUIVPROC) (GLuint program, GLint location, GLsizei bufSize, GLuint *params);
+typedef void ( * PFNGLREADNPIXELSPROC) (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void *data);
+typedef void ( * PFNGLGETNMAPDVPROC) (GLenum target, GLenum query, GLsizei bufSize, GLdouble *v);
+typedef void ( * PFNGLGETNMAPFVPROC) (GLenum target, GLenum query, GLsizei bufSize, GLfloat *v);
+typedef void ( * PFNGLGETNMAPIVPROC) (GLenum target, GLenum query, GLsizei bufSize, GLint *v);
+typedef void ( * PFNGLGETNPIXELMAPFVPROC) (GLenum map, GLsizei bufSize, GLfloat *values);
+typedef void ( * PFNGLGETNPIXELMAPUIVPROC) (GLenum map, GLsizei bufSize, GLuint *values);
+typedef void ( * PFNGLGETNPIXELMAPUSVPROC) (GLenum map, GLsizei bufSize, GLushort *values);
+typedef void ( * PFNGLGETNPOLYGONSTIPPLEPROC) (GLsizei bufSize, GLubyte *pattern);
+typedef void ( * PFNGLGETNCOLORTABLEPROC) (GLenum target, GLenum format, GLenum type, GLsizei bufSize, void *table);
+typedef void ( * PFNGLGETNCONVOLUTIONFILTERPROC) (GLenum target, GLenum format, GLenum type, GLsizei bufSize, void *image);
+typedef void ( * PFNGLGETNSEPARABLEFILTERPROC) (GLenum target, GLenum format, GLenum type, GLsizei rowBufSize, void *row, GLsizei columnBufSize, void *column, void *span);
+typedef void ( * PFNGLGETNHISTOGRAMPROC) (GLenum target, GLboolean reset, GLenum format, GLenum type, GLsizei bufSize, void *values);
+typedef void ( * PFNGLGETNMINMAXPROC) (GLenum target, GLboolean reset, GLenum format, GLenum type, GLsizei bufSize, void *values);
+typedef void ( * PFNGLTEXTUREBARRIERPROC) (void);
+# 2858 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSPECIALIZESHADERPROC) (GLuint shader, const GLchar *pEntryPoint, GLuint numSpecializationConstants, const GLuint *pConstantIndex, const GLuint *pConstantValue);
+typedef void ( * PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC) (GLenum mode, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+typedef void ( * PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC) (GLenum mode, GLenum type, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+typedef void ( * PFNGLPOLYGONOFFSETCLAMPPROC) (GLfloat factor, GLfloat units, GLfloat clamp);
+# 2883 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPRIMITIVEBOUNDINGBOXARBPROC) (GLfloat minX, GLfloat minY, GLfloat minZ, GLfloat minW, GLfloat maxX, GLfloat maxY, GLfloat maxZ, GLfloat maxW);
+# 2903 "/usr/include/GL/glext.h" 3 4
+typedef khronos_uint64_t GLuint64EXT;
+
+typedef GLuint64 ( * PFNGLGETTEXTUREHANDLEARBPROC) (GLuint texture);
+typedef GLuint64 ( * PFNGLGETTEXTURESAMPLERHANDLEARBPROC) (GLuint texture, GLuint sampler);
+typedef void ( * PFNGLMAKETEXTUREHANDLERESIDENTARBPROC) (GLuint64 handle);
+typedef void ( * PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC) (GLuint64 handle);
+typedef GLuint64 ( * PFNGLGETIMAGEHANDLEARBPROC) (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format);
+typedef void ( * PFNGLMAKEIMAGEHANDLERESIDENTARBPROC) (GLuint64 handle, GLenum access);
+typedef void ( * PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC) (GLuint64 handle);
+typedef void ( * PFNGLUNIFORMHANDLEUI64ARBPROC) (GLint location, GLuint64 value);
+typedef void ( * PFNGLUNIFORMHANDLEUI64VARBPROC) (GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC) (GLuint program, GLint location, GLuint64 value);
+typedef void ( * PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLuint64 *values);
+typedef GLboolean ( * PFNGLISTEXTUREHANDLERESIDENTARBPROC) (GLuint64 handle);
+typedef GLboolean ( * PFNGLISIMAGEHANDLERESIDENTARBPROC) (GLuint64 handle);
+typedef void ( * PFNGLVERTEXATTRIBL1UI64ARBPROC) (GLuint index, GLuint64EXT x);
+typedef void ( * PFNGLVERTEXATTRIBL1UI64VARBPROC) (GLuint index, const GLuint64EXT *v);
+typedef void ( * PFNGLGETVERTEXATTRIBLUI64VARBPROC) (GLuint index, GLenum pname, GLuint64EXT *params);
+# 2951 "/usr/include/GL/glext.h" 3 4
+struct _cl_context;
+struct _cl_event;
+
+
+typedef GLsync ( * PFNGLCREATESYNCFROMCLEVENTARBPROC) (struct _cl_context *context, struct _cl_event *event, GLbitfield flags);
+# 2980 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCLAMPCOLORARBPROC) (GLenum target, GLenum clamp);
+# 3004 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC) (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z, GLuint group_size_x, GLuint group_size_y, GLuint group_size_z);
+# 3032 "/usr/include/GL/glext.h" 3 4
+typedef void ( *GLDEBUGPROCARB)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+# 3055 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDEBUGMESSAGECONTROLARBPROC) (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint *ids, GLboolean enabled);
+typedef void ( * PFNGLDEBUGMESSAGEINSERTARBPROC) (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *buf);
+typedef void ( * PFNGLDEBUGMESSAGECALLBACKARBPROC) (GLDEBUGPROCARB callback, const void *userParam);
+typedef GLuint ( * PFNGLGETDEBUGMESSAGELOGARBPROC) (GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog);
+# 3111 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWBUFFERSARBPROC) (GLsizei n, const GLenum *bufs);
+
+
+
+
+
+
+
+typedef void ( * PFNGLBLENDEQUATIONIARBPROC) (GLuint buf, GLenum mode);
+typedef void ( * PFNGLBLENDEQUATIONSEPARATEIARBPROC) (GLuint buf, GLenum modeRGB, GLenum modeAlpha);
+typedef void ( * PFNGLBLENDFUNCIARBPROC) (GLuint buf, GLenum src, GLenum dst);
+typedef void ( * PFNGLBLENDFUNCSEPARATEIARBPROC) (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
+# 3141 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWARRAYSINSTANCEDARBPROC) (GLenum mode, GLint first, GLsizei count, GLsizei primcount);
+typedef void ( * PFNGLDRAWELEMENTSINSTANCEDARBPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
+# 3249 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMSTRINGARBPROC) (GLenum target, GLenum format, GLsizei len, const void *string);
+typedef void ( * PFNGLBINDPROGRAMARBPROC) (GLenum target, GLuint program);
+typedef void ( * PFNGLDELETEPROGRAMSARBPROC) (GLsizei n, const GLuint *programs);
+typedef void ( * PFNGLGENPROGRAMSARBPROC) (GLsizei n, GLuint *programs);
+typedef void ( * PFNGLPROGRAMENVPARAMETER4DARBPROC) (GLenum target, GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLPROGRAMENVPARAMETER4DVARBPROC) (GLenum target, GLuint index, const GLdouble *params);
+typedef void ( * PFNGLPROGRAMENVPARAMETER4FARBPROC) (GLenum target, GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLPROGRAMENVPARAMETER4FVARBPROC) (GLenum target, GLuint index, const GLfloat *params);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETER4DARBPROC) (GLenum target, GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETER4DVARBPROC) (GLenum target, GLuint index, const GLdouble *params);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETER4FARBPROC) (GLenum target, GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETER4FVARBPROC) (GLenum target, GLuint index, const GLfloat *params);
+typedef void ( * PFNGLGETPROGRAMENVPARAMETERDVARBPROC) (GLenum target, GLuint index, GLdouble *params);
+typedef void ( * PFNGLGETPROGRAMENVPARAMETERFVARBPROC) (GLenum target, GLuint index, GLfloat *params);
+typedef void ( * PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC) (GLenum target, GLuint index, GLdouble *params);
+typedef void ( * PFNGLGETPROGRAMLOCALPARAMETERFVARBPROC) (GLenum target, GLuint index, GLfloat *params);
+typedef void ( * PFNGLGETPROGRAMIVARBPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETPROGRAMSTRINGARBPROC) (GLenum target, GLenum pname, void *string);
+typedef GLboolean ( * PFNGLISPROGRAMARBPROC) (GLuint program);
+# 3338 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMPARAMETERIARBPROC) (GLuint program, GLenum pname, GLint value);
+typedef void ( * PFNGLFRAMEBUFFERTEXTUREARBPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURELAYERARBPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer);
+typedef void ( * PFNGLFRAMEBUFFERTEXTUREFACEARBPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLenum face);
+# 3362 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSPECIALIZESHADERARBPROC) (GLuint shader, const GLchar *pEntryPoint, GLuint numSpecializationConstants, const GLuint *pConstantIndex, const GLuint *pConstantValue);
+# 3385 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLUNIFORM1I64ARBPROC) (GLint location, GLint64 x);
+typedef void ( * PFNGLUNIFORM2I64ARBPROC) (GLint location, GLint64 x, GLint64 y);
+typedef void ( * PFNGLUNIFORM3I64ARBPROC) (GLint location, GLint64 x, GLint64 y, GLint64 z);
+typedef void ( * PFNGLUNIFORM4I64ARBPROC) (GLint location, GLint64 x, GLint64 y, GLint64 z, GLint64 w);
+typedef void ( * PFNGLUNIFORM1I64VARBPROC) (GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLUNIFORM2I64VARBPROC) (GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLUNIFORM3I64VARBPROC) (GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLUNIFORM4I64VARBPROC) (GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLUNIFORM1UI64ARBPROC) (GLint location, GLuint64 x);
+typedef void ( * PFNGLUNIFORM2UI64ARBPROC) (GLint location, GLuint64 x, GLuint64 y);
+typedef void ( * PFNGLUNIFORM3UI64ARBPROC) (GLint location, GLuint64 x, GLuint64 y, GLuint64 z);
+typedef void ( * PFNGLUNIFORM4UI64ARBPROC) (GLint location, GLuint64 x, GLuint64 y, GLuint64 z, GLuint64 w);
+typedef void ( * PFNGLUNIFORM1UI64VARBPROC) (GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLUNIFORM2UI64VARBPROC) (GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLUNIFORM3UI64VARBPROC) (GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLUNIFORM4UI64VARBPROC) (GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLGETUNIFORMI64VARBPROC) (GLuint program, GLint location, GLint64 *params);
+typedef void ( * PFNGLGETUNIFORMUI64VARBPROC) (GLuint program, GLint location, GLuint64 *params);
+typedef void ( * PFNGLGETNUNIFORMI64VARBPROC) (GLuint program, GLint location, GLsizei bufSize, GLint64 *params);
+typedef void ( * PFNGLGETNUNIFORMUI64VARBPROC) (GLuint program, GLint location, GLsizei bufSize, GLuint64 *params);
+typedef void ( * PFNGLPROGRAMUNIFORM1I64ARBPROC) (GLuint program, GLint location, GLint64 x);
+typedef void ( * PFNGLPROGRAMUNIFORM2I64ARBPROC) (GLuint program, GLint location, GLint64 x, GLint64 y);
+typedef void ( * PFNGLPROGRAMUNIFORM3I64ARBPROC) (GLuint program, GLint location, GLint64 x, GLint64 y, GLint64 z);
+typedef void ( * PFNGLPROGRAMUNIFORM4I64ARBPROC) (GLuint program, GLint location, GLint64 x, GLint64 y, GLint64 z, GLint64 w);
+typedef void ( * PFNGLPROGRAMUNIFORM1I64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2I64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3I64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4I64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORM1UI64ARBPROC) (GLuint program, GLint location, GLuint64 x);
+typedef void ( * PFNGLPROGRAMUNIFORM2UI64ARBPROC) (GLuint program, GLint location, GLuint64 x, GLuint64 y);
+typedef void ( * PFNGLPROGRAMUNIFORM3UI64ARBPROC) (GLuint program, GLint location, GLuint64 x, GLuint64 y, GLuint64 z);
+typedef void ( * PFNGLPROGRAMUNIFORM4UI64ARBPROC) (GLuint program, GLint location, GLuint64 x, GLuint64 y, GLuint64 z, GLuint64 w);
+typedef void ( * PFNGLPROGRAMUNIFORM1UI64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2UI64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3UI64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4UI64VARBPROC) (GLuint program, GLint location, GLsizei count, const GLuint64 *value);
+# 3463 "/usr/include/GL/glext.h" 3 4
+typedef khronos_uint16_t GLhalfARB;
+# 3609 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC) (GLenum mode, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+typedef void ( * PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC) (GLenum mode, GLenum type, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+# 3620 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXATTRIBDIVISORARBPROC) (GLuint index, GLuint divisor);
+# 3678 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCURRENTPALETTEMATRIXARBPROC) (GLint index);
+typedef void ( * PFNGLMATRIXINDEXUBVARBPROC) (GLint size, const GLubyte *indices);
+typedef void ( * PFNGLMATRIXINDEXUSVARBPROC) (GLint size, const GLushort *indices);
+typedef void ( * PFNGLMATRIXINDEXUIVARBPROC) (GLint size, const GLuint *indices);
+typedef void ( * PFNGLMATRIXINDEXPOINTERARBPROC) (GLint size, GLenum type, GLsizei stride, const void *pointer);
+# 3711 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSAMPLECOVERAGEARBPROC) (GLfloat value, GLboolean invert);
+# 3833 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGENQUERIESARBPROC) (GLsizei n, GLuint *ids);
+typedef void ( * PFNGLDELETEQUERIESARBPROC) (GLsizei n, const GLuint *ids);
+typedef GLboolean ( * PFNGLISQUERYARBPROC) (GLuint id);
+typedef void ( * PFNGLBEGINQUERYARBPROC) (GLenum target, GLuint id);
+typedef void ( * PFNGLENDQUERYARBPROC) (GLenum target);
+typedef void ( * PFNGLGETQUERYIVARBPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETQUERYOBJECTIVARBPROC) (GLuint id, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETQUERYOBJECTUIVARBPROC) (GLuint id, GLenum pname, GLuint *params);
+# 3861 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMAXSHADERCOMPILERTHREADSARBPROC) (GLuint count);
+# 3895 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPOINTPARAMETERFARBPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLPOINTPARAMETERFVARBPROC) (GLenum pname, const GLfloat *params);
+# 3942 "/usr/include/GL/glext.h" 3 4
+typedef GLenum ( * PFNGLGETGRAPHICSRESETSTATUSARBPROC) (void);
+typedef void ( * PFNGLGETNTEXIMAGEARBPROC) (GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, void *img);
+typedef void ( * PFNGLREADNPIXELSARBPROC) (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void *data);
+typedef void ( * PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC) (GLenum target, GLint lod, GLsizei bufSize, void *img);
+typedef void ( * PFNGLGETNUNIFORMFVARBPROC) (GLuint program, GLint location, GLsizei bufSize, GLfloat *params);
+typedef void ( * PFNGLGETNUNIFORMIVARBPROC) (GLuint program, GLint location, GLsizei bufSize, GLint *params);
+typedef void ( * PFNGLGETNUNIFORMUIVARBPROC) (GLuint program, GLint location, GLsizei bufSize, GLuint *params);
+typedef void ( * PFNGLGETNUNIFORMDVARBPROC) (GLuint program, GLint location, GLsizei bufSize, GLdouble *params);
+typedef void ( * PFNGLGETNMAPDVARBPROC) (GLenum target, GLenum query, GLsizei bufSize, GLdouble *v);
+typedef void ( * PFNGLGETNMAPFVARBPROC) (GLenum target, GLenum query, GLsizei bufSize, GLfloat *v);
+typedef void ( * PFNGLGETNMAPIVARBPROC) (GLenum target, GLenum query, GLsizei bufSize, GLint *v);
+typedef void ( * PFNGLGETNPIXELMAPFVARBPROC) (GLenum map, GLsizei bufSize, GLfloat *values);
+typedef void ( * PFNGLGETNPIXELMAPUIVARBPROC) (GLenum map, GLsizei bufSize, GLuint *values);
+typedef void ( * PFNGLGETNPIXELMAPUSVARBPROC) (GLenum map, GLsizei bufSize, GLushort *values);
+typedef void ( * PFNGLGETNPOLYGONSTIPPLEARBPROC) (GLsizei bufSize, GLubyte *pattern);
+typedef void ( * PFNGLGETNCOLORTABLEARBPROC) (GLenum target, GLenum format, GLenum type, GLsizei bufSize, void *table);
+typedef void ( * PFNGLGETNCONVOLUTIONFILTERARBPROC) (GLenum target, GLenum format, GLenum type, GLsizei bufSize, void *image);
+typedef void ( * PFNGLGETNSEPARABLEFILTERARBPROC) (GLenum target, GLenum format, GLenum type, GLsizei rowBufSize, void *row, GLsizei columnBufSize, void *column, void *span);
+typedef void ( * PFNGLGETNHISTOGRAMARBPROC) (GLenum target, GLboolean reset, GLenum format, GLenum type, GLsizei bufSize, void *values);
+typedef void ( * PFNGLGETNMINMAXARBPROC) (GLenum target, GLboolean reset, GLenum format, GLenum type, GLsizei bufSize, void *values);
+# 4000 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEBUFFERSAMPLELOCATIONSFVARBPROC) (GLenum target, GLuint start, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC) (GLuint framebuffer, GLuint start, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLEVALUATEDEPTHVALUESARBPROC) (void);
+# 4014 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMINSAMPLESHADINGARBPROC) (GLfloat value);
+# 4082 "/usr/include/GL/glext.h" 3 4
+typedef unsigned int GLhandleARB;
+
+typedef char GLcharARB;
+# 4119 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDELETEOBJECTARBPROC) (GLhandleARB obj);
+typedef GLhandleARB ( * PFNGLGETHANDLEARBPROC) (GLenum pname);
+typedef void ( * PFNGLDETACHOBJECTARBPROC) (GLhandleARB containerObj, GLhandleARB attachedObj);
+typedef GLhandleARB ( * PFNGLCREATESHADEROBJECTARBPROC) (GLenum shaderType);
+typedef void ( * PFNGLSHADERSOURCEARBPROC) (GLhandleARB shaderObj, GLsizei count, const GLcharARB **string, const GLint *length);
+typedef void ( * PFNGLCOMPILESHADERARBPROC) (GLhandleARB shaderObj);
+typedef GLhandleARB ( * PFNGLCREATEPROGRAMOBJECTARBPROC) (void);
+typedef void ( * PFNGLATTACHOBJECTARBPROC) (GLhandleARB containerObj, GLhandleARB obj);
+typedef void ( * PFNGLLINKPROGRAMARBPROC) (GLhandleARB programObj);
+typedef void ( * PFNGLUSEPROGRAMOBJECTARBPROC) (GLhandleARB programObj);
+typedef void ( * PFNGLVALIDATEPROGRAMARBPROC) (GLhandleARB programObj);
+typedef void ( * PFNGLUNIFORM1FARBPROC) (GLint location, GLfloat v0);
+typedef void ( * PFNGLUNIFORM2FARBPROC) (GLint location, GLfloat v0, GLfloat v1);
+typedef void ( * PFNGLUNIFORM3FARBPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
+typedef void ( * PFNGLUNIFORM4FARBPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
+typedef void ( * PFNGLUNIFORM1IARBPROC) (GLint location, GLint v0);
+typedef void ( * PFNGLUNIFORM2IARBPROC) (GLint location, GLint v0, GLint v1);
+typedef void ( * PFNGLUNIFORM3IARBPROC) (GLint location, GLint v0, GLint v1, GLint v2);
+typedef void ( * PFNGLUNIFORM4IARBPROC) (GLint location, GLint v0, GLint v1, GLint v2, GLint v3);
+typedef void ( * PFNGLUNIFORM1FVARBPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM2FVARBPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM3FVARBPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM4FVARBPROC) (GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLUNIFORM1IVARBPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORM2IVARBPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORM3IVARBPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORM4IVARBPROC) (GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLUNIFORMMATRIX2FVARBPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX3FVARBPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLUNIFORMMATRIX4FVARBPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLGETOBJECTPARAMETERFVARBPROC) (GLhandleARB obj, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETOBJECTPARAMETERIVARBPROC) (GLhandleARB obj, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETINFOLOGARBPROC) (GLhandleARB obj, GLsizei maxLength, GLsizei *length, GLcharARB *infoLog);
+typedef void ( * PFNGLGETATTACHEDOBJECTSARBPROC) (GLhandleARB containerObj, GLsizei maxCount, GLsizei *count, GLhandleARB *obj);
+typedef GLint ( * PFNGLGETUNIFORMLOCATIONARBPROC) (GLhandleARB programObj, const GLcharARB *name);
+typedef void ( * PFNGLGETACTIVEUNIFORMARBPROC) (GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei *length, GLint *size, GLenum *type, GLcharARB *name);
+typedef void ( * PFNGLGETUNIFORMFVARBPROC) (GLhandleARB programObj, GLint location, GLfloat *params);
+typedef void ( * PFNGLGETUNIFORMIVARBPROC) (GLhandleARB programObj, GLint location, GLint *params);
+typedef void ( * PFNGLGETSHADERSOURCEARBPROC) (GLhandleARB obj, GLsizei maxLength, GLsizei *length, GLcharARB *source);
+# 4243 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLNAMEDSTRINGARBPROC) (GLenum type, GLint namelen, const GLchar *name, GLint stringlen, const GLchar *string);
+typedef void ( * PFNGLDELETENAMEDSTRINGARBPROC) (GLint namelen, const GLchar *name);
+typedef void ( * PFNGLCOMPILESHADERINCLUDEARBPROC) (GLuint shader, GLsizei count, const GLchar *const*path, const GLint *length);
+typedef GLboolean ( * PFNGLISNAMEDSTRINGARBPROC) (GLint namelen, const GLchar *name);
+typedef void ( * PFNGLGETNAMEDSTRINGARBPROC) (GLint namelen, const GLchar *name, GLsizei bufSize, GLint *stringlen, GLchar *string);
+typedef void ( * PFNGLGETNAMEDSTRINGIVARBPROC) (GLint namelen, const GLchar *name, GLenum pname, GLint *params);
+# 4279 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBUFFERPAGECOMMITMENTARBPROC) (GLenum target, GLintptr offset, GLsizeiptr size, GLboolean commit);
+typedef void ( * PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC) (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit);
+typedef void ( * PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC) (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit);
+# 4302 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXPAGECOMMITMENTARBPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit);
+# 4348 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXBUFFERARBPROC) (GLenum target, GLenum internalformat, GLuint buffer);
+# 4375 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOMPRESSEDTEXIMAGE3DARBPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOMPRESSEDTEXIMAGE2DARBPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOMPRESSEDTEXIMAGE1DARBPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC) (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void *data);
+typedef void ( * PFNGLGETCOMPRESSEDTEXIMAGEARBPROC) (GLenum target, GLint level, void *img);
+# 4602 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLLOADTRANSPOSEMATRIXFARBPROC) (const GLfloat *m);
+typedef void ( * PFNGLLOADTRANSPOSEMATRIXDARBPROC) (const GLdouble *m);
+typedef void ( * PFNGLMULTTRANSPOSEMATRIXFARBPROC) (const GLfloat *m);
+typedef void ( * PFNGLMULTTRANSPOSEMATRIXDARBPROC) (const GLdouble *m);
+# 4678 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLWEIGHTBVARBPROC) (GLint size, const GLbyte *weights);
+typedef void ( * PFNGLWEIGHTSVARBPROC) (GLint size, const GLshort *weights);
+typedef void ( * PFNGLWEIGHTIVARBPROC) (GLint size, const GLint *weights);
+typedef void ( * PFNGLWEIGHTFVARBPROC) (GLint size, const GLfloat *weights);
+typedef void ( * PFNGLWEIGHTDVARBPROC) (GLint size, const GLdouble *weights);
+typedef void ( * PFNGLWEIGHTUBVARBPROC) (GLint size, const GLubyte *weights);
+typedef void ( * PFNGLWEIGHTUSVARBPROC) (GLint size, const GLushort *weights);
+typedef void ( * PFNGLWEIGHTUIVARBPROC) (GLint size, const GLuint *weights);
+typedef void ( * PFNGLWEIGHTPOINTERARBPROC) (GLint size, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLVERTEXBLENDARBPROC) (GLint count);
+# 4704 "/usr/include/GL/glext.h" 3 4
+typedef khronos_ssize_t GLsizeiptrARB;
+typedef khronos_intptr_t GLintptrARB;
+# 4737 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBINDBUFFERARBPROC) (GLenum target, GLuint buffer);
+typedef void ( * PFNGLDELETEBUFFERSARBPROC) (GLsizei n, const GLuint *buffers);
+typedef void ( * PFNGLGENBUFFERSARBPROC) (GLsizei n, GLuint *buffers);
+typedef GLboolean ( * PFNGLISBUFFERARBPROC) (GLuint buffer);
+typedef void ( * PFNGLBUFFERDATAARBPROC) (GLenum target, GLsizeiptrARB size, const void *data, GLenum usage);
+typedef void ( * PFNGLBUFFERSUBDATAARBPROC) (GLenum target, GLintptrARB offset, GLsizeiptrARB size, const void *data);
+typedef void ( * PFNGLGETBUFFERSUBDATAARBPROC) (GLenum target, GLintptrARB offset, GLsizeiptrARB size, void *data);
+typedef void *( * PFNGLMAPBUFFERARBPROC) (GLenum target, GLenum access);
+typedef GLboolean ( * PFNGLUNMAPBUFFERARBPROC) (GLenum target);
+typedef void ( * PFNGLGETBUFFERPARAMETERIVARBPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETBUFFERPOINTERVARBPROC) (GLenum target, GLenum pname, void **params);
+# 4781 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXATTRIB1DARBPROC) (GLuint index, GLdouble x);
+typedef void ( * PFNGLVERTEXATTRIB1DVARBPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB1FARBPROC) (GLuint index, GLfloat x);
+typedef void ( * PFNGLVERTEXATTRIB1FVARBPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB1SARBPROC) (GLuint index, GLshort x);
+typedef void ( * PFNGLVERTEXATTRIB1SVARBPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB2DARBPROC) (GLuint index, GLdouble x, GLdouble y);
+typedef void ( * PFNGLVERTEXATTRIB2DVARBPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB2FARBPROC) (GLuint index, GLfloat x, GLfloat y);
+typedef void ( * PFNGLVERTEXATTRIB2FVARBPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB2SARBPROC) (GLuint index, GLshort x, GLshort y);
+typedef void ( * PFNGLVERTEXATTRIB2SVARBPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB3DARBPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLVERTEXATTRIB3DVARBPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB3FARBPROC) (GLuint index, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLVERTEXATTRIB3FVARBPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB3SARBPROC) (GLuint index, GLshort x, GLshort y, GLshort z);
+typedef void ( * PFNGLVERTEXATTRIB3SVARBPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4NBVARBPROC) (GLuint index, const GLbyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4NIVARBPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIB4NSVARBPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4NUBARBPROC) (GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w);
+typedef void ( * PFNGLVERTEXATTRIB4NUBVARBPROC) (GLuint index, const GLubyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4NUIVARBPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIB4NUSVARBPROC) (GLuint index, const GLushort *v);
+typedef void ( * PFNGLVERTEXATTRIB4BVARBPROC) (GLuint index, const GLbyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4DARBPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLVERTEXATTRIB4DVARBPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB4FARBPROC) (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLVERTEXATTRIB4FVARBPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB4IVARBPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIB4SARBPROC) (GLuint index, GLshort x, GLshort y, GLshort z, GLshort w);
+typedef void ( * PFNGLVERTEXATTRIB4SVARBPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4UBVARBPROC) (GLuint index, const GLubyte *v);
+typedef void ( * PFNGLVERTEXATTRIB4UIVARBPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIB4USVARBPROC) (GLuint index, const GLushort *v);
+typedef void ( * PFNGLVERTEXATTRIBPOINTERARBPROC) (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLENABLEVERTEXATTRIBARRAYARBPROC) (GLuint index);
+typedef void ( * PFNGLDISABLEVERTEXATTRIBARRAYARBPROC) (GLuint index);
+typedef void ( * PFNGLGETVERTEXATTRIBDVARBPROC) (GLuint index, GLenum pname, GLdouble *params);
+typedef void ( * PFNGLGETVERTEXATTRIBFVARBPROC) (GLuint index, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETVERTEXATTRIBIVARBPROC) (GLuint index, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVERTEXATTRIBPOINTERVARBPROC) (GLuint index, GLenum pname, void **pointer);
+# 4880 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBINDATTRIBLOCATIONARBPROC) (GLhandleARB programObj, GLuint index, const GLcharARB *name);
+typedef void ( * PFNGLGETACTIVEATTRIBARBPROC) (GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei *length, GLint *size, GLenum *type, GLcharARB *name);
+typedef GLint ( * PFNGLGETATTRIBLOCATIONARBPROC) (GLhandleARB programObj, const GLcharARB *name);
+# 4904 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLWINDOWPOS2DARBPROC) (GLdouble x, GLdouble y);
+typedef void ( * PFNGLWINDOWPOS2DVARBPROC) (const GLdouble *v);
+typedef void ( * PFNGLWINDOWPOS2FARBPROC) (GLfloat x, GLfloat y);
+typedef void ( * PFNGLWINDOWPOS2FVARBPROC) (const GLfloat *v);
+typedef void ( * PFNGLWINDOWPOS2IARBPROC) (GLint x, GLint y);
+typedef void ( * PFNGLWINDOWPOS2IVARBPROC) (const GLint *v);
+typedef void ( * PFNGLWINDOWPOS2SARBPROC) (GLshort x, GLshort y);
+typedef void ( * PFNGLWINDOWPOS2SVARBPROC) (const GLshort *v);
+typedef void ( * PFNGLWINDOWPOS3DARBPROC) (GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLWINDOWPOS3DVARBPROC) (const GLdouble *v);
+typedef void ( * PFNGLWINDOWPOS3FARBPROC) (GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLWINDOWPOS3FVARBPROC) (const GLfloat *v);
+typedef void ( * PFNGLWINDOWPOS3IARBPROC) (GLint x, GLint y, GLint z);
+typedef void ( * PFNGLWINDOWPOS3IVARBPROC) (const GLint *v);
+typedef void ( * PFNGLWINDOWPOS3SARBPROC) (GLshort x, GLshort y, GLshort z);
+typedef void ( * PFNGLWINDOWPOS3SVARBPROC) (const GLshort *v);
+# 4957 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDBARRIERKHRPROC) (void);
+# 4985 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMAXSHADERCOMPILERTHREADSKHRPROC) (GLuint count);
+# 5058 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMULTITEXCOORD1BOESPROC) (GLenum texture, GLbyte s);
+typedef void ( * PFNGLMULTITEXCOORD1BVOESPROC) (GLenum texture, const GLbyte *coords);
+typedef void ( * PFNGLMULTITEXCOORD2BOESPROC) (GLenum texture, GLbyte s, GLbyte t);
+typedef void ( * PFNGLMULTITEXCOORD2BVOESPROC) (GLenum texture, const GLbyte *coords);
+typedef void ( * PFNGLMULTITEXCOORD3BOESPROC) (GLenum texture, GLbyte s, GLbyte t, GLbyte r);
+typedef void ( * PFNGLMULTITEXCOORD3BVOESPROC) (GLenum texture, const GLbyte *coords);
+typedef void ( * PFNGLMULTITEXCOORD4BOESPROC) (GLenum texture, GLbyte s, GLbyte t, GLbyte r, GLbyte q);
+typedef void ( * PFNGLMULTITEXCOORD4BVOESPROC) (GLenum texture, const GLbyte *coords);
+typedef void ( * PFNGLTEXCOORD1BOESPROC) (GLbyte s);
+typedef void ( * PFNGLTEXCOORD1BVOESPROC) (const GLbyte *coords);
+typedef void ( * PFNGLTEXCOORD2BOESPROC) (GLbyte s, GLbyte t);
+typedef void ( * PFNGLTEXCOORD2BVOESPROC) (const GLbyte *coords);
+typedef void ( * PFNGLTEXCOORD3BOESPROC) (GLbyte s, GLbyte t, GLbyte r);
+typedef void ( * PFNGLTEXCOORD3BVOESPROC) (const GLbyte *coords);
+typedef void ( * PFNGLTEXCOORD4BOESPROC) (GLbyte s, GLbyte t, GLbyte r, GLbyte q);
+typedef void ( * PFNGLTEXCOORD4BVOESPROC) (const GLbyte *coords);
+typedef void ( * PFNGLVERTEX2BOESPROC) (GLbyte x, GLbyte y);
+typedef void ( * PFNGLVERTEX2BVOESPROC) (const GLbyte *coords);
+typedef void ( * PFNGLVERTEX3BOESPROC) (GLbyte x, GLbyte y, GLbyte z);
+typedef void ( * PFNGLVERTEX3BVOESPROC) (const GLbyte *coords);
+typedef void ( * PFNGLVERTEX4BOESPROC) (GLbyte x, GLbyte y, GLbyte z, GLbyte w);
+typedef void ( * PFNGLVERTEX4BVOESPROC) (const GLbyte *coords);
+# 5122 "/usr/include/GL/glext.h" 3 4
+typedef khronos_int32_t GLfixed;
+
+typedef void ( * PFNGLALPHAFUNCXOESPROC) (GLenum func, GLfixed ref);
+typedef void ( * PFNGLCLEARCOLORXOESPROC) (GLfixed red, GLfixed green, GLfixed blue, GLfixed alpha);
+typedef void ( * PFNGLCLEARDEPTHXOESPROC) (GLfixed depth);
+typedef void ( * PFNGLCLIPPLANEXOESPROC) (GLenum plane, const GLfixed *equation);
+typedef void ( * PFNGLCOLOR4XOESPROC) (GLfixed red, GLfixed green, GLfixed blue, GLfixed alpha);
+typedef void ( * PFNGLDEPTHRANGEXOESPROC) (GLfixed n, GLfixed f);
+typedef void ( * PFNGLFOGXOESPROC) (GLenum pname, GLfixed param);
+typedef void ( * PFNGLFOGXVOESPROC) (GLenum pname, const GLfixed *param);
+typedef void ( * PFNGLFRUSTUMXOESPROC) (GLfixed l, GLfixed r, GLfixed b, GLfixed t, GLfixed n, GLfixed f);
+typedef void ( * PFNGLGETCLIPPLANEXOESPROC) (GLenum plane, GLfixed *equation);
+typedef void ( * PFNGLGETFIXEDVOESPROC) (GLenum pname, GLfixed *params);
+typedef void ( * PFNGLGETTEXENVXVOESPROC) (GLenum target, GLenum pname, GLfixed *params);
+typedef void ( * PFNGLGETTEXPARAMETERXVOESPROC) (GLenum target, GLenum pname, GLfixed *params);
+typedef void ( * PFNGLLIGHTMODELXOESPROC) (GLenum pname, GLfixed param);
+typedef void ( * PFNGLLIGHTMODELXVOESPROC) (GLenum pname, const GLfixed *param);
+typedef void ( * PFNGLLIGHTXOESPROC) (GLenum light, GLenum pname, GLfixed param);
+typedef void ( * PFNGLLIGHTXVOESPROC) (GLenum light, GLenum pname, const GLfixed *params);
+typedef void ( * PFNGLLINEWIDTHXOESPROC) (GLfixed width);
+typedef void ( * PFNGLLOADMATRIXXOESPROC) (const GLfixed *m);
+typedef void ( * PFNGLMATERIALXOESPROC) (GLenum face, GLenum pname, GLfixed param);
+typedef void ( * PFNGLMATERIALXVOESPROC) (GLenum face, GLenum pname, const GLfixed *param);
+typedef void ( * PFNGLMULTMATRIXXOESPROC) (const GLfixed *m);
+typedef void ( * PFNGLMULTITEXCOORD4XOESPROC) (GLenum texture, GLfixed s, GLfixed t, GLfixed r, GLfixed q);
+typedef void ( * PFNGLNORMAL3XOESPROC) (GLfixed nx, GLfixed ny, GLfixed nz);
+typedef void ( * PFNGLORTHOXOESPROC) (GLfixed l, GLfixed r, GLfixed b, GLfixed t, GLfixed n, GLfixed f);
+typedef void ( * PFNGLPOINTPARAMETERXVOESPROC) (GLenum pname, const GLfixed *params);
+typedef void ( * PFNGLPOINTSIZEXOESPROC) (GLfixed size);
+typedef void ( * PFNGLPOLYGONOFFSETXOESPROC) (GLfixed factor, GLfixed units);
+typedef void ( * PFNGLROTATEXOESPROC) (GLfixed angle, GLfixed x, GLfixed y, GLfixed z);
+typedef void ( * PFNGLSCALEXOESPROC) (GLfixed x, GLfixed y, GLfixed z);
+typedef void ( * PFNGLTEXENVXOESPROC) (GLenum target, GLenum pname, GLfixed param);
+typedef void ( * PFNGLTEXENVXVOESPROC) (GLenum target, GLenum pname, const GLfixed *params);
+typedef void ( * PFNGLTEXPARAMETERXOESPROC) (GLenum target, GLenum pname, GLfixed param);
+typedef void ( * PFNGLTEXPARAMETERXVOESPROC) (GLenum target, GLenum pname, const GLfixed *params);
+typedef void ( * PFNGLTRANSLATEXOESPROC) (GLfixed x, GLfixed y, GLfixed z);
+typedef void ( * PFNGLACCUMXOESPROC) (GLenum op, GLfixed value);
+typedef void ( * PFNGLBITMAPXOESPROC) (GLsizei width, GLsizei height, GLfixed xorig, GLfixed yorig, GLfixed xmove, GLfixed ymove, const GLubyte *bitmap);
+typedef void ( * PFNGLBLENDCOLORXOESPROC) (GLfixed red, GLfixed green, GLfixed blue, GLfixed alpha);
+typedef void ( * PFNGLCLEARACCUMXOESPROC) (GLfixed red, GLfixed green, GLfixed blue, GLfixed alpha);
+typedef void ( * PFNGLCOLOR3XOESPROC) (GLfixed red, GLfixed green, GLfixed blue);
+typedef void ( * PFNGLCOLOR3XVOESPROC) (const GLfixed *components);
+typedef void ( * PFNGLCOLOR4XVOESPROC) (const GLfixed *components);
+typedef void ( * PFNGLCONVOLUTIONPARAMETERXOESPROC) (GLenum target, GLenum pname, GLfixed param);
+typedef void ( * PFNGLCONVOLUTIONPARAMETERXVOESPROC) (GLenum target, GLenum pname, const GLfixed *params);
+typedef void ( * PFNGLEVALCOORD1XOESPROC) (GLfixed u);
+typedef void ( * PFNGLEVALCOORD1XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLEVALCOORD2XOESPROC) (GLfixed u, GLfixed v);
+typedef void ( * PFNGLEVALCOORD2XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLFEEDBACKBUFFERXOESPROC) (GLsizei n, GLenum type, const GLfixed *buffer);
+typedef void ( * PFNGLGETCONVOLUTIONPARAMETERXVOESPROC) (GLenum target, GLenum pname, GLfixed *params);
+typedef void ( * PFNGLGETHISTOGRAMPARAMETERXVOESPROC) (GLenum target, GLenum pname, GLfixed *params);
+typedef void ( * PFNGLGETLIGHTXOESPROC) (GLenum light, GLenum pname, GLfixed *params);
+typedef void ( * PFNGLGETMAPXVOESPROC) (GLenum target, GLenum query, GLfixed *v);
+typedef void ( * PFNGLGETMATERIALXOESPROC) (GLenum face, GLenum pname, GLfixed param);
+typedef void ( * PFNGLGETPIXELMAPXVPROC) (GLenum map, GLint size, GLfixed *values);
+typedef void ( * PFNGLGETTEXGENXVOESPROC) (GLenum coord, GLenum pname, GLfixed *params);
+typedef void ( * PFNGLGETTEXLEVELPARAMETERXVOESPROC) (GLenum target, GLint level, GLenum pname, GLfixed *params);
+typedef void ( * PFNGLINDEXXOESPROC) (GLfixed component);
+typedef void ( * PFNGLINDEXXVOESPROC) (const GLfixed *component);
+typedef void ( * PFNGLLOADTRANSPOSEMATRIXXOESPROC) (const GLfixed *m);
+typedef void ( * PFNGLMAP1XOESPROC) (GLenum target, GLfixed u1, GLfixed u2, GLint stride, GLint order, GLfixed points);
+typedef void ( * PFNGLMAP2XOESPROC) (GLenum target, GLfixed u1, GLfixed u2, GLint ustride, GLint uorder, GLfixed v1, GLfixed v2, GLint vstride, GLint vorder, GLfixed points);
+typedef void ( * PFNGLMAPGRID1XOESPROC) (GLint n, GLfixed u1, GLfixed u2);
+typedef void ( * PFNGLMAPGRID2XOESPROC) (GLint n, GLfixed u1, GLfixed u2, GLfixed v1, GLfixed v2);
+typedef void ( * PFNGLMULTTRANSPOSEMATRIXXOESPROC) (const GLfixed *m);
+typedef void ( * PFNGLMULTITEXCOORD1XOESPROC) (GLenum texture, GLfixed s);
+typedef void ( * PFNGLMULTITEXCOORD1XVOESPROC) (GLenum texture, const GLfixed *coords);
+typedef void ( * PFNGLMULTITEXCOORD2XOESPROC) (GLenum texture, GLfixed s, GLfixed t);
+typedef void ( * PFNGLMULTITEXCOORD2XVOESPROC) (GLenum texture, const GLfixed *coords);
+typedef void ( * PFNGLMULTITEXCOORD3XOESPROC) (GLenum texture, GLfixed s, GLfixed t, GLfixed r);
+typedef void ( * PFNGLMULTITEXCOORD3XVOESPROC) (GLenum texture, const GLfixed *coords);
+typedef void ( * PFNGLMULTITEXCOORD4XVOESPROC) (GLenum texture, const GLfixed *coords);
+typedef void ( * PFNGLNORMAL3XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLPASSTHROUGHXOESPROC) (GLfixed token);
+typedef void ( * PFNGLPIXELMAPXPROC) (GLenum map, GLint size, const GLfixed *values);
+typedef void ( * PFNGLPIXELSTOREXPROC) (GLenum pname, GLfixed param);
+typedef void ( * PFNGLPIXELTRANSFERXOESPROC) (GLenum pname, GLfixed param);
+typedef void ( * PFNGLPIXELZOOMXOESPROC) (GLfixed xfactor, GLfixed yfactor);
+typedef void ( * PFNGLPRIORITIZETEXTURESXOESPROC) (GLsizei n, const GLuint *textures, const GLfixed *priorities);
+typedef void ( * PFNGLRASTERPOS2XOESPROC) (GLfixed x, GLfixed y);
+typedef void ( * PFNGLRASTERPOS2XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLRASTERPOS3XOESPROC) (GLfixed x, GLfixed y, GLfixed z);
+typedef void ( * PFNGLRASTERPOS3XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLRASTERPOS4XOESPROC) (GLfixed x, GLfixed y, GLfixed z, GLfixed w);
+typedef void ( * PFNGLRASTERPOS4XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLRECTXOESPROC) (GLfixed x1, GLfixed y1, GLfixed x2, GLfixed y2);
+typedef void ( * PFNGLRECTXVOESPROC) (const GLfixed *v1, const GLfixed *v2);
+typedef void ( * PFNGLTEXCOORD1XOESPROC) (GLfixed s);
+typedef void ( * PFNGLTEXCOORD1XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLTEXCOORD2XOESPROC) (GLfixed s, GLfixed t);
+typedef void ( * PFNGLTEXCOORD2XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLTEXCOORD3XOESPROC) (GLfixed s, GLfixed t, GLfixed r);
+typedef void ( * PFNGLTEXCOORD3XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLTEXCOORD4XOESPROC) (GLfixed s, GLfixed t, GLfixed r, GLfixed q);
+typedef void ( * PFNGLTEXCOORD4XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLTEXGENXOESPROC) (GLenum coord, GLenum pname, GLfixed param);
+typedef void ( * PFNGLTEXGENXVOESPROC) (GLenum coord, GLenum pname, const GLfixed *params);
+typedef void ( * PFNGLVERTEX2XOESPROC) (GLfixed x);
+typedef void ( * PFNGLVERTEX2XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLVERTEX3XOESPROC) (GLfixed x, GLfixed y);
+typedef void ( * PFNGLVERTEX3XVOESPROC) (const GLfixed *coords);
+typedef void ( * PFNGLVERTEX4XOESPROC) (GLfixed x, GLfixed y, GLfixed z);
+typedef void ( * PFNGLVERTEX4XVOESPROC) (const GLfixed *coords);
+# 5336 "/usr/include/GL/glext.h" 3 4
+typedef GLbitfield ( * PFNGLQUERYMATRIXXOESPROC) (GLfixed *mantissa, GLint *exponent);
+# 5350 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCLEARDEPTHFOESPROC) (GLclampf depth);
+typedef void ( * PFNGLCLIPPLANEFOESPROC) (GLenum plane, const GLfloat *equation);
+typedef void ( * PFNGLDEPTHRANGEFOESPROC) (GLclampf n, GLclampf f);
+typedef void ( * PFNGLFRUSTUMFOESPROC) (GLfloat l, GLfloat r, GLfloat b, GLfloat t, GLfloat n, GLfloat f);
+typedef void ( * PFNGLGETCLIPPLANEFOESPROC) (GLenum plane, GLfloat *equation);
+typedef void ( * PFNGLORTHOFOESPROC) (GLfloat l, GLfloat r, GLfloat b, GLfloat t, GLfloat n, GLfloat f);
+# 5376 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTBUFFERMASK3DFXPROC) (GLuint mask);
+# 5400 "/usr/include/GL/glext.h" 3 4
+typedef void ( *GLDEBUGPROCAMD)(GLuint id,GLenum category,GLenum severity,GLsizei length,const GLchar *message,void *userParam);
+# 5415 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDEBUGMESSAGEENABLEAMDPROC) (GLenum category, GLenum severity, GLsizei count, const GLuint *ids, GLboolean enabled);
+typedef void ( * PFNGLDEBUGMESSAGEINSERTAMDPROC) (GLenum category, GLenum severity, GLuint id, GLsizei length, const GLchar *buf);
+typedef void ( * PFNGLDEBUGMESSAGECALLBACKAMDPROC) (GLDEBUGPROCAMD callback, void *userParam);
+typedef GLuint ( * PFNGLGETDEBUGMESSAGELOGAMDPROC) (GLuint count, GLsizei bufsize, GLenum *categories, GLuint *severities, GLuint *ids, GLsizei *lengths, GLchar *message);
+# 5435 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDFUNCINDEXEDAMDPROC) (GLuint buf, GLenum src, GLenum dst);
+typedef void ( * PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC) (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
+typedef void ( * PFNGLBLENDEQUATIONINDEXEDAMDPROC) (GLuint buf, GLenum mode);
+typedef void ( * PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC) (GLuint buf, GLenum modeRGB, GLenum modeAlpha);
+# 5455 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC) (GLenum target, GLsizei samples, GLsizei storageSamples, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC) (GLuint renderbuffer, GLsizei samples, GLsizei storageSamples, GLenum internalformat, GLsizei width, GLsizei height);
+# 5469 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC) (GLenum target, GLuint numsamples, GLuint pixelindex, const GLfloat *values);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC) (GLuint framebuffer, GLuint numsamples, GLuint pixelindex, const GLfloat *values);
+typedef void ( * PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC) (GLenum target, GLenum pname, GLuint numsamples, GLuint pixelindex, GLsizei size, GLfloat *values);
+typedef void ( * PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC) (GLuint framebuffer, GLenum pname, GLuint numsamples, GLuint pixelindex, GLsizei size, GLfloat *values);
+# 5508 "/usr/include/GL/glext.h" 3 4
+typedef khronos_int64_t GLint64EXT;
+# 5533 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLUNIFORM1I64NVPROC) (GLint location, GLint64EXT x);
+typedef void ( * PFNGLUNIFORM2I64NVPROC) (GLint location, GLint64EXT x, GLint64EXT y);
+typedef void ( * PFNGLUNIFORM3I64NVPROC) (GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z);
+typedef void ( * PFNGLUNIFORM4I64NVPROC) (GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z, GLint64EXT w);
+typedef void ( * PFNGLUNIFORM1I64VNVPROC) (GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLUNIFORM2I64VNVPROC) (GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLUNIFORM3I64VNVPROC) (GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLUNIFORM4I64VNVPROC) (GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLUNIFORM1UI64NVPROC) (GLint location, GLuint64EXT x);
+typedef void ( * PFNGLUNIFORM2UI64NVPROC) (GLint location, GLuint64EXT x, GLuint64EXT y);
+typedef void ( * PFNGLUNIFORM3UI64NVPROC) (GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z);
+typedef void ( * PFNGLUNIFORM4UI64NVPROC) (GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z, GLuint64EXT w);
+typedef void ( * PFNGLUNIFORM1UI64VNVPROC) (GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLUNIFORM2UI64VNVPROC) (GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLUNIFORM3UI64VNVPROC) (GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLUNIFORM4UI64VNVPROC) (GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLGETUNIFORMI64VNVPROC) (GLuint program, GLint location, GLint64EXT *params);
+typedef void ( * PFNGLGETUNIFORMUI64VNVPROC) (GLuint program, GLint location, GLuint64EXT *params);
+typedef void ( * PFNGLPROGRAMUNIFORM1I64NVPROC) (GLuint program, GLint location, GLint64EXT x);
+typedef void ( * PFNGLPROGRAMUNIFORM2I64NVPROC) (GLuint program, GLint location, GLint64EXT x, GLint64EXT y);
+typedef void ( * PFNGLPROGRAMUNIFORM3I64NVPROC) (GLuint program, GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z);
+typedef void ( * PFNGLPROGRAMUNIFORM4I64NVPROC) (GLuint program, GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z, GLint64EXT w);
+typedef void ( * PFNGLPROGRAMUNIFORM1I64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2I64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3I64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4I64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORM1UI64NVPROC) (GLuint program, GLint location, GLuint64EXT x);
+typedef void ( * PFNGLPROGRAMUNIFORM2UI64NVPROC) (GLuint program, GLint location, GLuint64EXT x, GLuint64EXT y);
+typedef void ( * PFNGLPROGRAMUNIFORM3UI64NVPROC) (GLuint program, GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z);
+typedef void ( * PFNGLPROGRAMUNIFORM4UI64NVPROC) (GLuint program, GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z, GLuint64EXT w);
+typedef void ( * PFNGLPROGRAMUNIFORM1UI64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2UI64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3UI64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4UI64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
+# 5609 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXATTRIBPARAMETERIAMDPROC) (GLuint index, GLenum pname, GLint param);
+
+
+
+
+
+
+
+typedef void ( * PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC) (GLenum mode, const void *indirect, GLsizei primcount, GLsizei stride);
+typedef void ( * PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC) (GLenum mode, GLenum type, const void *indirect, GLsizei primcount, GLsizei stride);
+# 5632 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGENNAMESAMDPROC) (GLenum identifier, GLuint num, GLuint *names);
+typedef void ( * PFNGLDELETENAMESAMDPROC) (GLenum identifier, GLuint num, const GLuint *names);
+typedef GLboolean ( * PFNGLISNAMEAMDPROC) (GLenum identifier, GLuint name);
+# 5650 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLQUERYOBJECTPARAMETERUIAMDPROC) (GLenum target, GLuint id, GLenum pname, GLuint param);
+# 5665 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETPERFMONITORGROUPSAMDPROC) (GLint *numGroups, GLsizei groupsSize, GLuint *groups);
+typedef void ( * PFNGLGETPERFMONITORCOUNTERSAMDPROC) (GLuint group, GLint *numCounters, GLint *maxActiveCounters, GLsizei counterSize, GLuint *counters);
+typedef void ( * PFNGLGETPERFMONITORGROUPSTRINGAMDPROC) (GLuint group, GLsizei bufSize, GLsizei *length, GLchar *groupString);
+typedef void ( * PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC) (GLuint group, GLuint counter, GLsizei bufSize, GLsizei *length, GLchar *counterString);
+typedef void ( * PFNGLGETPERFMONITORCOUNTERINFOAMDPROC) (GLuint group, GLuint counter, GLenum pname, void *data);
+typedef void ( * PFNGLGENPERFMONITORSAMDPROC) (GLsizei n, GLuint *monitors);
+typedef void ( * PFNGLDELETEPERFMONITORSAMDPROC) (GLsizei n, GLuint *monitors);
+typedef void ( * PFNGLSELECTPERFMONITORCOUNTERSAMDPROC) (GLuint monitor, GLboolean enable, GLuint group, GLint numCounters, GLuint *counterList);
+typedef void ( * PFNGLBEGINPERFMONITORAMDPROC) (GLuint monitor);
+typedef void ( * PFNGLENDPERFMONITORAMDPROC) (GLuint monitor);
+typedef void ( * PFNGLGETPERFMONITORCOUNTERDATAAMDPROC) (GLuint monitor, GLenum pname, GLsizei dataSize, GLuint *data, GLint *bytesWritten);
+# 5705 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSETMULTISAMPLEFVAMDPROC) (GLenum pname, GLuint index, const GLfloat *val);
+# 5754 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXSTORAGESPARSEAMDPROC) (GLenum target, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLsizei layers, GLbitfield flags);
+typedef void ( * PFNGLTEXTURESTORAGESPARSEAMDPROC) (GLuint texture, GLenum target, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLsizei layers, GLbitfield flags);
+# 5768 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSTENCILOPVALUEAMDPROC) (GLenum face, GLuint value);
+# 5804 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTESSELLATIONFACTORAMDPROC) (GLfloat factor);
+typedef void ( * PFNGLTESSELLATIONMODEAMDPROC) (GLenum mode);
+# 5831 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLELEMENTPOINTERAPPLEPROC) (GLenum type, const void *pointer);
+typedef void ( * PFNGLDRAWELEMENTARRAYAPPLEPROC) (GLenum mode, GLint first, GLsizei count);
+typedef void ( * PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC) (GLenum mode, GLuint start, GLuint end, GLint first, GLsizei count);
+typedef void ( * PFNGLMULTIDRAWELEMENTARRAYAPPLEPROC) (GLenum mode, const GLint *first, const GLsizei *count, GLsizei primcount);
+typedef void ( * PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC) (GLenum mode, GLuint start, GLuint end, const GLint *first, const GLsizei *count, GLsizei primcount);
+# 5849 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGENFENCESAPPLEPROC) (GLsizei n, GLuint *fences);
+typedef void ( * PFNGLDELETEFENCESAPPLEPROC) (GLsizei n, const GLuint *fences);
+typedef void ( * PFNGLSETFENCEAPPLEPROC) (GLuint fence);
+typedef GLboolean ( * PFNGLISFENCEAPPLEPROC) (GLuint fence);
+typedef GLboolean ( * PFNGLTESTFENCEAPPLEPROC) (GLuint fence);
+typedef void ( * PFNGLFINISHFENCEAPPLEPROC) (GLuint fence);
+typedef GLboolean ( * PFNGLTESTOBJECTAPPLEPROC) (GLenum object, GLuint name);
+typedef void ( * PFNGLFINISHOBJECTAPPLEPROC) (GLenum object, GLint name);
+# 5891 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBUFFERPARAMETERIAPPLEPROC) (GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC) (GLenum target, GLintptr offset, GLsizeiptr size);
+# 5907 "/usr/include/GL/glext.h" 3 4
+typedef GLenum ( * PFNGLOBJECTPURGEABLEAPPLEPROC) (GLenum objectType, GLuint name, GLenum option);
+typedef GLenum ( * PFNGLOBJECTUNPURGEABLEAPPLEPROC) (GLenum objectType, GLuint name, GLenum option);
+typedef void ( * PFNGLGETOBJECTPARAMETERIVAPPLEPROC) (GLenum objectType, GLuint name, GLenum pname, GLint *params);
+# 5944 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXTURERANGEAPPLEPROC) (GLenum target, GLsizei length, const void *pointer);
+typedef void ( * PFNGLGETTEXPARAMETERPOINTERVAPPLEPROC) (GLenum target, GLenum pname, void **params);
+# 5960 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBINDVERTEXARRAYAPPLEPROC) (GLuint array);
+typedef void ( * PFNGLDELETEVERTEXARRAYSAPPLEPROC) (GLsizei n, const GLuint *arrays);
+typedef void ( * PFNGLGENVERTEXARRAYSAPPLEPROC) (GLsizei n, GLuint *arrays);
+typedef GLboolean ( * PFNGLISVERTEXARRAYAPPLEPROC) (GLuint array);
+# 5979 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXARRAYRANGEAPPLEPROC) (GLsizei length, void *pointer);
+typedef void ( * PFNGLFLUSHVERTEXARRAYRANGEAPPLEPROC) (GLsizei length, void *pointer);
+typedef void ( * PFNGLVERTEXARRAYPARAMETERIAPPLEPROC) (GLenum pname, GLint param);
+# 6001 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLENABLEVERTEXATTRIBAPPLEPROC) (GLuint index, GLenum pname);
+typedef void ( * PFNGLDISABLEVERTEXATTRIBAPPLEPROC) (GLuint index, GLenum pname);
+typedef GLboolean ( * PFNGLISVERTEXATTRIBENABLEDAPPLEPROC) (GLuint index, GLenum pname);
+typedef void ( * PFNGLMAPVERTEXATTRIB1DAPPLEPROC) (GLuint index, GLuint size, GLdouble u1, GLdouble u2, GLint stride, GLint order, const GLdouble *points);
+typedef void ( * PFNGLMAPVERTEXATTRIB1FAPPLEPROC) (GLuint index, GLuint size, GLfloat u1, GLfloat u2, GLint stride, GLint order, const GLfloat *points);
+typedef void ( * PFNGLMAPVERTEXATTRIB2DAPPLEPROC) (GLuint index, GLuint size, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, const GLdouble *points);
+typedef void ( * PFNGLMAPVERTEXATTRIB2FAPPLEPROC) (GLuint index, GLuint size, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, const GLfloat *points);
+# 6043 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWBUFFERSATIPROC) (GLsizei n, const GLenum *bufs);
+# 6054 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLELEMENTPOINTERATIPROC) (GLenum type, const void *pointer);
+typedef void ( * PFNGLDRAWELEMENTARRAYATIPROC) (GLenum mode, GLsizei count);
+typedef void ( * PFNGLDRAWRANGEELEMENTARRAYATIPROC) (GLenum mode, GLuint start, GLuint end, GLsizei count);
+# 6074 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXBUMPPARAMETERIVATIPROC) (GLenum pname, const GLint *param);
+typedef void ( * PFNGLTEXBUMPPARAMETERFVATIPROC) (GLenum pname, const GLfloat *param);
+typedef void ( * PFNGLGETTEXBUMPPARAMETERIVATIPROC) (GLenum pname, GLint *param);
+typedef void ( * PFNGLGETTEXBUMPPARAMETERFVATIPROC) (GLenum pname, GLfloat *param);
+# 6192 "/usr/include/GL/glext.h" 3 4
+typedef GLuint ( * PFNGLGENFRAGMENTSHADERSATIPROC) (GLuint range);
+typedef void ( * PFNGLBINDFRAGMENTSHADERATIPROC) (GLuint id);
+typedef void ( * PFNGLDELETEFRAGMENTSHADERATIPROC) (GLuint id);
+typedef void ( * PFNGLBEGINFRAGMENTSHADERATIPROC) (void);
+typedef void ( * PFNGLENDFRAGMENTSHADERATIPROC) (void);
+typedef void ( * PFNGLPASSTEXCOORDATIPROC) (GLuint dst, GLuint coord, GLenum swizzle);
+typedef void ( * PFNGLSAMPLEMAPATIPROC) (GLuint dst, GLuint interp, GLenum swizzle);
+typedef void ( * PFNGLCOLORFRAGMENTOP1ATIPROC) (GLenum op, GLuint dst, GLuint dstMask, GLuint dstMod, GLuint arg1, GLuint arg1Rep, GLuint arg1Mod);
+typedef void ( * PFNGLCOLORFRAGMENTOP2ATIPROC) (GLenum op, GLuint dst, GLuint dstMask, GLuint dstMod, GLuint arg1, GLuint arg1Rep, GLuint arg1Mod, GLuint arg2, GLuint arg2Rep, GLuint arg2Mod);
+typedef void ( * PFNGLCOLORFRAGMENTOP3ATIPROC) (GLenum op, GLuint dst, GLuint dstMask, GLuint dstMod, GLuint arg1, GLuint arg1Rep, GLuint arg1Mod, GLuint arg2, GLuint arg2Rep, GLuint arg2Mod, GLuint arg3, GLuint arg3Rep, GLuint arg3Mod);
+typedef void ( * PFNGLALPHAFRAGMENTOP1ATIPROC) (GLenum op, GLuint dst, GLuint dstMod, GLuint arg1, GLuint arg1Rep, GLuint arg1Mod);
+typedef void ( * PFNGLALPHAFRAGMENTOP2ATIPROC) (GLenum op, GLuint dst, GLuint dstMod, GLuint arg1, GLuint arg1Rep, GLuint arg1Mod, GLuint arg2, GLuint arg2Rep, GLuint arg2Mod);
+typedef void ( * PFNGLALPHAFRAGMENTOP3ATIPROC) (GLenum op, GLuint dst, GLuint dstMod, GLuint arg1, GLuint arg1Rep, GLuint arg1Mod, GLuint arg2, GLuint arg2Rep, GLuint arg2Mod, GLuint arg3, GLuint arg3Rep, GLuint arg3Mod);
+typedef void ( * PFNGLSETFRAGMENTSHADERCONSTANTATIPROC) (GLuint dst, const GLfloat *value);
+# 6226 "/usr/include/GL/glext.h" 3 4
+typedef void *( * PFNGLMAPOBJECTBUFFERATIPROC) (GLuint buffer);
+typedef void ( * PFNGLUNMAPOBJECTBUFFERATIPROC) (GLuint buffer);
+# 6258 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPNTRIANGLESIATIPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLPNTRIANGLESFATIPROC) (GLenum pname, GLfloat param);
+# 6272 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSTENCILOPSEPARATEATIPROC) (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass);
+typedef void ( * PFNGLSTENCILFUNCSEPARATEATIPROC) (GLenum frontfunc, GLenum backfunc, GLint ref, GLuint mask);
+# 6324 "/usr/include/GL/glext.h" 3 4
+typedef GLuint ( * PFNGLNEWOBJECTBUFFERATIPROC) (GLsizei size, const void *pointer, GLenum usage);
+typedef GLboolean ( * PFNGLISOBJECTBUFFERATIPROC) (GLuint buffer);
+typedef void ( * PFNGLUPDATEOBJECTBUFFERATIPROC) (GLuint buffer, GLuint offset, GLsizei size, const void *pointer, GLenum preserve);
+typedef void ( * PFNGLGETOBJECTBUFFERFVATIPROC) (GLuint buffer, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETOBJECTBUFFERIVATIPROC) (GLuint buffer, GLenum pname, GLint *params);
+typedef void ( * PFNGLFREEOBJECTBUFFERATIPROC) (GLuint buffer);
+typedef void ( * PFNGLARRAYOBJECTATIPROC) (GLenum array, GLint size, GLenum type, GLsizei stride, GLuint buffer, GLuint offset);
+typedef void ( * PFNGLGETARRAYOBJECTFVATIPROC) (GLenum array, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETARRAYOBJECTIVATIPROC) (GLenum array, GLenum pname, GLint *params);
+typedef void ( * PFNGLVARIANTARRAYOBJECTATIPROC) (GLuint id, GLenum type, GLsizei stride, GLuint buffer, GLuint offset);
+typedef void ( * PFNGLGETVARIANTARRAYOBJECTFVATIPROC) (GLuint id, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETVARIANTARRAYOBJECTIVATIPROC) (GLuint id, GLenum pname, GLint *params);
+# 6354 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXATTRIBARRAYOBJECTATIPROC) (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLuint buffer, GLuint offset);
+typedef void ( * PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC) (GLuint index, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC) (GLuint index, GLenum pname, GLint *params);
+# 6376 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXSTREAM1SATIPROC) (GLenum stream, GLshort x);
+typedef void ( * PFNGLVERTEXSTREAM1SVATIPROC) (GLenum stream, const GLshort *coords);
+typedef void ( * PFNGLVERTEXSTREAM1IATIPROC) (GLenum stream, GLint x);
+typedef void ( * PFNGLVERTEXSTREAM1IVATIPROC) (GLenum stream, const GLint *coords);
+typedef void ( * PFNGLVERTEXSTREAM1FATIPROC) (GLenum stream, GLfloat x);
+typedef void ( * PFNGLVERTEXSTREAM1FVATIPROC) (GLenum stream, const GLfloat *coords);
+typedef void ( * PFNGLVERTEXSTREAM1DATIPROC) (GLenum stream, GLdouble x);
+typedef void ( * PFNGLVERTEXSTREAM1DVATIPROC) (GLenum stream, const GLdouble *coords);
+typedef void ( * PFNGLVERTEXSTREAM2SATIPROC) (GLenum stream, GLshort x, GLshort y);
+typedef void ( * PFNGLVERTEXSTREAM2SVATIPROC) (GLenum stream, const GLshort *coords);
+typedef void ( * PFNGLVERTEXSTREAM2IATIPROC) (GLenum stream, GLint x, GLint y);
+typedef void ( * PFNGLVERTEXSTREAM2IVATIPROC) (GLenum stream, const GLint *coords);
+typedef void ( * PFNGLVERTEXSTREAM2FATIPROC) (GLenum stream, GLfloat x, GLfloat y);
+typedef void ( * PFNGLVERTEXSTREAM2FVATIPROC) (GLenum stream, const GLfloat *coords);
+typedef void ( * PFNGLVERTEXSTREAM2DATIPROC) (GLenum stream, GLdouble x, GLdouble y);
+typedef void ( * PFNGLVERTEXSTREAM2DVATIPROC) (GLenum stream, const GLdouble *coords);
+typedef void ( * PFNGLVERTEXSTREAM3SATIPROC) (GLenum stream, GLshort x, GLshort y, GLshort z);
+typedef void ( * PFNGLVERTEXSTREAM3SVATIPROC) (GLenum stream, const GLshort *coords);
+typedef void ( * PFNGLVERTEXSTREAM3IATIPROC) (GLenum stream, GLint x, GLint y, GLint z);
+typedef void ( * PFNGLVERTEXSTREAM3IVATIPROC) (GLenum stream, const GLint *coords);
+typedef void ( * PFNGLVERTEXSTREAM3FATIPROC) (GLenum stream, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLVERTEXSTREAM3FVATIPROC) (GLenum stream, const GLfloat *coords);
+typedef void ( * PFNGLVERTEXSTREAM3DATIPROC) (GLenum stream, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLVERTEXSTREAM3DVATIPROC) (GLenum stream, const GLdouble *coords);
+typedef void ( * PFNGLVERTEXSTREAM4SATIPROC) (GLenum stream, GLshort x, GLshort y, GLshort z, GLshort w);
+typedef void ( * PFNGLVERTEXSTREAM4SVATIPROC) (GLenum stream, const GLshort *coords);
+typedef void ( * PFNGLVERTEXSTREAM4IATIPROC) (GLenum stream, GLint x, GLint y, GLint z, GLint w);
+typedef void ( * PFNGLVERTEXSTREAM4IVATIPROC) (GLenum stream, const GLint *coords);
+typedef void ( * PFNGLVERTEXSTREAM4FATIPROC) (GLenum stream, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLVERTEXSTREAM4FVATIPROC) (GLenum stream, const GLfloat *coords);
+typedef void ( * PFNGLVERTEXSTREAM4DATIPROC) (GLenum stream, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLVERTEXSTREAM4DVATIPROC) (GLenum stream, const GLdouble *coords);
+typedef void ( * PFNGLNORMALSTREAM3BATIPROC) (GLenum stream, GLbyte nx, GLbyte ny, GLbyte nz);
+typedef void ( * PFNGLNORMALSTREAM3BVATIPROC) (GLenum stream, const GLbyte *coords);
+typedef void ( * PFNGLNORMALSTREAM3SATIPROC) (GLenum stream, GLshort nx, GLshort ny, GLshort nz);
+typedef void ( * PFNGLNORMALSTREAM3SVATIPROC) (GLenum stream, const GLshort *coords);
+typedef void ( * PFNGLNORMALSTREAM3IATIPROC) (GLenum stream, GLint nx, GLint ny, GLint nz);
+typedef void ( * PFNGLNORMALSTREAM3IVATIPROC) (GLenum stream, const GLint *coords);
+typedef void ( * PFNGLNORMALSTREAM3FATIPROC) (GLenum stream, GLfloat nx, GLfloat ny, GLfloat nz);
+typedef void ( * PFNGLNORMALSTREAM3FVATIPROC) (GLenum stream, const GLfloat *coords);
+typedef void ( * PFNGLNORMALSTREAM3DATIPROC) (GLenum stream, GLdouble nx, GLdouble ny, GLdouble nz);
+typedef void ( * PFNGLNORMALSTREAM3DVATIPROC) (GLenum stream, const GLdouble *coords);
+typedef void ( * PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC) (GLenum stream);
+typedef void ( * PFNGLVERTEXBLENDENVIATIPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLVERTEXBLENDENVFATIPROC) (GLenum pname, GLfloat param);
+# 6480 "/usr/include/GL/glext.h" 3 4
+typedef void *GLeglImageOES;
+typedef void ( * PFNGLEGLIMAGETARGETTEXSTORAGEEXTPROC) (GLenum target, GLeglImageOES image, const GLint* attrib_list);
+typedef void ( * PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC) (GLuint texture, GLeglImageOES image, const GLint* attrib_list);
+# 6512 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLUNIFORMBUFFEREXTPROC) (GLuint program, GLint location, GLuint buffer);
+typedef GLint ( * PFNGLGETUNIFORMBUFFERSIZEEXTPROC) (GLuint program, GLint location);
+typedef GLintptr ( * PFNGLGETUNIFORMOFFSETEXTPROC) (GLuint program, GLint location);
+# 6529 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDCOLOREXTPROC) (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
+# 6539 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDEQUATIONSEPARATEEXTPROC) (GLenum modeRGB, GLenum modeAlpha);
+# 6551 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDFUNCSEPARATEEXTPROC) (GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha);
+# 6567 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDEQUATIONEXTPROC) (GLenum mode);
+# 6594 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOLORSUBTABLEEXTPROC) (GLenum target, GLsizei start, GLsizei count, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLCOPYCOLORSUBTABLEEXTPROC) (GLenum target, GLsizei start, GLint x, GLint y, GLsizei width);
+# 6606 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLLOCKARRAYSEXTPROC) (GLint first, GLsizei count);
+typedef void ( * PFNGLUNLOCKARRAYSEXTPROC) (void);
+# 6636 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCONVOLUTIONFILTER1DEXTPROC) (GLenum target, GLenum internalformat, GLsizei width, GLenum format, GLenum type, const void *image);
+typedef void ( * PFNGLCONVOLUTIONFILTER2DEXTPROC) (GLenum target, GLenum internalformat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *image);
+typedef void ( * PFNGLCONVOLUTIONPARAMETERFEXTPROC) (GLenum target, GLenum pname, GLfloat params);
+typedef void ( * PFNGLCONVOLUTIONPARAMETERFVEXTPROC) (GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLCONVOLUTIONPARAMETERIEXTPROC) (GLenum target, GLenum pname, GLint params);
+typedef void ( * PFNGLCONVOLUTIONPARAMETERIVEXTPROC) (GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLCOPYCONVOLUTIONFILTER1DEXTPROC) (GLenum target, GLenum internalformat, GLint x, GLint y, GLsizei width);
+typedef void ( * PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC) (GLenum target, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLGETCONVOLUTIONFILTEREXTPROC) (GLenum target, GLenum format, GLenum type, void *image);
+typedef void ( * PFNGLGETCONVOLUTIONPARAMETERFVEXTPROC) (GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETSEPARABLEFILTEREXTPROC) (GLenum target, GLenum format, GLenum type, void *row, void *column, void *span);
+typedef void ( * PFNGLSEPARABLEFILTER2DEXTPROC) (GLenum target, GLenum internalformat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *row, const void *column);
+# 6682 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTANGENT3BEXTPROC) (GLbyte tx, GLbyte ty, GLbyte tz);
+typedef void ( * PFNGLTANGENT3BVEXTPROC) (const GLbyte *v);
+typedef void ( * PFNGLTANGENT3DEXTPROC) (GLdouble tx, GLdouble ty, GLdouble tz);
+typedef void ( * PFNGLTANGENT3DVEXTPROC) (const GLdouble *v);
+typedef void ( * PFNGLTANGENT3FEXTPROC) (GLfloat tx, GLfloat ty, GLfloat tz);
+typedef void ( * PFNGLTANGENT3FVEXTPROC) (const GLfloat *v);
+typedef void ( * PFNGLTANGENT3IEXTPROC) (GLint tx, GLint ty, GLint tz);
+typedef void ( * PFNGLTANGENT3IVEXTPROC) (const GLint *v);
+typedef void ( * PFNGLTANGENT3SEXTPROC) (GLshort tx, GLshort ty, GLshort tz);
+typedef void ( * PFNGLTANGENT3SVEXTPROC) (const GLshort *v);
+typedef void ( * PFNGLBINORMAL3BEXTPROC) (GLbyte bx, GLbyte by, GLbyte bz);
+typedef void ( * PFNGLBINORMAL3BVEXTPROC) (const GLbyte *v);
+typedef void ( * PFNGLBINORMAL3DEXTPROC) (GLdouble bx, GLdouble by, GLdouble bz);
+typedef void ( * PFNGLBINORMAL3DVEXTPROC) (const GLdouble *v);
+typedef void ( * PFNGLBINORMAL3FEXTPROC) (GLfloat bx, GLfloat by, GLfloat bz);
+typedef void ( * PFNGLBINORMAL3FVEXTPROC) (const GLfloat *v);
+typedef void ( * PFNGLBINORMAL3IEXTPROC) (GLint bx, GLint by, GLint bz);
+typedef void ( * PFNGLBINORMAL3IVEXTPROC) (const GLint *v);
+typedef void ( * PFNGLBINORMAL3SEXTPROC) (GLshort bx, GLshort by, GLshort bz);
+typedef void ( * PFNGLBINORMAL3SVEXTPROC) (const GLshort *v);
+typedef void ( * PFNGLTANGENTPOINTEREXTPROC) (GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLBINORMALPOINTEREXTPROC) (GLenum type, GLsizei stride, const void *pointer);
+# 6732 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOPYTEXIMAGE1DEXTPROC) (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border);
+typedef void ( * PFNGLCOPYTEXIMAGE2DEXTPROC) (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border);
+typedef void ( * PFNGLCOPYTEXSUBIMAGE1DEXTPROC) (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
+typedef void ( * PFNGLCOPYTEXSUBIMAGE2DEXTPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLCOPYTEXSUBIMAGE3DEXTPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+# 6751 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCULLPARAMETERDVEXTPROC) (GLenum pname, GLdouble *params);
+typedef void ( * PFNGLCULLPARAMETERFVEXTPROC) (GLenum pname, GLfloat *params);
+# 6767 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLLABELOBJECTEXTPROC) (GLenum type, GLuint object, GLsizei length, const GLchar *label);
+typedef void ( * PFNGLGETOBJECTLABELEXTPROC) (GLenum type, GLuint object, GLsizei bufSize, GLsizei *length, GLchar *label);
+# 6777 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLINSERTEVENTMARKEREXTPROC) (GLsizei length, const GLchar *marker);
+typedef void ( * PFNGLPUSHGROUPMARKEREXTPROC) (GLsizei length, const GLchar *marker);
+typedef void ( * PFNGLPOPGROUPMARKEREXTPROC) (void);
+# 6791 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDEPTHBOUNDSEXTPROC) (GLclampd zmin, GLclampd zmax);
+# 6802 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMATRIXLOADFEXTPROC) (GLenum mode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXLOADDEXTPROC) (GLenum mode, const GLdouble *m);
+typedef void ( * PFNGLMATRIXMULTFEXTPROC) (GLenum mode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXMULTDEXTPROC) (GLenum mode, const GLdouble *m);
+typedef void ( * PFNGLMATRIXLOADIDENTITYEXTPROC) (GLenum mode);
+typedef void ( * PFNGLMATRIXROTATEFEXTPROC) (GLenum mode, GLfloat angle, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLMATRIXROTATEDEXTPROC) (GLenum mode, GLdouble angle, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLMATRIXSCALEFEXTPROC) (GLenum mode, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLMATRIXSCALEDEXTPROC) (GLenum mode, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLMATRIXTRANSLATEFEXTPROC) (GLenum mode, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLMATRIXTRANSLATEDEXTPROC) (GLenum mode, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLMATRIXFRUSTUMEXTPROC) (GLenum mode, GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar);
+typedef void ( * PFNGLMATRIXORTHOEXTPROC) (GLenum mode, GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar);
+typedef void ( * PFNGLMATRIXPOPEXTPROC) (GLenum mode);
+typedef void ( * PFNGLMATRIXPUSHEXTPROC) (GLenum mode);
+typedef void ( * PFNGLCLIENTATTRIBDEFAULTEXTPROC) (GLbitfield mask);
+typedef void ( * PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC) (GLbitfield mask);
+typedef void ( * PFNGLTEXTUREPARAMETERFEXTPROC) (GLuint texture, GLenum target, GLenum pname, GLfloat param);
+typedef void ( * PFNGLTEXTUREPARAMETERFVEXTPROC) (GLuint texture, GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLTEXTUREPARAMETERIEXTPROC) (GLuint texture, GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLTEXTUREPARAMETERIVEXTPROC) (GLuint texture, GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLTEXTUREIMAGE1DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXTUREIMAGE2DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXTURESUBIMAGE1DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXTURESUBIMAGE2DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLCOPYTEXTUREIMAGE1DEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border);
+typedef void ( * PFNGLCOPYTEXTUREIMAGE2DEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border);
+typedef void ( * PFNGLCOPYTEXTURESUBIMAGE1DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
+typedef void ( * PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLGETTEXTUREIMAGEEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum format, GLenum type, void *pixels);
+typedef void ( * PFNGLGETTEXTUREPARAMETERFVEXTPROC) (GLuint texture, GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETTEXTUREPARAMETERIVEXTPROC) (GLuint texture, GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETTEXTURELEVELPARAMETERFVEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum pname, GLint *params);
+typedef void ( * PFNGLTEXTUREIMAGE3DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXTURESUBIMAGE3DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLCOPYTEXTURESUBIMAGE3DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLBINDMULTITEXTUREEXTPROC) (GLenum texunit, GLenum target, GLuint texture);
+typedef void ( * PFNGLMULTITEXCOORDPOINTEREXTPROC) (GLenum texunit, GLint size, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLMULTITEXENVFEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLfloat param);
+typedef void ( * PFNGLMULTITEXENVFVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLMULTITEXENVIEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLMULTITEXENVIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLMULTITEXGENDEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, GLdouble param);
+typedef void ( * PFNGLMULTITEXGENDVEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, const GLdouble *params);
+typedef void ( * PFNGLMULTITEXGENFEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, GLfloat param);
+typedef void ( * PFNGLMULTITEXGENFVEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLMULTITEXGENIEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, GLint param);
+typedef void ( * PFNGLMULTITEXGENIVEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, const GLint *params);
+typedef void ( * PFNGLGETMULTITEXENVFVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETMULTITEXENVIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETMULTITEXGENDVEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, GLdouble *params);
+typedef void ( * PFNGLGETMULTITEXGENFVEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETMULTITEXGENIVEXTPROC) (GLenum texunit, GLenum coord, GLenum pname, GLint *params);
+typedef void ( * PFNGLMULTITEXPARAMETERIEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLMULTITEXPARAMETERIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLMULTITEXPARAMETERFEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLfloat param);
+typedef void ( * PFNGLMULTITEXPARAMETERFVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLMULTITEXIMAGE1DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLMULTITEXIMAGE2DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLMULTITEXSUBIMAGE1DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLMULTITEXSUBIMAGE2DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLCOPYMULTITEXIMAGE1DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border);
+typedef void ( * PFNGLCOPYMULTITEXIMAGE2DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border);
+typedef void ( * PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
+typedef void ( * PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLGETMULTITEXIMAGEEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum format, GLenum type, void *pixels);
+typedef void ( * PFNGLGETMULTITEXPARAMETERFVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETMULTITEXPARAMETERIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETMULTITEXLEVELPARAMETERIVEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum pname, GLint *params);
+typedef void ( * PFNGLMULTITEXIMAGE3DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLMULTITEXSUBIMAGE3DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLCOPYMULTITEXSUBIMAGE3DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLENABLECLIENTSTATEINDEXEDEXTPROC) (GLenum array, GLuint index);
+typedef void ( * PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC) (GLenum array, GLuint index);
+typedef void ( * PFNGLGETFLOATINDEXEDVEXTPROC) (GLenum target, GLuint index, GLfloat *data);
+typedef void ( * PFNGLGETDOUBLEINDEXEDVEXTPROC) (GLenum target, GLuint index, GLdouble *data);
+typedef void ( * PFNGLGETPOINTERINDEXEDVEXTPROC) (GLenum target, GLuint index, void **data);
+typedef void ( * PFNGLENABLEINDEXEDEXTPROC) (GLenum target, GLuint index);
+typedef void ( * PFNGLDISABLEINDEXEDEXTPROC) (GLenum target, GLuint index);
+typedef GLboolean ( * PFNGLISENABLEDINDEXEDEXTPROC) (GLenum target, GLuint index);
+typedef void ( * PFNGLGETINTEGERINDEXEDVEXTPROC) (GLenum target, GLuint index, GLint *data);
+typedef void ( * PFNGLGETBOOLEANINDEXEDVEXTPROC) (GLenum target, GLuint index, GLboolean *data);
+typedef void ( * PFNGLCOMPRESSEDTEXTUREIMAGE3DEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDTEXTUREIMAGE2DEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDTEXTUREIMAGE1DEXTPROC) (GLuint texture, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDTEXTURESUBIMAGE2DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC) (GLuint texture, GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLGETCOMPRESSEDTEXTUREIMAGEEXTPROC) (GLuint texture, GLenum target, GLint lod, void *img);
+typedef void ( * PFNGLCOMPRESSEDMULTITEXIMAGE3DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDMULTITEXIMAGE2DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDMULTITEXIMAGE1DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLCOMPRESSEDMULTITEXSUBIMAGE1DEXTPROC) (GLenum texunit, GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void *bits);
+typedef void ( * PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC) (GLenum texunit, GLenum target, GLint lod, void *img);
+typedef void ( * PFNGLMATRIXLOADTRANSPOSEFEXTPROC) (GLenum mode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXLOADTRANSPOSEDEXTPROC) (GLenum mode, const GLdouble *m);
+typedef void ( * PFNGLMATRIXMULTTRANSPOSEFEXTPROC) (GLenum mode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXMULTTRANSPOSEDEXTPROC) (GLenum mode, const GLdouble *m);
+typedef void ( * PFNGLNAMEDBUFFERDATAEXTPROC) (GLuint buffer, GLsizeiptr size, const void *data, GLenum usage);
+typedef void ( * PFNGLNAMEDBUFFERSUBDATAEXTPROC) (GLuint buffer, GLintptr offset, GLsizeiptr size, const void *data);
+typedef void *( * PFNGLMAPNAMEDBUFFEREXTPROC) (GLuint buffer, GLenum access);
+typedef GLboolean ( * PFNGLUNMAPNAMEDBUFFEREXTPROC) (GLuint buffer);
+typedef void ( * PFNGLGETNAMEDBUFFERPARAMETERIVEXTPROC) (GLuint buffer, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETNAMEDBUFFERPOINTERVEXTPROC) (GLuint buffer, GLenum pname, void **params);
+typedef void ( * PFNGLGETNAMEDBUFFERSUBDATAEXTPROC) (GLuint buffer, GLintptr offset, GLsizeiptr size, void *data);
+typedef void ( * PFNGLPROGRAMUNIFORM1FEXTPROC) (GLuint program, GLint location, GLfloat v0);
+typedef void ( * PFNGLPROGRAMUNIFORM2FEXTPROC) (GLuint program, GLint location, GLfloat v0, GLfloat v1);
+typedef void ( * PFNGLPROGRAMUNIFORM3FEXTPROC) (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
+typedef void ( * PFNGLPROGRAMUNIFORM4FEXTPROC) (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
+typedef void ( * PFNGLPROGRAMUNIFORM1IEXTPROC) (GLuint program, GLint location, GLint v0);
+typedef void ( * PFNGLPROGRAMUNIFORM2IEXTPROC) (GLuint program, GLint location, GLint v0, GLint v1);
+typedef void ( * PFNGLPROGRAMUNIFORM3IEXTPROC) (GLuint program, GLint location, GLint v0, GLint v1, GLint v2);
+typedef void ( * PFNGLPROGRAMUNIFORM4IEXTPROC) (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3);
+typedef void ( * PFNGLPROGRAMUNIFORM1FVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2FVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3FVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4FVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORM1IVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2IVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3IVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4IVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLint *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X2FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
+typedef void ( * PFNGLTEXTUREBUFFEREXTPROC) (GLuint texture, GLenum target, GLenum internalformat, GLuint buffer);
+typedef void ( * PFNGLMULTITEXBUFFEREXTPROC) (GLenum texunit, GLenum target, GLenum internalformat, GLuint buffer);
+typedef void ( * PFNGLTEXTUREPARAMETERIIVEXTPROC) (GLuint texture, GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLTEXTUREPARAMETERIUIVEXTPROC) (GLuint texture, GLenum target, GLenum pname, const GLuint *params);
+typedef void ( * PFNGLGETTEXTUREPARAMETERIIVEXTPROC) (GLuint texture, GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETTEXTUREPARAMETERIUIVEXTPROC) (GLuint texture, GLenum target, GLenum pname, GLuint *params);
+typedef void ( * PFNGLMULTITEXPARAMETERIIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLMULTITEXPARAMETERIUIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, const GLuint *params);
+typedef void ( * PFNGLGETMULTITEXPARAMETERIIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETMULTITEXPARAMETERIUIVEXTPROC) (GLenum texunit, GLenum target, GLenum pname, GLuint *params);
+typedef void ( * PFNGLPROGRAMUNIFORM1UIEXTPROC) (GLuint program, GLint location, GLuint v0);
+typedef void ( * PFNGLPROGRAMUNIFORM2UIEXTPROC) (GLuint program, GLint location, GLuint v0, GLuint v1);
+typedef void ( * PFNGLPROGRAMUNIFORM3UIEXTPROC) (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2);
+typedef void ( * PFNGLPROGRAMUNIFORM4UIEXTPROC) (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3);
+typedef void ( * PFNGLPROGRAMUNIFORM1UIVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2UIVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3UIVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4UIVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETERS4FVEXTPROC) (GLuint program, GLenum target, GLuint index, GLsizei count, const GLfloat *params);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETERI4IEXTPROC) (GLuint program, GLenum target, GLuint index, GLint x, GLint y, GLint z, GLint w);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETERI4IVEXTPROC) (GLuint program, GLenum target, GLuint index, const GLint *params);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETERSI4IVEXTPROC) (GLuint program, GLenum target, GLuint index, GLsizei count, const GLint *params);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIEXTPROC) (GLuint program, GLenum target, GLuint index, GLuint x, GLuint y, GLuint z, GLuint w);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC) (GLuint program, GLenum target, GLuint index, const GLuint *params);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETERSI4UIVEXTPROC) (GLuint program, GLenum target, GLuint index, GLsizei count, const GLuint *params);
+typedef void ( * PFNGLGETNAMEDPROGRAMLOCALPARAMETERIIVEXTPROC) (GLuint program, GLenum target, GLuint index, GLint *params);
+typedef void ( * PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC) (GLuint program, GLenum target, GLuint index, GLuint *params);
+typedef void ( * PFNGLENABLECLIENTSTATEIEXTPROC) (GLenum array, GLuint index);
+typedef void ( * PFNGLDISABLECLIENTSTATEIEXTPROC) (GLenum array, GLuint index);
+typedef void ( * PFNGLGETFLOATI_VEXTPROC) (GLenum pname, GLuint index, GLfloat *params);
+typedef void ( * PFNGLGETDOUBLEI_VEXTPROC) (GLenum pname, GLuint index, GLdouble *params);
+typedef void ( * PFNGLGETPOINTERI_VEXTPROC) (GLenum pname, GLuint index, void **params);
+typedef void ( * PFNGLNAMEDPROGRAMSTRINGEXTPROC) (GLuint program, GLenum target, GLenum format, GLsizei len, const void *string);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETER4DEXTPROC) (GLuint program, GLenum target, GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC) (GLuint program, GLenum target, GLuint index, const GLdouble *params);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC) (GLuint program, GLenum target, GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLNAMEDPROGRAMLOCALPARAMETER4FVEXTPROC) (GLuint program, GLenum target, GLuint index, const GLfloat *params);
+typedef void ( * PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC) (GLuint program, GLenum target, GLuint index, GLdouble *params);
+typedef void ( * PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC) (GLuint program, GLenum target, GLuint index, GLfloat *params);
+typedef void ( * PFNGLGETNAMEDPROGRAMIVEXTPROC) (GLuint program, GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETNAMEDPROGRAMSTRINGEXTPROC) (GLuint program, GLenum target, GLenum pname, void *string);
+typedef void ( * PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC) (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC) (GLuint renderbuffer, GLenum pname, GLint *params);
+typedef void ( * PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC) (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC) (GLuint renderbuffer, GLsizei coverageSamples, GLsizei colorSamples, GLenum internalformat, GLsizei width, GLsizei height);
+typedef GLenum ( * PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC) (GLuint framebuffer, GLenum target);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC) (GLuint framebuffer, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC) (GLuint framebuffer, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTURE3DEXTPROC) (GLuint framebuffer, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC) (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer);
+typedef void ( * PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC) (GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params);
+typedef void ( * PFNGLGENERATETEXTUREMIPMAPEXTPROC) (GLuint texture, GLenum target);
+typedef void ( * PFNGLGENERATEMULTITEXMIPMAPEXTPROC) (GLenum texunit, GLenum target);
+typedef void ( * PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC) (GLuint framebuffer, GLenum mode);
+typedef void ( * PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC) (GLuint framebuffer, GLsizei n, const GLenum *bufs);
+typedef void ( * PFNGLFRAMEBUFFERREADBUFFEREXTPROC) (GLuint framebuffer, GLenum mode);
+typedef void ( * PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC) (GLuint framebuffer, GLenum pname, GLint *params);
+typedef void ( * PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC) (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTUREEXTPROC) (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTURELAYEREXTPROC) (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC) (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLenum face);
+typedef void ( * PFNGLTEXTURERENDERBUFFEREXTPROC) (GLuint texture, GLenum target, GLuint renderbuffer);
+typedef void ( * PFNGLMULTITEXRENDERBUFFEREXTPROC) (GLenum texunit, GLenum target, GLuint renderbuffer);
+typedef void ( * PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLint size, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYCOLOROFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLint size, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYEDGEFLAGOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYINDEXOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYNORMALOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLint size, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLenum texunit, GLint size, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYFOGCOORDOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYSECONDARYCOLOROFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLint size, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLuint index, GLint size, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLENABLEVERTEXARRAYEXTPROC) (GLuint vaobj, GLenum array);
+typedef void ( * PFNGLDISABLEVERTEXARRAYEXTPROC) (GLuint vaobj, GLenum array);
+typedef void ( * PFNGLENABLEVERTEXARRAYATTRIBEXTPROC) (GLuint vaobj, GLuint index);
+typedef void ( * PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC) (GLuint vaobj, GLuint index);
+typedef void ( * PFNGLGETVERTEXARRAYINTEGERVEXTPROC) (GLuint vaobj, GLenum pname, GLint *param);
+typedef void ( * PFNGLGETVERTEXARRAYPOINTERVEXTPROC) (GLuint vaobj, GLenum pname, void **param);
+typedef void ( * PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC) (GLuint vaobj, GLuint index, GLenum pname, GLint *param);
+typedef void ( * PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC) (GLuint vaobj, GLuint index, GLenum pname, void **param);
+typedef void *( * PFNGLMAPNAMEDBUFFERRANGEEXTPROC) (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access);
+typedef void ( * PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC) (GLuint buffer, GLintptr offset, GLsizeiptr length);
+typedef void ( * PFNGLNAMEDBUFFERSTORAGEEXTPROC) (GLuint buffer, GLsizeiptr size, const void *data, GLbitfield flags);
+typedef void ( * PFNGLCLEARNAMEDBUFFERDATAEXTPROC) (GLuint buffer, GLenum internalformat, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC) (GLuint buffer, GLenum internalformat, GLsizeiptr offset, GLsizeiptr size, GLenum format, GLenum type, const void *data);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC) (GLuint framebuffer, GLenum pname, GLint param);
+typedef void ( * PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVEXTPROC) (GLuint framebuffer, GLenum pname, GLint *params);
+typedef void ( * PFNGLPROGRAMUNIFORM1DEXTPROC) (GLuint program, GLint location, GLdouble x);
+typedef void ( * PFNGLPROGRAMUNIFORM2DEXTPROC) (GLuint program, GLint location, GLdouble x, GLdouble y);
+typedef void ( * PFNGLPROGRAMUNIFORM3DEXTPROC) (GLuint program, GLint location, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLPROGRAMUNIFORM4DEXTPROC) (GLuint program, GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLPROGRAMUNIFORM1DVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORM2DVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORM3DVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORM4DVEXTPROC) (GLuint program, GLint location, GLsizei count, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X3DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX2X4DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X2DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC) (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble *value);
+typedef void ( * PFNGLTEXTUREBUFFERRANGEEXTPROC) (GLuint texture, GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size);
+typedef void ( * PFNGLTEXTURESTORAGE1DEXTPROC) (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width);
+typedef void ( * PFNGLTEXTURESTORAGE2DEXTPROC) (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLTEXTURESTORAGE3DEXTPROC) (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth);
+typedef void ( * PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC) (GLuint texture, GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC) (GLuint texture, GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations);
+typedef void ( * PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC) (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC) (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC) (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBLFORMATEXTPROC) (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC) (GLuint vaobj, GLuint attribindex, GLuint bindingindex);
+typedef void ( * PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC) (GLuint vaobj, GLuint bindingindex, GLuint divisor);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBLOFFSETEXTPROC) (GLuint vaobj, GLuint buffer, GLuint index, GLint size, GLenum type, GLsizei stride, GLintptr offset);
+typedef void ( * PFNGLTEXTUREPAGECOMMITMENTEXTPROC) (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit);
+typedef void ( * PFNGLVERTEXARRAYVERTEXATTRIBDIVISOREXTPROC) (GLuint vaobj, GLuint index, GLuint divisor);
+# 7318 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOLORMASKINDEXEDEXTPROC) (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a);
+
+
+
+
+
+
+
+typedef void ( * PFNGLDRAWARRAYSINSTANCEDEXTPROC) (GLenum mode, GLint start, GLsizei count, GLsizei primcount);
+typedef void ( * PFNGLDRAWELEMENTSINSTANCEDEXTPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
+# 7338 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWRANGEELEMENTSEXTPROC) (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void *indices);
+
+
+
+
+
+
+
+typedef void *GLeglClientBufferEXT;
+typedef void ( * PFNGLBUFFERSTORAGEEXTERNALEXTPROC) (GLenum target, GLintptr offset, GLsizeiptr size, GLeglClientBufferEXT clientBuffer, GLbitfield flags);
+typedef void ( * PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC) (GLuint buffer, GLintptr offset, GLsizeiptr size, GLeglClientBufferEXT clientBuffer, GLbitfield flags);
+# 7365 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFOGCOORDFEXTPROC) (GLfloat coord);
+typedef void ( * PFNGLFOGCOORDFVEXTPROC) (const GLfloat *coord);
+typedef void ( * PFNGLFOGCOORDDEXTPROC) (GLdouble coord);
+typedef void ( * PFNGLFOGCOORDDVEXTPROC) (const GLdouble *coord);
+typedef void ( * PFNGLFOGCOORDPOINTEREXTPROC) (GLenum type, GLsizei stride, const void *pointer);
+# 7385 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLITFRAMEBUFFEREXTPROC) (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+# 7396 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+# 7461 "/usr/include/GL/glext.h" 3 4
+typedef GLboolean ( * PFNGLISRENDERBUFFEREXTPROC) (GLuint renderbuffer);
+typedef void ( * PFNGLBINDRENDERBUFFEREXTPROC) (GLenum target, GLuint renderbuffer);
+typedef void ( * PFNGLDELETERENDERBUFFERSEXTPROC) (GLsizei n, const GLuint *renderbuffers);
+typedef void ( * PFNGLGENRENDERBUFFERSEXTPROC) (GLsizei n, GLuint *renderbuffers);
+typedef void ( * PFNGLRENDERBUFFERSTORAGEEXTPROC) (GLenum target, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void ( * PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC) (GLenum target, GLenum pname, GLint *params);
+typedef GLboolean ( * PFNGLISFRAMEBUFFEREXTPROC) (GLuint framebuffer);
+typedef void ( * PFNGLBINDFRAMEBUFFEREXTPROC) (GLenum target, GLuint framebuffer);
+typedef void ( * PFNGLDELETEFRAMEBUFFERSEXTPROC) (GLsizei n, const GLuint *framebuffers);
+typedef void ( * PFNGLGENFRAMEBUFFERSEXTPROC) (GLsizei n, GLuint *framebuffers);
+typedef GLenum ( * PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC) (GLenum target);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURE1DEXTPROC) (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURE2DEXTPROC) (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+typedef void ( * PFNGLFRAMEBUFFERTEXTURE3DEXTPROC) (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset);
+typedef void ( * PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC) (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer);
+typedef void ( * PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC) (GLenum target, GLenum attachment, GLenum pname, GLint *params);
+typedef void ( * PFNGLGENERATEMIPMAPEXTPROC) (GLenum target);
+# 7527 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMPARAMETERIEXTPROC) (GLuint program, GLenum pname, GLint value);
+
+
+
+
+
+
+
+typedef void ( * PFNGLPROGRAMENVPARAMETERS4FVEXTPROC) (GLenum target, GLuint index, GLsizei count, const GLfloat *params);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC) (GLenum target, GLuint index, GLsizei count, const GLfloat *params);
+# 7573 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETUNIFORMUIVEXTPROC) (GLuint program, GLint location, GLuint *params);
+typedef void ( * PFNGLBINDFRAGDATALOCATIONEXTPROC) (GLuint program, GLuint color, const GLchar *name);
+typedef GLint ( * PFNGLGETFRAGDATALOCATIONEXTPROC) (GLuint program, const GLchar *name);
+typedef void ( * PFNGLUNIFORM1UIEXTPROC) (GLint location, GLuint v0);
+typedef void ( * PFNGLUNIFORM2UIEXTPROC) (GLint location, GLuint v0, GLuint v1);
+typedef void ( * PFNGLUNIFORM3UIEXTPROC) (GLint location, GLuint v0, GLuint v1, GLuint v2);
+typedef void ( * PFNGLUNIFORM4UIEXTPROC) (GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3);
+typedef void ( * PFNGLUNIFORM1UIVEXTPROC) (GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLUNIFORM2UIVEXTPROC) (GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLUNIFORM3UIVEXTPROC) (GLint location, GLsizei count, const GLuint *value);
+typedef void ( * PFNGLUNIFORM4UIVEXTPROC) (GLint location, GLsizei count, const GLuint *value);
+# 7615 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETHISTOGRAMEXTPROC) (GLenum target, GLboolean reset, GLenum format, GLenum type, void *values);
+typedef void ( * PFNGLGETHISTOGRAMPARAMETERFVEXTPROC) (GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETHISTOGRAMPARAMETERIVEXTPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETMINMAXEXTPROC) (GLenum target, GLboolean reset, GLenum format, GLenum type, void *values);
+typedef void ( * PFNGLGETMINMAXPARAMETERFVEXTPROC) (GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETMINMAXPARAMETERIVEXTPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLHISTOGRAMEXTPROC) (GLenum target, GLsizei width, GLenum internalformat, GLboolean sink);
+typedef void ( * PFNGLMINMAXEXTPROC) (GLenum target, GLenum internalformat, GLboolean sink);
+typedef void ( * PFNGLRESETHISTOGRAMEXTPROC) (GLenum target);
+typedef void ( * PFNGLRESETMINMAXEXTPROC) (GLenum target);
+# 7656 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLINDEXFUNCEXTPROC) (GLenum func, GLclampf ref);
+# 7667 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLINDEXMATERIALEXTPROC) (GLenum face, GLenum mode);
+# 7688 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLAPPLYTEXTUREEXTPROC) (GLenum mode);
+typedef void ( * PFNGLTEXTURELIGHTEXTPROC) (GLenum pname);
+typedef void ( * PFNGLTEXTUREMATERIALEXTPROC) (GLenum face, GLenum mode);
+# 7711 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETUNSIGNEDBYTEVEXTPROC) (GLenum pname, GLubyte *data);
+typedef void ( * PFNGLGETUNSIGNEDBYTEI_VEXTPROC) (GLenum target, GLuint index, GLubyte *data);
+typedef void ( * PFNGLDELETEMEMORYOBJECTSEXTPROC) (GLsizei n, const GLuint *memoryObjects);
+typedef GLboolean ( * PFNGLISMEMORYOBJECTEXTPROC) (GLuint memoryObject);
+typedef void ( * PFNGLCREATEMEMORYOBJECTSEXTPROC) (GLsizei n, GLuint *memoryObjects);
+typedef void ( * PFNGLMEMORYOBJECTPARAMETERIVEXTPROC) (GLuint memoryObject, GLenum pname, const GLint *params);
+typedef void ( * PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC) (GLuint memoryObject, GLenum pname, GLint *params);
+typedef void ( * PFNGLTEXSTORAGEMEM2DEXTPROC) (GLenum target, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC) (GLenum target, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXSTORAGEMEM3DEXTPROC) (GLenum target, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC) (GLenum target, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLBUFFERSTORAGEMEMEXTPROC) (GLenum target, GLsizeiptr size, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXTURESTORAGEMEM2DEXTPROC) (GLuint texture, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC) (GLuint texture, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXTURESTORAGEMEM3DEXTPROC) (GLuint texture, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC) (GLuint texture, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC) (GLuint buffer, GLsizeiptr size, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXSTORAGEMEM1DEXTPROC) (GLenum target, GLsizei levels, GLenum internalFormat, GLsizei width, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXTURESTORAGEMEM1DEXTPROC) (GLuint texture, GLsizei levels, GLenum internalFormat, GLsizei width, GLuint memory, GLuint64 offset);
+# 7756 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLIMPORTMEMORYFDEXTPROC) (GLuint memory, GLuint64 size, GLenum handleType, GLint fd);
+# 7773 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC) (GLuint memory, GLuint64 size, GLenum handleType, void *handle);
+typedef void ( * PFNGLIMPORTMEMORYWIN32NAMEEXTPROC) (GLuint memory, GLuint64 size, GLenum handleType, const void *name);
+# 7787 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMULTIDRAWARRAYSEXTPROC) (GLenum mode, const GLint *first, const GLsizei *count, GLsizei primcount);
+typedef void ( * PFNGLMULTIDRAWELEMENTSEXTPROC) (GLenum mode, const GLsizei *count, GLenum type, const void *const*indices, GLsizei primcount);
+# 7814 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSAMPLEMASKEXTPROC) (GLclampf value, GLboolean invert);
+typedef void ( * PFNGLSAMPLEPATTERNEXTPROC) (GLenum pattern);
+# 7867 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOLORTABLEEXTPROC) (GLenum target, GLenum internalFormat, GLsizei width, GLenum format, GLenum type, const void *table);
+typedef void ( * PFNGLGETCOLORTABLEEXTPROC) (GLenum target, GLenum format, GLenum type, void *data);
+typedef void ( * PFNGLGETCOLORTABLEPARAMETERIVEXTPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETCOLORTABLEPARAMETERFVEXTPROC) (GLenum target, GLenum pname, GLfloat *params);
+# 7898 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPIXELTRANSFORMPARAMETERIEXTPROC) (GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLPIXELTRANSFORMPARAMETERFEXTPROC) (GLenum target, GLenum pname, GLfloat param);
+typedef void ( * PFNGLPIXELTRANSFORMPARAMETERIVEXTPROC) (GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLPIXELTRANSFORMPARAMETERFVEXTPROC) (GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC) (GLenum target, GLenum pname, GLfloat *params);
+# 7924 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPOINTPARAMETERFEXTPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLPOINTPARAMETERFVEXTPROC) (GLenum pname, const GLfloat *params);
+# 7937 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPOLYGONOFFSETEXTPROC) (GLfloat factor, GLfloat bias);
+# 7946 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPOLYGONOFFSETCLAMPEXTPROC) (GLfloat factor, GLfloat units, GLfloat clamp);
+# 7962 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROVOKINGVERTEXEXTPROC) (GLenum mode);
+# 7976 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLRASTERSAMPLESEXTPROC) (GLuint samples, GLboolean fixedsamplelocations);
+# 7996 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSECONDARYCOLOR3BEXTPROC) (GLbyte red, GLbyte green, GLbyte blue);
+typedef void ( * PFNGLSECONDARYCOLOR3BVEXTPROC) (const GLbyte *v);
+typedef void ( * PFNGLSECONDARYCOLOR3DEXTPROC) (GLdouble red, GLdouble green, GLdouble blue);
+typedef void ( * PFNGLSECONDARYCOLOR3DVEXTPROC) (const GLdouble *v);
+typedef void ( * PFNGLSECONDARYCOLOR3FEXTPROC) (GLfloat red, GLfloat green, GLfloat blue);
+typedef void ( * PFNGLSECONDARYCOLOR3FVEXTPROC) (const GLfloat *v);
+typedef void ( * PFNGLSECONDARYCOLOR3IEXTPROC) (GLint red, GLint green, GLint blue);
+typedef void ( * PFNGLSECONDARYCOLOR3IVEXTPROC) (const GLint *v);
+typedef void ( * PFNGLSECONDARYCOLOR3SEXTPROC) (GLshort red, GLshort green, GLshort blue);
+typedef void ( * PFNGLSECONDARYCOLOR3SVEXTPROC) (const GLshort *v);
+typedef void ( * PFNGLSECONDARYCOLOR3UBEXTPROC) (GLubyte red, GLubyte green, GLubyte blue);
+typedef void ( * PFNGLSECONDARYCOLOR3UBVEXTPROC) (const GLubyte *v);
+typedef void ( * PFNGLSECONDARYCOLOR3UIEXTPROC) (GLuint red, GLuint green, GLuint blue);
+typedef void ( * PFNGLSECONDARYCOLOR3UIVEXTPROC) (const GLuint *v);
+typedef void ( * PFNGLSECONDARYCOLOR3USEXTPROC) (GLushort red, GLushort green, GLushort blue);
+typedef void ( * PFNGLSECONDARYCOLOR3USVEXTPROC) (const GLushort *v);
+typedef void ( * PFNGLSECONDARYCOLORPOINTEREXTPROC) (GLint size, GLenum type, GLsizei stride, const void *pointer);
+# 8045 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGENSEMAPHORESEXTPROC) (GLsizei n, GLuint *semaphores);
+typedef void ( * PFNGLDELETESEMAPHORESEXTPROC) (GLsizei n, const GLuint *semaphores);
+typedef GLboolean ( * PFNGLISSEMAPHOREEXTPROC) (GLuint semaphore);
+typedef void ( * PFNGLSEMAPHOREPARAMETERUI64VEXTPROC) (GLuint semaphore, GLenum pname, const GLuint64 *params);
+typedef void ( * PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC) (GLuint semaphore, GLenum pname, GLuint64 *params);
+typedef void ( * PFNGLWAITSEMAPHOREEXTPROC) (GLuint semaphore, GLuint numBufferBarriers, const GLuint *buffers, GLuint numTextureBarriers, const GLuint *textures, const GLenum *srcLayouts);
+typedef void ( * PFNGLSIGNALSEMAPHOREEXTPROC) (GLuint semaphore, GLuint numBufferBarriers, const GLuint *buffers, GLuint numTextureBarriers, const GLuint *textures, const GLenum *dstLayouts);
+# 8065 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLIMPORTSEMAPHOREFDEXTPROC) (GLuint semaphore, GLenum handleType, GLint fd);
+# 8075 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC) (GLuint semaphore, GLenum handleType, void *handle);
+typedef void ( * PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC) (GLuint semaphore, GLenum handleType, const void *name);
+# 8086 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLUSESHADERPROGRAMEXTPROC) (GLenum type, GLuint program);
+typedef void ( * PFNGLACTIVEPROGRAMEXTPROC) (GLuint program);
+typedef GLuint ( * PFNGLCREATESHADERPROGRAMEXTPROC) (GLenum type, const GLchar *string);
+# 8110 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC) (void);
+# 8177 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBINDIMAGETEXTUREEXTPROC) (GLuint index, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLint format);
+typedef void ( * PFNGLMEMORYBARRIEREXTPROC) (GLbitfield barriers);
+# 8206 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSTENCILCLEARTAGEXTPROC) (GLsizei stencilTagBits, GLuint stencilClearTag);
+# 8216 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLACTIVESTENCILFACEEXTPROC) (GLenum face);
+# 8230 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXSUBIMAGE1DEXTPROC) (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXSUBIMAGE2DEXTPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *pixels);
+# 8296 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXIMAGE3DEXTPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXSUBIMAGE3DEXTPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *pixels);
+# 8314 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer);
+# 8327 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXBUFFEREXTPROC) (GLenum target, GLenum internalformat, GLuint buffer);
+# 8469 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXPARAMETERIIVEXTPROC) (GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLTEXPARAMETERIUIVEXTPROC) (GLenum target, GLenum pname, const GLuint *params);
+typedef void ( * PFNGLGETTEXPARAMETERIIVEXTPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETTEXPARAMETERIUIVEXTPROC) (GLenum target, GLenum pname, GLuint *params);
+typedef void ( * PFNGLCLEARCOLORIIEXTPROC) (GLint red, GLint green, GLint blue, GLint alpha);
+typedef void ( * PFNGLCLEARCOLORIUIEXTPROC) (GLuint red, GLuint green, GLuint blue, GLuint alpha);
+# 8506 "/usr/include/GL/glext.h" 3 4
+typedef GLboolean ( * PFNGLARETEXTURESRESIDENTEXTPROC) (GLsizei n, const GLuint *textures, GLboolean *residences);
+typedef void ( * PFNGLBINDTEXTUREEXTPROC) (GLenum target, GLuint texture);
+typedef void ( * PFNGLDELETETEXTURESEXTPROC) (GLsizei n, const GLuint *textures);
+typedef void ( * PFNGLGENTEXTURESEXTPROC) (GLsizei n, GLuint *textures);
+typedef GLboolean ( * PFNGLISTEXTUREEXTPROC) (GLuint texture);
+typedef void ( * PFNGLPRIORITIZETEXTURESEXTPROC) (GLsizei n, const GLuint *textures, const GLclampf *priorities);
+# 8526 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXTURENORMALEXTPROC) (GLenum mode);
+# 8607 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETQUERYOBJECTI64VEXTPROC) (GLuint id, GLenum pname, GLint64 *params);
+typedef void ( * PFNGLGETQUERYOBJECTUI64VEXTPROC) (GLuint id, GLenum pname, GLuint64 *params);
+# 8632 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBEGINTRANSFORMFEEDBACKEXTPROC) (GLenum primitiveMode);
+typedef void ( * PFNGLENDTRANSFORMFEEDBACKEXTPROC) (void);
+typedef void ( * PFNGLBINDBUFFERRANGEEXTPROC) (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
+typedef void ( * PFNGLBINDBUFFEROFFSETEXTPROC) (GLenum target, GLuint index, GLuint buffer, GLintptr offset);
+typedef void ( * PFNGLBINDBUFFERBASEEXTPROC) (GLenum target, GLuint index, GLuint buffer);
+typedef void ( * PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC) (GLuint program, GLsizei count, const GLchar *const*varyings, GLenum bufferMode);
+typedef void ( * PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC) (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *type, GLchar *name);
+# 8684 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLARRAYELEMENTEXTPROC) (GLint i);
+typedef void ( * PFNGLCOLORPOINTEREXTPROC) (GLint size, GLenum type, GLsizei stride, GLsizei count, const void *pointer);
+typedef void ( * PFNGLDRAWARRAYSEXTPROC) (GLenum mode, GLint first, GLsizei count);
+typedef void ( * PFNGLEDGEFLAGPOINTEREXTPROC) (GLsizei stride, GLsizei count, const GLboolean *pointer);
+typedef void ( * PFNGLGETPOINTERVEXTPROC) (GLenum pname, void **params);
+typedef void ( * PFNGLINDEXPOINTEREXTPROC) (GLenum type, GLsizei stride, GLsizei count, const void *pointer);
+typedef void ( * PFNGLNORMALPOINTEREXTPROC) (GLenum type, GLsizei stride, GLsizei count, const void *pointer);
+typedef void ( * PFNGLTEXCOORDPOINTEREXTPROC) (GLint size, GLenum type, GLsizei stride, GLsizei count, const void *pointer);
+typedef void ( * PFNGLVERTEXPOINTEREXTPROC) (GLint size, GLenum type, GLsizei stride, GLsizei count, const void *pointer);
+# 8724 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXATTRIBL1DEXTPROC) (GLuint index, GLdouble x);
+typedef void ( * PFNGLVERTEXATTRIBL2DEXTPROC) (GLuint index, GLdouble x, GLdouble y);
+typedef void ( * PFNGLVERTEXATTRIBL3DEXTPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLVERTEXATTRIBL4DEXTPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLVERTEXATTRIBL1DVEXTPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBL2DVEXTPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBL3DVEXTPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBL4DVEXTPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBLPOINTEREXTPROC) (GLuint index, GLint size, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLGETVERTEXATTRIBLDVEXTPROC) (GLuint index, GLenum pname, GLdouble *params);
+# 8860 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBEGINVERTEXSHADEREXTPROC) (void);
+typedef void ( * PFNGLENDVERTEXSHADEREXTPROC) (void);
+typedef void ( * PFNGLBINDVERTEXSHADEREXTPROC) (GLuint id);
+typedef GLuint ( * PFNGLGENVERTEXSHADERSEXTPROC) (GLuint range);
+typedef void ( * PFNGLDELETEVERTEXSHADEREXTPROC) (GLuint id);
+typedef void ( * PFNGLSHADEROP1EXTPROC) (GLenum op, GLuint res, GLuint arg1);
+typedef void ( * PFNGLSHADEROP2EXTPROC) (GLenum op, GLuint res, GLuint arg1, GLuint arg2);
+typedef void ( * PFNGLSHADEROP3EXTPROC) (GLenum op, GLuint res, GLuint arg1, GLuint arg2, GLuint arg3);
+typedef void ( * PFNGLSWIZZLEEXTPROC) (GLuint res, GLuint in, GLenum outX, GLenum outY, GLenum outZ, GLenum outW);
+typedef void ( * PFNGLWRITEMASKEXTPROC) (GLuint res, GLuint in, GLenum outX, GLenum outY, GLenum outZ, GLenum outW);
+typedef void ( * PFNGLINSERTCOMPONENTEXTPROC) (GLuint res, GLuint src, GLuint num);
+typedef void ( * PFNGLEXTRACTCOMPONENTEXTPROC) (GLuint res, GLuint src, GLuint num);
+typedef GLuint ( * PFNGLGENSYMBOLSEXTPROC) (GLenum datatype, GLenum storagetype, GLenum range, GLuint components);
+typedef void ( * PFNGLSETINVARIANTEXTPROC) (GLuint id, GLenum type, const void *addr);
+typedef void ( * PFNGLSETLOCALCONSTANTEXTPROC) (GLuint id, GLenum type, const void *addr);
+typedef void ( * PFNGLVARIANTBVEXTPROC) (GLuint id, const GLbyte *addr);
+typedef void ( * PFNGLVARIANTSVEXTPROC) (GLuint id, const GLshort *addr);
+typedef void ( * PFNGLVARIANTIVEXTPROC) (GLuint id, const GLint *addr);
+typedef void ( * PFNGLVARIANTFVEXTPROC) (GLuint id, const GLfloat *addr);
+typedef void ( * PFNGLVARIANTDVEXTPROC) (GLuint id, const GLdouble *addr);
+typedef void ( * PFNGLVARIANTUBVEXTPROC) (GLuint id, const GLubyte *addr);
+typedef void ( * PFNGLVARIANTUSVEXTPROC) (GLuint id, const GLushort *addr);
+typedef void ( * PFNGLVARIANTUIVEXTPROC) (GLuint id, const GLuint *addr);
+typedef void ( * PFNGLVARIANTPOINTEREXTPROC) (GLuint id, GLenum type, GLuint stride, const void *addr);
+typedef void ( * PFNGLENABLEVARIANTCLIENTSTATEEXTPROC) (GLuint id);
+typedef void ( * PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC) (GLuint id);
+typedef GLuint ( * PFNGLBINDLIGHTPARAMETEREXTPROC) (GLenum light, GLenum value);
+typedef GLuint ( * PFNGLBINDMATERIALPARAMETEREXTPROC) (GLenum face, GLenum value);
+typedef GLuint ( * PFNGLBINDTEXGENPARAMETEREXTPROC) (GLenum unit, GLenum coord, GLenum value);
+typedef GLuint ( * PFNGLBINDTEXTUREUNITPARAMETEREXTPROC) (GLenum unit, GLenum value);
+typedef GLuint ( * PFNGLBINDPARAMETEREXTPROC) (GLenum value);
+typedef GLboolean ( * PFNGLISVARIANTENABLEDEXTPROC) (GLuint id, GLenum cap);
+typedef void ( * PFNGLGETVARIANTBOOLEANVEXTPROC) (GLuint id, GLenum value, GLboolean *data);
+typedef void ( * PFNGLGETVARIANTINTEGERVEXTPROC) (GLuint id, GLenum value, GLint *data);
+typedef void ( * PFNGLGETVARIANTFLOATVEXTPROC) (GLuint id, GLenum value, GLfloat *data);
+typedef void ( * PFNGLGETVARIANTPOINTERVEXTPROC) (GLuint id, GLenum value, void **data);
+typedef void ( * PFNGLGETINVARIANTBOOLEANVEXTPROC) (GLuint id, GLenum value, GLboolean *data);
+typedef void ( * PFNGLGETINVARIANTINTEGERVEXTPROC) (GLuint id, GLenum value, GLint *data);
+typedef void ( * PFNGLGETINVARIANTFLOATVEXTPROC) (GLuint id, GLenum value, GLfloat *data);
+typedef void ( * PFNGLGETLOCALCONSTANTBOOLEANVEXTPROC) (GLuint id, GLenum value, GLboolean *data);
+typedef void ( * PFNGLGETLOCALCONSTANTINTEGERVEXTPROC) (GLuint id, GLenum value, GLint *data);
+typedef void ( * PFNGLGETLOCALCONSTANTFLOATVEXTPROC) (GLuint id, GLenum value, GLfloat *data);
+# 8963 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXWEIGHTFEXTPROC) (GLfloat weight);
+typedef void ( * PFNGLVERTEXWEIGHTFVEXTPROC) (const GLfloat *weight);
+typedef void ( * PFNGLVERTEXWEIGHTPOINTEREXTPROC) (GLint size, GLenum type, GLsizei stride, const void *pointer);
+# 8975 "/usr/include/GL/glext.h" 3 4
+typedef GLboolean ( * PFNGLACQUIREKEYEDMUTEXWIN32EXTPROC) (GLuint memory, GLuint64 key, GLuint timeout);
+typedef GLboolean ( * PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC) (GLuint memory, GLuint64 key);
+# 8991 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLWINDOWRECTANGLESEXTPROC) (GLenum mode, GLsizei count, const GLint *box);
+# 9000 "/usr/include/GL/glext.h" 3 4
+typedef GLsync ( * PFNGLIMPORTSYNCEXTPROC) (GLenum external_sync_type, GLintptr external_sync, GLbitfield flags);
+
+
+
+
+
+
+
+typedef void ( * PFNGLFRAMETERMINATORGREMEDYPROC) (void);
+
+
+
+
+
+
+
+typedef void ( * PFNGLSTRINGMARKERGREMEDYPROC) (GLsizei len, const void *string);
+# 9047 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLIMAGETRANSFORMPARAMETERIHPPROC) (GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLIMAGETRANSFORMPARAMETERFHPPROC) (GLenum target, GLenum pname, GLfloat param);
+typedef void ( * PFNGLIMAGETRANSFORMPARAMETERIVHPPROC) (GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLIMAGETRANSFORMPARAMETERFVHPPROC) (GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC) (GLenum target, GLenum pname, GLfloat *params);
+# 9083 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMULTIMODEDRAWARRAYSIBMPROC) (const GLenum *mode, const GLint *first, const GLsizei *count, GLsizei primcount, GLint modestride);
+typedef void ( * PFNGLMULTIMODEDRAWELEMENTSIBMPROC) (const GLenum *mode, const GLsizei *count, GLenum type, const void *const*indices, GLsizei primcount, GLint modestride);
+# 9100 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFLUSHSTATICDATAIBMPROC) (GLenum target);
+# 9129 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOLORPOINTERLISTIBMPROC) (GLint size, GLenum type, GLint stride, const void **pointer, GLint ptrstride);
+typedef void ( * PFNGLSECONDARYCOLORPOINTERLISTIBMPROC) (GLint size, GLenum type, GLint stride, const void **pointer, GLint ptrstride);
+typedef void ( * PFNGLEDGEFLAGPOINTERLISTIBMPROC) (GLint stride, const GLboolean **pointer, GLint ptrstride);
+typedef void ( * PFNGLFOGCOORDPOINTERLISTIBMPROC) (GLenum type, GLint stride, const void **pointer, GLint ptrstride);
+typedef void ( * PFNGLINDEXPOINTERLISTIBMPROC) (GLenum type, GLint stride, const void **pointer, GLint ptrstride);
+typedef void ( * PFNGLNORMALPOINTERLISTIBMPROC) (GLenum type, GLint stride, const void **pointer, GLint ptrstride);
+typedef void ( * PFNGLTEXCOORDPOINTERLISTIBMPROC) (GLint size, GLenum type, GLint stride, const void **pointer, GLint ptrstride);
+typedef void ( * PFNGLVERTEXPOINTERLISTIBMPROC) (GLint size, GLenum type, GLint stride, const void **pointer, GLint ptrstride);
+# 9151 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDFUNCSEPARATEINGRPROC) (GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha);
+# 9190 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC) (void);
+# 9202 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSYNCTEXTUREINTELPROC) (GLuint texture);
+typedef void ( * PFNGLUNMAPTEXTURE2DINTELPROC) (GLuint texture, GLint level);
+typedef void *( * PFNGLMAPTEXTURE2DINTELPROC) (GLuint texture, GLint level, GLbitfield access, GLint *stride, GLenum *layout);
+# 9219 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXPOINTERVINTELPROC) (GLint size, GLenum type, const void **pointer);
+typedef void ( * PFNGLNORMALPOINTERVINTELPROC) (GLenum type, const void **pointer);
+typedef void ( * PFNGLCOLORPOINTERVINTELPROC) (GLint size, GLenum type, const void **pointer);
+typedef void ( * PFNGLTEXCOORDPOINTERVINTELPROC) (GLint size, GLenum type, const void **pointer);
+# 9253 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBEGINPERFQUERYINTELPROC) (GLuint queryHandle);
+typedef void ( * PFNGLCREATEPERFQUERYINTELPROC) (GLuint queryId, GLuint *queryHandle);
+typedef void ( * PFNGLDELETEPERFQUERYINTELPROC) (GLuint queryHandle);
+typedef void ( * PFNGLENDPERFQUERYINTELPROC) (GLuint queryHandle);
+typedef void ( * PFNGLGETFIRSTPERFQUERYIDINTELPROC) (GLuint *queryId);
+typedef void ( * PFNGLGETNEXTPERFQUERYIDINTELPROC) (GLuint queryId, GLuint *nextQueryId);
+typedef void ( * PFNGLGETPERFCOUNTERINFOINTELPROC) (GLuint queryId, GLuint counterId, GLuint counterNameLength, GLchar *counterName, GLuint counterDescLength, GLchar *counterDesc, GLuint *counterOffset, GLuint *counterDataSize, GLuint *counterTypeEnum, GLuint *counterDataTypeEnum, GLuint64 *rawCounterMaxValue);
+typedef void ( * PFNGLGETPERFQUERYDATAINTELPROC) (GLuint queryHandle, GLuint flags, GLsizei dataSize, void *data, GLuint *bytesWritten);
+typedef void ( * PFNGLGETPERFQUERYIDBYNAMEINTELPROC) (GLchar *queryName, GLuint *queryId);
+typedef void ( * PFNGLGETPERFQUERYINFOINTELPROC) (GLuint queryId, GLuint queryNameLength, GLchar *queryName, GLuint *dataSize, GLuint *noCounters, GLuint *noInstances, GLuint *capsMask);
+# 9290 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEBUFFERPARAMETERIMESAPROC) (GLenum target, GLenum pname, GLint param);
+typedef void ( * PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC) (GLenum target, GLenum pname, GLint *params);
+# 9310 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLRESIZEBUFFERSMESAPROC) (void);
+# 9329 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLWINDOWPOS2DMESAPROC) (GLdouble x, GLdouble y);
+typedef void ( * PFNGLWINDOWPOS2DVMESAPROC) (const GLdouble *v);
+typedef void ( * PFNGLWINDOWPOS2FMESAPROC) (GLfloat x, GLfloat y);
+typedef void ( * PFNGLWINDOWPOS2FVMESAPROC) (const GLfloat *v);
+typedef void ( * PFNGLWINDOWPOS2IMESAPROC) (GLint x, GLint y);
+typedef void ( * PFNGLWINDOWPOS2IVMESAPROC) (const GLint *v);
+typedef void ( * PFNGLWINDOWPOS2SMESAPROC) (GLshort x, GLshort y);
+typedef void ( * PFNGLWINDOWPOS2SVMESAPROC) (const GLshort *v);
+typedef void ( * PFNGLWINDOWPOS3DMESAPROC) (GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLWINDOWPOS3DVMESAPROC) (const GLdouble *v);
+typedef void ( * PFNGLWINDOWPOS3FMESAPROC) (GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLWINDOWPOS3FVMESAPROC) (const GLfloat *v);
+typedef void ( * PFNGLWINDOWPOS3IMESAPROC) (GLint x, GLint y, GLint z);
+typedef void ( * PFNGLWINDOWPOS3IVMESAPROC) (const GLint *v);
+typedef void ( * PFNGLWINDOWPOS3SMESAPROC) (GLshort x, GLshort y, GLshort z);
+typedef void ( * PFNGLWINDOWPOS3SVMESAPROC) (const GLshort *v);
+typedef void ( * PFNGLWINDOWPOS4DMESAPROC) (GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLWINDOWPOS4DVMESAPROC) (const GLdouble *v);
+typedef void ( * PFNGLWINDOWPOS4FMESAPROC) (GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLWINDOWPOS4FVMESAPROC) (const GLfloat *v);
+typedef void ( * PFNGLWINDOWPOS4IMESAPROC) (GLint x, GLint y, GLint z, GLint w);
+typedef void ( * PFNGLWINDOWPOS4IVMESAPROC) (const GLint *v);
+typedef void ( * PFNGLWINDOWPOS4SMESAPROC) (GLshort x, GLshort y, GLshort z, GLshort w);
+typedef void ( * PFNGLWINDOWPOS4SVMESAPROC) (const GLshort *v);
+# 9394 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBEGINCONDITIONALRENDERNVXPROC) (GLuint id);
+typedef void ( * PFNGLENDCONDITIONALRENDERNVXPROC) (void);
+# 9414 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLUPLOADGPUMASKNVXPROC) (GLbitfield mask);
+typedef void ( * PFNGLMULTICASTVIEWPORTARRAYVNVXPROC) (GLuint gpu, GLuint first, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC) (GLuint gpu, GLuint index, GLfloat xcoeff, GLfloat ycoeff);
+typedef void ( * PFNGLMULTICASTSCISSORARRAYVNVXPROC) (GLuint gpu, GLuint first, GLsizei count, const GLint *v);
+typedef GLuint ( * PFNGLASYNCCOPYBUFFERSUBDATANVXPROC) (GLsizei waitSemaphoreCount, const GLuint *waitSemaphoreArray, const GLuint64 *fenceValueArray, GLuint readGpu, GLbitfield writeGpuMask, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size, GLsizei signalSemaphoreCount, const GLuint *signalSemaphoreArray, const GLuint64 *signalValueArray);
+typedef GLuint ( * PFNGLASYNCCOPYIMAGESUBDATANVXPROC) (GLsizei waitSemaphoreCount, const GLuint *waitSemaphoreArray, const GLuint64 *waitValueArray, GLuint srcGpu, GLbitfield dstGpuMask, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth, GLsizei signalSemaphoreCount, const GLuint *signalSemaphoreArray, const GLuint64 *signalValueArray);
+# 9434 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC) (GLbitfield gpuMask, GLuint buffer, GLintptr offset, GLsizeiptr size, const void *data);
+typedef void ( * PFNGLLGPUCOPYIMAGESUBDATANVXPROC) (GLuint sourceGpu, GLbitfield destinationGpuMask, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srxY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+typedef void ( * PFNGLLGPUINTERLOCKNVXPROC) (void);
+# 9446 "/usr/include/GL/glext.h" 3 4
+typedef GLuint ( * PFNGLCREATEPROGRESSFENCENVXPROC) (void);
+typedef void ( * PFNGLSIGNALSEMAPHOREUI64NVXPROC) (GLuint signalGpu, GLsizei fenceObjectCount, const GLuint *semaphoreArray, const GLuint64 *fenceValueArray);
+typedef void ( * PFNGLWAITSEMAPHOREUI64NVXPROC) (GLuint waitGpu, GLsizei fenceObjectCount, const GLuint *semaphoreArray, const GLuint64 *fenceValueArray);
+typedef void ( * PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC) (GLsizei fenceObjectCount, const GLuint *semaphoreArray, const GLuint64 *fenceValueArray);
+# 9464 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC) (GLenum mode);
+
+
+
+
+
+
+
+typedef void ( * PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC) (GLenum mode, const void *indirect, GLsizei drawCount, GLsizei stride, GLint vertexBufferCount);
+typedef void ( * PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC) (GLenum mode, GLenum type, const void *indirect, GLsizei drawCount, GLsizei stride, GLint vertexBufferCount);
+# 9482 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC) (GLenum mode, const void *indirect, GLsizei drawCount, GLsizei maxDrawCount, GLsizei stride, GLint vertexBufferCount);
+typedef void ( * PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC) (GLenum mode, GLenum type, const void *indirect, GLsizei drawCount, GLsizei maxDrawCount, GLsizei stride, GLint vertexBufferCount);
+# 9492 "/usr/include/GL/glext.h" 3 4
+typedef GLuint64 ( * PFNGLGETTEXTUREHANDLENVPROC) (GLuint texture);
+typedef GLuint64 ( * PFNGLGETTEXTURESAMPLERHANDLENVPROC) (GLuint texture, GLuint sampler);
+typedef void ( * PFNGLMAKETEXTUREHANDLERESIDENTNVPROC) (GLuint64 handle);
+typedef void ( * PFNGLMAKETEXTUREHANDLENONRESIDENTNVPROC) (GLuint64 handle);
+typedef GLuint64 ( * PFNGLGETIMAGEHANDLENVPROC) (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format);
+typedef void ( * PFNGLMAKEIMAGEHANDLERESIDENTNVPROC) (GLuint64 handle, GLenum access);
+typedef void ( * PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC) (GLuint64 handle);
+typedef void ( * PFNGLUNIFORMHANDLEUI64NVPROC) (GLint location, GLuint64 value);
+typedef void ( * PFNGLUNIFORMHANDLEUI64VNVPROC) (GLint location, GLsizei count, const GLuint64 *value);
+typedef void ( * PFNGLPROGRAMUNIFORMHANDLEUI64NVPROC) (GLuint program, GLint location, GLuint64 value);
+typedef void ( * PFNGLPROGRAMUNIFORMHANDLEUI64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLuint64 *values);
+typedef GLboolean ( * PFNGLISTEXTUREHANDLERESIDENTNVPROC) (GLuint64 handle);
+typedef GLboolean ( * PFNGLISIMAGEHANDLERESIDENTNVPROC) (GLuint64 handle);
+# 9573 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBLENDPARAMETERINVPROC) (GLenum pname, GLint value);
+typedef void ( * PFNGLBLENDBARRIERNVPROC) (void);
+# 9599 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVIEWPORTPOSITIONWSCALENVPROC) (GLuint index, GLfloat xcoeff, GLfloat ycoeff);
+# 9626 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCREATESTATESNVPROC) (GLsizei n, GLuint *states);
+typedef void ( * PFNGLDELETESTATESNVPROC) (GLsizei n, const GLuint *states);
+typedef GLboolean ( * PFNGLISSTATENVPROC) (GLuint state);
+typedef void ( * PFNGLSTATECAPTURENVPROC) (GLuint state, GLenum mode);
+typedef GLuint ( * PFNGLGETCOMMANDHEADERNVPROC) (GLenum tokenID, GLuint size);
+typedef GLushort ( * PFNGLGETSTAGEINDEXNVPROC) (GLenum shadertype);
+typedef void ( * PFNGLDRAWCOMMANDSNVPROC) (GLenum primitiveMode, GLuint buffer, const GLintptr *indirects, const GLsizei *sizes, GLuint count);
+typedef void ( * PFNGLDRAWCOMMANDSADDRESSNVPROC) (GLenum primitiveMode, const GLuint64 *indirects, const GLsizei *sizes, GLuint count);
+typedef void ( * PFNGLDRAWCOMMANDSSTATESNVPROC) (GLuint buffer, const GLintptr *indirects, const GLsizei *sizes, const GLuint *states, const GLuint *fbos, GLuint count);
+typedef void ( * PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC) (const GLuint64 *indirects, const GLsizei *sizes, const GLuint *states, const GLuint *fbos, GLuint count);
+typedef void ( * PFNGLCREATECOMMANDLISTSNVPROC) (GLsizei n, GLuint *lists);
+typedef void ( * PFNGLDELETECOMMANDLISTSNVPROC) (GLsizei n, const GLuint *lists);
+typedef GLboolean ( * PFNGLISCOMMANDLISTNVPROC) (GLuint list);
+typedef void ( * PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC) (GLuint list, GLuint segment, const void **indirects, const GLsizei *sizes, const GLuint *states, const GLuint *fbos, GLuint count);
+typedef void ( * PFNGLCOMMANDLISTSEGMENTSNVPROC) (GLuint list, GLuint segments);
+typedef void ( * PFNGLCOMPILECOMMANDLISTNVPROC) (GLuint list);
+typedef void ( * PFNGLCALLCOMMANDLISTNVPROC) (GLuint list);
+# 9680 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBEGINCONDITIONALRENDERNVPROC) (GLuint id, GLenum mode);
+typedef void ( * PFNGLENDCONDITIONALRENDERNVPROC) (void);
+# 9694 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSUBPIXELPRECISIONBIASNVPROC) (GLuint xbits, GLuint ybits);
+# 9705 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCONSERVATIVERASTERPARAMETERFNVPROC) (GLenum pname, GLfloat value);
+# 9721 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCONSERVATIVERASTERPARAMETERINVPROC) (GLenum pname, GLint param);
+# 9739 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOPYIMAGESUBDATANVPROC) (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+# 9757 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDEPTHRANGEDNVPROC) (GLdouble zNear, GLdouble zFar);
+typedef void ( * PFNGLCLEARDEPTHDNVPROC) (GLdouble depth);
+typedef void ( * PFNGLDEPTHBOUNDSDNVPROC) (GLdouble zmin, GLdouble zmax);
+# 9774 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWTEXTURENVPROC) (GLuint texture, GLuint sampler, GLfloat x0, GLfloat y0, GLfloat x1, GLfloat y1, GLfloat z, GLfloat s0, GLfloat t0, GLfloat s1, GLfloat t1);
+
+
+
+
+
+
+
+typedef void ( *GLVULKANPROCNV)(void);
+typedef void ( * PFNGLDRAWVKIMAGENVPROC) (GLuint64 vkImage, GLuint sampler, GLfloat x0, GLfloat y0, GLfloat x1, GLfloat y1, GLfloat z, GLfloat s0, GLfloat t0, GLfloat s1, GLfloat t1);
+typedef GLVULKANPROCNV ( * PFNGLGETVKPROCADDRNVPROC) (const GLchar *name);
+typedef void ( * PFNGLWAITVKSEMAPHORENVPROC) (GLuint64 vkSemaphore);
+typedef void ( * PFNGLSIGNALVKSEMAPHORENVPROC) (GLuint64 vkSemaphore);
+typedef void ( * PFNGLSIGNALVKFENCENVPROC) (GLuint64 vkFence);
+# 9823 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMAPCONTROLPOINTSNVPROC) (GLenum target, GLuint index, GLenum type, GLsizei ustride, GLsizei vstride, GLint uorder, GLint vorder, GLboolean packed, const void *points);
+typedef void ( * PFNGLMAPPARAMETERIVNVPROC) (GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLMAPPARAMETERFVNVPROC) (GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLGETMAPCONTROLPOINTSNVPROC) (GLenum target, GLuint index, GLenum type, GLsizei ustride, GLsizei vstride, GLboolean packed, void *points);
+typedef void ( * PFNGLGETMAPPARAMETERIVNVPROC) (GLenum target, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETMAPPARAMETERFVNVPROC) (GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETMAPATTRIBPARAMETERIVNVPROC) (GLenum target, GLuint index, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETMAPATTRIBPARAMETERFVNVPROC) (GLenum target, GLuint index, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLEVALMAPSNVPROC) (GLenum target, GLenum mode);
+# 9857 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETMULTISAMPLEFVNVPROC) (GLenum pname, GLuint index, GLfloat *val);
+typedef void ( * PFNGLSAMPLEMASKINDEXEDNVPROC) (GLuint index, GLbitfield mask);
+typedef void ( * PFNGLTEXRENDERBUFFERNVPROC) (GLenum target, GLuint renderbuffer);
+# 9872 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDELETEFENCESNVPROC) (GLsizei n, const GLuint *fences);
+typedef void ( * PFNGLGENFENCESNVPROC) (GLsizei n, GLuint *fences);
+typedef GLboolean ( * PFNGLISFENCENVPROC) (GLuint fence);
+typedef GLboolean ( * PFNGLTESTFENCENVPROC) (GLuint fence);
+typedef void ( * PFNGLGETFENCEIVNVPROC) (GLuint fence, GLenum pname, GLint *params);
+typedef void ( * PFNGLFINISHFENCENVPROC) (GLuint fence);
+typedef void ( * PFNGLSETFENCENVPROC) (GLuint fence, GLenum condition);
+# 9925 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAGMENTCOVERAGECOLORNVPROC) (GLuint color);
+# 9939 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMNAMEDPARAMETER4FNVPROC) (GLuint id, GLsizei len, const GLubyte *name, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC) (GLuint id, GLsizei len, const GLubyte *name, const GLfloat *v);
+typedef void ( * PFNGLPROGRAMNAMEDPARAMETER4DNVPROC) (GLuint id, GLsizei len, const GLubyte *name, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLPROGRAMNAMEDPARAMETER4DVNVPROC) (GLuint id, GLsizei len, const GLubyte *name, const GLdouble *v);
+typedef void ( * PFNGLGETPROGRAMNAMEDPARAMETERFVNVPROC) (GLuint id, GLsizei len, const GLubyte *name, GLfloat *params);
+typedef void ( * PFNGLGETPROGRAMNAMEDPARAMETERDVNVPROC) (GLuint id, GLsizei len, const GLubyte *name, GLdouble *params);
+# 9990 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOVERAGEMODULATIONTABLENVPROC) (GLsizei n, const GLfloat *v);
+typedef void ( * PFNGLGETCOVERAGEMODULATIONTABLENVPROC) (GLsizei bufsize, GLfloat *v);
+typedef void ( * PFNGLCOVERAGEMODULATIONNVPROC) (GLenum components);
+# 10006 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLRENDERBUFFERSTORAGEMULTISAMPLECOVERAGENVPROC) (GLenum target, GLsizei coverageSamples, GLsizei colorSamples, GLenum internalformat, GLsizei width, GLsizei height);
+# 10017 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMVERTEXLIMITNVPROC) (GLenum target, GLint limit);
+typedef void ( * PFNGLFRAMEBUFFERTEXTUREEXTPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level);
+typedef void ( * PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLenum face);
+# 10042 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLRENDERGPUMASKNVPROC) (GLbitfield mask);
+typedef void ( * PFNGLMULTICASTBUFFERSUBDATANVPROC) (GLbitfield gpuMask, GLuint buffer, GLintptr offset, GLsizeiptr size, const void *data);
+typedef void ( * PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC) (GLuint readGpu, GLbitfield writeGpuMask, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+typedef void ( * PFNGLMULTICASTCOPYIMAGESUBDATANVPROC) (GLuint srcGpu, GLbitfield dstGpuMask, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth);
+typedef void ( * PFNGLMULTICASTBLITFRAMEBUFFERNVPROC) (GLuint srcGpu, GLuint dstGpu, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+typedef void ( * PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC) (GLuint gpu, GLuint framebuffer, GLuint start, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLMULTICASTBARRIERNVPROC) (void);
+typedef void ( * PFNGLMULTICASTWAITSYNCNVPROC) (GLuint signalGpu, GLbitfield waitGpuMask);
+typedef void ( * PFNGLMULTICASTGETQUERYOBJECTIVNVPROC) (GLuint gpu, GLuint id, GLenum pname, GLint *params);
+typedef void ( * PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC) (GLuint gpu, GLuint id, GLenum pname, GLuint *params);
+typedef void ( * PFNGLMULTICASTGETQUERYOBJECTI64VNVPROC) (GLuint gpu, GLuint id, GLenum pname, GLint64 *params);
+typedef void ( * PFNGLMULTICASTGETQUERYOBJECTUI64VNVPROC) (GLuint gpu, GLuint id, GLenum pname, GLuint64 *params);
+# 10080 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMLOCALPARAMETERI4INVPROC) (GLenum target, GLuint index, GLint x, GLint y, GLint z, GLint w);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC) (GLenum target, GLuint index, const GLint *params);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC) (GLenum target, GLuint index, GLsizei count, const GLint *params);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETERI4UINVPROC) (GLenum target, GLuint index, GLuint x, GLuint y, GLuint z, GLuint w);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETERI4UIVNVPROC) (GLenum target, GLuint index, const GLuint *params);
+typedef void ( * PFNGLPROGRAMLOCALPARAMETERSI4UIVNVPROC) (GLenum target, GLuint index, GLsizei count, const GLuint *params);
+typedef void ( * PFNGLPROGRAMENVPARAMETERI4INVPROC) (GLenum target, GLuint index, GLint x, GLint y, GLint z, GLint w);
+typedef void ( * PFNGLPROGRAMENVPARAMETERI4IVNVPROC) (GLenum target, GLuint index, const GLint *params);
+typedef void ( * PFNGLPROGRAMENVPARAMETERSI4IVNVPROC) (GLenum target, GLuint index, GLsizei count, const GLint *params);
+typedef void ( * PFNGLPROGRAMENVPARAMETERI4UINVPROC) (GLenum target, GLuint index, GLuint x, GLuint y, GLuint z, GLuint w);
+typedef void ( * PFNGLPROGRAMENVPARAMETERI4UIVNVPROC) (GLenum target, GLuint index, const GLuint *params);
+typedef void ( * PFNGLPROGRAMENVPARAMETERSI4UIVNVPROC) (GLenum target, GLuint index, GLsizei count, const GLuint *params);
+typedef void ( * PFNGLGETPROGRAMLOCALPARAMETERIIVNVPROC) (GLenum target, GLuint index, GLint *params);
+typedef void ( * PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC) (GLenum target, GLuint index, GLuint *params);
+typedef void ( * PFNGLGETPROGRAMENVPARAMETERIIVNVPROC) (GLenum target, GLuint index, GLint *params);
+typedef void ( * PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC) (GLenum target, GLuint index, GLuint *params);
+# 10126 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMSUBROUTINEPARAMETERSUIVNVPROC) (GLenum target, GLsizei count, const GLuint *params);
+typedef void ( * PFNGLGETPROGRAMSUBROUTINEPARAMETERUIVNVPROC) (GLenum target, GLuint index, GLuint *param);
+# 10144 "/usr/include/GL/glext.h" 3 4
+typedef unsigned short GLhalfNV;
+
+typedef void ( * PFNGLVERTEX2HNVPROC) (GLhalfNV x, GLhalfNV y);
+typedef void ( * PFNGLVERTEX2HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLVERTEX3HNVPROC) (GLhalfNV x, GLhalfNV y, GLhalfNV z);
+typedef void ( * PFNGLVERTEX3HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLVERTEX4HNVPROC) (GLhalfNV x, GLhalfNV y, GLhalfNV z, GLhalfNV w);
+typedef void ( * PFNGLVERTEX4HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLNORMAL3HNVPROC) (GLhalfNV nx, GLhalfNV ny, GLhalfNV nz);
+typedef void ( * PFNGLNORMAL3HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLCOLOR3HNVPROC) (GLhalfNV red, GLhalfNV green, GLhalfNV blue);
+typedef void ( * PFNGLCOLOR3HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLCOLOR4HNVPROC) (GLhalfNV red, GLhalfNV green, GLhalfNV blue, GLhalfNV alpha);
+typedef void ( * PFNGLCOLOR4HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLTEXCOORD1HNVPROC) (GLhalfNV s);
+typedef void ( * PFNGLTEXCOORD1HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLTEXCOORD2HNVPROC) (GLhalfNV s, GLhalfNV t);
+typedef void ( * PFNGLTEXCOORD2HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLTEXCOORD3HNVPROC) (GLhalfNV s, GLhalfNV t, GLhalfNV r);
+typedef void ( * PFNGLTEXCOORD3HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLTEXCOORD4HNVPROC) (GLhalfNV s, GLhalfNV t, GLhalfNV r, GLhalfNV q);
+typedef void ( * PFNGLTEXCOORD4HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLMULTITEXCOORD1HNVPROC) (GLenum target, GLhalfNV s);
+typedef void ( * PFNGLMULTITEXCOORD1HVNVPROC) (GLenum target, const GLhalfNV *v);
+typedef void ( * PFNGLMULTITEXCOORD2HNVPROC) (GLenum target, GLhalfNV s, GLhalfNV t);
+typedef void ( * PFNGLMULTITEXCOORD2HVNVPROC) (GLenum target, const GLhalfNV *v);
+typedef void ( * PFNGLMULTITEXCOORD3HNVPROC) (GLenum target, GLhalfNV s, GLhalfNV t, GLhalfNV r);
+typedef void ( * PFNGLMULTITEXCOORD3HVNVPROC) (GLenum target, const GLhalfNV *v);
+typedef void ( * PFNGLMULTITEXCOORD4HNVPROC) (GLenum target, GLhalfNV s, GLhalfNV t, GLhalfNV r, GLhalfNV q);
+typedef void ( * PFNGLMULTITEXCOORD4HVNVPROC) (GLenum target, const GLhalfNV *v);
+typedef void ( * PFNGLFOGCOORDHNVPROC) (GLhalfNV fog);
+typedef void ( * PFNGLFOGCOORDHVNVPROC) (const GLhalfNV *fog);
+typedef void ( * PFNGLSECONDARYCOLOR3HNVPROC) (GLhalfNV red, GLhalfNV green, GLhalfNV blue);
+typedef void ( * PFNGLSECONDARYCOLOR3HVNVPROC) (const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXWEIGHTHNVPROC) (GLhalfNV weight);
+typedef void ( * PFNGLVERTEXWEIGHTHVNVPROC) (const GLhalfNV *weight);
+typedef void ( * PFNGLVERTEXATTRIB1HNVPROC) (GLuint index, GLhalfNV x);
+typedef void ( * PFNGLVERTEXATTRIB1HVNVPROC) (GLuint index, const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXATTRIB2HNVPROC) (GLuint index, GLhalfNV x, GLhalfNV y);
+typedef void ( * PFNGLVERTEXATTRIB2HVNVPROC) (GLuint index, const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXATTRIB3HNVPROC) (GLuint index, GLhalfNV x, GLhalfNV y, GLhalfNV z);
+typedef void ( * PFNGLVERTEXATTRIB3HVNVPROC) (GLuint index, const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXATTRIB4HNVPROC) (GLuint index, GLhalfNV x, GLhalfNV y, GLhalfNV z, GLhalfNV w);
+typedef void ( * PFNGLVERTEXATTRIB4HVNVPROC) (GLuint index, const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXATTRIBS1HVNVPROC) (GLuint index, GLsizei n, const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXATTRIBS2HVNVPROC) (GLuint index, GLsizei n, const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXATTRIBS3HVNVPROC) (GLuint index, GLsizei n, const GLhalfNV *v);
+typedef void ( * PFNGLVERTEXATTRIBS4HVNVPROC) (GLuint index, GLsizei n, const GLhalfNV *v);
+# 10248 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETINTERNALFORMATSAMPLEIVNVPROC) (GLenum target, GLenum internalformat, GLsizei samples, GLenum pname, GLsizei bufSize, GLint *params);
+# 10272 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC) (GLuint memory, GLenum pname, GLint first, GLsizei count, GLuint *params);
+typedef void ( * PFNGLRESETMEMORYOBJECTPARAMETERNVPROC) (GLuint memory, GLenum pname);
+typedef void ( * PFNGLTEXATTACHMEMORYNVPROC) (GLenum target, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLBUFFERATTACHMEMORYNVPROC) (GLenum target, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLTEXTUREATTACHMEMORYNVPROC) (GLuint texture, GLuint memory, GLuint64 offset);
+typedef void ( * PFNGLNAMEDBUFFERATTACHMEMORYNVPROC) (GLuint buffer, GLuint memory, GLuint64 offset);
+# 10338 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWMESHTASKSNVPROC) (GLuint first, GLuint count);
+typedef void ( * PFNGLDRAWMESHTASKSINDIRECTNVPROC) (GLintptr indirect);
+typedef void ( * PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC) (GLintptr indirect, GLsizei drawcount, GLsizei stride);
+typedef void ( * PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC) (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+# 10365 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGENOCCLUSIONQUERIESNVPROC) (GLsizei n, GLuint *ids);
+typedef void ( * PFNGLDELETEOCCLUSIONQUERIESNVPROC) (GLsizei n, const GLuint *ids);
+typedef GLboolean ( * PFNGLISOCCLUSIONQUERYNVPROC) (GLuint id);
+typedef void ( * PFNGLBEGINOCCLUSIONQUERYNVPROC) (GLuint id);
+typedef void ( * PFNGLENDOCCLUSIONQUERYNVPROC) (void);
+typedef void ( * PFNGLGETOCCLUSIONQUERYIVNVPROC) (GLuint id, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETOCCLUSIONQUERYUIVNVPROC) (GLuint id, GLenum pname, GLuint *params);
+# 10396 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPROGRAMBUFFERPARAMETERSFVNVPROC) (GLenum target, GLuint bindingIndex, GLuint wordIndex, GLsizei count, const GLfloat *params);
+typedef void ( * PFNGLPROGRAMBUFFERPARAMETERSIIVNVPROC) (GLenum target, GLuint bindingIndex, GLuint wordIndex, GLsizei count, const GLint *params);
+typedef void ( * PFNGLPROGRAMBUFFERPARAMETERSIUIVNVPROC) (GLenum target, GLuint bindingIndex, GLuint wordIndex, GLsizei count, const GLuint *params);
+# 10575 "/usr/include/GL/glext.h" 3 4
+typedef GLuint ( * PFNGLGENPATHSNVPROC) (GLsizei range);
+typedef void ( * PFNGLDELETEPATHSNVPROC) (GLuint path, GLsizei range);
+typedef GLboolean ( * PFNGLISPATHNVPROC) (GLuint path);
+typedef void ( * PFNGLPATHCOMMANDSNVPROC) (GLuint path, GLsizei numCommands, const GLubyte *commands, GLsizei numCoords, GLenum coordType, const void *coords);
+typedef void ( * PFNGLPATHCOORDSNVPROC) (GLuint path, GLsizei numCoords, GLenum coordType, const void *coords);
+typedef void ( * PFNGLPATHSUBCOMMANDSNVPROC) (GLuint path, GLsizei commandStart, GLsizei commandsToDelete, GLsizei numCommands, const GLubyte *commands, GLsizei numCoords, GLenum coordType, const void *coords);
+typedef void ( * PFNGLPATHSUBCOORDSNVPROC) (GLuint path, GLsizei coordStart, GLsizei numCoords, GLenum coordType, const void *coords);
+typedef void ( * PFNGLPATHSTRINGNVPROC) (GLuint path, GLenum format, GLsizei length, const void *pathString);
+typedef void ( * PFNGLPATHGLYPHSNVPROC) (GLuint firstPathName, GLenum fontTarget, const void *fontName, GLbitfield fontStyle, GLsizei numGlyphs, GLenum type, const void *charcodes, GLenum handleMissingGlyphs, GLuint pathParameterTemplate, GLfloat emScale);
+typedef void ( * PFNGLPATHGLYPHRANGENVPROC) (GLuint firstPathName, GLenum fontTarget, const void *fontName, GLbitfield fontStyle, GLuint firstGlyph, GLsizei numGlyphs, GLenum handleMissingGlyphs, GLuint pathParameterTemplate, GLfloat emScale);
+typedef void ( * PFNGLWEIGHTPATHSNVPROC) (GLuint resultPath, GLsizei numPaths, const GLuint *paths, const GLfloat *weights);
+typedef void ( * PFNGLCOPYPATHNVPROC) (GLuint resultPath, GLuint srcPath);
+typedef void ( * PFNGLINTERPOLATEPATHSNVPROC) (GLuint resultPath, GLuint pathA, GLuint pathB, GLfloat weight);
+typedef void ( * PFNGLTRANSFORMPATHNVPROC) (GLuint resultPath, GLuint srcPath, GLenum transformType, const GLfloat *transformValues);
+typedef void ( * PFNGLPATHPARAMETERIVNVPROC) (GLuint path, GLenum pname, const GLint *value);
+typedef void ( * PFNGLPATHPARAMETERINVPROC) (GLuint path, GLenum pname, GLint value);
+typedef void ( * PFNGLPATHPARAMETERFVNVPROC) (GLuint path, GLenum pname, const GLfloat *value);
+typedef void ( * PFNGLPATHPARAMETERFNVPROC) (GLuint path, GLenum pname, GLfloat value);
+typedef void ( * PFNGLPATHDASHARRAYNVPROC) (GLuint path, GLsizei dashCount, const GLfloat *dashArray);
+typedef void ( * PFNGLPATHSTENCILFUNCNVPROC) (GLenum func, GLint ref, GLuint mask);
+typedef void ( * PFNGLPATHSTENCILDEPTHOFFSETNVPROC) (GLfloat factor, GLfloat units);
+typedef void ( * PFNGLSTENCILFILLPATHNVPROC) (GLuint path, GLenum fillMode, GLuint mask);
+typedef void ( * PFNGLSTENCILSTROKEPATHNVPROC) (GLuint path, GLint reference, GLuint mask);
+typedef void ( * PFNGLSTENCILFILLPATHINSTANCEDNVPROC) (GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLenum fillMode, GLuint mask, GLenum transformType, const GLfloat *transformValues);
+typedef void ( * PFNGLSTENCILSTROKEPATHINSTANCEDNVPROC) (GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLint reference, GLuint mask, GLenum transformType, const GLfloat *transformValues);
+typedef void ( * PFNGLPATHCOVERDEPTHFUNCNVPROC) (GLenum func);
+typedef void ( * PFNGLCOVERFILLPATHNVPROC) (GLuint path, GLenum coverMode);
+typedef void ( * PFNGLCOVERSTROKEPATHNVPROC) (GLuint path, GLenum coverMode);
+typedef void ( * PFNGLCOVERFILLPATHINSTANCEDNVPROC) (GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLenum coverMode, GLenum transformType, const GLfloat *transformValues);
+typedef void ( * PFNGLCOVERSTROKEPATHINSTANCEDNVPROC) (GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLenum coverMode, GLenum transformType, const GLfloat *transformValues);
+typedef void ( * PFNGLGETPATHPARAMETERIVNVPROC) (GLuint path, GLenum pname, GLint *value);
+typedef void ( * PFNGLGETPATHPARAMETERFVNVPROC) (GLuint path, GLenum pname, GLfloat *value);
+typedef void ( * PFNGLGETPATHCOMMANDSNVPROC) (GLuint path, GLubyte *commands);
+typedef void ( * PFNGLGETPATHCOORDSNVPROC) (GLuint path, GLfloat *coords);
+typedef void ( * PFNGLGETPATHDASHARRAYNVPROC) (GLuint path, GLfloat *dashArray);
+typedef void ( * PFNGLGETPATHMETRICSNVPROC) (GLbitfield metricQueryMask, GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLsizei stride, GLfloat *metrics);
+typedef void ( * PFNGLGETPATHMETRICRANGENVPROC) (GLbitfield metricQueryMask, GLuint firstPathName, GLsizei numPaths, GLsizei stride, GLfloat *metrics);
+typedef void ( * PFNGLGETPATHSPACINGNVPROC) (GLenum pathListMode, GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLfloat advanceScale, GLfloat kerningScale, GLenum transformType, GLfloat *returnedSpacing);
+typedef GLboolean ( * PFNGLISPOINTINFILLPATHNVPROC) (GLuint path, GLuint mask, GLfloat x, GLfloat y);
+typedef GLboolean ( * PFNGLISPOINTINSTROKEPATHNVPROC) (GLuint path, GLfloat x, GLfloat y);
+typedef GLfloat ( * PFNGLGETPATHLENGTHNVPROC) (GLuint path, GLsizei startSegment, GLsizei numSegments);
+typedef GLboolean ( * PFNGLPOINTALONGPATHNVPROC) (GLuint path, GLsizei startSegment, GLsizei numSegments, GLfloat distance, GLfloat *x, GLfloat *y, GLfloat *tangentX, GLfloat *tangentY);
+typedef void ( * PFNGLMATRIXLOAD3X2FNVPROC) (GLenum matrixMode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXLOAD3X3FNVPROC) (GLenum matrixMode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXLOADTRANSPOSE3X3FNVPROC) (GLenum matrixMode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXMULT3X2FNVPROC) (GLenum matrixMode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXMULT3X3FNVPROC) (GLenum matrixMode, const GLfloat *m);
+typedef void ( * PFNGLMATRIXMULTTRANSPOSE3X3FNVPROC) (GLenum matrixMode, const GLfloat *m);
+typedef void ( * PFNGLSTENCILTHENCOVERFILLPATHNVPROC) (GLuint path, GLenum fillMode, GLuint mask, GLenum coverMode);
+typedef void ( * PFNGLSTENCILTHENCOVERSTROKEPATHNVPROC) (GLuint path, GLint reference, GLuint mask, GLenum coverMode);
+typedef void ( * PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC) (GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLenum fillMode, GLuint mask, GLenum coverMode, GLenum transformType, const GLfloat *transformValues);
+typedef void ( * PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC) (GLsizei numPaths, GLenum pathNameType, const void *paths, GLuint pathBase, GLint reference, GLuint mask, GLenum coverMode, GLenum transformType, const GLfloat *transformValues);
+typedef GLenum ( * PFNGLPATHGLYPHINDEXRANGENVPROC) (GLenum fontTarget, const void *fontName, GLbitfield fontStyle, GLuint pathParameterTemplate, GLfloat emScale, GLuint baseAndCount[2]);
+typedef GLenum ( * PFNGLPATHGLYPHINDEXARRAYNVPROC) (GLuint firstPathName, GLenum fontTarget, const void *fontName, GLbitfield fontStyle, GLuint firstGlyphIndex, GLsizei numGlyphs, GLuint pathParameterTemplate, GLfloat emScale);
+typedef GLenum ( * PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC) (GLuint firstPathName, GLenum fontTarget, GLsizeiptr fontSize, const void *fontData, GLsizei faceIndex, GLuint firstGlyphIndex, GLsizei numGlyphs, GLuint pathParameterTemplate, GLfloat emScale);
+typedef void ( * PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC) (GLuint program, GLint location, GLenum genMode, GLint components, const GLfloat *coeffs);
+typedef void ( * PFNGLGETPROGRAMRESOURCEFVNVPROC) (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum *props, GLsizei bufSize, GLsizei *length, GLfloat *params);
+typedef void ( * PFNGLPATHCOLORGENNVPROC) (GLenum color, GLenum genMode, GLenum colorFormat, const GLfloat *coeffs);
+typedef void ( * PFNGLPATHTEXGENNVPROC) (GLenum texCoordSet, GLenum genMode, GLint components, const GLfloat *coeffs);
+typedef void ( * PFNGLPATHFOGGENNVPROC) (GLenum genMode);
+typedef void ( * PFNGLGETPATHCOLORGENIVNVPROC) (GLenum color, GLenum pname, GLint *value);
+typedef void ( * PFNGLGETPATHCOLORGENFVNVPROC) (GLenum color, GLenum pname, GLfloat *value);
+typedef void ( * PFNGLGETPATHTEXGENIVNVPROC) (GLenum texCoordSet, GLenum pname, GLint *value);
+typedef void ( * PFNGLGETPATHTEXGENFVNVPROC) (GLenum texCoordSet, GLenum pname, GLfloat *value);
+# 10720 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPIXELDATARANGENVPROC) (GLenum target, GLsizei length, const void *pointer);
+typedef void ( * PFNGLFLUSHPIXELDATARANGENVPROC) (GLenum target);
+# 10733 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPOINTPARAMETERINVPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLPOINTPARAMETERIVNVPROC) (GLenum pname, const GLint *params);
+# 10749 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPRESENTFRAMEKEYEDNVPROC) (GLuint video_slot, GLuint64EXT minPresentTime, GLuint beginPresentTimeId, GLuint presentDurationId, GLenum type, GLenum target0, GLuint fill0, GLuint key0, GLenum target1, GLuint fill1, GLuint key1);
+typedef void ( * PFNGLPRESENTFRAMEDUALFILLNVPROC) (GLuint video_slot, GLuint64EXT minPresentTime, GLuint beginPresentTimeId, GLuint presentDurationId, GLenum type, GLenum target0, GLuint fill0, GLenum target1, GLuint fill1, GLenum target2, GLuint fill2, GLenum target3, GLuint fill3);
+typedef void ( * PFNGLGETVIDEOIVNVPROC) (GLuint video_slot, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVIDEOUIVNVPROC) (GLuint video_slot, GLenum pname, GLuint *params);
+typedef void ( * PFNGLGETVIDEOI64VNVPROC) (GLuint video_slot, GLenum pname, GLint64EXT *params);
+typedef void ( * PFNGLGETVIDEOUI64VNVPROC) (GLuint video_slot, GLenum pname, GLuint64EXT *params);
+# 10769 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPRIMITIVERESTARTNVPROC) (void);
+typedef void ( * PFNGLPRIMITIVERESTARTINDEXNVPROC) (GLuint index);
+# 10785 "/usr/include/GL/glext.h" 3 4
+typedef GLint ( * PFNGLQUERYRESOURCENVPROC) (GLenum queryType, GLint tagId, GLuint bufSize, GLint *buffer);
+
+
+
+
+
+
+
+typedef void ( * PFNGLGENQUERYRESOURCETAGNVPROC) (GLsizei n, GLint *tagIds);
+typedef void ( * PFNGLDELETEQUERYRESOURCETAGNVPROC) (GLsizei n, const GLint *tagIds);
+typedef void ( * PFNGLQUERYRESOURCETAGNVPROC) (GLint tagId, const GLchar *tagString);
+# 10854 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOMBINERPARAMETERFVNVPROC) (GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLCOMBINERPARAMETERFNVPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLCOMBINERPARAMETERIVNVPROC) (GLenum pname, const GLint *params);
+typedef void ( * PFNGLCOMBINERPARAMETERINVPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLCOMBINERINPUTNVPROC) (GLenum stage, GLenum portion, GLenum variable, GLenum input, GLenum mapping, GLenum componentUsage);
+typedef void ( * PFNGLCOMBINEROUTPUTNVPROC) (GLenum stage, GLenum portion, GLenum abOutput, GLenum cdOutput, GLenum sumOutput, GLenum scale, GLenum bias, GLboolean abDotProduct, GLboolean cdDotProduct, GLboolean muxSum);
+typedef void ( * PFNGLFINALCOMBINERINPUTNVPROC) (GLenum variable, GLenum input, GLenum mapping, GLenum componentUsage);
+typedef void ( * PFNGLGETCOMBINERINPUTPARAMETERFVNVPROC) (GLenum stage, GLenum portion, GLenum variable, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETCOMBINERINPUTPARAMETERIVNVPROC) (GLenum stage, GLenum portion, GLenum variable, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETCOMBINEROUTPUTPARAMETERFVNVPROC) (GLenum stage, GLenum portion, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETCOMBINEROUTPUTPARAMETERIVNVPROC) (GLenum stage, GLenum portion, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETFINALCOMBINERINPUTPARAMETERFVNVPROC) (GLenum variable, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETFINALCOMBINERINPUTPARAMETERIVNVPROC) (GLenum variable, GLenum pname, GLint *params);
+# 10887 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOMBINERSTAGEPARAMETERFVNVPROC) (GLenum stage, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLGETCOMBINERSTAGEPARAMETERFVNVPROC) (GLenum stage, GLenum pname, GLfloat *params);
+# 10915 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEBUFFERSAMPLELOCATIONSFVNVPROC) (GLenum target, GLuint start, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVNVPROC) (GLuint framebuffer, GLuint start, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLRESOLVEDEPTHVALUESNVPROC) (void);
+# 10933 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSCISSOREXCLUSIVENVPROC) (GLint x, GLint y, GLsizei width, GLsizei height);
+typedef void ( * PFNGLSCISSOREXCLUSIVEARRAYVNVPROC) (GLuint first, GLsizei count, const GLint *v);
+# 10966 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLMAKEBUFFERRESIDENTNVPROC) (GLenum target, GLenum access);
+typedef void ( * PFNGLMAKEBUFFERNONRESIDENTNVPROC) (GLenum target);
+typedef GLboolean ( * PFNGLISBUFFERRESIDENTNVPROC) (GLenum target);
+typedef void ( * PFNGLMAKENAMEDBUFFERRESIDENTNVPROC) (GLuint buffer, GLenum access);
+typedef void ( * PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC) (GLuint buffer);
+typedef GLboolean ( * PFNGLISNAMEDBUFFERRESIDENTNVPROC) (GLuint buffer);
+typedef void ( * PFNGLGETBUFFERPARAMETERUI64VNVPROC) (GLenum target, GLenum pname, GLuint64EXT *params);
+typedef void ( * PFNGLGETNAMEDBUFFERPARAMETERUI64VNVPROC) (GLuint buffer, GLenum pname, GLuint64EXT *params);
+typedef void ( * PFNGLGETINTEGERUI64VNVPROC) (GLenum value, GLuint64EXT *result);
+typedef void ( * PFNGLUNIFORMUI64NVPROC) (GLint location, GLuint64EXT value);
+typedef void ( * PFNGLUNIFORMUI64VNVPROC) (GLint location, GLsizei count, const GLuint64EXT *value);
+typedef void ( * PFNGLPROGRAMUNIFORMUI64NVPROC) (GLuint program, GLint location, GLuint64EXT value);
+typedef void ( * PFNGLPROGRAMUNIFORMUI64VNVPROC) (GLuint program, GLint location, GLsizei count, const GLuint64EXT *value);
+# 11048 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBINDSHADINGRATEIMAGENVPROC) (GLuint texture);
+typedef void ( * PFNGLGETSHADINGRATEIMAGEPALETTENVPROC) (GLuint viewport, GLuint entry, GLenum *rate);
+typedef void ( * PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC) (GLenum rate, GLuint samples, GLuint index, GLint *location);
+typedef void ( * PFNGLSHADINGRATEIMAGEBARRIERNVPROC) (GLboolean synchronize);
+typedef void ( * PFNGLSHADINGRATEIMAGEPALETTENVPROC) (GLuint viewport, GLuint first, GLsizei count, const GLenum *rates);
+typedef void ( * PFNGLSHADINGRATESAMPLEORDERNVPROC) (GLenum order);
+typedef void ( * PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC) (GLenum rate, GLuint samples, const GLint *locations);
+# 11094 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXTUREBARRIERNVPROC) (void);
+# 11122 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC) (GLenum target, GLsizei coverageSamples, GLsizei colorSamples, GLint internalFormat, GLsizei width, GLsizei height, GLboolean fixedSampleLocations);
+typedef void ( * PFNGLTEXIMAGE3DMULTISAMPLECOVERAGENVPROC) (GLenum target, GLsizei coverageSamples, GLsizei colorSamples, GLint internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedSampleLocations);
+typedef void ( * PFNGLTEXTUREIMAGE2DMULTISAMPLENVPROC) (GLuint texture, GLenum target, GLsizei samples, GLint internalFormat, GLsizei width, GLsizei height, GLboolean fixedSampleLocations);
+typedef void ( * PFNGLTEXTUREIMAGE3DMULTISAMPLENVPROC) (GLuint texture, GLenum target, GLsizei samples, GLint internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedSampleLocations);
+typedef void ( * PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC) (GLuint texture, GLenum target, GLsizei coverageSamples, GLsizei colorSamples, GLint internalFormat, GLsizei width, GLsizei height, GLboolean fixedSampleLocations);
+typedef void ( * PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC) (GLuint texture, GLenum target, GLsizei coverageSamples, GLsizei colorSamples, GLint internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedSampleLocations);
+# 11286 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBEGINTRANSFORMFEEDBACKNVPROC) (GLenum primitiveMode);
+typedef void ( * PFNGLENDTRANSFORMFEEDBACKNVPROC) (void);
+typedef void ( * PFNGLTRANSFORMFEEDBACKATTRIBSNVPROC) (GLsizei count, const GLint *attribs, GLenum bufferMode);
+typedef void ( * PFNGLBINDBUFFERRANGENVPROC) (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
+typedef void ( * PFNGLBINDBUFFEROFFSETNVPROC) (GLenum target, GLuint index, GLuint buffer, GLintptr offset);
+typedef void ( * PFNGLBINDBUFFERBASENVPROC) (GLenum target, GLuint index, GLuint buffer);
+typedef void ( * PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC) (GLuint program, GLsizei count, const GLint *locations, GLenum bufferMode);
+typedef void ( * PFNGLACTIVEVARYINGNVPROC) (GLuint program, const GLchar *name);
+typedef GLint ( * PFNGLGETVARYINGLOCATIONNVPROC) (GLuint program, const GLchar *name);
+typedef void ( * PFNGLGETACTIVEVARYINGNVPROC) (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *type, GLchar *name);
+typedef void ( * PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC) (GLuint program, GLuint index, GLint *location);
+typedef void ( * PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC) (GLsizei count, const GLint *attribs, GLsizei nbuffers, const GLint *bufstreams, GLenum bufferMode);
+# 11320 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBINDTRANSFORMFEEDBACKNVPROC) (GLenum target, GLuint id);
+typedef void ( * PFNGLDELETETRANSFORMFEEDBACKSNVPROC) (GLsizei n, const GLuint *ids);
+typedef void ( * PFNGLGENTRANSFORMFEEDBACKSNVPROC) (GLsizei n, GLuint *ids);
+typedef GLboolean ( * PFNGLISTRANSFORMFEEDBACKNVPROC) (GLuint id);
+typedef void ( * PFNGLPAUSETRANSFORMFEEDBACKNVPROC) (void);
+typedef void ( * PFNGLRESUMETRANSFORMFEEDBACKNVPROC) (void);
+typedef void ( * PFNGLDRAWTRANSFORMFEEDBACKNVPROC) (GLenum mode, GLuint id);
+# 11347 "/usr/include/GL/glext.h" 3 4
+typedef GLintptr GLvdpauSurfaceNV;
+
+
+
+
+typedef void ( * PFNGLVDPAUINITNVPROC) (const void *vdpDevice, const void *getProcAddress);
+typedef void ( * PFNGLVDPAUFININVPROC) (void);
+typedef GLvdpauSurfaceNV ( * PFNGLVDPAUREGISTERVIDEOSURFACENVPROC) (const void *vdpSurface, GLenum target, GLsizei numTextureNames, const GLuint *textureNames);
+typedef GLvdpauSurfaceNV ( * PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC) (const void *vdpSurface, GLenum target, GLsizei numTextureNames, const GLuint *textureNames);
+typedef GLboolean ( * PFNGLVDPAUISSURFACENVPROC) (GLvdpauSurfaceNV surface);
+typedef void ( * PFNGLVDPAUUNREGISTERSURFACENVPROC) (GLvdpauSurfaceNV surface);
+typedef void ( * PFNGLVDPAUGETSURFACEIVNVPROC) (GLvdpauSurfaceNV surface, GLenum pname, GLsizei bufSize, GLsizei *length, GLint *values);
+typedef void ( * PFNGLVDPAUSURFACEACCESSNVPROC) (GLvdpauSurfaceNV surface, GLenum access);
+typedef void ( * PFNGLVDPAUMAPSURFACESNVPROC) (GLsizei numSurfaces, const GLvdpauSurfaceNV *surfaces);
+typedef void ( * PFNGLVDPAUUNMAPSURFACESNVPROC) (GLsizei numSurface, const GLvdpauSurfaceNV *surfaces);
+# 11378 "/usr/include/GL/glext.h" 3 4
+typedef GLvdpauSurfaceNV ( * PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC) (const void *vdpSurface, GLenum target, GLsizei numTextureNames, const GLuint *textureNames, GLboolean isFrameStructure);
+# 11391 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFLUSHVERTEXARRAYRANGENVPROC) (void);
+typedef void ( * PFNGLVERTEXARRAYRANGENVPROC) (GLsizei length, const void *pointer);
+# 11406 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXATTRIBL1I64NVPROC) (GLuint index, GLint64EXT x);
+typedef void ( * PFNGLVERTEXATTRIBL2I64NVPROC) (GLuint index, GLint64EXT x, GLint64EXT y);
+typedef void ( * PFNGLVERTEXATTRIBL3I64NVPROC) (GLuint index, GLint64EXT x, GLint64EXT y, GLint64EXT z);
+typedef void ( * PFNGLVERTEXATTRIBL4I64NVPROC) (GLuint index, GLint64EXT x, GLint64EXT y, GLint64EXT z, GLint64EXT w);
+typedef void ( * PFNGLVERTEXATTRIBL1I64VNVPROC) (GLuint index, const GLint64EXT *v);
+typedef void ( * PFNGLVERTEXATTRIBL2I64VNVPROC) (GLuint index, const GLint64EXT *v);
+typedef void ( * PFNGLVERTEXATTRIBL3I64VNVPROC) (GLuint index, const GLint64EXT *v);
+typedef void ( * PFNGLVERTEXATTRIBL4I64VNVPROC) (GLuint index, const GLint64EXT *v);
+typedef void ( * PFNGLVERTEXATTRIBL1UI64NVPROC) (GLuint index, GLuint64EXT x);
+typedef void ( * PFNGLVERTEXATTRIBL2UI64NVPROC) (GLuint index, GLuint64EXT x, GLuint64EXT y);
+typedef void ( * PFNGLVERTEXATTRIBL3UI64NVPROC) (GLuint index, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z);
+typedef void ( * PFNGLVERTEXATTRIBL4UI64NVPROC) (GLuint index, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z, GLuint64EXT w);
+typedef void ( * PFNGLVERTEXATTRIBL1UI64VNVPROC) (GLuint index, const GLuint64EXT *v);
+typedef void ( * PFNGLVERTEXATTRIBL2UI64VNVPROC) (GLuint index, const GLuint64EXT *v);
+typedef void ( * PFNGLVERTEXATTRIBL3UI64VNVPROC) (GLuint index, const GLuint64EXT *v);
+typedef void ( * PFNGLVERTEXATTRIBL4UI64VNVPROC) (GLuint index, const GLuint64EXT *v);
+typedef void ( * PFNGLGETVERTEXATTRIBLI64VNVPROC) (GLuint index, GLenum pname, GLint64EXT *params);
+typedef void ( * PFNGLGETVERTEXATTRIBLUI64VNVPROC) (GLuint index, GLenum pname, GLuint64EXT *params);
+typedef void ( * PFNGLVERTEXATTRIBLFORMATNVPROC) (GLuint index, GLint size, GLenum type, GLsizei stride);
+# 11475 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBUFFERADDRESSRANGENVPROC) (GLenum pname, GLuint index, GLuint64EXT address, GLsizeiptr length);
+typedef void ( * PFNGLVERTEXFORMATNVPROC) (GLint size, GLenum type, GLsizei stride);
+typedef void ( * PFNGLNORMALFORMATNVPROC) (GLenum type, GLsizei stride);
+typedef void ( * PFNGLCOLORFORMATNVPROC) (GLint size, GLenum type, GLsizei stride);
+typedef void ( * PFNGLINDEXFORMATNVPROC) (GLenum type, GLsizei stride);
+typedef void ( * PFNGLTEXCOORDFORMATNVPROC) (GLint size, GLenum type, GLsizei stride);
+typedef void ( * PFNGLEDGEFLAGFORMATNVPROC) (GLsizei stride);
+typedef void ( * PFNGLSECONDARYCOLORFORMATNVPROC) (GLint size, GLenum type, GLsizei stride);
+typedef void ( * PFNGLFOGCOORDFORMATNVPROC) (GLenum type, GLsizei stride);
+typedef void ( * PFNGLVERTEXATTRIBFORMATNVPROC) (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride);
+typedef void ( * PFNGLVERTEXATTRIBIFORMATNVPROC) (GLuint index, GLint size, GLenum type, GLsizei stride);
+typedef void ( * PFNGLGETINTEGERUI64I_VNVPROC) (GLenum value, GLuint index, GLuint64EXT *result);
+# 11588 "/usr/include/GL/glext.h" 3 4
+typedef GLboolean ( * PFNGLAREPROGRAMSRESIDENTNVPROC) (GLsizei n, const GLuint *programs, GLboolean *residences);
+typedef void ( * PFNGLBINDPROGRAMNVPROC) (GLenum target, GLuint id);
+typedef void ( * PFNGLDELETEPROGRAMSNVPROC) (GLsizei n, const GLuint *programs);
+typedef void ( * PFNGLEXECUTEPROGRAMNVPROC) (GLenum target, GLuint id, const GLfloat *params);
+typedef void ( * PFNGLGENPROGRAMSNVPROC) (GLsizei n, GLuint *programs);
+typedef void ( * PFNGLGETPROGRAMPARAMETERDVNVPROC) (GLenum target, GLuint index, GLenum pname, GLdouble *params);
+typedef void ( * PFNGLGETPROGRAMPARAMETERFVNVPROC) (GLenum target, GLuint index, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETPROGRAMIVNVPROC) (GLuint id, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETPROGRAMSTRINGNVPROC) (GLuint id, GLenum pname, GLubyte *program);
+typedef void ( * PFNGLGETTRACKMATRIXIVNVPROC) (GLenum target, GLuint address, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVERTEXATTRIBDVNVPROC) (GLuint index, GLenum pname, GLdouble *params);
+typedef void ( * PFNGLGETVERTEXATTRIBFVNVPROC) (GLuint index, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETVERTEXATTRIBIVNVPROC) (GLuint index, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVERTEXATTRIBPOINTERVNVPROC) (GLuint index, GLenum pname, void **pointer);
+typedef GLboolean ( * PFNGLISPROGRAMNVPROC) (GLuint id);
+typedef void ( * PFNGLLOADPROGRAMNVPROC) (GLenum target, GLuint id, GLsizei len, const GLubyte *program);
+typedef void ( * PFNGLPROGRAMPARAMETER4DNVPROC) (GLenum target, GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLPROGRAMPARAMETER4DVNVPROC) (GLenum target, GLuint index, const GLdouble *v);
+typedef void ( * PFNGLPROGRAMPARAMETER4FNVPROC) (GLenum target, GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLPROGRAMPARAMETER4FVNVPROC) (GLenum target, GLuint index, const GLfloat *v);
+typedef void ( * PFNGLPROGRAMPARAMETERS4DVNVPROC) (GLenum target, GLuint index, GLsizei count, const GLdouble *v);
+typedef void ( * PFNGLPROGRAMPARAMETERS4FVNVPROC) (GLenum target, GLuint index, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLREQUESTRESIDENTPROGRAMSNVPROC) (GLsizei n, const GLuint *programs);
+typedef void ( * PFNGLTRACKMATRIXNVPROC) (GLenum target, GLuint address, GLenum matrix, GLenum transform);
+typedef void ( * PFNGLVERTEXATTRIBPOINTERNVPROC) (GLuint index, GLint fsize, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLVERTEXATTRIB1DNVPROC) (GLuint index, GLdouble x);
+typedef void ( * PFNGLVERTEXATTRIB1DVNVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB1FNVPROC) (GLuint index, GLfloat x);
+typedef void ( * PFNGLVERTEXATTRIB1FVNVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB1SNVPROC) (GLuint index, GLshort x);
+typedef void ( * PFNGLVERTEXATTRIB1SVNVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB2DNVPROC) (GLuint index, GLdouble x, GLdouble y);
+typedef void ( * PFNGLVERTEXATTRIB2DVNVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB2FNVPROC) (GLuint index, GLfloat x, GLfloat y);
+typedef void ( * PFNGLVERTEXATTRIB2FVNVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB2SNVPROC) (GLuint index, GLshort x, GLshort y);
+typedef void ( * PFNGLVERTEXATTRIB2SVNVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB3DNVPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z);
+typedef void ( * PFNGLVERTEXATTRIB3DVNVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB3FNVPROC) (GLuint index, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLVERTEXATTRIB3FVNVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB3SNVPROC) (GLuint index, GLshort x, GLshort y, GLshort z);
+typedef void ( * PFNGLVERTEXATTRIB3SVNVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4DNVPROC) (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+typedef void ( * PFNGLVERTEXATTRIB4DVNVPROC) (GLuint index, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIB4FNVPROC) (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLVERTEXATTRIB4FVNVPROC) (GLuint index, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIB4SNVPROC) (GLuint index, GLshort x, GLshort y, GLshort z, GLshort w);
+typedef void ( * PFNGLVERTEXATTRIB4SVNVPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIB4UBNVPROC) (GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w);
+typedef void ( * PFNGLVERTEXATTRIB4UBVNVPROC) (GLuint index, const GLubyte *v);
+typedef void ( * PFNGLVERTEXATTRIBS1DVNVPROC) (GLuint index, GLsizei count, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBS1FVNVPROC) (GLuint index, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIBS1SVNVPROC) (GLuint index, GLsizei count, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIBS2DVNVPROC) (GLuint index, GLsizei count, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBS2FVNVPROC) (GLuint index, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIBS2SVNVPROC) (GLuint index, GLsizei count, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIBS3DVNVPROC) (GLuint index, GLsizei count, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBS3FVNVPROC) (GLuint index, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIBS3SVNVPROC) (GLuint index, GLsizei count, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIBS4DVNVPROC) (GLuint index, GLsizei count, const GLdouble *v);
+typedef void ( * PFNGLVERTEXATTRIBS4FVNVPROC) (GLuint index, GLsizei count, const GLfloat *v);
+typedef void ( * PFNGLVERTEXATTRIBS4SVNVPROC) (GLuint index, GLsizei count, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIBS4UBVNVPROC) (GLuint index, GLsizei count, const GLubyte *v);
+# 11739 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVERTEXATTRIBI1IEXTPROC) (GLuint index, GLint x);
+typedef void ( * PFNGLVERTEXATTRIBI2IEXTPROC) (GLuint index, GLint x, GLint y);
+typedef void ( * PFNGLVERTEXATTRIBI3IEXTPROC) (GLuint index, GLint x, GLint y, GLint z);
+typedef void ( * PFNGLVERTEXATTRIBI4IEXTPROC) (GLuint index, GLint x, GLint y, GLint z, GLint w);
+typedef void ( * PFNGLVERTEXATTRIBI1UIEXTPROC) (GLuint index, GLuint x);
+typedef void ( * PFNGLVERTEXATTRIBI2UIEXTPROC) (GLuint index, GLuint x, GLuint y);
+typedef void ( * PFNGLVERTEXATTRIBI3UIEXTPROC) (GLuint index, GLuint x, GLuint y, GLuint z);
+typedef void ( * PFNGLVERTEXATTRIBI4UIEXTPROC) (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w);
+typedef void ( * PFNGLVERTEXATTRIBI1IVEXTPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI2IVEXTPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI3IVEXTPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI4IVEXTPROC) (GLuint index, const GLint *v);
+typedef void ( * PFNGLVERTEXATTRIBI1UIVEXTPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI2UIVEXTPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI3UIVEXTPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI4UIVEXTPROC) (GLuint index, const GLuint *v);
+typedef void ( * PFNGLVERTEXATTRIBI4BVEXTPROC) (GLuint index, const GLbyte *v);
+typedef void ( * PFNGLVERTEXATTRIBI4SVEXTPROC) (GLuint index, const GLshort *v);
+typedef void ( * PFNGLVERTEXATTRIBI4UBVEXTPROC) (GLuint index, const GLubyte *v);
+typedef void ( * PFNGLVERTEXATTRIBI4USVEXTPROC) (GLuint index, const GLushort *v);
+typedef void ( * PFNGLVERTEXATTRIBIPOINTEREXTPROC) (GLuint index, GLint size, GLenum type, GLsizei stride, const void *pointer);
+typedef void ( * PFNGLGETVERTEXATTRIBIIVEXTPROC) (GLuint index, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVERTEXATTRIBIUIVEXTPROC) (GLuint index, GLenum pname, GLuint *params);
+# 11820 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLBEGINVIDEOCAPTURENVPROC) (GLuint video_capture_slot);
+typedef void ( * PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC) (GLuint video_capture_slot, GLuint stream, GLenum frame_region, GLintptrARB offset);
+typedef void ( * PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC) (GLuint video_capture_slot, GLuint stream, GLenum frame_region, GLenum target, GLuint texture);
+typedef void ( * PFNGLENDVIDEOCAPTURENVPROC) (GLuint video_capture_slot);
+typedef void ( * PFNGLGETVIDEOCAPTUREIVNVPROC) (GLuint video_capture_slot, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVIDEOCAPTURESTREAMIVNVPROC) (GLuint video_capture_slot, GLuint stream, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETVIDEOCAPTURESTREAMFVNVPROC) (GLuint video_capture_slot, GLuint stream, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETVIDEOCAPTURESTREAMDVNVPROC) (GLuint video_capture_slot, GLuint stream, GLenum pname, GLdouble *params);
+typedef GLenum ( * PFNGLVIDEOCAPTURENVPROC) (GLuint video_capture_slot, GLuint *sequence_num, GLuint64EXT *capture_time);
+typedef void ( * PFNGLVIDEOCAPTURESTREAMPARAMETERIVNVPROC) (GLuint video_capture_slot, GLuint stream, GLenum pname, const GLint *params);
+typedef void ( * PFNGLVIDEOCAPTURESTREAMPARAMETERFVNVPROC) (GLuint video_capture_slot, GLuint stream, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLVIDEOCAPTURESTREAMPARAMETERDVNVPROC) (GLuint video_capture_slot, GLuint stream, GLenum pname, const GLdouble *params);
+# 11866 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLVIEWPORTSWIZZLENVPROC) (GLuint index, GLenum swizzlex, GLenum swizzley, GLenum swizzlez, GLenum swizzlew);
+# 11900 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC) (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint baseViewIndex, GLsizei numViews);
+# 11932 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLHINTPGIPROC) (GLenum target, GLint mode);
+# 11990 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDETAILTEXFUNCSGISPROC) (GLenum target, GLsizei n, const GLfloat *points);
+typedef void ( * PFNGLGETDETAILTEXFUNCSGISPROC) (GLenum target, GLfloat *points);
+# 12003 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFOGFUNCSGISPROC) (GLsizei n, const GLfloat *points);
+typedef void ( * PFNGLGETFOGFUNCSGISPROC) (GLfloat *points);
+# 12035 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSAMPLEMASKSGISPROC) (GLclampf value, GLboolean invert);
+typedef void ( * PFNGLSAMPLEPATTERNSGISPROC) (GLenum pattern);
+# 12049 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPIXELTEXGENPARAMETERISGISPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLPIXELTEXGENPARAMETERIVSGISPROC) (GLenum pname, const GLint *params);
+typedef void ( * PFNGLPIXELTEXGENPARAMETERFSGISPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLPIXELTEXGENPARAMETERFVSGISPROC) (GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLGETPIXELTEXGENPARAMETERIVSGISPROC) (GLenum pname, GLint *params);
+typedef void ( * PFNGLGETPIXELTEXGENPARAMETERFVSGISPROC) (GLenum pname, GLfloat *params);
+# 12083 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPOINTPARAMETERFSGISPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLPOINTPARAMETERFVSGISPROC) (GLenum pname, const GLfloat *params);
+# 12097 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSHARPENTEXFUNCSGISPROC) (GLenum target, GLsizei n, const GLfloat *points);
+typedef void ( * PFNGLGETSHARPENTEXFUNCSGISPROC) (GLenum target, GLfloat *points);
+# 12117 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXIMAGE4DSGISPROC) (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLsizei size4d, GLint border, GLenum format, GLenum type, const void *pixels);
+typedef void ( * PFNGLTEXSUBIMAGE4DSGISPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint woffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei size4d, GLenum format, GLenum type, const void *pixels);
+# 12133 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTEXTURECOLORMASKSGISPROC) (GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha);
+# 12148 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETTEXFILTERFUNCSGISPROC) (GLenum target, GLenum filter, GLfloat *weights);
+typedef void ( * PFNGLTEXFILTERFUNCSGISPROC) (GLenum target, GLenum filter, GLsizei n, const GLfloat *weights);
+# 12193 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLASYNCMARKERSGIXPROC) (GLuint marker);
+typedef GLint ( * PFNGLFINISHASYNCSGIXPROC) (GLuint *markerp);
+typedef GLint ( * PFNGLPOLLASYNCSGIXPROC) (GLuint *markerp);
+typedef GLuint ( * PFNGLGENASYNCMARKERSSGIXPROC) (GLsizei range);
+typedef void ( * PFNGLDELETEASYNCMARKERSSGIXPROC) (GLuint marker, GLsizei range);
+typedef GLboolean ( * PFNGLISASYNCMARKERSGIXPROC) (GLuint marker);
+# 12270 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFLUSHRASTERSGIXPROC) (void);
+# 12304 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAGMENTCOLORMATERIALSGIXPROC) (GLenum face, GLenum mode);
+typedef void ( * PFNGLFRAGMENTLIGHTFSGIXPROC) (GLenum light, GLenum pname, GLfloat param);
+typedef void ( * PFNGLFRAGMENTLIGHTFVSGIXPROC) (GLenum light, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLFRAGMENTLIGHTISGIXPROC) (GLenum light, GLenum pname, GLint param);
+typedef void ( * PFNGLFRAGMENTLIGHTIVSGIXPROC) (GLenum light, GLenum pname, const GLint *params);
+typedef void ( * PFNGLFRAGMENTLIGHTMODELFSGIXPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLFRAGMENTLIGHTMODELFVSGIXPROC) (GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLFRAGMENTLIGHTMODELISGIXPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLFRAGMENTLIGHTMODELIVSGIXPROC) (GLenum pname, const GLint *params);
+typedef void ( * PFNGLFRAGMENTMATERIALFSGIXPROC) (GLenum face, GLenum pname, GLfloat param);
+typedef void ( * PFNGLFRAGMENTMATERIALFVSGIXPROC) (GLenum face, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLFRAGMENTMATERIALISGIXPROC) (GLenum face, GLenum pname, GLint param);
+typedef void ( * PFNGLFRAGMENTMATERIALIVSGIXPROC) (GLenum face, GLenum pname, const GLint *params);
+typedef void ( * PFNGLGETFRAGMENTLIGHTFVSGIXPROC) (GLenum light, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETFRAGMENTLIGHTIVSGIXPROC) (GLenum light, GLenum pname, GLint *params);
+typedef void ( * PFNGLGETFRAGMENTMATERIALFVSGIXPROC) (GLenum face, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETFRAGMENTMATERIALIVSGIXPROC) (GLenum face, GLenum pname, GLint *params);
+typedef void ( * PFNGLLIGHTENVISGIXPROC) (GLenum pname, GLint param);
+# 12349 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFRAMEZOOMSGIXPROC) (GLint factor);
+
+
+
+
+
+
+
+typedef void ( * PFNGLIGLOOINTERFACESGIXPROC) (GLenum pname, const void *params);
+# 12367 "/usr/include/GL/glext.h" 3 4
+typedef GLint ( * PFNGLGETINSTRUMENTSSGIXPROC) (void);
+typedef void ( * PFNGLINSTRUMENTSBUFFERSGIXPROC) (GLsizei size, GLint *buffer);
+typedef GLint ( * PFNGLPOLLINSTRUMENTSSGIXPROC) (GLint *marker_p);
+typedef void ( * PFNGLREADINSTRUMENTSSGIXPROC) (GLint marker);
+typedef void ( * PFNGLSTARTINSTRUMENTSSGIXPROC) (void);
+typedef void ( * PFNGLSTOPINSTRUMENTSSGIXPROC) (GLint marker);
+# 12396 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGETLISTPARAMETERFVSGIXPROC) (GLuint list, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETLISTPARAMETERIVSGIXPROC) (GLuint list, GLenum pname, GLint *params);
+typedef void ( * PFNGLLISTPARAMETERFSGIXPROC) (GLuint list, GLenum pname, GLfloat param);
+typedef void ( * PFNGLLISTPARAMETERFVSGIXPROC) (GLuint list, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLLISTPARAMETERISGIXPROC) (GLuint list, GLenum pname, GLint param);
+typedef void ( * PFNGLLISTPARAMETERIVSGIXPROC) (GLuint list, GLenum pname, const GLint *params);
+# 12416 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLPIXELTEXGENSGIXPROC) (GLenum mode);
+# 12442 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDEFORMATIONMAP3DSGIXPROC) (GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, GLdouble w1, GLdouble w2, GLint wstride, GLint worder, const GLdouble *points);
+typedef void ( * PFNGLDEFORMATIONMAP3FSGIXPROC) (GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, GLfloat w1, GLfloat w2, GLint wstride, GLint worder, const GLfloat *points);
+typedef void ( * PFNGLDEFORMSGIXPROC) (GLbitfield mask);
+typedef void ( * PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC) (GLbitfield mask);
+# 12458 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLREFERENCEPLANESGIXPROC) (const GLdouble *equation);
+# 12500 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLSPRITEPARAMETERFSGIXPROC) (GLenum pname, GLfloat param);
+typedef void ( * PFNGLSPRITEPARAMETERFVSGIXPROC) (GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLSPRITEPARAMETERISGIXPROC) (GLenum pname, GLint param);
+typedef void ( * PFNGLSPRITEPARAMETERIVSGIXPROC) (GLenum pname, const GLint *params);
+# 12523 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLTAGSAMPLEBUFFERSGIXPROC) (void);
+# 12616 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOLORTABLESGIPROC) (GLenum target, GLenum internalformat, GLsizei width, GLenum format, GLenum type, const void *table);
+typedef void ( * PFNGLCOLORTABLEPARAMETERFVSGIPROC) (GLenum target, GLenum pname, const GLfloat *params);
+typedef void ( * PFNGLCOLORTABLEPARAMETERIVSGIPROC) (GLenum target, GLenum pname, const GLint *params);
+typedef void ( * PFNGLCOPYCOLORTABLESGIPROC) (GLenum target, GLenum internalformat, GLint x, GLint y, GLsizei width);
+typedef void ( * PFNGLGETCOLORTABLESGIPROC) (GLenum target, GLenum format, GLenum type, void *table);
+typedef void ( * PFNGLGETCOLORTABLEPARAMETERFVSGIPROC) (GLenum target, GLenum pname, GLfloat *params);
+typedef void ( * PFNGLGETCOLORTABLEPARAMETERIVSGIPROC) (GLenum target, GLenum pname, GLint *params);
+# 12644 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLFINISHTEXTURESUNXPROC) (void);
+# 12659 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLGLOBALALPHAFACTORBSUNPROC) (GLbyte factor);
+typedef void ( * PFNGLGLOBALALPHAFACTORSSUNPROC) (GLshort factor);
+typedef void ( * PFNGLGLOBALALPHAFACTORISUNPROC) (GLint factor);
+typedef void ( * PFNGLGLOBALALPHAFACTORFSUNPROC) (GLfloat factor);
+typedef void ( * PFNGLGLOBALALPHAFACTORDSUNPROC) (GLdouble factor);
+typedef void ( * PFNGLGLOBALALPHAFACTORUBSUNPROC) (GLubyte factor);
+typedef void ( * PFNGLGLOBALALPHAFACTORUSSUNPROC) (GLushort factor);
+typedef void ( * PFNGLGLOBALALPHAFACTORUISUNPROC) (GLuint factor);
+# 12683 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLDRAWMESHARRAYSSUNPROC) (GLenum mode, GLint first, GLsizei count, GLsizei width);
+# 12713 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLREPLACEMENTCODEUISUNPROC) (GLuint code);
+typedef void ( * PFNGLREPLACEMENTCODEUSSUNPROC) (GLushort code);
+typedef void ( * PFNGLREPLACEMENTCODEUBSUNPROC) (GLubyte code);
+typedef void ( * PFNGLREPLACEMENTCODEUIVSUNPROC) (const GLuint *code);
+typedef void ( * PFNGLREPLACEMENTCODEUSVSUNPROC) (const GLushort *code);
+typedef void ( * PFNGLREPLACEMENTCODEUBVSUNPROC) (const GLubyte *code);
+typedef void ( * PFNGLREPLACEMENTCODEPOINTERSUNPROC) (GLenum type, GLsizei stride, const void **pointer);
+# 12733 "/usr/include/GL/glext.h" 3 4
+typedef void ( * PFNGLCOLOR4UBVERTEX2FSUNPROC) (GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y);
+typedef void ( * PFNGLCOLOR4UBVERTEX2FVSUNPROC) (const GLubyte *c, const GLfloat *v);
+typedef void ( * PFNGLCOLOR4UBVERTEX3FSUNPROC) (GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLCOLOR4UBVERTEX3FVSUNPROC) (const GLubyte *c, const GLfloat *v);
+typedef void ( * PFNGLCOLOR3FVERTEX3FSUNPROC) (GLfloat r, GLfloat g, GLfloat b, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLCOLOR3FVERTEX3FVSUNPROC) (const GLfloat *c, const GLfloat *v);
+typedef void ( * PFNGLNORMAL3FVERTEX3FSUNPROC) (GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLNORMAL3FVERTEX3FVSUNPROC) (const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLCOLOR4FNORMAL3FVERTEX3FSUNPROC) (GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLCOLOR4FNORMAL3FVERTEX3FVSUNPROC) (const GLfloat *c, const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLTEXCOORD2FVERTEX3FSUNPROC) (GLfloat s, GLfloat t, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLTEXCOORD2FVERTEX3FVSUNPROC) (const GLfloat *tc, const GLfloat *v);
+typedef void ( * PFNGLTEXCOORD4FVERTEX4FSUNPROC) (GLfloat s, GLfloat t, GLfloat p, GLfloat q, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLTEXCOORD4FVERTEX4FVSUNPROC) (const GLfloat *tc, const GLfloat *v);
+typedef void ( * PFNGLTEXCOORD2FCOLOR4UBVERTEX3FSUNPROC) (GLfloat s, GLfloat t, GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLTEXCOORD2FCOLOR4UBVERTEX3FVSUNPROC) (const GLfloat *tc, const GLubyte *c, const GLfloat *v);
+typedef void ( * PFNGLTEXCOORD2FCOLOR3FVERTEX3FSUNPROC) (GLfloat s, GLfloat t, GLfloat r, GLfloat g, GLfloat b, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLTEXCOORD2FCOLOR3FVERTEX3FVSUNPROC) (const GLfloat *tc, const GLfloat *c, const GLfloat *v);
+typedef void ( * PFNGLTEXCOORD2FNORMAL3FVERTEX3FSUNPROC) (GLfloat s, GLfloat t, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLTEXCOORD2FNORMAL3FVERTEX3FVSUNPROC) (const GLfloat *tc, const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLTEXCOORD2FCOLOR4FNORMAL3FVERTEX3FSUNPROC) (GLfloat s, GLfloat t, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLTEXCOORD2FCOLOR4FNORMAL3FVERTEX3FVSUNPROC) (const GLfloat *tc, const GLfloat *c, const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC) (GLfloat s, GLfloat t, GLfloat p, GLfloat q, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+typedef void ( * PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC) (const GLfloat *tc, const GLfloat *c, const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC) (GLuint rc, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC) (const GLuint *rc, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC) (GLuint rc, GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC) (const GLuint *rc, const GLubyte *c, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FSUNPROC) (GLuint rc, GLfloat r, GLfloat g, GLfloat b, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FVSUNPROC) (const GLuint *rc, const GLfloat *c, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC) (GLuint rc, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FVSUNPROC) (const GLuint *rc, const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUICOLOR4FNORMAL3FVERTEX3FSUNPROC) (GLuint rc, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUICOLOR4FNORMAL3FVERTEX3FVSUNPROC) (const GLuint *rc, const GLfloat *c, const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FSUNPROC) (GLuint rc, GLfloat s, GLfloat t, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC) (const GLuint *rc, const GLfloat *tc, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FSUNPROC) (GLuint rc, GLfloat s, GLfloat t, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FVSUNPROC) (const GLuint *rc, const GLfloat *tc, const GLfloat *n, const GLfloat *v);
+typedef void ( * PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FSUNPROC) (GLuint rc, GLfloat s, GLfloat t, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
+typedef void ( * PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FVSUNPROC) (const GLuint *rc, const GLfloat *tc, const GLfloat *c, const GLfloat *n, const GLfloat *v);
+# 12829 "/usr/include/GL/glext.h" 3 4
+}
+# 2051 "/usr/include/GL/gl.h" 2 3 4
+# 2077 "/usr/include/GL/gl.h" 3 4
+__attribute__((visibility("default"))) void glBlendEquationSeparateATI( GLenum modeRGB, GLenum modeA );
+typedef void ( * PFNGLBLENDEQUATIONSEPARATEATIPROC) (GLenum modeRGB, GLenum modeA);
+# 2094 "/usr/include/GL/gl.h" 3 4
+typedef void ( * PFNGLEGLIMAGETARGETTEXTURE2DOESPROC) (GLenum target, GLeglImageOES image);
+typedef void ( * PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC) (GLenum target, GLeglImageOES image);
+
+
+
+
+}
+# 24 "ihdr.h" 2
+
+
+# 1 "/usr/include/GL/glx.h" 1 3 4
+# 36 "/usr/include/GL/glx.h" 3 4
+extern "C" {
+# 160 "/usr/include/GL/glx.h" 3 4
+typedef struct __GLXcontextRec *GLXContext;
+typedef XID GLXPixmap;
+typedef XID GLXDrawable;
+
+typedef struct __GLXFBConfigRec *GLXFBConfig;
+typedef XID GLXFBConfigID;
+typedef XID GLXContextID;
+typedef XID GLXWindow;
+typedef XID GLXPbuffer;
+# 182 "/usr/include/GL/glx.h" 3 4
+extern XVisualInfo* glXChooseVisual( Display *dpy, int screen,
+         int *attribList );
+
+extern GLXContext glXCreateContext( Display *dpy, XVisualInfo *vis,
+        GLXContext shareList, int direct );
+
+extern void glXDestroyContext( Display *dpy, GLXContext ctx );
+
+extern int glXMakeCurrent( Display *dpy, GLXDrawable drawable,
+       GLXContext ctx);
+
+extern void glXCopyContext( Display *dpy, GLXContext src, GLXContext dst,
+       unsigned long mask );
+
+extern void glXSwapBuffers( Display *dpy, GLXDrawable drawable );
+
+extern GLXPixmap glXCreateGLXPixmap( Display *dpy, XVisualInfo *visual,
+         Pixmap pixmap );
+
+extern void glXDestroyGLXPixmap( Display *dpy, GLXPixmap pixmap );
+
+extern int glXQueryExtension( Display *dpy, int *errorb, int *event );
+
+extern int glXQueryVersion( Display *dpy, int *maj, int *min );
+
+extern int glXIsDirect( Display *dpy, GLXContext ctx );
+
+extern int glXGetConfig( Display *dpy, XVisualInfo *visual,
+    int attrib, int *value );
+
+extern GLXContext glXGetCurrentContext( void );
+
+extern GLXDrawable glXGetCurrentDrawable( void );
+
+extern void glXWaitGL( void );
+
+extern void glXWaitX( void );
+
+extern void glXUseXFont( Font font, int first, int count, int list );
+
+
+
+
+extern const char *glXQueryExtensionsString( Display *dpy, int screen );
+
+extern const char *glXQueryServerString( Display *dpy, int screen, int name );
+
+extern const char *glXGetClientString( Display *dpy, int name );
+
+
+
+extern Display *glXGetCurrentDisplay( void );
+
+
+
+extern GLXFBConfig *glXChooseFBConfig( Display *dpy, int screen,
+                                       const int *attribList, int *nitems );
+
+extern int glXGetFBConfigAttrib( Display *dpy, GLXFBConfig config,
+                                 int attribute, int *value );
+
+extern GLXFBConfig *glXGetFBConfigs( Display *dpy, int screen,
+                                     int *nelements );
+
+extern XVisualInfo *glXGetVisualFromFBConfig( Display *dpy,
+                                              GLXFBConfig config );
+
+extern GLXWindow glXCreateWindow( Display *dpy, GLXFBConfig config,
+                                  Window win, const int *attribList );
+
+extern void glXDestroyWindow( Display *dpy, GLXWindow window );
+
+extern GLXPixmap glXCreatePixmap( Display *dpy, GLXFBConfig config,
+                                  Pixmap pixmap, const int *attribList );
+
+extern void glXDestroyPixmap( Display *dpy, GLXPixmap pixmap );
+
+extern GLXPbuffer glXCreatePbuffer( Display *dpy, GLXFBConfig config,
+                                    const int *attribList );
+
+extern void glXDestroyPbuffer( Display *dpy, GLXPbuffer pbuf );
+
+extern void glXQueryDrawable( Display *dpy, GLXDrawable draw, int attribute,
+                              unsigned int *value );
+
+extern GLXContext glXCreateNewContext( Display *dpy, GLXFBConfig config,
+                                       int renderType, GLXContext shareList,
+                                       int direct );
+
+extern int glXMakeContextCurrent( Display *dpy, GLXDrawable draw,
+                                   GLXDrawable read, GLXContext ctx );
+
+extern GLXDrawable glXGetCurrentReadDrawable( void );
+
+extern int glXQueryContext( Display *dpy, GLXContext ctx, int attribute,
+                            int *value );
+
+extern void glXSelectEvent( Display *dpy, GLXDrawable drawable,
+                            unsigned long mask );
+
+extern void glXGetSelectedEvent( Display *dpy, GLXDrawable drawable,
+                                 unsigned long *mask );
+
+
+typedef GLXFBConfig * (* PFNGLXGETFBCONFIGSPROC) (Display *dpy, int screen, int *nelements);
+typedef GLXFBConfig * (* PFNGLXCHOOSEFBCONFIGPROC) (Display *dpy, int screen, const int *attrib_list, int *nelements);
+typedef int (* PFNGLXGETFBCONFIGATTRIBPROC) (Display *dpy, GLXFBConfig config, int attribute, int *value);
+typedef XVisualInfo * (* PFNGLXGETVISUALFROMFBCONFIGPROC) (Display *dpy, GLXFBConfig config);
+typedef GLXWindow (* PFNGLXCREATEWINDOWPROC) (Display *dpy, GLXFBConfig config, Window win, const int *attrib_list);
+typedef void (* PFNGLXDESTROYWINDOWPROC) (Display *dpy, GLXWindow win);
+typedef GLXPixmap (* PFNGLXCREATEPIXMAPPROC) (Display *dpy, GLXFBConfig config, Pixmap pixmap, const int *attrib_list);
+typedef void (* PFNGLXDESTROYPIXMAPPROC) (Display *dpy, GLXPixmap pixmap);
+typedef GLXPbuffer (* PFNGLXCREATEPBUFFERPROC) (Display *dpy, GLXFBConfig config, const int *attrib_list);
+typedef void (* PFNGLXDESTROYPBUFFERPROC) (Display *dpy, GLXPbuffer pbuf);
+typedef void (* PFNGLXQUERYDRAWABLEPROC) (Display *dpy, GLXDrawable draw, int attribute, unsigned int *value);
+typedef GLXContext (* PFNGLXCREATENEWCONTEXTPROC) (Display *dpy, GLXFBConfig config, int render_type, GLXContext share_list, int direct);
+typedef int (* PFNGLXMAKECONTEXTCURRENTPROC) (Display *dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);
+typedef GLXDrawable (* PFNGLXGETCURRENTREADDRAWABLEPROC) (void);
+typedef Display * (* PFNGLXGETCURRENTDISPLAYPROC) (void);
+typedef int (* PFNGLXQUERYCONTEXTPROC) (Display *dpy, GLXContext ctx, int attribute, int *value);
+typedef void (* PFNGLXSELECTEVENTPROC) (Display *dpy, GLXDrawable draw, unsigned long event_mask);
+typedef void (* PFNGLXGETSELECTEDEVENTPROC) (Display *dpy, GLXDrawable draw, unsigned long *event_mask);
+# 312 "/usr/include/GL/glx.h" 3 4
+typedef void (*__GLXextFuncPtr)(void);
+extern __GLXextFuncPtr glXGetProcAddressARB (const GLubyte *);
+
+
+
+
+
+
+extern void (*glXGetProcAddress(const GLubyte *procname))( void );
+
+
+typedef __GLXextFuncPtr (* PFNGLXGETPROCADDRESSPROC) (const GLubyte *procName);
+
+
+
+
+# 1 "/usr/include/GL/glxext.h" 1 3 4
+
+
+
+
+extern "C" {
+# 173 "/usr/include/GL/glxext.h" 3 4
+typedef GLXContext ( *PFNGLXCREATECONTEXTATTRIBSARBPROC) (Display *dpy, GLXFBConfig config, GLXContext share_context, int direct, const int *attrib_list);
+# 256 "/usr/include/GL/glxext.h" 3 4
+typedef unsigned int ( *PFNGLXGETGPUIDSAMDPROC) (unsigned int maxCount, unsigned int *ids);
+typedef int ( *PFNGLXGETGPUINFOAMDPROC) (unsigned int id, int property, GLenum dataType, unsigned int size, void *data);
+typedef unsigned int ( *PFNGLXGETCONTEXTGPUIDAMDPROC) (GLXContext ctx);
+typedef GLXContext ( *PFNGLXCREATEASSOCIATEDCONTEXTAMDPROC) (unsigned int id, GLXContext share_list);
+typedef GLXContext ( *PFNGLXCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) (unsigned int id, GLXContext share_context, const int *attribList);
+typedef int ( *PFNGLXDELETEASSOCIATEDCONTEXTAMDPROC) (GLXContext ctx);
+typedef int ( *PFNGLXMAKEASSOCIATEDCONTEXTCURRENTAMDPROC) (GLXContext ctx);
+typedef GLXContext ( *PFNGLXGETCURRENTASSOCIATEDCONTEXTAMDPROC) (void);
+typedef void ( *PFNGLXBLITCONTEXTFRAMEBUFFERAMDPROC) (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+# 317 "/usr/include/GL/glxext.h" 3 4
+typedef Display *( *PFNGLXGETCURRENTDISPLAYEXTPROC) (void);
+typedef int ( *PFNGLXQUERYCONTEXTINFOEXTPROC) (Display *dpy, GLXContext context, int attribute, int *value);
+typedef GLXContextID ( *PFNGLXGETCONTEXTIDEXTPROC) (const GLXContext context);
+typedef GLXContext ( *PFNGLXIMPORTCONTEXTEXTPROC) (Display *dpy, GLXContextID contextID);
+typedef void ( *PFNGLXFREECONTEXTEXTPROC) (Display *dpy, GLXContext context);
+# 342 "/usr/include/GL/glxext.h" 3 4
+typedef struct {
+    int type;
+    unsigned long serial;
+    int send_event;
+    Display *display;
+    int extension;
+    int evtype;
+    GLXDrawable window;
+    int stereo_tree;
+} GLXStereoNotifyEventEXT;
+# 361 "/usr/include/GL/glxext.h" 3 4
+typedef void ( *PFNGLXSWAPINTERVALEXTPROC) (Display *dpy, GLXDrawable drawable, int interval);
+# 407 "/usr/include/GL/glxext.h" 3 4
+typedef void ( *PFNGLXBINDTEXIMAGEEXTPROC) (Display *dpy, GLXDrawable drawable, int buffer, const int *attrib_list);
+typedef void ( *PFNGLXRELEASETEXIMAGEEXTPROC) (Display *dpy, GLXDrawable drawable, int buffer);
+# 452 "/usr/include/GL/glxext.h" 3 4
+typedef unsigned int ( *PFNGLXGETAGPOFFSETMESAPROC) (const void *pointer);
+
+
+
+
+
+
+
+typedef void ( *PFNGLXCOPYSUBBUFFERMESAPROC) (Display *dpy, GLXDrawable drawable, int x, int y, int width, int height);
+
+
+
+
+
+
+
+typedef GLXPixmap ( *PFNGLXCREATEGLXPIXMAPMESAPROC) (Display *dpy, XVisualInfo *visual, Pixmap pixmap, Colormap cmap);
+# 487 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXQUERYCURRENTRENDERERINTEGERMESAPROC) (int attribute, unsigned int *value);
+typedef const char *( *PFNGLXQUERYCURRENTRENDERERSTRINGMESAPROC) (int attribute);
+typedef int ( *PFNGLXQUERYRENDERERINTEGERMESAPROC) (Display *dpy, int screen, int renderer, int attribute, unsigned int *value);
+typedef const char *( *PFNGLXQUERYRENDERERSTRINGMESAPROC) (Display *dpy, int screen, int renderer, int attribute);
+# 501 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXRELEASEBUFFERSMESAPROC) (Display *dpy, GLXDrawable drawable);
+# 511 "/usr/include/GL/glxext.h" 3 4
+typedef GLboolean ( *PFNGLXSET3DFXMODEMESAPROC) (GLint mode);
+
+
+
+
+
+
+
+typedef int ( *PFNGLXGETSWAPINTERVALMESAPROC) (void);
+typedef int ( *PFNGLXSWAPINTERVALMESAPROC) (unsigned int interval);
+# 529 "/usr/include/GL/glxext.h" 3 4
+typedef void ( *PFNGLXCOPYBUFFERSUBDATANVPROC) (Display *dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+typedef void ( *PFNGLXNAMEDCOPYBUFFERSUBDATANVPROC) (Display *dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+# 539 "/usr/include/GL/glxext.h" 3 4
+typedef void ( *PFNGLXCOPYIMAGESUBDATANVPROC) (Display *dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+
+
+
+
+
+
+
+typedef int ( *PFNGLXDELAYBEFORESWAPNVPROC) (Display *dpy, GLXDrawable drawable, GLfloat seconds);
+# 576 "/usr/include/GL/glxext.h" 3 4
+typedef unsigned int *( *PFNGLXENUMERATEVIDEODEVICESNVPROC) (Display *dpy, int screen, int *nelements);
+typedef int ( *PFNGLXBINDVIDEODEVICENVPROC) (Display *dpy, unsigned int video_slot, unsigned int video_device, const int *attrib_list);
+# 591 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXJOINSWAPGROUPNVPROC) (Display *dpy, GLXDrawable drawable, GLuint group);
+typedef int ( *PFNGLXBINDSWAPBARRIERNVPROC) (Display *dpy, GLuint group, GLuint barrier);
+typedef int ( *PFNGLXQUERYSWAPGROUPNVPROC) (Display *dpy, GLXDrawable drawable, GLuint *group, GLuint *barrier);
+typedef int ( *PFNGLXQUERYMAXSWAPGROUPSNVPROC) (Display *dpy, int screen, GLuint *maxGroups, GLuint *maxBarriers);
+typedef int ( *PFNGLXQUERYFRAMECOUNTNVPROC) (Display *dpy, int screen, GLuint *count);
+typedef int ( *PFNGLXRESETFRAMECOUNTNVPROC) (Display *dpy, int screen);
+# 609 "/usr/include/GL/glxext.h" 3 4
+typedef XID GLXVideoCaptureDeviceNV;
+
+
+
+typedef int ( *PFNGLXBINDVIDEOCAPTUREDEVICENVPROC) (Display *dpy, unsigned int video_capture_slot, GLXVideoCaptureDeviceNV device);
+typedef GLXVideoCaptureDeviceNV *( *PFNGLXENUMERATEVIDEOCAPTUREDEVICESNVPROC) (Display *dpy, int screen, int *nelements);
+typedef void ( *PFNGLXLOCKVIDEOCAPTUREDEVICENVPROC) (Display *dpy, GLXVideoCaptureDeviceNV device);
+typedef int ( *PFNGLXQUERYVIDEOCAPTUREDEVICENVPROC) (Display *dpy, GLXVideoCaptureDeviceNV device, int attribute, int *value);
+typedef void ( *PFNGLXRELEASEVIDEOCAPTUREDEVICENVPROC) (Display *dpy, GLXVideoCaptureDeviceNV device);
+# 629 "/usr/include/GL/glxext.h" 3 4
+typedef unsigned int GLXVideoDeviceNV;
+# 640 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXGETVIDEODEVICENVPROC) (Display *dpy, int screen, int numVideoDevices, GLXVideoDeviceNV *pVideoDevice);
+typedef int ( *PFNGLXRELEASEVIDEODEVICENVPROC) (Display *dpy, int screen, GLXVideoDeviceNV VideoDevice);
+typedef int ( *PFNGLXBINDVIDEOIMAGENVPROC) (Display *dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int iVideoBuffer);
+typedef int ( *PFNGLXRELEASEVIDEOIMAGENVPROC) (Display *dpy, GLXPbuffer pbuf);
+typedef int ( *PFNGLXSENDPBUFFERTOVIDEONVPROC) (Display *dpy, GLXPbuffer pbuf, int iBufferType, unsigned long *pulCounterPbuffer, GLboolean bBlock);
+typedef int ( *PFNGLXGETVIDEOINFONVPROC) (Display *dpy, int screen, GLXVideoDeviceNV VideoDevice, unsigned long *pulCounterOutputPbuffer, unsigned long *pulCounterOutputVideo);
+# 700 "/usr/include/GL/glxext.h" 3 4
+# 1 "/usr/include/inttypes.h" 1 3 4
+# 266 "/usr/include/inttypes.h" 3 4
+extern "C" {
+
+
+
+
+typedef struct
+  {
+    long int quot;
+    long int rem;
+  } imaxdiv_t;
+# 290 "/usr/include/inttypes.h" 3 4
+extern intmax_t imaxabs (intmax_t __n) throw () __attribute__ ((__const__));
+
+
+extern imaxdiv_t imaxdiv (intmax_t __numer, intmax_t __denom)
+      throw () __attribute__ ((__const__));
+
+
+extern intmax_t strtoimax (const char *__restrict __nptr,
+      char **__restrict __endptr, int __base) throw ();
+
+
+extern uintmax_t strtoumax (const char *__restrict __nptr,
+       char ** __restrict __endptr, int __base) throw ();
+
+
+extern intmax_t wcstoimax (const wchar_t *__restrict __nptr,
+      wchar_t **__restrict __endptr, int __base)
+     throw ();
+
+
+extern uintmax_t wcstoumax (const wchar_t *__restrict __nptr,
+       wchar_t ** __restrict __endptr, int __base)
+     throw ();
+# 432 "/usr/include/inttypes.h" 3 4
+}
+# 701 "/usr/include/GL/glxext.h" 2 3 4
+
+
+typedef int ( *PFNGLXGETSYNCVALUESOMLPROC) (Display *dpy, GLXDrawable drawable, int64_t *ust, int64_t *msc, int64_t *sbc);
+typedef int ( *PFNGLXGETMSCRATEOMLPROC) (Display *dpy, GLXDrawable drawable, int32_t *numerator, int32_t *denominator);
+typedef int64_t ( *PFNGLXSWAPBUFFERSMSCOMLPROC) (Display *dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder);
+typedef int ( *PFNGLXWAITFORMSCOMLPROC) (Display *dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t *ust, int64_t *msc, int64_t *sbc);
+typedef int ( *PFNGLXWAITFORSBCOMLPROC) (Display *dpy, GLXDrawable drawable, int64_t target_sbc, int64_t *ust, int64_t *msc, int64_t *sbc);
+# 736 "/usr/include/GL/glxext.h" 3 4
+typedef XID GLXPbufferSGIX;
+# 748 "/usr/include/GL/glxext.h" 3 4
+typedef struct __GLXFBConfigRec *GLXFBConfigSGIX;
+# 759 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXGETFBCONFIGATTRIBSGIXPROC) (Display *dpy, GLXFBConfigSGIX config, int attribute, int *value);
+typedef GLXFBConfigSGIX *( *PFNGLXCHOOSEFBCONFIGSGIXPROC) (Display *dpy, int screen, int *attrib_list, int *nelements);
+typedef GLXPixmap ( *PFNGLXCREATEGLXPIXMAPWITHCONFIGSGIXPROC) (Display *dpy, GLXFBConfigSGIX config, Pixmap pixmap);
+typedef GLXContext ( *PFNGLXCREATECONTEXTWITHCONFIGSGIXPROC) (Display *dpy, GLXFBConfigSGIX config, int render_type, GLXContext share_list, int direct);
+typedef XVisualInfo *( *PFNGLXGETVISUALFROMFBCONFIGSGIXPROC) (Display *dpy, GLXFBConfigSGIX config);
+typedef GLXFBConfigSGIX ( *PFNGLXGETFBCONFIGFROMVISUALSGIXPROC) (Display *dpy, XVisualInfo *vis);
+# 777 "/usr/include/GL/glxext.h" 3 4
+typedef struct {
+    char pipeName[80];
+    int networkId;
+} GLXHyperpipeNetworkSGIX;
+typedef struct {
+    char pipeName[80];
+    int channel;
+    unsigned int participationType;
+    int timeSlice;
+} GLXHyperpipeConfigSGIX;
+typedef struct {
+    char pipeName[80];
+    int srcXOrigin, srcYOrigin, srcWidth, srcHeight;
+    int destXOrigin, destYOrigin, destWidth, destHeight;
+} GLXPipeRect;
+typedef struct {
+    char pipeName[80];
+    int XOrigin, YOrigin, maxHeight, maxWidth;
+} GLXPipeRectLimits;
+# 806 "/usr/include/GL/glxext.h" 3 4
+typedef GLXHyperpipeNetworkSGIX *( *PFNGLXQUERYHYPERPIPENETWORKSGIXPROC) (Display *dpy, int *npipes);
+typedef int ( *PFNGLXHYPERPIPECONFIGSGIXPROC) (Display *dpy, int networkId, int npipes, GLXHyperpipeConfigSGIX *cfg, int *hpId);
+typedef GLXHyperpipeConfigSGIX *( *PFNGLXQUERYHYPERPIPECONFIGSGIXPROC) (Display *dpy, int hpId, int *npipes);
+typedef int ( *PFNGLXDESTROYHYPERPIPECONFIGSGIXPROC) (Display *dpy, int hpId);
+typedef int ( *PFNGLXBINDHYPERPIPESGIXPROC) (Display *dpy, int hpId);
+typedef int ( *PFNGLXQUERYHYPERPIPEBESTATTRIBSGIXPROC) (Display *dpy, int timeSlice, int attrib, int size, void *attribList, void *returnAttribList);
+typedef int ( *PFNGLXHYPERPIPEATTRIBSGIXPROC) (Display *dpy, int timeSlice, int attrib, int size, void *attribList);
+typedef int ( *PFNGLXQUERYHYPERPIPEATTRIBSGIXPROC) (Display *dpy, int timeSlice, int attrib, int size, void *returnAttribList);
+# 853 "/usr/include/GL/glxext.h" 3 4
+typedef GLXPbufferSGIX ( *PFNGLXCREATEGLXPBUFFERSGIXPROC) (Display *dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int *attrib_list);
+typedef void ( *PFNGLXDESTROYGLXPBUFFERSGIXPROC) (Display *dpy, GLXPbufferSGIX pbuf);
+typedef void ( *PFNGLXQUERYGLXPBUFFERSGIXPROC) (Display *dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int *value);
+typedef void ( *PFNGLXSELECTEVENTSGIXPROC) (Display *dpy, GLXDrawable drawable, unsigned long mask);
+typedef void ( *PFNGLXGETSELECTEDEVENTSGIXPROC) (Display *dpy, GLXDrawable drawable, unsigned long *mask);
+# 869 "/usr/include/GL/glxext.h" 3 4
+typedef void ( *PFNGLXBINDSWAPBARRIERSGIXPROC) (Display *dpy, GLXDrawable drawable, int barrier);
+typedef int ( *PFNGLXQUERYMAXSWAPBARRIERSSGIXPROC) (Display *dpy, int screen, int *max);
+# 879 "/usr/include/GL/glxext.h" 3 4
+typedef void ( *PFNGLXJOINSWAPGROUPSGIXPROC) (Display *dpy, GLXDrawable drawable, GLXDrawable member);
+# 889 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXBINDCHANNELTOWINDOWSGIXPROC) (Display *display, int screen, int channel, Window window);
+typedef int ( *PFNGLXCHANNELRECTSGIXPROC) (Display *display, int screen, int channel, int x, int y, int w, int h);
+typedef int ( *PFNGLXQUERYCHANNELRECTSGIXPROC) (Display *display, int screen, int channel, int *dx, int *dy, int *dw, int *dh);
+typedef int ( *PFNGLXQUERYCHANNELDELTASSGIXPROC) (Display *display, int screen, int channel, int *x, int *y, int *w, int *h);
+typedef int ( *PFNGLXCHANNELRECTSYNCSGIXPROC) (Display *display, int screen, int channel, GLenum synctype);
+# 905 "/usr/include/GL/glxext.h" 3 4
+typedef XID GLXVideoSourceSGIX;
+# 923 "/usr/include/GL/glxext.h" 3 4
+typedef void ( *PFNGLXCUSHIONSGIPROC) (Display *dpy, Window window, float cushion);
+
+
+
+
+
+
+
+typedef int ( *PFNGLXMAKECURRENTREADSGIPROC) (Display *dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);
+typedef GLXDrawable ( *PFNGLXGETCURRENTREADDRAWABLESGIPROC) (void);
+# 941 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXSWAPINTERVALSGIPROC) (int interval);
+
+
+
+
+
+
+
+typedef int ( *PFNGLXGETVIDEOSYNCSGIPROC) (unsigned int *count);
+typedef int ( *PFNGLXWAITVIDEOSYNCSGIPROC) (int divisor, int remainder, unsigned int *count);
+# 959 "/usr/include/GL/glxext.h" 3 4
+typedef int ( *PFNGLXGETTRANSPARENTINDEXSUNPROC) (Display *dpy, Window overlay, Window underlay, unsigned long *pTransparentIndex);
+
+
+
+
+
+
+}
+# 329 "/usr/include/GL/glx.h" 2 3 4
+# 344 "/usr/include/GL/glx.h" 3 4
+extern void *glXAllocateMemoryNV(GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
+extern void glXFreeMemoryNV(GLvoid *pointer);
+typedef void * ( * PFNGLXALLOCATEMEMORYNVPROC) (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
+typedef void ( * PFNGLXFREEMEMORYNVPROC) (GLvoid *pointer);
+# 359 "/usr/include/GL/glx.h" 3 4
+extern int glXBindTexImageARB(Display *dpy, GLXPbuffer pbuffer, int buffer);
+extern int glXReleaseTexImageARB(Display *dpy, GLXPbuffer pbuffer, int buffer);
+extern int glXDrawableAttribARB(Display *dpy, GLXDrawable draw, const int *attribList);
+# 372 "/usr/include/GL/glx.h" 3 4
+extern int glXGetFrameUsageMESA(Display *dpy, GLXDrawable drawable, float *usage);
+extern int glXBeginFrameTrackingMESA(Display *dpy, GLXDrawable drawable);
+extern int glXEndFrameTrackingMESA(Display *dpy, GLXDrawable drawable);
+extern int glXQueryFrameTrackingMESA(Display *dpy, GLXDrawable drawable, int64_t *swapCount, int64_t *missedFrames, float *lastMissedUsage);
+
+typedef int (*PFNGLXGETFRAMEUSAGEMESAPROC) (Display *dpy, GLXDrawable drawable, float *usage);
+typedef int (*PFNGLXBEGINFRAMETRACKINGMESAPROC)(Display *dpy, GLXDrawable drawable);
+typedef int (*PFNGLXENDFRAMETRACKINGMESAPROC)(Display *dpy, GLXDrawable drawable);
+typedef int (*PFNGLXQUERYFRAMETRACKINGMESAPROC)(Display *dpy, GLXDrawable drawable, int64_t *swapCount, int64_t *missedFrames, float *lastMissedUsage);
+# 405 "/usr/include/GL/glx.h" 3 4
+typedef struct {
+    int event_type;
+    int draw_type;
+    unsigned long serial;
+    int send_event;
+    Display *display;
+    GLXDrawable drawable;
+    unsigned int buffer_mask;
+    unsigned int aux_buffer;
+    int x, y;
+    int width, height;
+    int count;
+} GLXPbufferClobberEvent;
+
+typedef struct {
+    int type;
+    unsigned long serial;
+    int send_event;
+    Display *display;
+    Drawable drawable;
+    int event_type;
+    int64_t ust;
+    int64_t msc;
+    int64_t sbc;
+} GLXBufferSwapComplete;
+
+typedef union __GLXEvent {
+    GLXPbufferClobberEvent glxpbufferclobber;
+    GLXBufferSwapComplete glxbufferswapcomplete;
+    long pad[24];
+} GLXEvent;
+
+
+}
+# 27 "ihdr.h" 2
+# 1 "/usr/include/GL/glu.h" 1 3 4
+# 65 "/usr/include/GL/glu.h" 3 4
+extern "C" {
+# 270 "/usr/include/GL/glu.h" 3 4
+class GLUnurbs;
+class GLUquadric;
+class GLUtesselator;
+
+
+
+
+
+
+typedef GLUnurbs GLUnurbsObj;
+typedef GLUquadric GLUquadricObj;
+typedef GLUtesselator GLUtesselatorObj;
+typedef GLUtesselator GLUtriangulatorObj;
+
+
+
+
+typedef void ( * _GLUfuncptr)(void);
+
+__attribute__((visibility("default"))) void gluBeginCurve (GLUnurbs* nurb);
+__attribute__((visibility("default"))) void gluBeginPolygon (GLUtesselator* tess);
+__attribute__((visibility("default"))) void gluBeginSurface (GLUnurbs* nurb);
+__attribute__((visibility("default"))) void gluBeginTrim (GLUnurbs* nurb);
+__attribute__((visibility("default"))) GLint gluBuild1DMipmapLevels (GLenum target, GLint internalFormat, GLsizei width, GLenum format, GLenum type, GLint level, GLint base, GLint max, const void *data);
+__attribute__((visibility("default"))) GLint gluBuild1DMipmaps (GLenum target, GLint internalFormat, GLsizei width, GLenum format, GLenum type, const void *data);
+__attribute__((visibility("default"))) GLint gluBuild2DMipmapLevels (GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, GLint level, GLint base, GLint max, const void *data);
+__attribute__((visibility("default"))) GLint gluBuild2DMipmaps (GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *data);
+__attribute__((visibility("default"))) GLint gluBuild3DMipmapLevels (GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, GLint level, GLint base, GLint max, const void *data);
+__attribute__((visibility("default"))) GLint gluBuild3DMipmaps (GLenum target, GLint internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *data);
+__attribute__((visibility("default"))) GLboolean gluCheckExtension (const GLubyte *extName, const GLubyte *extString);
+__attribute__((visibility("default"))) void gluCylinder (GLUquadric* quad, GLdouble base, GLdouble top, GLdouble height, GLint slices, GLint stacks);
+__attribute__((visibility("default"))) void gluDeleteNurbsRenderer (GLUnurbs* nurb);
+__attribute__((visibility("default"))) void gluDeleteQuadric (GLUquadric* quad);
+__attribute__((visibility("default"))) void gluDeleteTess (GLUtesselator* tess);
+__attribute__((visibility("default"))) void gluDisk (GLUquadric* quad, GLdouble inner, GLdouble outer, GLint slices, GLint loops);
+__attribute__((visibility("default"))) void gluEndCurve (GLUnurbs* nurb);
+__attribute__((visibility("default"))) void gluEndPolygon (GLUtesselator* tess);
+__attribute__((visibility("default"))) void gluEndSurface (GLUnurbs* nurb);
+__attribute__((visibility("default"))) void gluEndTrim (GLUnurbs* nurb);
+__attribute__((visibility("default"))) const GLubyte * gluErrorString (GLenum error);
+__attribute__((visibility("default"))) void gluGetNurbsProperty (GLUnurbs* nurb, GLenum property, GLfloat* data);
+__attribute__((visibility("default"))) const GLubyte * gluGetString (GLenum name);
+__attribute__((visibility("default"))) void gluGetTessProperty (GLUtesselator* tess, GLenum which, GLdouble* data);
+__attribute__((visibility("default"))) void gluLoadSamplingMatrices (GLUnurbs* nurb, const GLfloat *model, const GLfloat *perspective, const GLint *view);
+__attribute__((visibility("default"))) void gluLookAt (GLdouble eyeX, GLdouble eyeY, GLdouble eyeZ, GLdouble centerX, GLdouble centerY, GLdouble centerZ, GLdouble upX, GLdouble upY, GLdouble upZ);
+__attribute__((visibility("default"))) GLUnurbs* gluNewNurbsRenderer (void);
+__attribute__((visibility("default"))) GLUquadric* gluNewQuadric (void);
+__attribute__((visibility("default"))) GLUtesselator* gluNewTess (void);
+__attribute__((visibility("default"))) void gluNextContour (GLUtesselator* tess, GLenum type);
+__attribute__((visibility("default"))) void gluNurbsCallback (GLUnurbs* nurb, GLenum which, _GLUfuncptr CallBackFunc);
+__attribute__((visibility("default"))) void gluNurbsCallbackData (GLUnurbs* nurb, GLvoid* userData);
+__attribute__((visibility("default"))) void gluNurbsCallbackDataEXT (GLUnurbs* nurb, GLvoid* userData);
+__attribute__((visibility("default"))) void gluNurbsCurve (GLUnurbs* nurb, GLint knotCount, GLfloat *knots, GLint stride, GLfloat *control, GLint order, GLenum type);
+__attribute__((visibility("default"))) void gluNurbsProperty (GLUnurbs* nurb, GLenum property, GLfloat value);
+__attribute__((visibility("default"))) void gluNurbsSurface (GLUnurbs* nurb, GLint sKnotCount, GLfloat* sKnots, GLint tKnotCount, GLfloat* tKnots, GLint sStride, GLint tStride, GLfloat* control, GLint sOrder, GLint tOrder, GLenum type);
+__attribute__((visibility("default"))) void gluOrtho2D (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top);
+__attribute__((visibility("default"))) void gluPartialDisk (GLUquadric* quad, GLdouble inner, GLdouble outer, GLint slices, GLint loops, GLdouble start, GLdouble sweep);
+__attribute__((visibility("default"))) void gluPerspective (GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);
+__attribute__((visibility("default"))) void gluPickMatrix (GLdouble x, GLdouble y, GLdouble delX, GLdouble delY, GLint *viewport);
+__attribute__((visibility("default"))) GLint gluProject (GLdouble objX, GLdouble objY, GLdouble objZ, const GLdouble *model, const GLdouble *proj, const GLint *view, GLdouble* winX, GLdouble* winY, GLdouble* winZ);
+__attribute__((visibility("default"))) void gluPwlCurve (GLUnurbs* nurb, GLint count, GLfloat* data, GLint stride, GLenum type);
+__attribute__((visibility("default"))) void gluQuadricCallback (GLUquadric* quad, GLenum which, _GLUfuncptr CallBackFunc);
+__attribute__((visibility("default"))) void gluQuadricDrawStyle (GLUquadric* quad, GLenum draw);
+__attribute__((visibility("default"))) void gluQuadricNormals (GLUquadric* quad, GLenum normal);
+__attribute__((visibility("default"))) void gluQuadricOrientation (GLUquadric* quad, GLenum orientation);
+__attribute__((visibility("default"))) void gluQuadricTexture (GLUquadric* quad, GLboolean texture);
+__attribute__((visibility("default"))) GLint gluScaleImage (GLenum format, GLsizei wIn, GLsizei hIn, GLenum typeIn, const void *dataIn, GLsizei wOut, GLsizei hOut, GLenum typeOut, GLvoid* dataOut);
+__attribute__((visibility("default"))) void gluSphere (GLUquadric* quad, GLdouble radius, GLint slices, GLint stacks);
+__attribute__((visibility("default"))) void gluTessBeginContour (GLUtesselator* tess);
+__attribute__((visibility("default"))) void gluTessBeginPolygon (GLUtesselator* tess, GLvoid* data);
+__attribute__((visibility("default"))) void gluTessCallback (GLUtesselator* tess, GLenum which, _GLUfuncptr CallBackFunc);
+__attribute__((visibility("default"))) void gluTessEndContour (GLUtesselator* tess);
+__attribute__((visibility("default"))) void gluTessEndPolygon (GLUtesselator* tess);
+__attribute__((visibility("default"))) void gluTessNormal (GLUtesselator* tess, GLdouble valueX, GLdouble valueY, GLdouble valueZ);
+__attribute__((visibility("default"))) void gluTessProperty (GLUtesselator* tess, GLenum which, GLdouble data);
+__attribute__((visibility("default"))) void gluTessVertex (GLUtesselator* tess, GLdouble *location, GLvoid* data);
+__attribute__((visibility("default"))) GLint gluUnProject (GLdouble winX, GLdouble winY, GLdouble winZ, const GLdouble *model, const GLdouble *proj, const GLint *view, GLdouble* objX, GLdouble* objY, GLdouble* objZ);
+__attribute__((visibility("default"))) GLint gluUnProject4 (GLdouble winX, GLdouble winY, GLdouble winZ, GLdouble clipW, const GLdouble *model, const GLdouble *proj, const GLint *view, GLdouble nearVal, GLdouble farVal, GLdouble* objX, GLdouble* objY, GLdouble* objZ, GLdouble* objW);
+
+
+}
+# 28 "ihdr.h" 2
+
+
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -5313,7 +10485,7 @@ extern int ftrylockfile (FILE *__stream) throw () ;
 extern void funlockfile (FILE *__stream) throw ();
 # 868 "/usr/include/stdio.h" 3 4
 }
-# 26 "ihdr.h" 2
+# 31 "ihdr.h" 2
 # 1 "/usr/include/c++/7/stdlib.h" 1 3
 # 36 "/usr/include/c++/7/stdlib.h" 3
 # 1 "/usr/include/c++/7/cstdlib" 1 3
@@ -6383,7 +11555,7 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 27 "ihdr.h" 2
+# 32 "ihdr.h" 2
 # 1 "/usr/include/time.h" 1 3 4
 # 29 "/usr/include/time.h" 3 4
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h" 1 3 4
@@ -6670,7 +11842,7 @@ extern int getdate_r (const char *__restrict __string,
 
 
 }
-# 28 "ihdr.h" 2
+# 33 "ihdr.h" 2
 # 1 "/usr/include/c++/7/math.h" 1 3
 # 36 "/usr/include/c++/7/math.h" 3
 # 1 "/usr/include/c++/7/cmath" 1 3
@@ -11507,7 +16679,7 @@ using std::scalbln;
 using std::scalbn;
 using std::tgamma;
 using std::trunc;
-# 29 "ihdr.h" 2
+# 34 "ihdr.h" 2
 
 # 1 "/usr/include/string.h" 1 3 4
 # 26 "/usr/include/string.h" 3 4
@@ -11900,7 +17072,7 @@ extern "C++" const char *basename (const char *__filename)
      throw () __asm ("basename") __attribute__ ((__nonnull__ (1)));
 # 498 "/usr/include/string.h" 3 4
 }
-# 31 "ihdr.h" 2
+# 36 "ihdr.h" 2
 # 1 "/usr/include/pthread.h" 1 3 4
 # 23 "/usr/include/pthread.h" 3 4
 # 1 "/usr/include/sched.h" 1 3 4
@@ -12800,7 +17972,7 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__child) (void)) throw ();
 # 1160 "/usr/include/pthread.h" 3 4
 }
-# 32 "ihdr.h" 2
+# 37 "ihdr.h" 2
 
 
 
@@ -12826,12 +17998,14 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 
 }
-# 36 "ihdr.h" 2
+# 41 "ihdr.h" 2
+
+
 
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stdarg.h" 1 3 4
-# 40 "ihdr.h" 2
+# 47 "ihdr.h" 2
 
 # 1 "/usr/include/x86_64-linux-gnu/sys/socket.h" 1 3 4
 # 24 "/usr/include/x86_64-linux-gnu/sys/socket.h" 3 4
@@ -13232,73 +18406,29 @@ extern int sockatmark (int __fd) throw ();
 extern int isfdtype (int __fd, int __fdtype) throw ();
 # 272 "/usr/include/x86_64-linux-gnu/sys/socket.h" 3 4
 }
-# 42 "ihdr.h" 2
+# 49 "ihdr.h" 2
 
 
 
-# 44 "ihdr.h"
+# 51 "ihdr.h"
 typedef unsigned char uchar;
-# 73 "ihdr.h"
-# 1 "tarray.h" 1
-# 12 "tarray.h"
-template <typename YI, size_t SNX>
-
-class yinarray{
-public:
-
- yinarray(){
-
-  yin_ralloc(2);
- }
- void YIN_PUSHBACK(const YI& pval_yin){
-  if(yin_size>=yin_capacity){
-   yin_ralloc(yin_capacity+yin_capacity/2);
-  }
-  yin_data[yin_size]=pval_yin;
-  yin_size++;
- }
-
- const YI& operator[](size_t yindex) const
- {
-  if(yindex>=yin_size){
-
-  }
-  return yin_data[yindex];
- }
- YI& operator[](size_t yindex) const
- {
-  return yin_data[yindex];
- }
-
- size_t Array_rsize() const {return yin_size;}
-private:
- void yin_ralloc(size_t yin_ncap){
+# 75 "ihdr.h"
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
 
 
 
-  YI* yin_nblock=new YI[yin_ncap];
-
-  size_t if_yi_sz=yin_size;
-  if(yin_ncap<if_yi_sz){
-   if_yi_sz=yin_ncap;
-  }
-
-  for(size_t yin_iii=0;yin_iii<yin_size;yin_iii++)
-   yin_nblock[yin_iii]=yin_data[yin_iii];
-  delete[] yin_data;
-  yin_data=yin_nblock;
-  yin_capacity=yin_ncap;
- }
- YI* yin_data=nullptr;
-
- size_t yin_size=0;
- size_t yin_capacity=0;
 
 
-};
-# 74 "ihdr.h" 2
+
+
 # 1 "darray.h" 1
-# 11 "darray.h"
+
+
+
+
+
+
+
 typedef int type_yin;
 typedef struct{
  type_yin *als_li;
@@ -13309,49 +18439,49 @@ typedef struct{
 inline dals_t* darr_init(size_t array_init_sz);
 
 inline dals_t* darr_init(size_t array_init_sz){
- dals_t *t_n2=malloc(sizeof(dals_t));
- t_n2->als_li=malloc(sizeof(int)*array_init_sz);
+ dals_t *t_n2= (dals_t*) malloc(sizeof(dals_t));
+ t_n2->als_li=(type_yin *) malloc(sizeof(type_yin)*array_init_sz);
  t_n2->alloc=array_init_sz;
  t_n2->arr_len=0;
 
- return t_2;
+ return t_n2;
 }
 
-int grow(dals_t* t){
+int darr_grow(dals_t* t){
  
-# 30 "darray.h" 3 4
+# 27 "darray.h" 3 4
 (static_cast <bool> (
-# 30 "darray.h"
+# 27 "darray.h"
 t!=
-# 30 "darray.h" 3 4
+# 27 "darray.h" 3 4
 __null) ? void (0) : __assert_fail (
-# 30 "darray.h"
+# 27 "darray.h"
 "t!=NULL"
-# 30 "darray.h" 3 4
-, "darray.h", 30, __extension__ __PRETTY_FUNCTION__))
-# 30 "darray.h"
+# 27 "darray.h" 3 4
+, "darray.h", 27, __extension__ __PRETTY_FUNCTION__))
+# 27 "darray.h"
                ;
 
  
-# 32 "darray.h" 3 4
+# 29 "darray.h" 3 4
 (static_cast <bool> (
-# 32 "darray.h"
+# 29 "darray.h"
 t->als_li!=
-# 32 "darray.h" 3 4
+# 29 "darray.h" 3 4
 __null) ? void (0) : __assert_fail (
-# 32 "darray.h"
+# 29 "darray.h"
 "t->als_li!=NULL"
-# 32 "darray.h" 3 4
-, "darray.h", 32, __extension__ __PRETTY_FUNCTION__))
-# 32 "darray.h"
+# 29 "darray.h" 3 4
+, "darray.h", 29, __extension__ __PRETTY_FUNCTION__))
+# 29 "darray.h"
                        ;
 
- type_yin* new_li=malloc(2*t->alloc);
+ type_yin* new_li=(type_yin*) malloc(2*t->alloc);
 
  if(new_li==
-# 36 "darray.h" 3 4
+# 33 "darray.h" 3 4
            __null
-# 36 "darray.h"
+# 33 "darray.h"
                )
   return 1;
 
@@ -13363,37 +18493,63 @@ __null) ? void (0) : __assert_fail (
  return 0;
 }
 
-type_yin append(dals_t *t, type_yin val){
- if(t->len->alloc-1){
-# 48 "darray.h" 3 4
-                    (static_cast <bool> (
-# 48 "darray.h"
-                    grow(t)!=0
-# 48 "darray.h" 3 4
-                    ) ? void (0) : __assert_fail (
-# 48 "darray.h"
-                    "grow(t)!=0"
-# 48 "darray.h" 3 4
-                    , "darray.h", 48, __extension__ __PRETTY_FUNCTION__))
-# 48 "darray.h"
-                                      ;}
+type_yin darr_append(dals_t *t, type_yin val){
+ if(t->arr_len > t->alloc-1){
+# 45 "darray.h" 3 4
+                            (static_cast <bool> (
+# 45 "darray.h"
+                            darr_grow(t)!=0
+# 45 "darray.h" 3 4
+                            ) ? void (0) : __assert_fail (
+# 45 "darray.h"
+                            "darr_grow(t)!=0"
+# 45 "darray.h" 3 4
+                            , "darray.h", 45, __extension__ __PRETTY_FUNCTION__))
+# 45 "darray.h"
+                                                   ;}
 
- t->li[t->len++]=val;
+ t->als_li[t->arr_len++]=val;
  return val;}
 
-void destroy(dals_t* T){free(t->li);free(t);}
+void destroy(dals_t* T){free(T->als_li);free(T);}
 
-int grow(dals_t* t);
+int darr_grow(dals_t* t);
 
-void print(dals_t* t);
-# 75 "ihdr.h" 2
+void darr_print(dals_t* t);
+# 84 "ihdr.h" 2
+
+# 1 "window.h" 1
+
+
+
+# 1 "ihdr.h" 1
+# 5 "window.h" 2
+# 16 "window.h"
+typedef struct WINDOW_INFORMATION_GM_STRUCT{
+
+} gm_wininf_T*;
+# 86 "ihdr.h" 2
 
 # 1 "logfiles.h" 1
 
 
 
-# 1 "ihdr.h" 1
-# 5 "logfiles.h" 2
+
+
+typedef struct LOGGER_STRUCT{
+ char* msg;
+} logger_T;
+
+logger_T* init_logger(char* msg_src){
+ logger_T* logger=(logger_T*)calloc(1, (sizeof(LOGGER_STRUCT)+strlen(msg_src)));
+ logger->msg=msg_src;
+
+ return logger;
+}
+
+void logger_destroy(logger_T* logger){
+ free(logger);
+}
 
 int FileInit(const char INIT_MSG[]) {
   FILE *yin;
@@ -13402,9 +18558,9 @@ int FileInit(const char INIT_MSG[]) {
   yin = fopen("log.ascii", "w+");
 
   if(yin == 
-# 12 "logfiles.h" 3 4
+# 27 "logfiles.h" 3 4
            __null
-# 12 "logfiles.h"
+# 27 "logfiles.h"
                ) {
     return 1;
   }
@@ -13416,20 +18572,39 @@ int FileInit(const char INIT_MSG[]) {
   return 0;
 }
 
-int WRT_TO_FL(const char msg[]) {
+char* gm_read_file(char* filename){
+ char* buffer=0;
+ long f_len;
+ FILE* gmf=fopen(filename, "rb");
+
+ if(gmf){
+  fseek(gmf, 0, 
+# 44 "logfiles.h" 3 4
+               2
+# 44 "logfiles.h"
+                       );
+  f_len=ftell(gmf);
+
+  buffer=(char*)calloc(f_len, f_len);
+
+  if(buffer)
+   fread(buffer, 1, f_len, gmf);
+
+  fclose(gmf);
+ }
+}
+
+int WRT_TO_FL(const char* msg) {
   FILE *YIN;
 
-  YIN = fopen("log.ascii", "a");
+  YIN = fopen("log.gm", "a");
   if(YIN==
-# 27 "logfiles.h" 3 4
+# 60 "logfiles.h" 3 4
          __null
-# 27 "logfiles.h"
-             ){
-    return 1;
-  }
+# 60 "logfiles.h"
+             ){return 1;}
 
   fprintf(YIN,"%s\n", msg);
-
   fclose(YIN);
   return 0;
 
@@ -13442,8837 +18617,622 @@ int FRMT_LOG(char YIN_ARG_1[],char YIN_ARG_2[],char YIN_ARG_3[],char YIN_ARG_4[]
 
   FRMT_LG=fopen("log.ascii", "a");
   if(FRMT_LG==
-# 44 "logfiles.h" 3 4
+# 74 "logfiles.h" 3 4
              __null
-# 44 "logfiles.h"
+# 74 "logfiles.h"
                  ){return 1;}
   switch(FRMT_MD) {
     case 1:
-      fprintf(FRMT_LG,"--LOG--\nSTATUS?%s\nINFO: ALSAMI LOGGER(CODENAME YIN RENDERING ENGINE EDITION)\nAPPLICATION MESSAGE?%s\nIMPORTANCE? %s\nEND-LOG (%s)",YIN_ARG_1,YIN_ARG_2,YIN_ARG_3,YIN_ARG_4);
+      fprintf(FRMT_LG,"--LOG--\nSTATUS?%s\nINFO: AlsGM LOGGER\nAPPLICATION MESSAGE?%s\nIMPORTANCE? %s\nEND-LOG (%s)",YIN_ARG_1,YIN_ARG_2,YIN_ARG_3,YIN_ARG_4);
       break;
     case 6:
 
         break;
     case 39:
- fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
-       break;
+        fprintf(FRMT_LG, "ERROR FROM CORE MODULE, REPORT TO https://github.com/alsamitech/alsgm and the game developer ASAP IF NO SOLOUTION IS FOUND\nError Message: %s\n--errno--", YIN_ARG_1);
+        break;
     case 23:
       fprintf(FRMT_LG,"%s", YIN_ARG_1);
-
-
-
   }
   return 0;
+  fclose(FRMT_LG);
 }
-# 77 "ihdr.h" 2
+# 88 "ihdr.h" 2
+# 1 "queue.h" 1
+# 19 "queue.h"
+typedef struct EVTOKEN_STRUCT{
+    enum{
+  INITALIZE,CREATE,TICK,WINDOWEXPOSE,MOUSECLICK,WINDOWRESIZE
+ }type;
+
+    int nt;
+} evtoken_T;
+
+evtoken_T* evtoken_init(){
+    evtoken_T* yintoken_i=(evtoken_T *) calloc(1, sizeof(evtoken_T));
+
+    return yintoken_i;
+}
+
+void evtoken_destroy(evtoken_T* evtoken_i){
+    free(evtoken_i);
+}
+
+typedef struct EVENT_STRUT{
+ evtoken_T token;
+}event_T;
+
+event_T* gm_init_event(){
+ event_T* event_i=(event_T*)calloc(1,sizeof(event_T));
+
+ return event_i;
+}
+
+void gm_destroy_event(event_T* event_i){
+    free(event_i);
+}
+
+evtoken_T* gm_parse_event(event_T* event_i, void (*msg_callback)(u_int32_t)){
+    switch(event_i->token.type){
+    case 1:
+        WRT_TO_FL("AlsGM event INITALIZE: a event was created");
+        msg_callback(3);
+        break;
+    case 3:
+        msg_callback(2);
+    }
+}
+# 89 "ihdr.h" 2
 # 1 "logcon.h" 1
-# 25 "logcon.h"
-uchar LOG_TO_CON(uchar YIN_TYPE, const char* MSG, uchar IMP){
- switch(YIN_TYPE){
+# 13 "logcon.h"
+uint8_t gm_logtocon(const char* msg, uint8_t flags){
 
-  case 1:
-   fprintf(
-# 29 "logcon.h" 3 4
-          stdout
-# 29 "logcon.h"
-                ,"ALSGM-LOG\nApplication Process: %s\n", MSG);
-   break;
-
-  case 2:
-   fprintf(
-# 33 "logcon.h" 3 4
-          stdout
-# 33 "logcon.h"
-                ,"ALSGM-LOG\nAPPLICATION SENT A COMPLAINT\nREAD THE MESSAGE AND FIX THE ISSUE TO PREVENT THIS WARNING\n%s\n\n--Alsami Technologies - alsgm (Codename Yin)--");
-   break;
+ if(flags&0x02){
 
 
-  case 20:
-   fprintf(
-# 38 "logcon.h" 3 4
-          stderr
-# 38 "logcon.h"
-                ,"CODENAME YIN\nCORE-MODULE-LOG: %s\nIMPORTANCE: %u\n", MSG,IMP);
-   break;
 
-  case 21:
-   fprintf(
-# 42 "logcon.h" 3 4
-          stderr
-# 42 "logcon.h"
-                ,"ERROR OF URGENCY %u\nA CORE MODULE IS COMPLANING\n%s)");
-   break;
+  printf("Game Log (AlsGM Engine)\n");
+
+ }
+ if(flags&0x08){
+  printf("\033[1;31m%s\033[0m\n", msg);
+ }else{}
+
+}
+# 90 "ihdr.h" 2
+# 1 "sprites.hpp" 1
+# 12 "sprites.hpp"
+# 1 "aar.h" 1
+# 13 "aar.h"
+extern "C" {
+
+
+typedef struct DYANMIC_ARR_STRUCT{
+
+ size_t size;
+ size_t item_size;
+ void** items;
+}darray_T;
+
+darray_T* darr_alloc(size_t init_size){
+ darray_T* darray_i=(darray_T*)calloc(1, sizeof(darray_T));
+ darray_i->item_size=init_size;
+ darray_i->size=0;
+
+ return darray_i;
+}
+
+void* darr_append(darray_T* darray_i, void* item){
+ darray_i->size++;
+ darray_i->items=(void**)realloc(darray_i->items, darray_i->size*darray_i->item_size);
+
+ darray_i->items[darray_i->size-1]=item;
+
+ return item;
+}
+
+void darr_shift_left(darray_T* darray_i, int index){}
+
+
+
+void darr_free(darray_T* darray_i, void (*free_method)(void* item)){
+
+}
+
+
+}
+# 13 "sprites.hpp" 2
+
+
+float asgn_nm_cntr=0;
+
+typedef struct SPRITED_STRUCT{
+ uint32_t d;
+ float width;
+ float height;
+ float r;
+ float g;
+ float b;
+ float a;
+ darray_T* textures;
+} sprited_T;
+
+
+sprited_T* sprited_alloc(){
+ sprited_T* sprited_i=(sprited_T*)calloc(1,sizeof(struct SPRITED_STRUCT));
+}
+
+class Sprite{
+public:
+ char* ppm_frontend;
+
+ Sprite();
+ ~Sprite();
+protected:
+private:
+
+
+ uint64_t SPRITED;
+
+
+
+
+
+};
+
+Sprite::Sprite(){
+
+
+
+}
+
+Sprite::~Sprite(){
+
+}
+
+const uint8_t gm_4colorbox[] = {
+ 'p', '6', '\n',
+ '#', 'b', 'y', ' ', 'k', 'h', 'o', 'r', 'a', 's', 'k', 'i', '\n',
+ '2', ' ', '2', '\n',
+ '2', '5', '5', '\n',
+ 255,0,0,
+ 0,255,255,
+ 0,0,255,
+ 255,0,255
+};
+# 91 "ihdr.h" 2
+
+
+
+# 1 "glgraphics.h" 1
+# 17 "glgraphics.h"
+           Display *alsami_dpy;
+           int screen;
+           Window app_win, root_win;
+           XEvent app_xev;
+           XSetWindowAttributes x_attrs;
+           unsigned int depth;
+XWindowAttributes winattr;
+
+
+GLint att[]={
+# 26 "glgraphics.h" 3 4
+            4
+# 26 "glgraphics.h"
+                    ,
+# 26 "glgraphics.h" 3 4
+                     12
+# 26 "glgraphics.h"
+                                   ,24,
+# 26 "glgraphics.h" 3 4
+                                       5
+# 26 "glgraphics.h"
+                                                       ,
+# 26 "glgraphics.h" 3 4
+                                                        0L
+# 26 "glgraphics.h"
+                                                            };
+XVisualInfo *alsami_xvis;
+GLXContext glc;
+
+
+void drawTriangle(GLfloat CordX,GLfloat CordY,GLfloat CordZ){
+ glColor3f(0.0f,0.0f,0.0f);
+
+ glBegin(
+# 34 "glgraphics.h" 3 4
+        0x0004
+# 34 "glgraphics.h"
+                    );
+  glVertex3f(0.0f,0.0f,0.0f);
+
+  glVertex3f(CordX,CordY,CordZ);
+
+
+  glVertex3f(fabs(CordX),CordY,CordZ);
+
+}
+
+uint8_t X_WIN_INIT(char arg1, uchar arg2) {
+ alsami_dpy=XOpenDisplay(
+# 45 "glgraphics.h" 3 4
+                        __null
+# 45 "glgraphics.h"
+                            );
+ if(alsami_dpy==
+# 46 "glgraphics.h" 3 4
+               __null
+# 46 "glgraphics.h"
+                   ){
+  return 69;
+ }
+ screen=
+# 49 "glgraphics.h" 3 4
+       (((_XPrivDisplay)(
+# 49 "glgraphics.h"
+       alsami_dpy
+# 49 "glgraphics.h" 3 4
+       ))->default_screen)
+# 49 "glgraphics.h"
+                                ;
+ depth=
+# 50 "glgraphics.h" 3 4
+      ((&((_XPrivDisplay)(
+# 50 "glgraphics.h"
+      alsami_dpy
+# 50 "glgraphics.h" 3 4
+      ))->screens[
+# 50 "glgraphics.h"
+      screen
+# 50 "glgraphics.h" 3 4
+      ])->root_depth)
+# 50 "glgraphics.h"
+                                     ;
+ root_win=
+# 51 "glgraphics.h" 3 4
+         ((&((_XPrivDisplay)(
+# 51 "glgraphics.h"
+         alsami_dpy
+# 51 "glgraphics.h" 3 4
+         ))->screens[
+# 51 "glgraphics.h"
+         screen
+# 51 "glgraphics.h" 3 4
+         ])->root)
+# 51 "glgraphics.h"
+                                      ;
+
+
+
+ x_attrs.border_pixel=
+# 55 "glgraphics.h" 3 4
+                     ((&((_XPrivDisplay)(
+# 55 "glgraphics.h"
+                     alsami_dpy
+# 55 "glgraphics.h" 3 4
+                     ))->screens[
+# 55 "glgraphics.h"
+                     screen
+# 55 "glgraphics.h" 3 4
+                     ])->black_pixel)
+# 55 "glgraphics.h"
+                                                  ;
+ x_attrs.background_pixel=
+# 56 "glgraphics.h" 3 4
+                         ((&((_XPrivDisplay)(
+# 56 "glgraphics.h"
+                         alsami_dpy
+# 56 "glgraphics.h" 3 4
+                         ))->screens[
+# 56 "glgraphics.h"
+                         screen
+# 56 "glgraphics.h" 3 4
+                         ])->white_pixel)
+# 56 "glgraphics.h"
+                                                      ;
+ x_attrs.override_redirect=
+# 57 "glgraphics.h" 3 4
+                          1
+# 57 "glgraphics.h"
+                              ;
+
+
+ alsami_xvis=glXChooseVisual(alsami_dpy,screen,att);
+
+ x_attrs.colormap=XCreateColormap(alsami_dpy, root_win, alsami_xvis->visual, 
+# 62 "glgraphics.h" 3 4
+                                                                            0
+# 62 "glgraphics.h"
+                                                                                     );
+ x_attrs.event_mask=
+# 63 "glgraphics.h" 3 4
+                   (1L<<15)
+# 63 "glgraphics.h"
+                               |
+# 63 "glgraphics.h" 3 4
+                                (1L<<0)
+# 63 "glgraphics.h"
+                                            ;
+
+
+ glc = glXCreateContext(alsami_dpy, alsami_xvis, 
+# 66 "glgraphics.h" 3 4
+                                                          __null
+# 66 "glgraphics.h"
+                                                              , 
+# 66 "glgraphics.h" 3 4
+                                                                1
+# 66 "glgraphics.h"
+                                                                       );
+
+ app_win=XCreateWindow(alsami_dpy,root_win,200,200,500,300,0,depth,
+# 68 "glgraphics.h" 3 4
+                                                                  1
+# 68 "glgraphics.h"
+                                                                             ,
+# 68 "glgraphics.h" 3 4
+                                                                              0L
+# 68 "glgraphics.h"
+                                                                                            ,
+# 68 "glgraphics.h" 3 4
+                                                                                             (1L<<1)
+# 68 "glgraphics.h"
+                                                                                                        |
+# 68 "glgraphics.h" 3 4
+                                                                                                         (1L<<13)
+# 68 "glgraphics.h"
+                                                                                                                   |
+# 68 "glgraphics.h" 3 4
+                                                                                                                    (1L<<3)
+# 68 "glgraphics.h"
+                                                                                                                                 |
+# 68 "glgraphics.h" 3 4
+                                                                                                                                  (1L<<11)
+# 68 "glgraphics.h"
+                                                                                                                                             |
+# 68 "glgraphics.h" 3 4
+                                                                                                                                              (1L<<3)
+# 68 "glgraphics.h"
+                                                                                                                                                           |
+# 68 "glgraphics.h" 3 4
+                                                                                                                                                            (1L<<11)
+# 68 "glgraphics.h"
+                                                                                                                                                                       ,&x_attrs);
+ XMapWindow(alsami_dpy,app_win);
+
+ glXMakeCurrent(alsami_dpy,app_win,glc);
+
+
+ glEnable(
+# 74 "glgraphics.h" 3 4
+         0x0B71
+# 74 "glgraphics.h"
+                      );
+
+
+ for(;;){
+  XNextEvent(alsami_dpy,&app_xev);
+  if(app_xev.type==
+# 79 "glgraphics.h" 3 4
+                  12
+# 79 "glgraphics.h"
+                        ){
+   XGetWindowAttributes(alsami_dpy,app_win,&winattr);
+   glViewport(0,0,winattr.width,winattr.height);
+
+
+   glClearColor(0.7f,0.7f,0.7f,0.7f);
+   glClear(
+# 85 "glgraphics.h" 3 4
+          0x00004000
+# 85 "glgraphics.h"
+                             |
+# 85 "glgraphics.h" 3 4
+                              0x00000100
+# 85 "glgraphics.h"
+                                                 );
+   drawTriangle(0.5f,0.5f,0.0f);
+   glEnd();
+       glXSwapBuffers(alsami_dpy,app_win);
+  }
  }
 }
-# 78 "ihdr.h" 2
-
-
-
+# 95 "ihdr.h" 2
 
 # 1 "coremod.h" 1
-# 83 "ihdr.h" 2
 
 
 
+typedef struct COREAPI_STRUCT{
+               int d;
+ void (*PROC_CALLBACK)();
+} coreapi_T;
 
+coreapi_T* corealloc(void (*nPROC_CALLBACK)()){
+ coreapi_T* coreapi_i=(coreapi_T*)calloc(1, sizeof(struct COREAPI_STRUCT));
 
-# 1 "vulk/vulk.h" 1
-
-
-
-
-
-# 1 "vulk/tarray.h" 1
-# 7 "vulk/vulk.h" 2
-# 18 "vulk/vulk.h"
-# 1 "/usr/include/c++/7/stdlib.h" 1 3
-# 19 "vulk/vulk.h" 2
-
-
-
-# 1 "/usr/include/vulkan/vulkan.h" 1 3 4
-# 20 "/usr/include/vulkan/vulkan.h" 3 4
-# 1 "/usr/include/vulkan/vk_platform.h" 1 3 4
-# 25 "/usr/include/vulkan/vk_platform.h" 3 4
-
-# 25 "/usr/include/vulkan/vk_platform.h" 3 4
-extern "C"
-{
-# 71 "/usr/include/vulkan/vk_platform.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h" 1 3 4
-# 72 "/usr/include/vulkan/vk_platform.h" 2 3 4
-# 84 "/usr/include/vulkan/vk_platform.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h" 1 3 4
-# 9 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h" 3 4
-# 1 "/usr/include/stdint.h" 1 3 4
-# 26 "/usr/include/stdint.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
-# 27 "/usr/include/stdint.h" 2 3 4
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/wchar.h" 1 3 4
-# 29 "/usr/include/stdint.h" 2 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
-# 30 "/usr/include/stdint.h" 2 3 4
-
-
-
-
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h" 1 3 4
-# 24 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h" 3 4
-typedef __uint8_t uint8_t;
-typedef __uint16_t uint16_t;
-typedef __uint32_t uint32_t;
-typedef __uint64_t uint64_t;
-# 38 "/usr/include/stdint.h" 2 3 4
-
-
-
-
-
-typedef signed char int_least8_t;
-typedef short int int_least16_t;
-typedef int int_least32_t;
-
-typedef long int int_least64_t;
-
-
-
-
-
-
-typedef unsigned char uint_least8_t;
-typedef unsigned short int uint_least16_t;
-typedef unsigned int uint_least32_t;
-
-typedef unsigned long int uint_least64_t;
-# 68 "/usr/include/stdint.h" 3 4
-typedef signed char int_fast8_t;
-
-typedef long int int_fast16_t;
-typedef long int int_fast32_t;
-typedef long int int_fast64_t;
-# 81 "/usr/include/stdint.h" 3 4
-typedef unsigned char uint_fast8_t;
-
-typedef unsigned long int uint_fast16_t;
-typedef unsigned long int uint_fast32_t;
-typedef unsigned long int uint_fast64_t;
-# 97 "/usr/include/stdint.h" 3 4
-typedef long int intptr_t;
-
-
-typedef unsigned long int uintptr_t;
-# 111 "/usr/include/stdint.h" 3 4
-typedef __intmax_t intmax_t;
-typedef __uintmax_t uintmax_t;
-# 10 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h" 2 3 4
-# 85 "/usr/include/vulkan/vk_platform.h" 2 3 4
-
-
-
-
+ return coreapi_i;
 }
-# 21 "/usr/include/vulkan/vulkan.h" 2 3 4
-# 1 "/usr/include/vulkan/vulkan_core.h" 1 3 4
+# 97 "ihdr.h" 2
+# 2 "core.h" 2
 
+# 1 "m-sbx.h" 1
 
 
 
-extern "C" {
-# 64 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef uint32_t VkFlags;
-typedef uint32_t VkBool32;
-typedef uint64_t VkDeviceSize;
-typedef uint32_t VkSampleMask;
+# 1 "expansion.h" 1
+# 10 "expansion.h"
+class Module{
+  public:
+    Module(){}
+    virtual ~Module(){}
+    unsigned int MODULE_ID;
+    uint16_t assgn_moduleid_count;
+};
 
-typedef struct VkInstance_T* VkInstance;
-typedef struct VkPhysicalDevice_T* VkPhysicalDevice;
-typedef struct VkDevice_T* VkDevice;
-typedef struct VkQueue_T* VkQueue;
-typedef struct VkSemaphore_T *VkSemaphore;
-typedef struct VkCommandBuffer_T* VkCommandBuffer;
-typedef struct VkFence_T *VkFence;
-typedef struct VkDeviceMemory_T *VkDeviceMemory;
-typedef struct VkBuffer_T *VkBuffer;
-typedef struct VkImage_T *VkImage;
-typedef struct VkEvent_T *VkEvent;
-typedef struct VkQueryPool_T *VkQueryPool;
-typedef struct VkBufferView_T *VkBufferView;
-typedef struct VkImageView_T *VkImageView;
-typedef struct VkShaderModule_T *VkShaderModule;
-typedef struct VkPipelineCache_T *VkPipelineCache;
-typedef struct VkPipelineLayout_T *VkPipelineLayout;
-typedef struct VkRenderPass_T *VkRenderPass;
-typedef struct VkPipeline_T *VkPipeline;
-typedef struct VkDescriptorSetLayout_T *VkDescriptorSetLayout;
-typedef struct VkSampler_T *VkSampler;
-typedef struct VkDescriptorPool_T *VkDescriptorPool;
-typedef struct VkDescriptorSet_T *VkDescriptorSet;
-typedef struct VkFramebuffer_T *VkFramebuffer;
-typedef struct VkCommandPool_T *VkCommandPool;
-# 112 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkPipelineCacheHeaderVersion {
-    VK_PIPELINE_CACHE_HEADER_VERSION_ONE = 1,
-    VK_PIPELINE_CACHE_HEADER_VERSION_BEGIN_RANGE = VK_PIPELINE_CACHE_HEADER_VERSION_ONE,
-    VK_PIPELINE_CACHE_HEADER_VERSION_END_RANGE = VK_PIPELINE_CACHE_HEADER_VERSION_ONE,
-    VK_PIPELINE_CACHE_HEADER_VERSION_RANGE_SIZE = (VK_PIPELINE_CACHE_HEADER_VERSION_ONE - VK_PIPELINE_CACHE_HEADER_VERSION_ONE + 1),
-    VK_PIPELINE_CACHE_HEADER_VERSION_MAX_ENUM = 0x7FFFFFFF
-} VkPipelineCacheHeaderVersion;
-
-typedef enum VkResult {
-    VK_SUCCESS = 0,
-    VK_NOT_READY = 1,
-    VK_TIMEOUT = 2,
-    VK_EVENT_SET = 3,
-    VK_EVENT_RESET = 4,
-    VK_INCOMPLETE = 5,
-    VK_ERROR_OUT_OF_HOST_MEMORY = -1,
-    VK_ERROR_OUT_OF_DEVICE_MEMORY = -2,
-    VK_ERROR_INITIALIZATION_FAILED = -3,
-    VK_ERROR_DEVICE_LOST = -4,
-    VK_ERROR_MEMORY_MAP_FAILED = -5,
-    VK_ERROR_LAYER_NOT_PRESENT = -6,
-    VK_ERROR_EXTENSION_NOT_PRESENT = -7,
-    VK_ERROR_FEATURE_NOT_PRESENT = -8,
-    VK_ERROR_INCOMPATIBLE_DRIVER = -9,
-    VK_ERROR_TOO_MANY_OBJECTS = -10,
-    VK_ERROR_FORMAT_NOT_SUPPORTED = -11,
-    VK_ERROR_FRAGMENTED_POOL = -12,
-    VK_ERROR_OUT_OF_POOL_MEMORY = -1000069000,
-    VK_ERROR_INVALID_EXTERNAL_HANDLE = -1000072003,
-    VK_ERROR_SURFACE_LOST_KHR = -1000000000,
-    VK_ERROR_NATIVE_WINDOW_IN_USE_KHR = -1000000001,
-    VK_SUBOPTIMAL_KHR = 1000001003,
-    VK_ERROR_OUT_OF_DATE_KHR = -1000001004,
-    VK_ERROR_INCOMPATIBLE_DISPLAY_KHR = -1000003001,
-    VK_ERROR_VALIDATION_FAILED_EXT = -1000011001,
-    VK_ERROR_INVALID_SHADER_NV = -1000012000,
-    VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT = -1000158000,
-    VK_ERROR_FRAGMENTATION_EXT = -1000161000,
-    VK_ERROR_NOT_PERMITTED_EXT = -1000174001,
-    VK_ERROR_INVALID_DEVICE_ADDRESS_EXT = -1000244000,
-    VK_ERROR_OUT_OF_POOL_MEMORY_KHR = VK_ERROR_OUT_OF_POOL_MEMORY,
-    VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR = VK_ERROR_INVALID_EXTERNAL_HANDLE,
-    VK_RESULT_BEGIN_RANGE = VK_ERROR_FRAGMENTED_POOL,
-    VK_RESULT_END_RANGE = VK_INCOMPLETE,
-    VK_RESULT_RANGE_SIZE = (VK_INCOMPLETE - VK_ERROR_FRAGMENTED_POOL + 1),
-    VK_RESULT_MAX_ENUM = 0x7FFFFFFF
-} VkResult;
-
-typedef enum VkStructureType {
-    VK_STRUCTURE_TYPE_APPLICATION_INFO = 0,
-    VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO = 1,
-    VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO = 2,
-    VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO = 3,
-    VK_STRUCTURE_TYPE_SUBMIT_INFO = 4,
-    VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO = 5,
-    VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE = 6,
-    VK_STRUCTURE_TYPE_BIND_SPARSE_INFO = 7,
-    VK_STRUCTURE_TYPE_FENCE_CREATE_INFO = 8,
-    VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO = 9,
-    VK_STRUCTURE_TYPE_EVENT_CREATE_INFO = 10,
-    VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO = 11,
-    VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO = 12,
-    VK_STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO = 13,
-    VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO = 14,
-    VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO = 15,
-    VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO = 16,
-    VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO = 17,
-    VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO = 18,
-    VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO = 19,
-    VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO = 20,
-    VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO = 21,
-    VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO = 22,
-    VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO = 23,
-    VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO = 24,
-    VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO = 25,
-    VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO = 26,
-    VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO = 27,
-    VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO = 28,
-    VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO = 29,
-    VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO = 30,
-    VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO = 31,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO = 32,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO = 33,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO = 34,
-    VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET = 35,
-    VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET = 36,
-    VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO = 37,
-    VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO = 38,
-    VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO = 39,
-    VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO = 40,
-    VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO = 41,
-    VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO = 42,
-    VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO = 43,
-    VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER = 44,
-    VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER = 45,
-    VK_STRUCTURE_TYPE_MEMORY_BARRIER = 46,
-    VK_STRUCTURE_TYPE_LOADER_INSTANCE_CREATE_INFO = 47,
-    VK_STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO = 48,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_PROPERTIES = 1000094000,
-    VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO = 1000157000,
-    VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO = 1000157001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES = 1000083000,
-    VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS = 1000127000,
-    VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO = 1000127001,
-    VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO = 1000060000,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO = 1000060003,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO = 1000060004,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO = 1000060005,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO = 1000060006,
-    VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO = 1000060013,
-    VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO = 1000060014,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES = 1000070000,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO = 1000070001,
-    VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2 = 1000146000,
-    VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2 = 1000146001,
-    VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2 = 1000146002,
-    VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2 = 1000146003,
-    VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2 = 1000146004,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2 = 1000059000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2 = 1000059001,
-    VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2 = 1000059002,
-    VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2 = 1000059003,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2 = 1000059004,
-    VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2 = 1000059005,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2 = 1000059006,
-    VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2 = 1000059007,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2 = 1000059008,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES = 1000117000,
-    VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO = 1000117001,
-    VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO = 1000117002,
-    VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO = 1000117003,
-    VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO = 1000053000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES = 1000053001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES = 1000053002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES = 1000120000,
-    VK_STRUCTURE_TYPE_PROTECTED_SUBMIT_INFO = 1000145000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES = 1000145001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES = 1000145002,
-    VK_STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2 = 1000145003,
-    VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO = 1000156000,
-    VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO = 1000156001,
-    VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO = 1000156002,
-    VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO = 1000156003,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES = 1000156004,
-    VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES = 1000156005,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO = 1000085000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO = 1000071000,
-    VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES = 1000071001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO = 1000071002,
-    VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES = 1000071003,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES = 1000071004,
-    VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO = 1000072000,
-    VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO = 1000072001,
-    VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO = 1000072002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO = 1000112000,
-    VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES = 1000112001,
-    VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO = 1000113000,
-    VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO = 1000077000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO = 1000076000,
-    VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES = 1000076001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES = 1000168000,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT = 1000168001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES = 1000063000,
-    VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR = 1000001000,
-    VK_STRUCTURE_TYPE_PRESENT_INFO_KHR = 1000001001,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR = 1000060007,
-    VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR = 1000060008,
-    VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR = 1000060009,
-    VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR = 1000060010,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR = 1000060011,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR = 1000060012,
-    VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR = 1000002000,
-    VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR = 1000002001,
-    VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR = 1000003000,
-    VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR = 1000004000,
-    VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR = 1000005000,
-    VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR = 1000006000,
-    VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR = 1000008000,
-    VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR = 1000009000,
-    VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT = 1000011000,
-    VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD = 1000018000,
-    VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT = 1000022000,
-    VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT = 1000022001,
-    VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT = 1000022002,
-    VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV = 1000026000,
-    VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV = 1000026001,
-    VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV = 1000026002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT = 1000028000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT = 1000028001,
-    VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT = 1000028002,
-    VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD = 1000041000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV = 1000050000,
-    VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV = 1000056000,
-    VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV = 1000056001,
-    VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV = 1000057000,
-    VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV = 1000057001,
-    VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV = 1000058000,
-    VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT = 1000061000,
-    VK_STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN = 1000062000,
-    VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT = 1000067000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT = 1000067001,
-    VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR = 1000073000,
-    VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR = 1000073001,
-    VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR = 1000073002,
-    VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR = 1000073003,
-    VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR = 1000074000,
-    VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR = 1000074001,
-    VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR = 1000074002,
-    VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR = 1000075000,
-    VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR = 1000078000,
-    VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR = 1000078001,
-    VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR = 1000078002,
-    VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR = 1000078003,
-    VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR = 1000079000,
-    VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR = 1000079001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR = 1000080000,
-    VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT = 1000081000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT = 1000081001,
-    VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT = 1000081002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT16_INT8_FEATURES_KHR = 1000082000,
-    VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR = 1000084000,
-    VK_STRUCTURE_TYPE_OBJECT_TABLE_CREATE_INFO_NVX = 1000086000,
-    VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NVX = 1000086001,
-    VK_STRUCTURE_TYPE_CMD_PROCESS_COMMANDS_INFO_NVX = 1000086002,
-    VK_STRUCTURE_TYPE_CMD_RESERVE_SPACE_FOR_COMMANDS_INFO_NVX = 1000086003,
-    VK_STRUCTURE_TYPE_DEVICE_GENERATED_COMMANDS_LIMITS_NVX = 1000086004,
-    VK_STRUCTURE_TYPE_DEVICE_GENERATED_COMMANDS_FEATURES_NVX = 1000086005,
-    VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV = 1000087000,
-    VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT = 1000090000,
-    VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT = 1000091000,
-    VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT = 1000091001,
-    VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT = 1000091002,
-    VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT = 1000091003,
-    VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE = 1000092000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX = 1000097000,
-    VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV = 1000098000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT = 1000099000,
-    VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT = 1000099001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT = 1000101000,
-    VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT = 1000101001,
-    VK_STRUCTURE_TYPE_HDR_METADATA_EXT = 1000105000,
-    VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2_KHR = 1000109000,
-    VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2_KHR = 1000109001,
-    VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2_KHR = 1000109002,
-    VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2_KHR = 1000109003,
-    VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2_KHR = 1000109004,
-    VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO_KHR = 1000109005,
-    VK_STRUCTURE_TYPE_SUBPASS_END_INFO_KHR = 1000109006,
-    VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR = 1000111000,
-    VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR = 1000114000,
-    VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR = 1000114001,
-    VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR = 1000114002,
-    VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR = 1000115000,
-    VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR = 1000115001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR = 1000119000,
-    VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR = 1000119001,
-    VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR = 1000119002,
-    VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR = 1000121000,
-    VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR = 1000121001,
-    VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR = 1000121002,
-    VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR = 1000121003,
-    VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR = 1000121004,
-    VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK = 1000122000,
-    VK_STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK = 1000123000,
-    VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT = 1000128000,
-    VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT = 1000128001,
-    VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT = 1000128002,
-    VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT = 1000128003,
-    VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT = 1000128004,
-    VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID = 1000129000,
-    VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID = 1000129001,
-    VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID = 1000129002,
-    VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID = 1000129003,
-    VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID = 1000129004,
-    VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID = 1000129005,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT = 1000130000,
-    VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT = 1000130001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT = 1000138000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT = 1000138001,
-    VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT = 1000138002,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT = 1000138003,
-    VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT = 1000143000,
-    VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT = 1000143001,
-    VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT = 1000143002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT = 1000143003,
-    VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT = 1000143004,
-    VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR = 1000147000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT = 1000148000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT = 1000148001,
-    VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT = 1000148002,
-    VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV = 1000149000,
-    VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV = 1000152000,
-    VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT = 1000158000,
-    VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT = 1000158001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT = 1000158002,
-    VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT = 1000158003,
-    VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT = 1000158004,
-    VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT = 1000158005,
-    VK_STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT = 1000160000,
-    VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT = 1000160001,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT = 1000161000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT = 1000161001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT = 1000161002,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO_EXT = 1000161003,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT = 1000161004,
-    VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV = 1000164000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV = 1000164001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV = 1000164002,
-    VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV = 1000164005,
-    VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV = 1000165000,
-    VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV = 1000165001,
-    VK_STRUCTURE_TYPE_GEOMETRY_NV = 1000165003,
-    VK_STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV = 1000165004,
-    VK_STRUCTURE_TYPE_GEOMETRY_AABB_NV = 1000165005,
-    VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV = 1000165006,
-    VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV = 1000165007,
-    VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV = 1000165008,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV = 1000165009,
-    VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV = 1000165011,
-    VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV = 1000165012,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV = 1000166000,
-    VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV = 1000166001,
-    VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT = 1000174000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR = 1000177000,
-    VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT = 1000178000,
-    VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT = 1000178001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT = 1000178002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR = 1000180000,
-    VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT = 1000184000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD = 1000185000,
-    VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD = 1000189000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT = 1000190000,
-    VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT = 1000190001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT = 1000190002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR = 1000196000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR = 1000197000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR = 1000199000,
-    VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR = 1000199001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV = 1000201000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV = 1000202000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV = 1000202001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV = 1000203000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV = 1000204000,
-    VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV = 1000205000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV = 1000205002,
-    VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV = 1000206000,
-    VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV = 1000206001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR = 1000211000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT = 1000212000,
-    VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA = 1000214000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT = 1000218000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT = 1000218001,
-    VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT = 1000218002,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT = 1000221000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT = 1000237000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT = 1000238000,
-    VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT = 1000238001,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT = 1000244000,
-    VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT = 1000244001,
-    VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT = 1000244002,
-    VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO_EXT = 1000246000,
-    VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT = 1000247000,
-    VK_STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT = VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT,
-    VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2,
-    VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2_KHR = VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2,
-    VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2_KHR = VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2,
-    VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2_KHR = VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2,
-    VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2_KHR = VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2,
-    VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR = VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR = VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR = VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR = VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO,
-    VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR = VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO,
-    VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR = VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES,
-    VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO,
-    VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR = VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO,
-    VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES_KHR = VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES,
-    VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO,
-    VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_KHR = VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO,
-    VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR = VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES,
-    VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES2_EXT = VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO,
-    VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES_KHR = VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES,
-    VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES,
-    VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO,
-    VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES,
-    VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR = VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS,
-    VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR = VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO,
-    VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR = VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2,
-    VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR = VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2,
-    VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR = VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2,
-    VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2_KHR = VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2,
-    VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR = VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2,
-    VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO,
-    VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO_KHR = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO,
-    VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO_KHR = VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO,
-    VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO_KHR = VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES,
-    VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES,
-    VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO_KHR = VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO,
-    VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO_KHR = VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES,
-    VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT,
-    VK_STRUCTURE_TYPE_BEGIN_RANGE = VK_STRUCTURE_TYPE_APPLICATION_INFO,
-    VK_STRUCTURE_TYPE_END_RANGE = VK_STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO,
-    VK_STRUCTURE_TYPE_RANGE_SIZE = (VK_STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO - VK_STRUCTURE_TYPE_APPLICATION_INFO + 1),
-    VK_STRUCTURE_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkStructureType;
-
-typedef enum VkSystemAllocationScope {
-    VK_SYSTEM_ALLOCATION_SCOPE_COMMAND = 0,
-    VK_SYSTEM_ALLOCATION_SCOPE_OBJECT = 1,
-    VK_SYSTEM_ALLOCATION_SCOPE_CACHE = 2,
-    VK_SYSTEM_ALLOCATION_SCOPE_DEVICE = 3,
-    VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE = 4,
-    VK_SYSTEM_ALLOCATION_SCOPE_BEGIN_RANGE = VK_SYSTEM_ALLOCATION_SCOPE_COMMAND,
-    VK_SYSTEM_ALLOCATION_SCOPE_END_RANGE = VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE,
-    VK_SYSTEM_ALLOCATION_SCOPE_RANGE_SIZE = (VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE - VK_SYSTEM_ALLOCATION_SCOPE_COMMAND + 1),
-    VK_SYSTEM_ALLOCATION_SCOPE_MAX_ENUM = 0x7FFFFFFF
-} VkSystemAllocationScope;
-
-typedef enum VkInternalAllocationType {
-    VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE = 0,
-    VK_INTERNAL_ALLOCATION_TYPE_BEGIN_RANGE = VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE,
-    VK_INTERNAL_ALLOCATION_TYPE_END_RANGE = VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE,
-    VK_INTERNAL_ALLOCATION_TYPE_RANGE_SIZE = (VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE - VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE + 1),
-    VK_INTERNAL_ALLOCATION_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkInternalAllocationType;
-
-typedef enum VkFormat {
-    VK_FORMAT_UNDEFINED = 0,
-    VK_FORMAT_R4G4_UNORM_PACK8 = 1,
-    VK_FORMAT_R4G4B4A4_UNORM_PACK16 = 2,
-    VK_FORMAT_B4G4R4A4_UNORM_PACK16 = 3,
-    VK_FORMAT_R5G6B5_UNORM_PACK16 = 4,
-    VK_FORMAT_B5G6R5_UNORM_PACK16 = 5,
-    VK_FORMAT_R5G5B5A1_UNORM_PACK16 = 6,
-    VK_FORMAT_B5G5R5A1_UNORM_PACK16 = 7,
-    VK_FORMAT_A1R5G5B5_UNORM_PACK16 = 8,
-    VK_FORMAT_R8_UNORM = 9,
-    VK_FORMAT_R8_SNORM = 10,
-    VK_FORMAT_R8_USCALED = 11,
-    VK_FORMAT_R8_SSCALED = 12,
-    VK_FORMAT_R8_UINT = 13,
-    VK_FORMAT_R8_SINT = 14,
-    VK_FORMAT_R8_SRGB = 15,
-    VK_FORMAT_R8G8_UNORM = 16,
-    VK_FORMAT_R8G8_SNORM = 17,
-    VK_FORMAT_R8G8_USCALED = 18,
-    VK_FORMAT_R8G8_SSCALED = 19,
-    VK_FORMAT_R8G8_UINT = 20,
-    VK_FORMAT_R8G8_SINT = 21,
-    VK_FORMAT_R8G8_SRGB = 22,
-    VK_FORMAT_R8G8B8_UNORM = 23,
-    VK_FORMAT_R8G8B8_SNORM = 24,
-    VK_FORMAT_R8G8B8_USCALED = 25,
-    VK_FORMAT_R8G8B8_SSCALED = 26,
-    VK_FORMAT_R8G8B8_UINT = 27,
-    VK_FORMAT_R8G8B8_SINT = 28,
-    VK_FORMAT_R8G8B8_SRGB = 29,
-    VK_FORMAT_B8G8R8_UNORM = 30,
-    VK_FORMAT_B8G8R8_SNORM = 31,
-    VK_FORMAT_B8G8R8_USCALED = 32,
-    VK_FORMAT_B8G8R8_SSCALED = 33,
-    VK_FORMAT_B8G8R8_UINT = 34,
-    VK_FORMAT_B8G8R8_SINT = 35,
-    VK_FORMAT_B8G8R8_SRGB = 36,
-    VK_FORMAT_R8G8B8A8_UNORM = 37,
-    VK_FORMAT_R8G8B8A8_SNORM = 38,
-    VK_FORMAT_R8G8B8A8_USCALED = 39,
-    VK_FORMAT_R8G8B8A8_SSCALED = 40,
-    VK_FORMAT_R8G8B8A8_UINT = 41,
-    VK_FORMAT_R8G8B8A8_SINT = 42,
-    VK_FORMAT_R8G8B8A8_SRGB = 43,
-    VK_FORMAT_B8G8R8A8_UNORM = 44,
-    VK_FORMAT_B8G8R8A8_SNORM = 45,
-    VK_FORMAT_B8G8R8A8_USCALED = 46,
-    VK_FORMAT_B8G8R8A8_SSCALED = 47,
-    VK_FORMAT_B8G8R8A8_UINT = 48,
-    VK_FORMAT_B8G8R8A8_SINT = 49,
-    VK_FORMAT_B8G8R8A8_SRGB = 50,
-    VK_FORMAT_A8B8G8R8_UNORM_PACK32 = 51,
-    VK_FORMAT_A8B8G8R8_SNORM_PACK32 = 52,
-    VK_FORMAT_A8B8G8R8_USCALED_PACK32 = 53,
-    VK_FORMAT_A8B8G8R8_SSCALED_PACK32 = 54,
-    VK_FORMAT_A8B8G8R8_UINT_PACK32 = 55,
-    VK_FORMAT_A8B8G8R8_SINT_PACK32 = 56,
-    VK_FORMAT_A8B8G8R8_SRGB_PACK32 = 57,
-    VK_FORMAT_A2R10G10B10_UNORM_PACK32 = 58,
-    VK_FORMAT_A2R10G10B10_SNORM_PACK32 = 59,
-    VK_FORMAT_A2R10G10B10_USCALED_PACK32 = 60,
-    VK_FORMAT_A2R10G10B10_SSCALED_PACK32 = 61,
-    VK_FORMAT_A2R10G10B10_UINT_PACK32 = 62,
-    VK_FORMAT_A2R10G10B10_SINT_PACK32 = 63,
-    VK_FORMAT_A2B10G10R10_UNORM_PACK32 = 64,
-    VK_FORMAT_A2B10G10R10_SNORM_PACK32 = 65,
-    VK_FORMAT_A2B10G10R10_USCALED_PACK32 = 66,
-    VK_FORMAT_A2B10G10R10_SSCALED_PACK32 = 67,
-    VK_FORMAT_A2B10G10R10_UINT_PACK32 = 68,
-    VK_FORMAT_A2B10G10R10_SINT_PACK32 = 69,
-    VK_FORMAT_R16_UNORM = 70,
-    VK_FORMAT_R16_SNORM = 71,
-    VK_FORMAT_R16_USCALED = 72,
-    VK_FORMAT_R16_SSCALED = 73,
-    VK_FORMAT_R16_UINT = 74,
-    VK_FORMAT_R16_SINT = 75,
-    VK_FORMAT_R16_SFLOAT = 76,
-    VK_FORMAT_R16G16_UNORM = 77,
-    VK_FORMAT_R16G16_SNORM = 78,
-    VK_FORMAT_R16G16_USCALED = 79,
-    VK_FORMAT_R16G16_SSCALED = 80,
-    VK_FORMAT_R16G16_UINT = 81,
-    VK_FORMAT_R16G16_SINT = 82,
-    VK_FORMAT_R16G16_SFLOAT = 83,
-    VK_FORMAT_R16G16B16_UNORM = 84,
-    VK_FORMAT_R16G16B16_SNORM = 85,
-    VK_FORMAT_R16G16B16_USCALED = 86,
-    VK_FORMAT_R16G16B16_SSCALED = 87,
-    VK_FORMAT_R16G16B16_UINT = 88,
-    VK_FORMAT_R16G16B16_SINT = 89,
-    VK_FORMAT_R16G16B16_SFLOAT = 90,
-    VK_FORMAT_R16G16B16A16_UNORM = 91,
-    VK_FORMAT_R16G16B16A16_SNORM = 92,
-    VK_FORMAT_R16G16B16A16_USCALED = 93,
-    VK_FORMAT_R16G16B16A16_SSCALED = 94,
-    VK_FORMAT_R16G16B16A16_UINT = 95,
-    VK_FORMAT_R16G16B16A16_SINT = 96,
-    VK_FORMAT_R16G16B16A16_SFLOAT = 97,
-    VK_FORMAT_R32_UINT = 98,
-    VK_FORMAT_R32_SINT = 99,
-    VK_FORMAT_R32_SFLOAT = 100,
-    VK_FORMAT_R32G32_UINT = 101,
-    VK_FORMAT_R32G32_SINT = 102,
-    VK_FORMAT_R32G32_SFLOAT = 103,
-    VK_FORMAT_R32G32B32_UINT = 104,
-    VK_FORMAT_R32G32B32_SINT = 105,
-    VK_FORMAT_R32G32B32_SFLOAT = 106,
-    VK_FORMAT_R32G32B32A32_UINT = 107,
-    VK_FORMAT_R32G32B32A32_SINT = 108,
-    VK_FORMAT_R32G32B32A32_SFLOAT = 109,
-    VK_FORMAT_R64_UINT = 110,
-    VK_FORMAT_R64_SINT = 111,
-    VK_FORMAT_R64_SFLOAT = 112,
-    VK_FORMAT_R64G64_UINT = 113,
-    VK_FORMAT_R64G64_SINT = 114,
-    VK_FORMAT_R64G64_SFLOAT = 115,
-    VK_FORMAT_R64G64B64_UINT = 116,
-    VK_FORMAT_R64G64B64_SINT = 117,
-    VK_FORMAT_R64G64B64_SFLOAT = 118,
-    VK_FORMAT_R64G64B64A64_UINT = 119,
-    VK_FORMAT_R64G64B64A64_SINT = 120,
-    VK_FORMAT_R64G64B64A64_SFLOAT = 121,
-    VK_FORMAT_B10G11R11_UFLOAT_PACK32 = 122,
-    VK_FORMAT_E5B9G9R9_UFLOAT_PACK32 = 123,
-    VK_FORMAT_D16_UNORM = 124,
-    VK_FORMAT_X8_D24_UNORM_PACK32 = 125,
-    VK_FORMAT_D32_SFLOAT = 126,
-    VK_FORMAT_S8_UINT = 127,
-    VK_FORMAT_D16_UNORM_S8_UINT = 128,
-    VK_FORMAT_D24_UNORM_S8_UINT = 129,
-    VK_FORMAT_D32_SFLOAT_S8_UINT = 130,
-    VK_FORMAT_BC1_RGB_UNORM_BLOCK = 131,
-    VK_FORMAT_BC1_RGB_SRGB_BLOCK = 132,
-    VK_FORMAT_BC1_RGBA_UNORM_BLOCK = 133,
-    VK_FORMAT_BC1_RGBA_SRGB_BLOCK = 134,
-    VK_FORMAT_BC2_UNORM_BLOCK = 135,
-    VK_FORMAT_BC2_SRGB_BLOCK = 136,
-    VK_FORMAT_BC3_UNORM_BLOCK = 137,
-    VK_FORMAT_BC3_SRGB_BLOCK = 138,
-    VK_FORMAT_BC4_UNORM_BLOCK = 139,
-    VK_FORMAT_BC4_SNORM_BLOCK = 140,
-    VK_FORMAT_BC5_UNORM_BLOCK = 141,
-    VK_FORMAT_BC5_SNORM_BLOCK = 142,
-    VK_FORMAT_BC6H_UFLOAT_BLOCK = 143,
-    VK_FORMAT_BC6H_SFLOAT_BLOCK = 144,
-    VK_FORMAT_BC7_UNORM_BLOCK = 145,
-    VK_FORMAT_BC7_SRGB_BLOCK = 146,
-    VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK = 147,
-    VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK = 148,
-    VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK = 149,
-    VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK = 150,
-    VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK = 151,
-    VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK = 152,
-    VK_FORMAT_EAC_R11_UNORM_BLOCK = 153,
-    VK_FORMAT_EAC_R11_SNORM_BLOCK = 154,
-    VK_FORMAT_EAC_R11G11_UNORM_BLOCK = 155,
-    VK_FORMAT_EAC_R11G11_SNORM_BLOCK = 156,
-    VK_FORMAT_ASTC_4x4_UNORM_BLOCK = 157,
-    VK_FORMAT_ASTC_4x4_SRGB_BLOCK = 158,
-    VK_FORMAT_ASTC_5x4_UNORM_BLOCK = 159,
-    VK_FORMAT_ASTC_5x4_SRGB_BLOCK = 160,
-    VK_FORMAT_ASTC_5x5_UNORM_BLOCK = 161,
-    VK_FORMAT_ASTC_5x5_SRGB_BLOCK = 162,
-    VK_FORMAT_ASTC_6x5_UNORM_BLOCK = 163,
-    VK_FORMAT_ASTC_6x5_SRGB_BLOCK = 164,
-    VK_FORMAT_ASTC_6x6_UNORM_BLOCK = 165,
-    VK_FORMAT_ASTC_6x6_SRGB_BLOCK = 166,
-    VK_FORMAT_ASTC_8x5_UNORM_BLOCK = 167,
-    VK_FORMAT_ASTC_8x5_SRGB_BLOCK = 168,
-    VK_FORMAT_ASTC_8x6_UNORM_BLOCK = 169,
-    VK_FORMAT_ASTC_8x6_SRGB_BLOCK = 170,
-    VK_FORMAT_ASTC_8x8_UNORM_BLOCK = 171,
-    VK_FORMAT_ASTC_8x8_SRGB_BLOCK = 172,
-    VK_FORMAT_ASTC_10x5_UNORM_BLOCK = 173,
-    VK_FORMAT_ASTC_10x5_SRGB_BLOCK = 174,
-    VK_FORMAT_ASTC_10x6_UNORM_BLOCK = 175,
-    VK_FORMAT_ASTC_10x6_SRGB_BLOCK = 176,
-    VK_FORMAT_ASTC_10x8_UNORM_BLOCK = 177,
-    VK_FORMAT_ASTC_10x8_SRGB_BLOCK = 178,
-    VK_FORMAT_ASTC_10x10_UNORM_BLOCK = 179,
-    VK_FORMAT_ASTC_10x10_SRGB_BLOCK = 180,
-    VK_FORMAT_ASTC_12x10_UNORM_BLOCK = 181,
-    VK_FORMAT_ASTC_12x10_SRGB_BLOCK = 182,
-    VK_FORMAT_ASTC_12x12_UNORM_BLOCK = 183,
-    VK_FORMAT_ASTC_12x12_SRGB_BLOCK = 184,
-    VK_FORMAT_G8B8G8R8_422_UNORM = 1000156000,
-    VK_FORMAT_B8G8R8G8_422_UNORM = 1000156001,
-    VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM = 1000156002,
-    VK_FORMAT_G8_B8R8_2PLANE_420_UNORM = 1000156003,
-    VK_FORMAT_G8_B8_R8_3PLANE_422_UNORM = 1000156004,
-    VK_FORMAT_G8_B8R8_2PLANE_422_UNORM = 1000156005,
-    VK_FORMAT_G8_B8_R8_3PLANE_444_UNORM = 1000156006,
-    VK_FORMAT_R10X6_UNORM_PACK16 = 1000156007,
-    VK_FORMAT_R10X6G10X6_UNORM_2PACK16 = 1000156008,
-    VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16 = 1000156009,
-    VK_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16 = 1000156010,
-    VK_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16 = 1000156011,
-    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16 = 1000156012,
-    VK_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16 = 1000156013,
-    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16 = 1000156014,
-    VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16 = 1000156015,
-    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16 = 1000156016,
-    VK_FORMAT_R12X4_UNORM_PACK16 = 1000156017,
-    VK_FORMAT_R12X4G12X4_UNORM_2PACK16 = 1000156018,
-    VK_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16 = 1000156019,
-    VK_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16 = 1000156020,
-    VK_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16 = 1000156021,
-    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16 = 1000156022,
-    VK_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16 = 1000156023,
-    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16 = 1000156024,
-    VK_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16 = 1000156025,
-    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16 = 1000156026,
-    VK_FORMAT_G16B16G16R16_422_UNORM = 1000156027,
-    VK_FORMAT_B16G16R16G16_422_UNORM = 1000156028,
-    VK_FORMAT_G16_B16_R16_3PLANE_420_UNORM = 1000156029,
-    VK_FORMAT_G16_B16R16_2PLANE_420_UNORM = 1000156030,
-    VK_FORMAT_G16_B16_R16_3PLANE_422_UNORM = 1000156031,
-    VK_FORMAT_G16_B16R16_2PLANE_422_UNORM = 1000156032,
-    VK_FORMAT_G16_B16_R16_3PLANE_444_UNORM = 1000156033,
-    VK_FORMAT_PVRTC1_2BPP_UNORM_BLOCK_IMG = 1000054000,
-    VK_FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG = 1000054001,
-    VK_FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG = 1000054002,
-    VK_FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG = 1000054003,
-    VK_FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG = 1000054004,
-    VK_FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG = 1000054005,
-    VK_FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG = 1000054006,
-    VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG = 1000054007,
-    VK_FORMAT_G8B8G8R8_422_UNORM_KHR = VK_FORMAT_G8B8G8R8_422_UNORM,
-    VK_FORMAT_B8G8R8G8_422_UNORM_KHR = VK_FORMAT_B8G8R8G8_422_UNORM,
-    VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM_KHR = VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM,
-    VK_FORMAT_G8_B8R8_2PLANE_420_UNORM_KHR = VK_FORMAT_G8_B8R8_2PLANE_420_UNORM,
-    VK_FORMAT_G8_B8_R8_3PLANE_422_UNORM_KHR = VK_FORMAT_G8_B8_R8_3PLANE_422_UNORM,
-    VK_FORMAT_G8_B8R8_2PLANE_422_UNORM_KHR = VK_FORMAT_G8_B8R8_2PLANE_422_UNORM,
-    VK_FORMAT_G8_B8_R8_3PLANE_444_UNORM_KHR = VK_FORMAT_G8_B8_R8_3PLANE_444_UNORM,
-    VK_FORMAT_R10X6_UNORM_PACK16_KHR = VK_FORMAT_R10X6_UNORM_PACK16,
-    VK_FORMAT_R10X6G10X6_UNORM_2PACK16_KHR = VK_FORMAT_R10X6G10X6_UNORM_2PACK16,
-    VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16_KHR = VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16,
-    VK_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16_KHR = VK_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16,
-    VK_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16_KHR = VK_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16,
-    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16_KHR = VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16,
-    VK_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16_KHR = VK_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16,
-    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16_KHR = VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16,
-    VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16_KHR = VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16,
-    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16_KHR = VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16,
-    VK_FORMAT_R12X4_UNORM_PACK16_KHR = VK_FORMAT_R12X4_UNORM_PACK16,
-    VK_FORMAT_R12X4G12X4_UNORM_2PACK16_KHR = VK_FORMAT_R12X4G12X4_UNORM_2PACK16,
-    VK_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16_KHR = VK_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16,
-    VK_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16_KHR = VK_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16,
-    VK_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16_KHR = VK_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16,
-    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16_KHR = VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16,
-    VK_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16_KHR = VK_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16,
-    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16_KHR = VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16,
-    VK_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16_KHR = VK_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16,
-    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16_KHR = VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16,
-    VK_FORMAT_G16B16G16R16_422_UNORM_KHR = VK_FORMAT_G16B16G16R16_422_UNORM,
-    VK_FORMAT_B16G16R16G16_422_UNORM_KHR = VK_FORMAT_B16G16R16G16_422_UNORM,
-    VK_FORMAT_G16_B16_R16_3PLANE_420_UNORM_KHR = VK_FORMAT_G16_B16_R16_3PLANE_420_UNORM,
-    VK_FORMAT_G16_B16R16_2PLANE_420_UNORM_KHR = VK_FORMAT_G16_B16R16_2PLANE_420_UNORM,
-    VK_FORMAT_G16_B16_R16_3PLANE_422_UNORM_KHR = VK_FORMAT_G16_B16_R16_3PLANE_422_UNORM,
-    VK_FORMAT_G16_B16R16_2PLANE_422_UNORM_KHR = VK_FORMAT_G16_B16R16_2PLANE_422_UNORM,
-    VK_FORMAT_G16_B16_R16_3PLANE_444_UNORM_KHR = VK_FORMAT_G16_B16_R16_3PLANE_444_UNORM,
-    VK_FORMAT_BEGIN_RANGE = VK_FORMAT_UNDEFINED,
-    VK_FORMAT_END_RANGE = VK_FORMAT_ASTC_12x12_SRGB_BLOCK,
-    VK_FORMAT_RANGE_SIZE = (VK_FORMAT_ASTC_12x12_SRGB_BLOCK - VK_FORMAT_UNDEFINED + 1),
-    VK_FORMAT_MAX_ENUM = 0x7FFFFFFF
-} VkFormat;
-
-typedef enum VkImageType {
-    VK_IMAGE_TYPE_1D = 0,
-    VK_IMAGE_TYPE_2D = 1,
-    VK_IMAGE_TYPE_3D = 2,
-    VK_IMAGE_TYPE_BEGIN_RANGE = VK_IMAGE_TYPE_1D,
-    VK_IMAGE_TYPE_END_RANGE = VK_IMAGE_TYPE_3D,
-    VK_IMAGE_TYPE_RANGE_SIZE = (VK_IMAGE_TYPE_3D - VK_IMAGE_TYPE_1D + 1),
-    VK_IMAGE_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkImageType;
-
-typedef enum VkImageTiling {
-    VK_IMAGE_TILING_OPTIMAL = 0,
-    VK_IMAGE_TILING_LINEAR = 1,
-    VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT = 1000158000,
-    VK_IMAGE_TILING_BEGIN_RANGE = VK_IMAGE_TILING_OPTIMAL,
-    VK_IMAGE_TILING_END_RANGE = VK_IMAGE_TILING_LINEAR,
-    VK_IMAGE_TILING_RANGE_SIZE = (VK_IMAGE_TILING_LINEAR - VK_IMAGE_TILING_OPTIMAL + 1),
-    VK_IMAGE_TILING_MAX_ENUM = 0x7FFFFFFF
-} VkImageTiling;
-
-typedef enum VkPhysicalDeviceType {
-    VK_PHYSICAL_DEVICE_TYPE_OTHER = 0,
-    VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU = 1,
-    VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU = 2,
-    VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU = 3,
-    VK_PHYSICAL_DEVICE_TYPE_CPU = 4,
-    VK_PHYSICAL_DEVICE_TYPE_BEGIN_RANGE = VK_PHYSICAL_DEVICE_TYPE_OTHER,
-    VK_PHYSICAL_DEVICE_TYPE_END_RANGE = VK_PHYSICAL_DEVICE_TYPE_CPU,
-    VK_PHYSICAL_DEVICE_TYPE_RANGE_SIZE = (VK_PHYSICAL_DEVICE_TYPE_CPU - VK_PHYSICAL_DEVICE_TYPE_OTHER + 1),
-    VK_PHYSICAL_DEVICE_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkPhysicalDeviceType;
-
-typedef enum VkQueryType {
-    VK_QUERY_TYPE_OCCLUSION = 0,
-    VK_QUERY_TYPE_PIPELINE_STATISTICS = 1,
-    VK_QUERY_TYPE_TIMESTAMP = 2,
-    VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT = 1000028004,
-    VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV = 1000165000,
-    VK_QUERY_TYPE_BEGIN_RANGE = VK_QUERY_TYPE_OCCLUSION,
-    VK_QUERY_TYPE_END_RANGE = VK_QUERY_TYPE_TIMESTAMP,
-    VK_QUERY_TYPE_RANGE_SIZE = (VK_QUERY_TYPE_TIMESTAMP - VK_QUERY_TYPE_OCCLUSION + 1),
-    VK_QUERY_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkQueryType;
-
-typedef enum VkSharingMode {
-    VK_SHARING_MODE_EXCLUSIVE = 0,
-    VK_SHARING_MODE_CONCURRENT = 1,
-    VK_SHARING_MODE_BEGIN_RANGE = VK_SHARING_MODE_EXCLUSIVE,
-    VK_SHARING_MODE_END_RANGE = VK_SHARING_MODE_CONCURRENT,
-    VK_SHARING_MODE_RANGE_SIZE = (VK_SHARING_MODE_CONCURRENT - VK_SHARING_MODE_EXCLUSIVE + 1),
-    VK_SHARING_MODE_MAX_ENUM = 0x7FFFFFFF
-} VkSharingMode;
-
-typedef enum VkImageLayout {
-    VK_IMAGE_LAYOUT_UNDEFINED = 0,
-    VK_IMAGE_LAYOUT_GENERAL = 1,
-    VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL = 2,
-    VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL = 3,
-    VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL = 4,
-    VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL = 5,
-    VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL = 6,
-    VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL = 7,
-    VK_IMAGE_LAYOUT_PREINITIALIZED = 8,
-    VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL = 1000117000,
-    VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL = 1000117001,
-    VK_IMAGE_LAYOUT_PRESENT_SRC_KHR = 1000001002,
-    VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR = 1000111000,
-    VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV = 1000164003,
-    VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT = 1000218000,
-    VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR = VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL,
-    VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR = VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL,
-    VK_IMAGE_LAYOUT_BEGIN_RANGE = VK_IMAGE_LAYOUT_UNDEFINED,
-    VK_IMAGE_LAYOUT_END_RANGE = VK_IMAGE_LAYOUT_PREINITIALIZED,
-    VK_IMAGE_LAYOUT_RANGE_SIZE = (VK_IMAGE_LAYOUT_PREINITIALIZED - VK_IMAGE_LAYOUT_UNDEFINED + 1),
-    VK_IMAGE_LAYOUT_MAX_ENUM = 0x7FFFFFFF
-} VkImageLayout;
-
-typedef enum VkImageViewType {
-    VK_IMAGE_VIEW_TYPE_1D = 0,
-    VK_IMAGE_VIEW_TYPE_2D = 1,
-    VK_IMAGE_VIEW_TYPE_3D = 2,
-    VK_IMAGE_VIEW_TYPE_CUBE = 3,
-    VK_IMAGE_VIEW_TYPE_1D_ARRAY = 4,
-    VK_IMAGE_VIEW_TYPE_2D_ARRAY = 5,
-    VK_IMAGE_VIEW_TYPE_CUBE_ARRAY = 6,
-    VK_IMAGE_VIEW_TYPE_BEGIN_RANGE = VK_IMAGE_VIEW_TYPE_1D,
-    VK_IMAGE_VIEW_TYPE_END_RANGE = VK_IMAGE_VIEW_TYPE_CUBE_ARRAY,
-    VK_IMAGE_VIEW_TYPE_RANGE_SIZE = (VK_IMAGE_VIEW_TYPE_CUBE_ARRAY - VK_IMAGE_VIEW_TYPE_1D + 1),
-    VK_IMAGE_VIEW_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkImageViewType;
-
-typedef enum VkComponentSwizzle {
-    VK_COMPONENT_SWIZZLE_IDENTITY = 0,
-    VK_COMPONENT_SWIZZLE_ZERO = 1,
-    VK_COMPONENT_SWIZZLE_ONE = 2,
-    VK_COMPONENT_SWIZZLE_R = 3,
-    VK_COMPONENT_SWIZZLE_G = 4,
-    VK_COMPONENT_SWIZZLE_B = 5,
-    VK_COMPONENT_SWIZZLE_A = 6,
-    VK_COMPONENT_SWIZZLE_BEGIN_RANGE = VK_COMPONENT_SWIZZLE_IDENTITY,
-    VK_COMPONENT_SWIZZLE_END_RANGE = VK_COMPONENT_SWIZZLE_A,
-    VK_COMPONENT_SWIZZLE_RANGE_SIZE = (VK_COMPONENT_SWIZZLE_A - VK_COMPONENT_SWIZZLE_IDENTITY + 1),
-    VK_COMPONENT_SWIZZLE_MAX_ENUM = 0x7FFFFFFF
-} VkComponentSwizzle;
-
-typedef enum VkVertexInputRate {
-    VK_VERTEX_INPUT_RATE_VERTEX = 0,
-    VK_VERTEX_INPUT_RATE_INSTANCE = 1,
-    VK_VERTEX_INPUT_RATE_BEGIN_RANGE = VK_VERTEX_INPUT_RATE_VERTEX,
-    VK_VERTEX_INPUT_RATE_END_RANGE = VK_VERTEX_INPUT_RATE_INSTANCE,
-    VK_VERTEX_INPUT_RATE_RANGE_SIZE = (VK_VERTEX_INPUT_RATE_INSTANCE - VK_VERTEX_INPUT_RATE_VERTEX + 1),
-    VK_VERTEX_INPUT_RATE_MAX_ENUM = 0x7FFFFFFF
-} VkVertexInputRate;
-
-typedef enum VkPrimitiveTopology {
-    VK_PRIMITIVE_TOPOLOGY_POINT_LIST = 0,
-    VK_PRIMITIVE_TOPOLOGY_LINE_LIST = 1,
-    VK_PRIMITIVE_TOPOLOGY_LINE_STRIP = 2,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST = 3,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP = 4,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN = 5,
-    VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY = 6,
-    VK_PRIMITIVE_TOPOLOGY_LINE_STRIP_WITH_ADJACENCY = 7,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY = 8,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_WITH_ADJACENCY = 9,
-    VK_PRIMITIVE_TOPOLOGY_PATCH_LIST = 10,
-    VK_PRIMITIVE_TOPOLOGY_BEGIN_RANGE = VK_PRIMITIVE_TOPOLOGY_POINT_LIST,
-    VK_PRIMITIVE_TOPOLOGY_END_RANGE = VK_PRIMITIVE_TOPOLOGY_PATCH_LIST,
-    VK_PRIMITIVE_TOPOLOGY_RANGE_SIZE = (VK_PRIMITIVE_TOPOLOGY_PATCH_LIST - VK_PRIMITIVE_TOPOLOGY_POINT_LIST + 1),
-    VK_PRIMITIVE_TOPOLOGY_MAX_ENUM = 0x7FFFFFFF
-} VkPrimitiveTopology;
-
-typedef enum VkPolygonMode {
-    VK_POLYGON_MODE_FILL = 0,
-    VK_POLYGON_MODE_LINE = 1,
-    VK_POLYGON_MODE_POINT = 2,
-    VK_POLYGON_MODE_FILL_RECTANGLE_NV = 1000153000,
-    VK_POLYGON_MODE_BEGIN_RANGE = VK_POLYGON_MODE_FILL,
-    VK_POLYGON_MODE_END_RANGE = VK_POLYGON_MODE_POINT,
-    VK_POLYGON_MODE_RANGE_SIZE = (VK_POLYGON_MODE_POINT - VK_POLYGON_MODE_FILL + 1),
-    VK_POLYGON_MODE_MAX_ENUM = 0x7FFFFFFF
-} VkPolygonMode;
-
-typedef enum VkFrontFace {
-    VK_FRONT_FACE_COUNTER_CLOCKWISE = 0,
-    VK_FRONT_FACE_CLOCKWISE = 1,
-    VK_FRONT_FACE_BEGIN_RANGE = VK_FRONT_FACE_COUNTER_CLOCKWISE,
-    VK_FRONT_FACE_END_RANGE = VK_FRONT_FACE_CLOCKWISE,
-    VK_FRONT_FACE_RANGE_SIZE = (VK_FRONT_FACE_CLOCKWISE - VK_FRONT_FACE_COUNTER_CLOCKWISE + 1),
-    VK_FRONT_FACE_MAX_ENUM = 0x7FFFFFFF
-} VkFrontFace;
-
-typedef enum VkCompareOp {
-    VK_COMPARE_OP_NEVER = 0,
-    VK_COMPARE_OP_LESS = 1,
-    VK_COMPARE_OP_EQUAL = 2,
-    VK_COMPARE_OP_LESS_OR_EQUAL = 3,
-    VK_COMPARE_OP_GREATER = 4,
-    VK_COMPARE_OP_NOT_EQUAL = 5,
-    VK_COMPARE_OP_GREATER_OR_EQUAL = 6,
-    VK_COMPARE_OP_ALWAYS = 7,
-    VK_COMPARE_OP_BEGIN_RANGE = VK_COMPARE_OP_NEVER,
-    VK_COMPARE_OP_END_RANGE = VK_COMPARE_OP_ALWAYS,
-    VK_COMPARE_OP_RANGE_SIZE = (VK_COMPARE_OP_ALWAYS - VK_COMPARE_OP_NEVER + 1),
-    VK_COMPARE_OP_MAX_ENUM = 0x7FFFFFFF
-} VkCompareOp;
-
-typedef enum VkStencilOp {
-    VK_STENCIL_OP_KEEP = 0,
-    VK_STENCIL_OP_ZERO = 1,
-    VK_STENCIL_OP_REPLACE = 2,
-    VK_STENCIL_OP_INCREMENT_AND_CLAMP = 3,
-    VK_STENCIL_OP_DECREMENT_AND_CLAMP = 4,
-    VK_STENCIL_OP_INVERT = 5,
-    VK_STENCIL_OP_INCREMENT_AND_WRAP = 6,
-    VK_STENCIL_OP_DECREMENT_AND_WRAP = 7,
-    VK_STENCIL_OP_BEGIN_RANGE = VK_STENCIL_OP_KEEP,
-    VK_STENCIL_OP_END_RANGE = VK_STENCIL_OP_DECREMENT_AND_WRAP,
-    VK_STENCIL_OP_RANGE_SIZE = (VK_STENCIL_OP_DECREMENT_AND_WRAP - VK_STENCIL_OP_KEEP + 1),
-    VK_STENCIL_OP_MAX_ENUM = 0x7FFFFFFF
-} VkStencilOp;
-
-typedef enum VkLogicOp {
-    VK_LOGIC_OP_CLEAR = 0,
-    VK_LOGIC_OP_AND = 1,
-    VK_LOGIC_OP_AND_REVERSE = 2,
-    VK_LOGIC_OP_COPY = 3,
-    VK_LOGIC_OP_AND_INVERTED = 4,
-    VK_LOGIC_OP_NO_OP = 5,
-    VK_LOGIC_OP_XOR = 6,
-    VK_LOGIC_OP_OR = 7,
-    VK_LOGIC_OP_NOR = 8,
-    VK_LOGIC_OP_EQUIVALENT = 9,
-    VK_LOGIC_OP_INVERT = 10,
-    VK_LOGIC_OP_OR_REVERSE = 11,
-    VK_LOGIC_OP_COPY_INVERTED = 12,
-    VK_LOGIC_OP_OR_INVERTED = 13,
-    VK_LOGIC_OP_NAND = 14,
-    VK_LOGIC_OP_SET = 15,
-    VK_LOGIC_OP_BEGIN_RANGE = VK_LOGIC_OP_CLEAR,
-    VK_LOGIC_OP_END_RANGE = VK_LOGIC_OP_SET,
-    VK_LOGIC_OP_RANGE_SIZE = (VK_LOGIC_OP_SET - VK_LOGIC_OP_CLEAR + 1),
-    VK_LOGIC_OP_MAX_ENUM = 0x7FFFFFFF
-} VkLogicOp;
-
-typedef enum VkBlendFactor {
-    VK_BLEND_FACTOR_ZERO = 0,
-    VK_BLEND_FACTOR_ONE = 1,
-    VK_BLEND_FACTOR_SRC_COLOR = 2,
-    VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR = 3,
-    VK_BLEND_FACTOR_DST_COLOR = 4,
-    VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR = 5,
-    VK_BLEND_FACTOR_SRC_ALPHA = 6,
-    VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA = 7,
-    VK_BLEND_FACTOR_DST_ALPHA = 8,
-    VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA = 9,
-    VK_BLEND_FACTOR_CONSTANT_COLOR = 10,
-    VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR = 11,
-    VK_BLEND_FACTOR_CONSTANT_ALPHA = 12,
-    VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA = 13,
-    VK_BLEND_FACTOR_SRC_ALPHA_SATURATE = 14,
-    VK_BLEND_FACTOR_SRC1_COLOR = 15,
-    VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR = 16,
-    VK_BLEND_FACTOR_SRC1_ALPHA = 17,
-    VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA = 18,
-    VK_BLEND_FACTOR_BEGIN_RANGE = VK_BLEND_FACTOR_ZERO,
-    VK_BLEND_FACTOR_END_RANGE = VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA,
-    VK_BLEND_FACTOR_RANGE_SIZE = (VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA - VK_BLEND_FACTOR_ZERO + 1),
-    VK_BLEND_FACTOR_MAX_ENUM = 0x7FFFFFFF
-} VkBlendFactor;
-
-typedef enum VkBlendOp {
-    VK_BLEND_OP_ADD = 0,
-    VK_BLEND_OP_SUBTRACT = 1,
-    VK_BLEND_OP_REVERSE_SUBTRACT = 2,
-    VK_BLEND_OP_MIN = 3,
-    VK_BLEND_OP_MAX = 4,
-    VK_BLEND_OP_ZERO_EXT = 1000148000,
-    VK_BLEND_OP_SRC_EXT = 1000148001,
-    VK_BLEND_OP_DST_EXT = 1000148002,
-    VK_BLEND_OP_SRC_OVER_EXT = 1000148003,
-    VK_BLEND_OP_DST_OVER_EXT = 1000148004,
-    VK_BLEND_OP_SRC_IN_EXT = 1000148005,
-    VK_BLEND_OP_DST_IN_EXT = 1000148006,
-    VK_BLEND_OP_SRC_OUT_EXT = 1000148007,
-    VK_BLEND_OP_DST_OUT_EXT = 1000148008,
-    VK_BLEND_OP_SRC_ATOP_EXT = 1000148009,
-    VK_BLEND_OP_DST_ATOP_EXT = 1000148010,
-    VK_BLEND_OP_XOR_EXT = 1000148011,
-    VK_BLEND_OP_MULTIPLY_EXT = 1000148012,
-    VK_BLEND_OP_SCREEN_EXT = 1000148013,
-    VK_BLEND_OP_OVERLAY_EXT = 1000148014,
-    VK_BLEND_OP_DARKEN_EXT = 1000148015,
-    VK_BLEND_OP_LIGHTEN_EXT = 1000148016,
-    VK_BLEND_OP_COLORDODGE_EXT = 1000148017,
-    VK_BLEND_OP_COLORBURN_EXT = 1000148018,
-    VK_BLEND_OP_HARDLIGHT_EXT = 1000148019,
-    VK_BLEND_OP_SOFTLIGHT_EXT = 1000148020,
-    VK_BLEND_OP_DIFFERENCE_EXT = 1000148021,
-    VK_BLEND_OP_EXCLUSION_EXT = 1000148022,
-    VK_BLEND_OP_INVERT_EXT = 1000148023,
-    VK_BLEND_OP_INVERT_RGB_EXT = 1000148024,
-    VK_BLEND_OP_LINEARDODGE_EXT = 1000148025,
-    VK_BLEND_OP_LINEARBURN_EXT = 1000148026,
-    VK_BLEND_OP_VIVIDLIGHT_EXT = 1000148027,
-    VK_BLEND_OP_LINEARLIGHT_EXT = 1000148028,
-    VK_BLEND_OP_PINLIGHT_EXT = 1000148029,
-    VK_BLEND_OP_HARDMIX_EXT = 1000148030,
-    VK_BLEND_OP_HSL_HUE_EXT = 1000148031,
-    VK_BLEND_OP_HSL_SATURATION_EXT = 1000148032,
-    VK_BLEND_OP_HSL_COLOR_EXT = 1000148033,
-    VK_BLEND_OP_HSL_LUMINOSITY_EXT = 1000148034,
-    VK_BLEND_OP_PLUS_EXT = 1000148035,
-    VK_BLEND_OP_PLUS_CLAMPED_EXT = 1000148036,
-    VK_BLEND_OP_PLUS_CLAMPED_ALPHA_EXT = 1000148037,
-    VK_BLEND_OP_PLUS_DARKER_EXT = 1000148038,
-    VK_BLEND_OP_MINUS_EXT = 1000148039,
-    VK_BLEND_OP_MINUS_CLAMPED_EXT = 1000148040,
-    VK_BLEND_OP_CONTRAST_EXT = 1000148041,
-    VK_BLEND_OP_INVERT_OVG_EXT = 1000148042,
-    VK_BLEND_OP_RED_EXT = 1000148043,
-    VK_BLEND_OP_GREEN_EXT = 1000148044,
-    VK_BLEND_OP_BLUE_EXT = 1000148045,
-    VK_BLEND_OP_BEGIN_RANGE = VK_BLEND_OP_ADD,
-    VK_BLEND_OP_END_RANGE = VK_BLEND_OP_MAX,
-    VK_BLEND_OP_RANGE_SIZE = (VK_BLEND_OP_MAX - VK_BLEND_OP_ADD + 1),
-    VK_BLEND_OP_MAX_ENUM = 0x7FFFFFFF
-} VkBlendOp;
-
-typedef enum VkDynamicState {
-    VK_DYNAMIC_STATE_VIEWPORT = 0,
-    VK_DYNAMIC_STATE_SCISSOR = 1,
-    VK_DYNAMIC_STATE_LINE_WIDTH = 2,
-    VK_DYNAMIC_STATE_DEPTH_BIAS = 3,
-    VK_DYNAMIC_STATE_BLEND_CONSTANTS = 4,
-    VK_DYNAMIC_STATE_DEPTH_BOUNDS = 5,
-    VK_DYNAMIC_STATE_STENCIL_COMPARE_MASK = 6,
-    VK_DYNAMIC_STATE_STENCIL_WRITE_MASK = 7,
-    VK_DYNAMIC_STATE_STENCIL_REFERENCE = 8,
-    VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV = 1000087000,
-    VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT = 1000099000,
-    VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT = 1000143000,
-    VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV = 1000164004,
-    VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV = 1000164006,
-    VK_DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV = 1000205001,
-    VK_DYNAMIC_STATE_BEGIN_RANGE = VK_DYNAMIC_STATE_VIEWPORT,
-    VK_DYNAMIC_STATE_END_RANGE = VK_DYNAMIC_STATE_STENCIL_REFERENCE,
-    VK_DYNAMIC_STATE_RANGE_SIZE = (VK_DYNAMIC_STATE_STENCIL_REFERENCE - VK_DYNAMIC_STATE_VIEWPORT + 1),
-    VK_DYNAMIC_STATE_MAX_ENUM = 0x7FFFFFFF
-} VkDynamicState;
-
-typedef enum VkFilter {
-    VK_FILTER_NEAREST = 0,
-    VK_FILTER_LINEAR = 1,
-    VK_FILTER_CUBIC_IMG = 1000015000,
-    VK_FILTER_BEGIN_RANGE = VK_FILTER_NEAREST,
-    VK_FILTER_END_RANGE = VK_FILTER_LINEAR,
-    VK_FILTER_RANGE_SIZE = (VK_FILTER_LINEAR - VK_FILTER_NEAREST + 1),
-    VK_FILTER_MAX_ENUM = 0x7FFFFFFF
-} VkFilter;
-
-typedef enum VkSamplerMipmapMode {
-    VK_SAMPLER_MIPMAP_MODE_NEAREST = 0,
-    VK_SAMPLER_MIPMAP_MODE_LINEAR = 1,
-    VK_SAMPLER_MIPMAP_MODE_BEGIN_RANGE = VK_SAMPLER_MIPMAP_MODE_NEAREST,
-    VK_SAMPLER_MIPMAP_MODE_END_RANGE = VK_SAMPLER_MIPMAP_MODE_LINEAR,
-    VK_SAMPLER_MIPMAP_MODE_RANGE_SIZE = (VK_SAMPLER_MIPMAP_MODE_LINEAR - VK_SAMPLER_MIPMAP_MODE_NEAREST + 1),
-    VK_SAMPLER_MIPMAP_MODE_MAX_ENUM = 0x7FFFFFFF
-} VkSamplerMipmapMode;
-
-typedef enum VkSamplerAddressMode {
-    VK_SAMPLER_ADDRESS_MODE_REPEAT = 0,
-    VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT = 1,
-    VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE = 2,
-    VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER = 3,
-    VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE = 4,
-    VK_SAMPLER_ADDRESS_MODE_BEGIN_RANGE = VK_SAMPLER_ADDRESS_MODE_REPEAT,
-    VK_SAMPLER_ADDRESS_MODE_END_RANGE = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER,
-    VK_SAMPLER_ADDRESS_MODE_RANGE_SIZE = (VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER - VK_SAMPLER_ADDRESS_MODE_REPEAT + 1),
-    VK_SAMPLER_ADDRESS_MODE_MAX_ENUM = 0x7FFFFFFF
-} VkSamplerAddressMode;
-
-typedef enum VkBorderColor {
-    VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK = 0,
-    VK_BORDER_COLOR_INT_TRANSPARENT_BLACK = 1,
-    VK_BORDER_COLOR_FLOAT_OPAQUE_BLACK = 2,
-    VK_BORDER_COLOR_INT_OPAQUE_BLACK = 3,
-    VK_BORDER_COLOR_FLOAT_OPAQUE_WHITE = 4,
-    VK_BORDER_COLOR_INT_OPAQUE_WHITE = 5,
-    VK_BORDER_COLOR_BEGIN_RANGE = VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK,
-    VK_BORDER_COLOR_END_RANGE = VK_BORDER_COLOR_INT_OPAQUE_WHITE,
-    VK_BORDER_COLOR_RANGE_SIZE = (VK_BORDER_COLOR_INT_OPAQUE_WHITE - VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK + 1),
-    VK_BORDER_COLOR_MAX_ENUM = 0x7FFFFFFF
-} VkBorderColor;
-
-typedef enum VkDescriptorType {
-    VK_DESCRIPTOR_TYPE_SAMPLER = 0,
-    VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER = 1,
-    VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE = 2,
-    VK_DESCRIPTOR_TYPE_STORAGE_IMAGE = 3,
-    VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER = 4,
-    VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER = 5,
-    VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER = 6,
-    VK_DESCRIPTOR_TYPE_STORAGE_BUFFER = 7,
-    VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC = 8,
-    VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC = 9,
-    VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT = 10,
-    VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT = 1000138000,
-    VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV = 1000165000,
-    VK_DESCRIPTOR_TYPE_BEGIN_RANGE = VK_DESCRIPTOR_TYPE_SAMPLER,
-    VK_DESCRIPTOR_TYPE_END_RANGE = VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT,
-    VK_DESCRIPTOR_TYPE_RANGE_SIZE = (VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT - VK_DESCRIPTOR_TYPE_SAMPLER + 1),
-    VK_DESCRIPTOR_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkDescriptorType;
-
-typedef enum VkAttachmentLoadOp {
-    VK_ATTACHMENT_LOAD_OP_LOAD = 0,
-    VK_ATTACHMENT_LOAD_OP_CLEAR = 1,
-    VK_ATTACHMENT_LOAD_OP_DONT_CARE = 2,
-    VK_ATTACHMENT_LOAD_OP_BEGIN_RANGE = VK_ATTACHMENT_LOAD_OP_LOAD,
-    VK_ATTACHMENT_LOAD_OP_END_RANGE = VK_ATTACHMENT_LOAD_OP_DONT_CARE,
-    VK_ATTACHMENT_LOAD_OP_RANGE_SIZE = (VK_ATTACHMENT_LOAD_OP_DONT_CARE - VK_ATTACHMENT_LOAD_OP_LOAD + 1),
-    VK_ATTACHMENT_LOAD_OP_MAX_ENUM = 0x7FFFFFFF
-} VkAttachmentLoadOp;
-
-typedef enum VkAttachmentStoreOp {
-    VK_ATTACHMENT_STORE_OP_STORE = 0,
-    VK_ATTACHMENT_STORE_OP_DONT_CARE = 1,
-    VK_ATTACHMENT_STORE_OP_BEGIN_RANGE = VK_ATTACHMENT_STORE_OP_STORE,
-    VK_ATTACHMENT_STORE_OP_END_RANGE = VK_ATTACHMENT_STORE_OP_DONT_CARE,
-    VK_ATTACHMENT_STORE_OP_RANGE_SIZE = (VK_ATTACHMENT_STORE_OP_DONT_CARE - VK_ATTACHMENT_STORE_OP_STORE + 1),
-    VK_ATTACHMENT_STORE_OP_MAX_ENUM = 0x7FFFFFFF
-} VkAttachmentStoreOp;
-
-typedef enum VkPipelineBindPoint {
-    VK_PIPELINE_BIND_POINT_GRAPHICS = 0,
-    VK_PIPELINE_BIND_POINT_COMPUTE = 1,
-    VK_PIPELINE_BIND_POINT_RAY_TRACING_NV = 1000165000,
-    VK_PIPELINE_BIND_POINT_BEGIN_RANGE = VK_PIPELINE_BIND_POINT_GRAPHICS,
-    VK_PIPELINE_BIND_POINT_END_RANGE = VK_PIPELINE_BIND_POINT_COMPUTE,
-    VK_PIPELINE_BIND_POINT_RANGE_SIZE = (VK_PIPELINE_BIND_POINT_COMPUTE - VK_PIPELINE_BIND_POINT_GRAPHICS + 1),
-    VK_PIPELINE_BIND_POINT_MAX_ENUM = 0x7FFFFFFF
-} VkPipelineBindPoint;
-
-typedef enum VkCommandBufferLevel {
-    VK_COMMAND_BUFFER_LEVEL_PRIMARY = 0,
-    VK_COMMAND_BUFFER_LEVEL_SECONDARY = 1,
-    VK_COMMAND_BUFFER_LEVEL_BEGIN_RANGE = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
-    VK_COMMAND_BUFFER_LEVEL_END_RANGE = VK_COMMAND_BUFFER_LEVEL_SECONDARY,
-    VK_COMMAND_BUFFER_LEVEL_RANGE_SIZE = (VK_COMMAND_BUFFER_LEVEL_SECONDARY - VK_COMMAND_BUFFER_LEVEL_PRIMARY + 1),
-    VK_COMMAND_BUFFER_LEVEL_MAX_ENUM = 0x7FFFFFFF
-} VkCommandBufferLevel;
-
-typedef enum VkIndexType {
-    VK_INDEX_TYPE_UINT16 = 0,
-    VK_INDEX_TYPE_UINT32 = 1,
-    VK_INDEX_TYPE_NONE_NV = 1000165000,
-    VK_INDEX_TYPE_BEGIN_RANGE = VK_INDEX_TYPE_UINT16,
-    VK_INDEX_TYPE_END_RANGE = VK_INDEX_TYPE_UINT32,
-    VK_INDEX_TYPE_RANGE_SIZE = (VK_INDEX_TYPE_UINT32 - VK_INDEX_TYPE_UINT16 + 1),
-    VK_INDEX_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkIndexType;
-
-typedef enum VkSubpassContents {
-    VK_SUBPASS_CONTENTS_INLINE = 0,
-    VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS = 1,
-    VK_SUBPASS_CONTENTS_BEGIN_RANGE = VK_SUBPASS_CONTENTS_INLINE,
-    VK_SUBPASS_CONTENTS_END_RANGE = VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS,
-    VK_SUBPASS_CONTENTS_RANGE_SIZE = (VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS - VK_SUBPASS_CONTENTS_INLINE + 1),
-    VK_SUBPASS_CONTENTS_MAX_ENUM = 0x7FFFFFFF
-} VkSubpassContents;
-
-typedef enum VkObjectType {
-    VK_OBJECT_TYPE_UNKNOWN = 0,
-    VK_OBJECT_TYPE_INSTANCE = 1,
-    VK_OBJECT_TYPE_PHYSICAL_DEVICE = 2,
-    VK_OBJECT_TYPE_DEVICE = 3,
-    VK_OBJECT_TYPE_QUEUE = 4,
-    VK_OBJECT_TYPE_SEMAPHORE = 5,
-    VK_OBJECT_TYPE_COMMAND_BUFFER = 6,
-    VK_OBJECT_TYPE_FENCE = 7,
-    VK_OBJECT_TYPE_DEVICE_MEMORY = 8,
-    VK_OBJECT_TYPE_BUFFER = 9,
-    VK_OBJECT_TYPE_IMAGE = 10,
-    VK_OBJECT_TYPE_EVENT = 11,
-    VK_OBJECT_TYPE_QUERY_POOL = 12,
-    VK_OBJECT_TYPE_BUFFER_VIEW = 13,
-    VK_OBJECT_TYPE_IMAGE_VIEW = 14,
-    VK_OBJECT_TYPE_SHADER_MODULE = 15,
-    VK_OBJECT_TYPE_PIPELINE_CACHE = 16,
-    VK_OBJECT_TYPE_PIPELINE_LAYOUT = 17,
-    VK_OBJECT_TYPE_RENDER_PASS = 18,
-    VK_OBJECT_TYPE_PIPELINE = 19,
-    VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT = 20,
-    VK_OBJECT_TYPE_SAMPLER = 21,
-    VK_OBJECT_TYPE_DESCRIPTOR_POOL = 22,
-    VK_OBJECT_TYPE_DESCRIPTOR_SET = 23,
-    VK_OBJECT_TYPE_FRAMEBUFFER = 24,
-    VK_OBJECT_TYPE_COMMAND_POOL = 25,
-    VK_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION = 1000156000,
-    VK_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE = 1000085000,
-    VK_OBJECT_TYPE_SURFACE_KHR = 1000000000,
-    VK_OBJECT_TYPE_SWAPCHAIN_KHR = 1000001000,
-    VK_OBJECT_TYPE_DISPLAY_KHR = 1000002000,
-    VK_OBJECT_TYPE_DISPLAY_MODE_KHR = 1000002001,
-    VK_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT = 1000011000,
-    VK_OBJECT_TYPE_OBJECT_TABLE_NVX = 1000086000,
-    VK_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NVX = 1000086001,
-    VK_OBJECT_TYPE_DEBUG_UTILS_MESSENGER_EXT = 1000128000,
-    VK_OBJECT_TYPE_VALIDATION_CACHE_EXT = 1000160000,
-    VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV = 1000165000,
-    VK_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR = VK_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE,
-    VK_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR = VK_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION,
-    VK_OBJECT_TYPE_BEGIN_RANGE = VK_OBJECT_TYPE_UNKNOWN,
-    VK_OBJECT_TYPE_END_RANGE = VK_OBJECT_TYPE_COMMAND_POOL,
-    VK_OBJECT_TYPE_RANGE_SIZE = (VK_OBJECT_TYPE_COMMAND_POOL - VK_OBJECT_TYPE_UNKNOWN + 1),
-    VK_OBJECT_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkObjectType;
-
-typedef enum VkVendorId {
-    VK_VENDOR_ID_VIV = 0x10001,
-    VK_VENDOR_ID_VSI = 0x10002,
-    VK_VENDOR_ID_KAZAN = 0x10003,
-    VK_VENDOR_ID_BEGIN_RANGE = VK_VENDOR_ID_VIV,
-    VK_VENDOR_ID_END_RANGE = VK_VENDOR_ID_KAZAN,
-    VK_VENDOR_ID_RANGE_SIZE = (VK_VENDOR_ID_KAZAN - VK_VENDOR_ID_VIV + 1),
-    VK_VENDOR_ID_MAX_ENUM = 0x7FFFFFFF
-} VkVendorId;
-
-typedef VkFlags VkInstanceCreateFlags;
-
-typedef enum VkFormatFeatureFlagBits {
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT = 0x00000001,
-    VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT = 0x00000002,
-    VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT = 0x00000004,
-    VK_FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT = 0x00000008,
-    VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT = 0x00000010,
-    VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT = 0x00000020,
-    VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT = 0x00000040,
-    VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT = 0x00000080,
-    VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT = 0x00000100,
-    VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT = 0x00000200,
-    VK_FORMAT_FEATURE_BLIT_SRC_BIT = 0x00000400,
-    VK_FORMAT_FEATURE_BLIT_DST_BIT = 0x00000800,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT = 0x00001000,
-    VK_FORMAT_FEATURE_TRANSFER_SRC_BIT = 0x00004000,
-    VK_FORMAT_FEATURE_TRANSFER_DST_BIT = 0x00008000,
-    VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT = 0x00020000,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT = 0x00040000,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT = 0x00080000,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT = 0x00100000,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT = 0x00200000,
-    VK_FORMAT_FEATURE_DISJOINT_BIT = 0x00400000,
-    VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT = 0x00800000,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG = 0x00002000,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT_EXT = 0x00010000,
-    VK_FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT = 0x01000000,
-    VK_FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR = VK_FORMAT_FEATURE_TRANSFER_SRC_BIT,
-    VK_FORMAT_FEATURE_TRANSFER_DST_BIT_KHR = VK_FORMAT_FEATURE_TRANSFER_DST_BIT,
-    VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT_KHR = VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT_KHR = VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT_KHR = VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT_KHR = VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT,
-    VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT_KHR = VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT,
-    VK_FORMAT_FEATURE_DISJOINT_BIT_KHR = VK_FORMAT_FEATURE_DISJOINT_BIT,
-    VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT_KHR = VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT,
-    VK_FORMAT_FEATURE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkFormatFeatureFlagBits;
-typedef VkFlags VkFormatFeatureFlags;
-
-typedef enum VkImageUsageFlagBits {
-    VK_IMAGE_USAGE_TRANSFER_SRC_BIT = 0x00000001,
-    VK_IMAGE_USAGE_TRANSFER_DST_BIT = 0x00000002,
-    VK_IMAGE_USAGE_SAMPLED_BIT = 0x00000004,
-    VK_IMAGE_USAGE_STORAGE_BIT = 0x00000008,
-    VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT = 0x00000010,
-    VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT = 0x00000020,
-    VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT = 0x00000040,
-    VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT = 0x00000080,
-    VK_IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV = 0x00000100,
-    VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT = 0x00000200,
-    VK_IMAGE_USAGE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkImageUsageFlagBits;
-typedef VkFlags VkImageUsageFlags;
-
-typedef enum VkImageCreateFlagBits {
-    VK_IMAGE_CREATE_SPARSE_BINDING_BIT = 0x00000001,
-    VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT = 0x00000002,
-    VK_IMAGE_CREATE_SPARSE_ALIASED_BIT = 0x00000004,
-    VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT = 0x00000008,
-    VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT = 0x00000010,
-    VK_IMAGE_CREATE_ALIAS_BIT = 0x00000400,
-    VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT = 0x00000040,
-    VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT = 0x00000020,
-    VK_IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT = 0x00000080,
-    VK_IMAGE_CREATE_EXTENDED_USAGE_BIT = 0x00000100,
-    VK_IMAGE_CREATE_PROTECTED_BIT = 0x00000800,
-    VK_IMAGE_CREATE_DISJOINT_BIT = 0x00000200,
-    VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV = 0x00002000,
-    VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT = 0x00001000,
-    VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT = 0x00004000,
-    VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT,
-    VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR = VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT,
-    VK_IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT_KHR = VK_IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT,
-    VK_IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR = VK_IMAGE_CREATE_EXTENDED_USAGE_BIT,
-    VK_IMAGE_CREATE_DISJOINT_BIT_KHR = VK_IMAGE_CREATE_DISJOINT_BIT,
-    VK_IMAGE_CREATE_ALIAS_BIT_KHR = VK_IMAGE_CREATE_ALIAS_BIT,
-    VK_IMAGE_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkImageCreateFlagBits;
-typedef VkFlags VkImageCreateFlags;
-
-typedef enum VkSampleCountFlagBits {
-    VK_SAMPLE_COUNT_1_BIT = 0x00000001,
-    VK_SAMPLE_COUNT_2_BIT = 0x00000002,
-    VK_SAMPLE_COUNT_4_BIT = 0x00000004,
-    VK_SAMPLE_COUNT_8_BIT = 0x00000008,
-    VK_SAMPLE_COUNT_16_BIT = 0x00000010,
-    VK_SAMPLE_COUNT_32_BIT = 0x00000020,
-    VK_SAMPLE_COUNT_64_BIT = 0x00000040,
-    VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkSampleCountFlagBits;
-typedef VkFlags VkSampleCountFlags;
-
-typedef enum VkQueueFlagBits {
-    VK_QUEUE_GRAPHICS_BIT = 0x00000001,
-    VK_QUEUE_COMPUTE_BIT = 0x00000002,
-    VK_QUEUE_TRANSFER_BIT = 0x00000004,
-    VK_QUEUE_SPARSE_BINDING_BIT = 0x00000008,
-    VK_QUEUE_PROTECTED_BIT = 0x00000010,
-    VK_QUEUE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkQueueFlagBits;
-typedef VkFlags VkQueueFlags;
-
-typedef enum VkMemoryPropertyFlagBits {
-    VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT = 0x00000001,
-    VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT = 0x00000002,
-    VK_MEMORY_PROPERTY_HOST_COHERENT_BIT = 0x00000004,
-    VK_MEMORY_PROPERTY_HOST_CACHED_BIT = 0x00000008,
-    VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT = 0x00000010,
-    VK_MEMORY_PROPERTY_PROTECTED_BIT = 0x00000020,
-    VK_MEMORY_PROPERTY_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkMemoryPropertyFlagBits;
-typedef VkFlags VkMemoryPropertyFlags;
-
-typedef enum VkMemoryHeapFlagBits {
-    VK_MEMORY_HEAP_DEVICE_LOCAL_BIT = 0x00000001,
-    VK_MEMORY_HEAP_MULTI_INSTANCE_BIT = 0x00000002,
-    VK_MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR = VK_MEMORY_HEAP_MULTI_INSTANCE_BIT,
-    VK_MEMORY_HEAP_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkMemoryHeapFlagBits;
-typedef VkFlags VkMemoryHeapFlags;
-typedef VkFlags VkDeviceCreateFlags;
-
-typedef enum VkDeviceQueueCreateFlagBits {
-    VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT = 0x00000001,
-    VK_DEVICE_QUEUE_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkDeviceQueueCreateFlagBits;
-typedef VkFlags VkDeviceQueueCreateFlags;
-
-typedef enum VkPipelineStageFlagBits {
-    VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT = 0x00000001,
-    VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT = 0x00000002,
-    VK_PIPELINE_STAGE_VERTEX_INPUT_BIT = 0x00000004,
-    VK_PIPELINE_STAGE_VERTEX_SHADER_BIT = 0x00000008,
-    VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT = 0x00000010,
-    VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT = 0x00000020,
-    VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT = 0x00000040,
-    VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT = 0x00000080,
-    VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT = 0x00000100,
-    VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT = 0x00000200,
-    VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT = 0x00000400,
-    VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT = 0x00000800,
-    VK_PIPELINE_STAGE_TRANSFER_BIT = 0x00001000,
-    VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT = 0x00002000,
-    VK_PIPELINE_STAGE_HOST_BIT = 0x00004000,
-    VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT = 0x00008000,
-    VK_PIPELINE_STAGE_ALL_COMMANDS_BIT = 0x00010000,
-    VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT = 0x01000000,
-    VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT = 0x00040000,
-    VK_PIPELINE_STAGE_COMMAND_PROCESS_BIT_NVX = 0x00020000,
-    VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = 0x00400000,
-    VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV = 0x00200000,
-    VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = 0x02000000,
-    VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV = 0x00080000,
-    VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV = 0x00100000,
-    VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT = 0x00800000,
-    VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkPipelineStageFlagBits;
-typedef VkFlags VkPipelineStageFlags;
-typedef VkFlags VkMemoryMapFlags;
-
-typedef enum VkImageAspectFlagBits {
-    VK_IMAGE_ASPECT_COLOR_BIT = 0x00000001,
-    VK_IMAGE_ASPECT_DEPTH_BIT = 0x00000002,
-    VK_IMAGE_ASPECT_STENCIL_BIT = 0x00000004,
-    VK_IMAGE_ASPECT_METADATA_BIT = 0x00000008,
-    VK_IMAGE_ASPECT_PLANE_0_BIT = 0x00000010,
-    VK_IMAGE_ASPECT_PLANE_1_BIT = 0x00000020,
-    VK_IMAGE_ASPECT_PLANE_2_BIT = 0x00000040,
-    VK_IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT = 0x00000080,
-    VK_IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT = 0x00000100,
-    VK_IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT = 0x00000200,
-    VK_IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT = 0x00000400,
-    VK_IMAGE_ASPECT_PLANE_0_BIT_KHR = VK_IMAGE_ASPECT_PLANE_0_BIT,
-    VK_IMAGE_ASPECT_PLANE_1_BIT_KHR = VK_IMAGE_ASPECT_PLANE_1_BIT,
-    VK_IMAGE_ASPECT_PLANE_2_BIT_KHR = VK_IMAGE_ASPECT_PLANE_2_BIT,
-    VK_IMAGE_ASPECT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkImageAspectFlagBits;
-typedef VkFlags VkImageAspectFlags;
-
-typedef enum VkSparseImageFormatFlagBits {
-    VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = 0x00000001,
-    VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = 0x00000002,
-    VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = 0x00000004,
-    VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkSparseImageFormatFlagBits;
-typedef VkFlags VkSparseImageFormatFlags;
-
-typedef enum VkSparseMemoryBindFlagBits {
-    VK_SPARSE_MEMORY_BIND_METADATA_BIT = 0x00000001,
-    VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkSparseMemoryBindFlagBits;
-typedef VkFlags VkSparseMemoryBindFlags;
-
-typedef enum VkFenceCreateFlagBits {
-    VK_FENCE_CREATE_SIGNALED_BIT = 0x00000001,
-    VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkFenceCreateFlagBits;
-typedef VkFlags VkFenceCreateFlags;
-typedef VkFlags VkSemaphoreCreateFlags;
-typedef VkFlags VkEventCreateFlags;
-typedef VkFlags VkQueryPoolCreateFlags;
-
-typedef enum VkQueryPipelineStatisticFlagBits {
-    VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 0x00000001,
-    VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 0x00000002,
-    VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 0x00000004,
-    VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = 0x00000008,
-    VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = 0x00000010,
-    VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = 0x00000020,
-    VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = 0x00000040,
-    VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = 0x00000080,
-    VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = 0x00000100,
-    VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = 0x00000200,
-    VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = 0x00000400,
-    VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkQueryPipelineStatisticFlagBits;
-typedef VkFlags VkQueryPipelineStatisticFlags;
-
-typedef enum VkQueryResultFlagBits {
-    VK_QUERY_RESULT_64_BIT = 0x00000001,
-    VK_QUERY_RESULT_WAIT_BIT = 0x00000002,
-    VK_QUERY_RESULT_WITH_AVAILABILITY_BIT = 0x00000004,
-    VK_QUERY_RESULT_PARTIAL_BIT = 0x00000008,
-    VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkQueryResultFlagBits;
-typedef VkFlags VkQueryResultFlags;
-
-typedef enum VkBufferCreateFlagBits {
-    VK_BUFFER_CREATE_SPARSE_BINDING_BIT = 0x00000001,
-    VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT = 0x00000002,
-    VK_BUFFER_CREATE_SPARSE_ALIASED_BIT = 0x00000004,
-    VK_BUFFER_CREATE_PROTECTED_BIT = 0x00000008,
-    VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = 0x00000010,
-    VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkBufferCreateFlagBits;
-typedef VkFlags VkBufferCreateFlags;
-
-typedef enum VkBufferUsageFlagBits {
-    VK_BUFFER_USAGE_TRANSFER_SRC_BIT = 0x00000001,
-    VK_BUFFER_USAGE_TRANSFER_DST_BIT = 0x00000002,
-    VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = 0x00000004,
-    VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT = 0x00000008,
-    VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT = 0x00000010,
-    VK_BUFFER_USAGE_STORAGE_BUFFER_BIT = 0x00000020,
-    VK_BUFFER_USAGE_INDEX_BUFFER_BIT = 0x00000040,
-    VK_BUFFER_USAGE_VERTEX_BUFFER_BIT = 0x00000080,
-    VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT = 0x00000100,
-    VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT = 0x00000800,
-    VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT = 0x00001000,
-    VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT = 0x00000200,
-    VK_BUFFER_USAGE_RAY_TRACING_BIT_NV = 0x00000400,
-    VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT = 0x00020000,
-    VK_BUFFER_USAGE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkBufferUsageFlagBits;
-typedef VkFlags VkBufferUsageFlags;
-typedef VkFlags VkBufferViewCreateFlags;
-
-typedef enum VkImageViewCreateFlagBits {
-    VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT = 0x00000001,
-    VK_IMAGE_VIEW_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkImageViewCreateFlagBits;
-typedef VkFlags VkImageViewCreateFlags;
-typedef VkFlags VkShaderModuleCreateFlags;
-typedef VkFlags VkPipelineCacheCreateFlags;
-
-typedef enum VkPipelineCreateFlagBits {
-    VK_PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT = 0x00000001,
-    VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT = 0x00000002,
-    VK_PIPELINE_CREATE_DERIVATIVE_BIT = 0x00000004,
-    VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT = 0x00000008,
-    VK_PIPELINE_CREATE_DISPATCH_BASE = 0x00000010,
-    VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV = 0x00000020,
-    VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR = VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT,
-    VK_PIPELINE_CREATE_DISPATCH_BASE_KHR = VK_PIPELINE_CREATE_DISPATCH_BASE,
-    VK_PIPELINE_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkPipelineCreateFlagBits;
-typedef VkFlags VkPipelineCreateFlags;
-typedef VkFlags VkPipelineShaderStageCreateFlags;
-
-typedef enum VkShaderStageFlagBits {
-    VK_SHADER_STAGE_VERTEX_BIT = 0x00000001,
-    VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT = 0x00000002,
-    VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT = 0x00000004,
-    VK_SHADER_STAGE_GEOMETRY_BIT = 0x00000008,
-    VK_SHADER_STAGE_FRAGMENT_BIT = 0x00000010,
-    VK_SHADER_STAGE_COMPUTE_BIT = 0x00000020,
-    VK_SHADER_STAGE_ALL_GRAPHICS = 0x0000001F,
-    VK_SHADER_STAGE_ALL = 0x7FFFFFFF,
-    VK_SHADER_STAGE_RAYGEN_BIT_NV = 0x00000100,
-    VK_SHADER_STAGE_ANY_HIT_BIT_NV = 0x00000200,
-    VK_SHADER_STAGE_CLOSEST_HIT_BIT_NV = 0x00000400,
-    VK_SHADER_STAGE_MISS_BIT_NV = 0x00000800,
-    VK_SHADER_STAGE_INTERSECTION_BIT_NV = 0x00001000,
-    VK_SHADER_STAGE_CALLABLE_BIT_NV = 0x00002000,
-    VK_SHADER_STAGE_TASK_BIT_NV = 0x00000040,
-    VK_SHADER_STAGE_MESH_BIT_NV = 0x00000080,
-    VK_SHADER_STAGE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkShaderStageFlagBits;
-typedef VkFlags VkPipelineVertexInputStateCreateFlags;
-typedef VkFlags VkPipelineInputAssemblyStateCreateFlags;
-typedef VkFlags VkPipelineTessellationStateCreateFlags;
-typedef VkFlags VkPipelineViewportStateCreateFlags;
-typedef VkFlags VkPipelineRasterizationStateCreateFlags;
-
-typedef enum VkCullModeFlagBits {
-    VK_CULL_MODE_NONE = 0,
-    VK_CULL_MODE_FRONT_BIT = 0x00000001,
-    VK_CULL_MODE_BACK_BIT = 0x00000002,
-    VK_CULL_MODE_FRONT_AND_BACK = 0x00000003,
-    VK_CULL_MODE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkCullModeFlagBits;
-typedef VkFlags VkCullModeFlags;
-typedef VkFlags VkPipelineMultisampleStateCreateFlags;
-typedef VkFlags VkPipelineDepthStencilStateCreateFlags;
-typedef VkFlags VkPipelineColorBlendStateCreateFlags;
-
-typedef enum VkColorComponentFlagBits {
-    VK_COLOR_COMPONENT_R_BIT = 0x00000001,
-    VK_COLOR_COMPONENT_G_BIT = 0x00000002,
-    VK_COLOR_COMPONENT_B_BIT = 0x00000004,
-    VK_COLOR_COMPONENT_A_BIT = 0x00000008,
-    VK_COLOR_COMPONENT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkColorComponentFlagBits;
-typedef VkFlags VkColorComponentFlags;
-typedef VkFlags VkPipelineDynamicStateCreateFlags;
-typedef VkFlags VkPipelineLayoutCreateFlags;
-typedef VkFlags VkShaderStageFlags;
-
-typedef enum VkSamplerCreateFlagBits {
-    VK_SAMPLER_CREATE_SUBSAMPLED_BIT_EXT = 0x00000001,
-    VK_SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT = 0x00000002,
-    VK_SAMPLER_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkSamplerCreateFlagBits;
-typedef VkFlags VkSamplerCreateFlags;
-
-typedef enum VkDescriptorSetLayoutCreateFlagBits {
-    VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR = 0x00000001,
-    VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT_EXT = 0x00000002,
-    VK_DESCRIPTOR_SET_LAYOUT_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkDescriptorSetLayoutCreateFlagBits;
-typedef VkFlags VkDescriptorSetLayoutCreateFlags;
-
-typedef enum VkDescriptorPoolCreateFlagBits {
-    VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT = 0x00000001,
-    VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT_EXT = 0x00000002,
-    VK_DESCRIPTOR_POOL_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkDescriptorPoolCreateFlagBits;
-typedef VkFlags VkDescriptorPoolCreateFlags;
-typedef VkFlags VkDescriptorPoolResetFlags;
-typedef VkFlags VkFramebufferCreateFlags;
-typedef VkFlags VkRenderPassCreateFlags;
-
-typedef enum VkAttachmentDescriptionFlagBits {
-    VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT = 0x00000001,
-    VK_ATTACHMENT_DESCRIPTION_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkAttachmentDescriptionFlagBits;
-typedef VkFlags VkAttachmentDescriptionFlags;
-
-typedef enum VkSubpassDescriptionFlagBits {
-    VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX = 0x00000001,
-    VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX = 0x00000002,
-    VK_SUBPASS_DESCRIPTION_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkSubpassDescriptionFlagBits;
-typedef VkFlags VkSubpassDescriptionFlags;
-
-typedef enum VkAccessFlagBits {
-    VK_ACCESS_INDIRECT_COMMAND_READ_BIT = 0x00000001,
-    VK_ACCESS_INDEX_READ_BIT = 0x00000002,
-    VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT = 0x00000004,
-    VK_ACCESS_UNIFORM_READ_BIT = 0x00000008,
-    VK_ACCESS_INPUT_ATTACHMENT_READ_BIT = 0x00000010,
-    VK_ACCESS_SHADER_READ_BIT = 0x00000020,
-    VK_ACCESS_SHADER_WRITE_BIT = 0x00000040,
-    VK_ACCESS_COLOR_ATTACHMENT_READ_BIT = 0x00000080,
-    VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT = 0x00000100,
-    VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT = 0x00000200,
-    VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT = 0x00000400,
-    VK_ACCESS_TRANSFER_READ_BIT = 0x00000800,
-    VK_ACCESS_TRANSFER_WRITE_BIT = 0x00001000,
-    VK_ACCESS_HOST_READ_BIT = 0x00002000,
-    VK_ACCESS_HOST_WRITE_BIT = 0x00004000,
-    VK_ACCESS_MEMORY_READ_BIT = 0x00008000,
-    VK_ACCESS_MEMORY_WRITE_BIT = 0x00010000,
-    VK_ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT = 0x02000000,
-    VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT = 0x04000000,
-    VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT = 0x08000000,
-    VK_ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT = 0x00100000,
-    VK_ACCESS_COMMAND_PROCESS_READ_BIT_NVX = 0x00020000,
-    VK_ACCESS_COMMAND_PROCESS_WRITE_BIT_NVX = 0x00040000,
-    VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT = 0x00080000,
-    VK_ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV = 0x00800000,
-    VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_NV = 0x00200000,
-    VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_NV = 0x00400000,
-    VK_ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT = 0x01000000,
-    VK_ACCESS_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkAccessFlagBits;
-typedef VkFlags VkAccessFlags;
-
-typedef enum VkDependencyFlagBits {
-    VK_DEPENDENCY_BY_REGION_BIT = 0x00000001,
-    VK_DEPENDENCY_DEVICE_GROUP_BIT = 0x00000004,
-    VK_DEPENDENCY_VIEW_LOCAL_BIT = 0x00000002,
-    VK_DEPENDENCY_VIEW_LOCAL_BIT_KHR = VK_DEPENDENCY_VIEW_LOCAL_BIT,
-    VK_DEPENDENCY_DEVICE_GROUP_BIT_KHR = VK_DEPENDENCY_DEVICE_GROUP_BIT,
-    VK_DEPENDENCY_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkDependencyFlagBits;
-typedef VkFlags VkDependencyFlags;
-
-typedef enum VkCommandPoolCreateFlagBits {
-    VK_COMMAND_POOL_CREATE_TRANSIENT_BIT = 0x00000001,
-    VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT = 0x00000002,
-    VK_COMMAND_POOL_CREATE_PROTECTED_BIT = 0x00000004,
-    VK_COMMAND_POOL_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkCommandPoolCreateFlagBits;
-typedef VkFlags VkCommandPoolCreateFlags;
-
-typedef enum VkCommandPoolResetFlagBits {
-    VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT = 0x00000001,
-    VK_COMMAND_POOL_RESET_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkCommandPoolResetFlagBits;
-typedef VkFlags VkCommandPoolResetFlags;
-
-typedef enum VkCommandBufferUsageFlagBits {
-    VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT = 0x00000001,
-    VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT = 0x00000002,
-    VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT = 0x00000004,
-    VK_COMMAND_BUFFER_USAGE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkCommandBufferUsageFlagBits;
-typedef VkFlags VkCommandBufferUsageFlags;
-
-typedef enum VkQueryControlFlagBits {
-    VK_QUERY_CONTROL_PRECISE_BIT = 0x00000001,
-    VK_QUERY_CONTROL_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkQueryControlFlagBits;
-typedef VkFlags VkQueryControlFlags;
-
-typedef enum VkCommandBufferResetFlagBits {
-    VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT = 0x00000001,
-    VK_COMMAND_BUFFER_RESET_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkCommandBufferResetFlagBits;
-typedef VkFlags VkCommandBufferResetFlags;
-
-typedef enum VkStencilFaceFlagBits {
-    VK_STENCIL_FACE_FRONT_BIT = 0x00000001,
-    VK_STENCIL_FACE_BACK_BIT = 0x00000002,
-    VK_STENCIL_FRONT_AND_BACK = 0x00000003,
-    VK_STENCIL_FACE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkStencilFaceFlagBits;
-typedef VkFlags VkStencilFaceFlags;
-
-typedef struct VkApplicationInfo {
-    VkStructureType sType;
-    const void* pNext;
-    const char* pApplicationName;
-    uint32_t applicationVersion;
-    const char* pEngineName;
-    uint32_t engineVersion;
-    uint32_t apiVersion;
-} VkApplicationInfo;
-
-typedef struct VkInstanceCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkInstanceCreateFlags flags;
-    const VkApplicationInfo* pApplicationInfo;
-    uint32_t enabledLayerCount;
-    const char* const* ppEnabledLayerNames;
-    uint32_t enabledExtensionCount;
-    const char* const* ppEnabledExtensionNames;
-} VkInstanceCreateInfo;
-
-typedef void* ( *PFN_vkAllocationFunction)(
-    void* pUserData,
-    size_t size,
-    size_t alignment,
-    VkSystemAllocationScope allocationScope);
-
-typedef void* ( *PFN_vkReallocationFunction)(
-    void* pUserData,
-    void* pOriginal,
-    size_t size,
-    size_t alignment,
-    VkSystemAllocationScope allocationScope);
-
-typedef void ( *PFN_vkFreeFunction)(
-    void* pUserData,
-    void* pMemory);
-
-typedef void ( *PFN_vkInternalAllocationNotification)(
-    void* pUserData,
-    size_t size,
-    VkInternalAllocationType allocationType,
-    VkSystemAllocationScope allocationScope);
-
-typedef void ( *PFN_vkInternalFreeNotification)(
-    void* pUserData,
-    size_t size,
-    VkInternalAllocationType allocationType,
-    VkSystemAllocationScope allocationScope);
-
-typedef struct VkAllocationCallbacks {
-    void* pUserData;
-    PFN_vkAllocationFunction pfnAllocation;
-    PFN_vkReallocationFunction pfnReallocation;
-    PFN_vkFreeFunction pfnFree;
-    PFN_vkInternalAllocationNotification pfnInternalAllocation;
-    PFN_vkInternalFreeNotification pfnInternalFree;
-} VkAllocationCallbacks;
-
-typedef struct VkPhysicalDeviceFeatures {
-    VkBool32 robustBufferAccess;
-    VkBool32 fullDrawIndexUint32;
-    VkBool32 imageCubeArray;
-    VkBool32 independentBlend;
-    VkBool32 geometryShader;
-    VkBool32 tessellationShader;
-    VkBool32 sampleRateShading;
-    VkBool32 dualSrcBlend;
-    VkBool32 logicOp;
-    VkBool32 multiDrawIndirect;
-    VkBool32 drawIndirectFirstInstance;
-    VkBool32 depthClamp;
-    VkBool32 depthBiasClamp;
-    VkBool32 fillModeNonSolid;
-    VkBool32 depthBounds;
-    VkBool32 wideLines;
-    VkBool32 largePoints;
-    VkBool32 alphaToOne;
-    VkBool32 multiViewport;
-    VkBool32 samplerAnisotropy;
-    VkBool32 textureCompressionETC2;
-    VkBool32 textureCompressionASTC_LDR;
-    VkBool32 textureCompressionBC;
-    VkBool32 occlusionQueryPrecise;
-    VkBool32 pipelineStatisticsQuery;
-    VkBool32 vertexPipelineStoresAndAtomics;
-    VkBool32 fragmentStoresAndAtomics;
-    VkBool32 shaderTessellationAndGeometryPointSize;
-    VkBool32 shaderImageGatherExtended;
-    VkBool32 shaderStorageImageExtendedFormats;
-    VkBool32 shaderStorageImageMultisample;
-    VkBool32 shaderStorageImageReadWithoutFormat;
-    VkBool32 shaderStorageImageWriteWithoutFormat;
-    VkBool32 shaderUniformBufferArrayDynamicIndexing;
-    VkBool32 shaderSampledImageArrayDynamicIndexing;
-    VkBool32 shaderStorageBufferArrayDynamicIndexing;
-    VkBool32 shaderStorageImageArrayDynamicIndexing;
-    VkBool32 shaderClipDistance;
-    VkBool32 shaderCullDistance;
-    VkBool32 shaderFloat64;
-    VkBool32 shaderInt64;
-    VkBool32 shaderInt16;
-    VkBool32 shaderResourceResidency;
-    VkBool32 shaderResourceMinLod;
-    VkBool32 sparseBinding;
-    VkBool32 sparseResidencyBuffer;
-    VkBool32 sparseResidencyImage2D;
-    VkBool32 sparseResidencyImage3D;
-    VkBool32 sparseResidency2Samples;
-    VkBool32 sparseResidency4Samples;
-    VkBool32 sparseResidency8Samples;
-    VkBool32 sparseResidency16Samples;
-    VkBool32 sparseResidencyAliased;
-    VkBool32 variableMultisampleRate;
-    VkBool32 inheritedQueries;
-} VkPhysicalDeviceFeatures;
-
-typedef struct VkFormatProperties {
-    VkFormatFeatureFlags linearTilingFeatures;
-    VkFormatFeatureFlags optimalTilingFeatures;
-    VkFormatFeatureFlags bufferFeatures;
-} VkFormatProperties;
-
-typedef struct VkExtent3D {
-    uint32_t width;
-    uint32_t height;
-    uint32_t depth;
-} VkExtent3D;
-
-typedef struct VkImageFormatProperties {
-    VkExtent3D maxExtent;
-    uint32_t maxMipLevels;
-    uint32_t maxArrayLayers;
-    VkSampleCountFlags sampleCounts;
-    VkDeviceSize maxResourceSize;
-} VkImageFormatProperties;
-
-typedef struct VkPhysicalDeviceLimits {
-    uint32_t maxImageDimension1D;
-    uint32_t maxImageDimension2D;
-    uint32_t maxImageDimension3D;
-    uint32_t maxImageDimensionCube;
-    uint32_t maxImageArrayLayers;
-    uint32_t maxTexelBufferElements;
-    uint32_t maxUniformBufferRange;
-    uint32_t maxStorageBufferRange;
-    uint32_t maxPushConstantsSize;
-    uint32_t maxMemoryAllocationCount;
-    uint32_t maxSamplerAllocationCount;
-    VkDeviceSize bufferImageGranularity;
-    VkDeviceSize sparseAddressSpaceSize;
-    uint32_t maxBoundDescriptorSets;
-    uint32_t maxPerStageDescriptorSamplers;
-    uint32_t maxPerStageDescriptorUniformBuffers;
-    uint32_t maxPerStageDescriptorStorageBuffers;
-    uint32_t maxPerStageDescriptorSampledImages;
-    uint32_t maxPerStageDescriptorStorageImages;
-    uint32_t maxPerStageDescriptorInputAttachments;
-    uint32_t maxPerStageResources;
-    uint32_t maxDescriptorSetSamplers;
-    uint32_t maxDescriptorSetUniformBuffers;
-    uint32_t maxDescriptorSetUniformBuffersDynamic;
-    uint32_t maxDescriptorSetStorageBuffers;
-    uint32_t maxDescriptorSetStorageBuffersDynamic;
-    uint32_t maxDescriptorSetSampledImages;
-    uint32_t maxDescriptorSetStorageImages;
-    uint32_t maxDescriptorSetInputAttachments;
-    uint32_t maxVertexInputAttributes;
-    uint32_t maxVertexInputBindings;
-    uint32_t maxVertexInputAttributeOffset;
-    uint32_t maxVertexInputBindingStride;
-    uint32_t maxVertexOutputComponents;
-    uint32_t maxTessellationGenerationLevel;
-    uint32_t maxTessellationPatchSize;
-    uint32_t maxTessellationControlPerVertexInputComponents;
-    uint32_t maxTessellationControlPerVertexOutputComponents;
-    uint32_t maxTessellationControlPerPatchOutputComponents;
-    uint32_t maxTessellationControlTotalOutputComponents;
-    uint32_t maxTessellationEvaluationInputComponents;
-    uint32_t maxTessellationEvaluationOutputComponents;
-    uint32_t maxGeometryShaderInvocations;
-    uint32_t maxGeometryInputComponents;
-    uint32_t maxGeometryOutputComponents;
-    uint32_t maxGeometryOutputVertices;
-    uint32_t maxGeometryTotalOutputComponents;
-    uint32_t maxFragmentInputComponents;
-    uint32_t maxFragmentOutputAttachments;
-    uint32_t maxFragmentDualSrcAttachments;
-    uint32_t maxFragmentCombinedOutputResources;
-    uint32_t maxComputeSharedMemorySize;
-    uint32_t maxComputeWorkGroupCount[3];
-    uint32_t maxComputeWorkGroupInvocations;
-    uint32_t maxComputeWorkGroupSize[3];
-    uint32_t subPixelPrecisionBits;
-    uint32_t subTexelPrecisionBits;
-    uint32_t mipmapPrecisionBits;
-    uint32_t maxDrawIndexedIndexValue;
-    uint32_t maxDrawIndirectCount;
-    float maxSamplerLodBias;
-    float maxSamplerAnisotropy;
-    uint32_t maxViewports;
-    uint32_t maxViewportDimensions[2];
-    float viewportBoundsRange[2];
-    uint32_t viewportSubPixelBits;
-    size_t minMemoryMapAlignment;
-    VkDeviceSize minTexelBufferOffsetAlignment;
-    VkDeviceSize minUniformBufferOffsetAlignment;
-    VkDeviceSize minStorageBufferOffsetAlignment;
-    int32_t minTexelOffset;
-    uint32_t maxTexelOffset;
-    int32_t minTexelGatherOffset;
-    uint32_t maxTexelGatherOffset;
-    float minInterpolationOffset;
-    float maxInterpolationOffset;
-    uint32_t subPixelInterpolationOffsetBits;
-    uint32_t maxFramebufferWidth;
-    uint32_t maxFramebufferHeight;
-    uint32_t maxFramebufferLayers;
-    VkSampleCountFlags framebufferColorSampleCounts;
-    VkSampleCountFlags framebufferDepthSampleCounts;
-    VkSampleCountFlags framebufferStencilSampleCounts;
-    VkSampleCountFlags framebufferNoAttachmentsSampleCounts;
-    uint32_t maxColorAttachments;
-    VkSampleCountFlags sampledImageColorSampleCounts;
-    VkSampleCountFlags sampledImageIntegerSampleCounts;
-    VkSampleCountFlags sampledImageDepthSampleCounts;
-    VkSampleCountFlags sampledImageStencilSampleCounts;
-    VkSampleCountFlags storageImageSampleCounts;
-    uint32_t maxSampleMaskWords;
-    VkBool32 timestampComputeAndGraphics;
-    float timestampPeriod;
-    uint32_t maxClipDistances;
-    uint32_t maxCullDistances;
-    uint32_t maxCombinedClipAndCullDistances;
-    uint32_t discreteQueuePriorities;
-    float pointSizeRange[2];
-    float lineWidthRange[2];
-    float pointSizeGranularity;
-    float lineWidthGranularity;
-    VkBool32 strictLines;
-    VkBool32 standardSampleLocations;
-    VkDeviceSize optimalBufferCopyOffsetAlignment;
-    VkDeviceSize optimalBufferCopyRowPitchAlignment;
-    VkDeviceSize nonCoherentAtomSize;
-} VkPhysicalDeviceLimits;
-
-typedef struct VkPhysicalDeviceSparseProperties {
-    VkBool32 residencyStandard2DBlockShape;
-    VkBool32 residencyStandard2DMultisampleBlockShape;
-    VkBool32 residencyStandard3DBlockShape;
-    VkBool32 residencyAlignedMipSize;
-    VkBool32 residencyNonResidentStrict;
-} VkPhysicalDeviceSparseProperties;
-
-typedef struct VkPhysicalDeviceProperties {
-    uint32_t apiVersion;
-    uint32_t driverVersion;
-    uint32_t vendorID;
-    uint32_t deviceID;
-    VkPhysicalDeviceType deviceType;
-    char deviceName[256];
-    uint8_t pipelineCacheUUID[16];
-    VkPhysicalDeviceLimits limits;
-    VkPhysicalDeviceSparseProperties sparseProperties;
-} VkPhysicalDeviceProperties;
-
-typedef struct VkQueueFamilyProperties {
-    VkQueueFlags queueFlags;
-    uint32_t queueCount;
-    uint32_t timestampValidBits;
-    VkExtent3D minImageTransferGranularity;
-} VkQueueFamilyProperties;
-
-typedef struct VkMemoryType {
-    VkMemoryPropertyFlags propertyFlags;
-    uint32_t heapIndex;
-} VkMemoryType;
-
-typedef struct VkMemoryHeap {
-    VkDeviceSize size;
-    VkMemoryHeapFlags flags;
-} VkMemoryHeap;
-
-typedef struct VkPhysicalDeviceMemoryProperties {
-    uint32_t memoryTypeCount;
-    VkMemoryType memoryTypes[32];
-    uint32_t memoryHeapCount;
-    VkMemoryHeap memoryHeaps[16];
-} VkPhysicalDeviceMemoryProperties;
-
-typedef void ( *PFN_vkVoidFunction)(void);
-typedef struct VkDeviceQueueCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceQueueCreateFlags flags;
-    uint32_t queueFamilyIndex;
-    uint32_t queueCount;
-    const float* pQueuePriorities;
-} VkDeviceQueueCreateInfo;
-
-typedef struct VkDeviceCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceCreateFlags flags;
-    uint32_t queueCreateInfoCount;
-    const VkDeviceQueueCreateInfo* pQueueCreateInfos;
-    uint32_t enabledLayerCount;
-    const char* const* ppEnabledLayerNames;
-    uint32_t enabledExtensionCount;
-    const char* const* ppEnabledExtensionNames;
-    const VkPhysicalDeviceFeatures* pEnabledFeatures;
-} VkDeviceCreateInfo;
-
-typedef struct VkExtensionProperties {
-    char extensionName[256];
-    uint32_t specVersion;
-} VkExtensionProperties;
-
-typedef struct VkLayerProperties {
-    char layerName[256];
-    uint32_t specVersion;
-    uint32_t implementationVersion;
-    char description[256];
-} VkLayerProperties;
-
-typedef struct VkSubmitInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t waitSemaphoreCount;
-    const VkSemaphore* pWaitSemaphores;
-    const VkPipelineStageFlags* pWaitDstStageMask;
-    uint32_t commandBufferCount;
-    const VkCommandBuffer* pCommandBuffers;
-    uint32_t signalSemaphoreCount;
-    const VkSemaphore* pSignalSemaphores;
-} VkSubmitInfo;
-
-typedef struct VkMemoryAllocateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceSize allocationSize;
-    uint32_t memoryTypeIndex;
-} VkMemoryAllocateInfo;
-
-typedef struct VkMappedMemoryRange {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceMemory memory;
-    VkDeviceSize offset;
-    VkDeviceSize size;
-} VkMappedMemoryRange;
-
-typedef struct VkMemoryRequirements {
-    VkDeviceSize size;
-    VkDeviceSize alignment;
-    uint32_t memoryTypeBits;
-} VkMemoryRequirements;
-
-typedef struct VkSparseImageFormatProperties {
-    VkImageAspectFlags aspectMask;
-    VkExtent3D imageGranularity;
-    VkSparseImageFormatFlags flags;
-} VkSparseImageFormatProperties;
-
-typedef struct VkSparseImageMemoryRequirements {
-    VkSparseImageFormatProperties formatProperties;
-    uint32_t imageMipTailFirstLod;
-    VkDeviceSize imageMipTailSize;
-    VkDeviceSize imageMipTailOffset;
-    VkDeviceSize imageMipTailStride;
-} VkSparseImageMemoryRequirements;
-
-typedef struct VkSparseMemoryBind {
-    VkDeviceSize resourceOffset;
-    VkDeviceSize size;
-    VkDeviceMemory memory;
-    VkDeviceSize memoryOffset;
-    VkSparseMemoryBindFlags flags;
-} VkSparseMemoryBind;
-
-typedef struct VkSparseBufferMemoryBindInfo {
-    VkBuffer buffer;
-    uint32_t bindCount;
-    const VkSparseMemoryBind* pBinds;
-} VkSparseBufferMemoryBindInfo;
-
-typedef struct VkSparseImageOpaqueMemoryBindInfo {
-    VkImage image;
-    uint32_t bindCount;
-    const VkSparseMemoryBind* pBinds;
-} VkSparseImageOpaqueMemoryBindInfo;
-
-typedef struct VkImageSubresource {
-    VkImageAspectFlags aspectMask;
-    uint32_t mipLevel;
-    uint32_t arrayLayer;
-} VkImageSubresource;
-
-typedef struct VkOffset3D {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-} VkOffset3D;
-
-typedef struct VkSparseImageMemoryBind {
-    VkImageSubresource subresource;
-    VkOffset3D offset;
-    VkExtent3D extent;
-    VkDeviceMemory memory;
-    VkDeviceSize memoryOffset;
-    VkSparseMemoryBindFlags flags;
-} VkSparseImageMemoryBind;
-
-typedef struct VkSparseImageMemoryBindInfo {
-    VkImage image;
-    uint32_t bindCount;
-    const VkSparseImageMemoryBind* pBinds;
-} VkSparseImageMemoryBindInfo;
-
-typedef struct VkBindSparseInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t waitSemaphoreCount;
-    const VkSemaphore* pWaitSemaphores;
-    uint32_t bufferBindCount;
-    const VkSparseBufferMemoryBindInfo* pBufferBinds;
-    uint32_t imageOpaqueBindCount;
-    const VkSparseImageOpaqueMemoryBindInfo* pImageOpaqueBinds;
-    uint32_t imageBindCount;
-    const VkSparseImageMemoryBindInfo* pImageBinds;
-    uint32_t signalSemaphoreCount;
-    const VkSemaphore* pSignalSemaphores;
-} VkBindSparseInfo;
-
-typedef struct VkFenceCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkFenceCreateFlags flags;
-} VkFenceCreateInfo;
-
-typedef struct VkSemaphoreCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkSemaphoreCreateFlags flags;
-} VkSemaphoreCreateInfo;
-
-typedef struct VkEventCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkEventCreateFlags flags;
-} VkEventCreateInfo;
-
-typedef struct VkQueryPoolCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkQueryPoolCreateFlags flags;
-    VkQueryType queryType;
-    uint32_t queryCount;
-    VkQueryPipelineStatisticFlags pipelineStatistics;
-} VkQueryPoolCreateInfo;
-
-typedef struct VkBufferCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkBufferCreateFlags flags;
-    VkDeviceSize size;
-    VkBufferUsageFlags usage;
-    VkSharingMode sharingMode;
-    uint32_t queueFamilyIndexCount;
-    const uint32_t* pQueueFamilyIndices;
-} VkBufferCreateInfo;
-
-typedef struct VkBufferViewCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkBufferViewCreateFlags flags;
-    VkBuffer buffer;
-    VkFormat format;
-    VkDeviceSize offset;
-    VkDeviceSize range;
-} VkBufferViewCreateInfo;
-
-typedef struct VkImageCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkImageCreateFlags flags;
-    VkImageType imageType;
-    VkFormat format;
-    VkExtent3D extent;
-    uint32_t mipLevels;
-    uint32_t arrayLayers;
-    VkSampleCountFlagBits samples;
-    VkImageTiling tiling;
-    VkImageUsageFlags usage;
-    VkSharingMode sharingMode;
-    uint32_t queueFamilyIndexCount;
-    const uint32_t* pQueueFamilyIndices;
-    VkImageLayout initialLayout;
-} VkImageCreateInfo;
-
-typedef struct VkSubresourceLayout {
-    VkDeviceSize offset;
-    VkDeviceSize size;
-    VkDeviceSize rowPitch;
-    VkDeviceSize arrayPitch;
-    VkDeviceSize depthPitch;
-} VkSubresourceLayout;
-
-typedef struct VkComponentMapping {
-    VkComponentSwizzle r;
-    VkComponentSwizzle g;
-    VkComponentSwizzle b;
-    VkComponentSwizzle a;
-} VkComponentMapping;
-
-typedef struct VkImageSubresourceRange {
-    VkImageAspectFlags aspectMask;
-    uint32_t baseMipLevel;
-    uint32_t levelCount;
-    uint32_t baseArrayLayer;
-    uint32_t layerCount;
-} VkImageSubresourceRange;
-
-typedef struct VkImageViewCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkImageViewCreateFlags flags;
-    VkImage image;
-    VkImageViewType viewType;
-    VkFormat format;
-    VkComponentMapping components;
-    VkImageSubresourceRange subresourceRange;
-} VkImageViewCreateInfo;
-
-typedef struct VkShaderModuleCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkShaderModuleCreateFlags flags;
-    size_t codeSize;
-    const uint32_t* pCode;
-} VkShaderModuleCreateInfo;
-
-typedef struct VkPipelineCacheCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineCacheCreateFlags flags;
-    size_t initialDataSize;
-    const void* pInitialData;
-} VkPipelineCacheCreateInfo;
-
-typedef struct VkSpecializationMapEntry {
-    uint32_t constantID;
-    uint32_t offset;
-    size_t size;
-} VkSpecializationMapEntry;
-
-typedef struct VkSpecializationInfo {
-    uint32_t mapEntryCount;
-    const VkSpecializationMapEntry* pMapEntries;
-    size_t dataSize;
-    const void* pData;
-} VkSpecializationInfo;
-
-typedef struct VkPipelineShaderStageCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineShaderStageCreateFlags flags;
-    VkShaderStageFlagBits stage;
-    VkShaderModule module;
-    const char* pName;
-    const VkSpecializationInfo* pSpecializationInfo;
-} VkPipelineShaderStageCreateInfo;
-
-typedef struct VkVertexInputBindingDescription {
-    uint32_t binding;
-    uint32_t stride;
-    VkVertexInputRate inputRate;
-} VkVertexInputBindingDescription;
-
-typedef struct VkVertexInputAttributeDescription {
-    uint32_t location;
-    uint32_t binding;
-    VkFormat format;
-    uint32_t offset;
-} VkVertexInputAttributeDescription;
-
-typedef struct VkPipelineVertexInputStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineVertexInputStateCreateFlags flags;
-    uint32_t vertexBindingDescriptionCount;
-    const VkVertexInputBindingDescription* pVertexBindingDescriptions;
-    uint32_t vertexAttributeDescriptionCount;
-    const VkVertexInputAttributeDescription* pVertexAttributeDescriptions;
-} VkPipelineVertexInputStateCreateInfo;
-
-typedef struct VkPipelineInputAssemblyStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineInputAssemblyStateCreateFlags flags;
-    VkPrimitiveTopology topology;
-    VkBool32 primitiveRestartEnable;
-} VkPipelineInputAssemblyStateCreateInfo;
-
-typedef struct VkPipelineTessellationStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineTessellationStateCreateFlags flags;
-    uint32_t patchControlPoints;
-} VkPipelineTessellationStateCreateInfo;
-
-typedef struct VkViewport {
-    float x;
-    float y;
-    float width;
-    float height;
-    float minDepth;
-    float maxDepth;
-} VkViewport;
-
-typedef struct VkOffset2D {
-    int32_t x;
-    int32_t y;
-} VkOffset2D;
-
-typedef struct VkExtent2D {
-    uint32_t width;
-    uint32_t height;
-} VkExtent2D;
-
-typedef struct VkRect2D {
-    VkOffset2D offset;
-    VkExtent2D extent;
-} VkRect2D;
-
-typedef struct VkPipelineViewportStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineViewportStateCreateFlags flags;
-    uint32_t viewportCount;
-    const VkViewport* pViewports;
-    uint32_t scissorCount;
-    const VkRect2D* pScissors;
-} VkPipelineViewportStateCreateInfo;
-
-typedef struct VkPipelineRasterizationStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineRasterizationStateCreateFlags flags;
-    VkBool32 depthClampEnable;
-    VkBool32 rasterizerDiscardEnable;
-    VkPolygonMode polygonMode;
-    VkCullModeFlags cullMode;
-    VkFrontFace frontFace;
-    VkBool32 depthBiasEnable;
-    float depthBiasConstantFactor;
-    float depthBiasClamp;
-    float depthBiasSlopeFactor;
-    float lineWidth;
-} VkPipelineRasterizationStateCreateInfo;
-
-typedef struct VkPipelineMultisampleStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineMultisampleStateCreateFlags flags;
-    VkSampleCountFlagBits rasterizationSamples;
-    VkBool32 sampleShadingEnable;
-    float minSampleShading;
-    const VkSampleMask* pSampleMask;
-    VkBool32 alphaToCoverageEnable;
-    VkBool32 alphaToOneEnable;
-} VkPipelineMultisampleStateCreateInfo;
-
-typedef struct VkStencilOpState {
-    VkStencilOp failOp;
-    VkStencilOp passOp;
-    VkStencilOp depthFailOp;
-    VkCompareOp compareOp;
-    uint32_t compareMask;
-    uint32_t writeMask;
-    uint32_t reference;
-} VkStencilOpState;
-
-typedef struct VkPipelineDepthStencilStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineDepthStencilStateCreateFlags flags;
-    VkBool32 depthTestEnable;
-    VkBool32 depthWriteEnable;
-    VkCompareOp depthCompareOp;
-    VkBool32 depthBoundsTestEnable;
-    VkBool32 stencilTestEnable;
-    VkStencilOpState front;
-    VkStencilOpState back;
-    float minDepthBounds;
-    float maxDepthBounds;
-} VkPipelineDepthStencilStateCreateInfo;
-
-typedef struct VkPipelineColorBlendAttachmentState {
-    VkBool32 blendEnable;
-    VkBlendFactor srcColorBlendFactor;
-    VkBlendFactor dstColorBlendFactor;
-    VkBlendOp colorBlendOp;
-    VkBlendFactor srcAlphaBlendFactor;
-    VkBlendFactor dstAlphaBlendFactor;
-    VkBlendOp alphaBlendOp;
-    VkColorComponentFlags colorWriteMask;
-} VkPipelineColorBlendAttachmentState;
-
-typedef struct VkPipelineColorBlendStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineColorBlendStateCreateFlags flags;
-    VkBool32 logicOpEnable;
-    VkLogicOp logicOp;
-    uint32_t attachmentCount;
-    const VkPipelineColorBlendAttachmentState* pAttachments;
-    float blendConstants[4];
-} VkPipelineColorBlendStateCreateInfo;
-
-typedef struct VkPipelineDynamicStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineDynamicStateCreateFlags flags;
-    uint32_t dynamicStateCount;
-    const VkDynamicState* pDynamicStates;
-} VkPipelineDynamicStateCreateInfo;
-
-typedef struct VkGraphicsPipelineCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineCreateFlags flags;
-    uint32_t stageCount;
-    const VkPipelineShaderStageCreateInfo* pStages;
-    const VkPipelineVertexInputStateCreateInfo* pVertexInputState;
-    const VkPipelineInputAssemblyStateCreateInfo* pInputAssemblyState;
-    const VkPipelineTessellationStateCreateInfo* pTessellationState;
-    const VkPipelineViewportStateCreateInfo* pViewportState;
-    const VkPipelineRasterizationStateCreateInfo* pRasterizationState;
-    const VkPipelineMultisampleStateCreateInfo* pMultisampleState;
-    const VkPipelineDepthStencilStateCreateInfo* pDepthStencilState;
-    const VkPipelineColorBlendStateCreateInfo* pColorBlendState;
-    const VkPipelineDynamicStateCreateInfo* pDynamicState;
-    VkPipelineLayout layout;
-    VkRenderPass renderPass;
-    uint32_t subpass;
-    VkPipeline basePipelineHandle;
-    int32_t basePipelineIndex;
-} VkGraphicsPipelineCreateInfo;
-
-typedef struct VkComputePipelineCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineCreateFlags flags;
-    VkPipelineShaderStageCreateInfo stage;
-    VkPipelineLayout layout;
-    VkPipeline basePipelineHandle;
-    int32_t basePipelineIndex;
-} VkComputePipelineCreateInfo;
-
-typedef struct VkPushConstantRange {
-    VkShaderStageFlags stageFlags;
-    uint32_t offset;
-    uint32_t size;
-} VkPushConstantRange;
-
-typedef struct VkPipelineLayoutCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineLayoutCreateFlags flags;
-    uint32_t setLayoutCount;
-    const VkDescriptorSetLayout* pSetLayouts;
-    uint32_t pushConstantRangeCount;
-    const VkPushConstantRange* pPushConstantRanges;
-} VkPipelineLayoutCreateInfo;
-
-typedef struct VkSamplerCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkSamplerCreateFlags flags;
-    VkFilter magFilter;
-    VkFilter minFilter;
-    VkSamplerMipmapMode mipmapMode;
-    VkSamplerAddressMode addressModeU;
-    VkSamplerAddressMode addressModeV;
-    VkSamplerAddressMode addressModeW;
-    float mipLodBias;
-    VkBool32 anisotropyEnable;
-    float maxAnisotropy;
-    VkBool32 compareEnable;
-    VkCompareOp compareOp;
-    float minLod;
-    float maxLod;
-    VkBorderColor borderColor;
-    VkBool32 unnormalizedCoordinates;
-} VkSamplerCreateInfo;
-
-typedef struct VkDescriptorSetLayoutBinding {
-    uint32_t binding;
-    VkDescriptorType descriptorType;
-    uint32_t descriptorCount;
-    VkShaderStageFlags stageFlags;
-    const VkSampler* pImmutableSamplers;
-} VkDescriptorSetLayoutBinding;
-
-typedef struct VkDescriptorSetLayoutCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkDescriptorSetLayoutCreateFlags flags;
-    uint32_t bindingCount;
-    const VkDescriptorSetLayoutBinding* pBindings;
-} VkDescriptorSetLayoutCreateInfo;
-
-typedef struct VkDescriptorPoolSize {
-    VkDescriptorType type;
-    uint32_t descriptorCount;
-} VkDescriptorPoolSize;
-
-typedef struct VkDescriptorPoolCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkDescriptorPoolCreateFlags flags;
-    uint32_t maxSets;
-    uint32_t poolSizeCount;
-    const VkDescriptorPoolSize* pPoolSizes;
-} VkDescriptorPoolCreateInfo;
-
-typedef struct VkDescriptorSetAllocateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkDescriptorPool descriptorPool;
-    uint32_t descriptorSetCount;
-    const VkDescriptorSetLayout* pSetLayouts;
-} VkDescriptorSetAllocateInfo;
-
-typedef struct VkDescriptorImageInfo {
-    VkSampler sampler;
-    VkImageView imageView;
-    VkImageLayout imageLayout;
-} VkDescriptorImageInfo;
-
-typedef struct VkDescriptorBufferInfo {
-    VkBuffer buffer;
-    VkDeviceSize offset;
-    VkDeviceSize range;
-} VkDescriptorBufferInfo;
-
-typedef struct VkWriteDescriptorSet {
-    VkStructureType sType;
-    const void* pNext;
-    VkDescriptorSet dstSet;
-    uint32_t dstBinding;
-    uint32_t dstArrayElement;
-    uint32_t descriptorCount;
-    VkDescriptorType descriptorType;
-    const VkDescriptorImageInfo* pImageInfo;
-    const VkDescriptorBufferInfo* pBufferInfo;
-    const VkBufferView* pTexelBufferView;
-} VkWriteDescriptorSet;
-
-typedef struct VkCopyDescriptorSet {
-    VkStructureType sType;
-    const void* pNext;
-    VkDescriptorSet srcSet;
-    uint32_t srcBinding;
-    uint32_t srcArrayElement;
-    VkDescriptorSet dstSet;
-    uint32_t dstBinding;
-    uint32_t dstArrayElement;
-    uint32_t descriptorCount;
-} VkCopyDescriptorSet;
-
-typedef struct VkFramebufferCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkFramebufferCreateFlags flags;
-    VkRenderPass renderPass;
-    uint32_t attachmentCount;
-    const VkImageView* pAttachments;
-    uint32_t width;
-    uint32_t height;
-    uint32_t layers;
-} VkFramebufferCreateInfo;
-
-typedef struct VkAttachmentDescription {
-    VkAttachmentDescriptionFlags flags;
-    VkFormat format;
-    VkSampleCountFlagBits samples;
-    VkAttachmentLoadOp loadOp;
-    VkAttachmentStoreOp storeOp;
-    VkAttachmentLoadOp stencilLoadOp;
-    VkAttachmentStoreOp stencilStoreOp;
-    VkImageLayout initialLayout;
-    VkImageLayout finalLayout;
-} VkAttachmentDescription;
-
-typedef struct VkAttachmentReference {
-    uint32_t attachment;
-    VkImageLayout layout;
-} VkAttachmentReference;
-
-typedef struct VkSubpassDescription {
-    VkSubpassDescriptionFlags flags;
-    VkPipelineBindPoint pipelineBindPoint;
-    uint32_t inputAttachmentCount;
-    const VkAttachmentReference* pInputAttachments;
-    uint32_t colorAttachmentCount;
-    const VkAttachmentReference* pColorAttachments;
-    const VkAttachmentReference* pResolveAttachments;
-    const VkAttachmentReference* pDepthStencilAttachment;
-    uint32_t preserveAttachmentCount;
-    const uint32_t* pPreserveAttachments;
-} VkSubpassDescription;
-
-typedef struct VkSubpassDependency {
-    uint32_t srcSubpass;
-    uint32_t dstSubpass;
-    VkPipelineStageFlags srcStageMask;
-    VkPipelineStageFlags dstStageMask;
-    VkAccessFlags srcAccessMask;
-    VkAccessFlags dstAccessMask;
-    VkDependencyFlags dependencyFlags;
-} VkSubpassDependency;
-
-typedef struct VkRenderPassCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkRenderPassCreateFlags flags;
-    uint32_t attachmentCount;
-    const VkAttachmentDescription* pAttachments;
-    uint32_t subpassCount;
-    const VkSubpassDescription* pSubpasses;
-    uint32_t dependencyCount;
-    const VkSubpassDependency* pDependencies;
-} VkRenderPassCreateInfo;
-
-typedef struct VkCommandPoolCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkCommandPoolCreateFlags flags;
-    uint32_t queueFamilyIndex;
-} VkCommandPoolCreateInfo;
-
-typedef struct VkCommandBufferAllocateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkCommandPool commandPool;
-    VkCommandBufferLevel level;
-    uint32_t commandBufferCount;
-} VkCommandBufferAllocateInfo;
-
-typedef struct VkCommandBufferInheritanceInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkRenderPass renderPass;
-    uint32_t subpass;
-    VkFramebuffer framebuffer;
-    VkBool32 occlusionQueryEnable;
-    VkQueryControlFlags queryFlags;
-    VkQueryPipelineStatisticFlags pipelineStatistics;
-} VkCommandBufferInheritanceInfo;
-
-typedef struct VkCommandBufferBeginInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkCommandBufferUsageFlags flags;
-    const VkCommandBufferInheritanceInfo* pInheritanceInfo;
-} VkCommandBufferBeginInfo;
-
-typedef struct VkBufferCopy {
-    VkDeviceSize srcOffset;
-    VkDeviceSize dstOffset;
-    VkDeviceSize size;
-} VkBufferCopy;
-
-typedef struct VkImageSubresourceLayers {
-    VkImageAspectFlags aspectMask;
-    uint32_t mipLevel;
-    uint32_t baseArrayLayer;
-    uint32_t layerCount;
-} VkImageSubresourceLayers;
-
-typedef struct VkImageCopy {
-    VkImageSubresourceLayers srcSubresource;
-    VkOffset3D srcOffset;
-    VkImageSubresourceLayers dstSubresource;
-    VkOffset3D dstOffset;
-    VkExtent3D extent;
-} VkImageCopy;
-
-typedef struct VkImageBlit {
-    VkImageSubresourceLayers srcSubresource;
-    VkOffset3D srcOffsets[2];
-    VkImageSubresourceLayers dstSubresource;
-    VkOffset3D dstOffsets[2];
-} VkImageBlit;
-
-typedef struct VkBufferImageCopy {
-    VkDeviceSize bufferOffset;
-    uint32_t bufferRowLength;
-    uint32_t bufferImageHeight;
-    VkImageSubresourceLayers imageSubresource;
-    VkOffset3D imageOffset;
-    VkExtent3D imageExtent;
-} VkBufferImageCopy;
-
-typedef union VkClearColorValue {
-    float float32[4];
-    int32_t int32[4];
-    uint32_t uint32[4];
-} VkClearColorValue;
-
-typedef struct VkClearDepthStencilValue {
-    float depth;
-    uint32_t stencil;
-} VkClearDepthStencilValue;
-
-typedef union VkClearValue {
-    VkClearColorValue color;
-    VkClearDepthStencilValue depthStencil;
-} VkClearValue;
-
-typedef struct VkClearAttachment {
-    VkImageAspectFlags aspectMask;
-    uint32_t colorAttachment;
-    VkClearValue clearValue;
-} VkClearAttachment;
-
-typedef struct VkClearRect {
-    VkRect2D rect;
-    uint32_t baseArrayLayer;
-    uint32_t layerCount;
-} VkClearRect;
-
-typedef struct VkImageResolve {
-    VkImageSubresourceLayers srcSubresource;
-    VkOffset3D srcOffset;
-    VkImageSubresourceLayers dstSubresource;
-    VkOffset3D dstOffset;
-    VkExtent3D extent;
-} VkImageResolve;
-
-typedef struct VkMemoryBarrier {
-    VkStructureType sType;
-    const void* pNext;
-    VkAccessFlags srcAccessMask;
-    VkAccessFlags dstAccessMask;
-} VkMemoryBarrier;
-
-typedef struct VkBufferMemoryBarrier {
-    VkStructureType sType;
-    const void* pNext;
-    VkAccessFlags srcAccessMask;
-    VkAccessFlags dstAccessMask;
-    uint32_t srcQueueFamilyIndex;
-    uint32_t dstQueueFamilyIndex;
-    VkBuffer buffer;
-    VkDeviceSize offset;
-    VkDeviceSize size;
-} VkBufferMemoryBarrier;
-
-typedef struct VkImageMemoryBarrier {
-    VkStructureType sType;
-    const void* pNext;
-    VkAccessFlags srcAccessMask;
-    VkAccessFlags dstAccessMask;
-    VkImageLayout oldLayout;
-    VkImageLayout newLayout;
-    uint32_t srcQueueFamilyIndex;
-    uint32_t dstQueueFamilyIndex;
-    VkImage image;
-    VkImageSubresourceRange subresourceRange;
-} VkImageMemoryBarrier;
-
-typedef struct VkRenderPassBeginInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkRenderPass renderPass;
-    VkFramebuffer framebuffer;
-    VkRect2D renderArea;
-    uint32_t clearValueCount;
-    const VkClearValue* pClearValues;
-} VkRenderPassBeginInfo;
-
-typedef struct VkDispatchIndirectCommand {
-    uint32_t x;
-    uint32_t y;
-    uint32_t z;
-} VkDispatchIndirectCommand;
-
-typedef struct VkDrawIndexedIndirectCommand {
-    uint32_t indexCount;
-    uint32_t instanceCount;
-    uint32_t firstIndex;
-    int32_t vertexOffset;
-    uint32_t firstInstance;
-} VkDrawIndexedIndirectCommand;
-
-typedef struct VkDrawIndirectCommand {
-    uint32_t vertexCount;
-    uint32_t instanceCount;
-    uint32_t firstVertex;
-    uint32_t firstInstance;
-} VkDrawIndirectCommand;
-
-typedef struct VkBaseOutStructure {
-    VkStructureType sType;
-    struct VkBaseOutStructure* pNext;
-} VkBaseOutStructure;
-
-typedef struct VkBaseInStructure {
-    VkStructureType sType;
-    const struct VkBaseInStructure* pNext;
-} VkBaseInStructure;
-
-
-typedef VkResult ( *PFN_vkCreateInstance)(const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkInstance* pInstance);
-typedef void ( *PFN_vkDestroyInstance)(VkInstance instance, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkEnumeratePhysicalDevices)(VkInstance instance, uint32_t* pPhysicalDeviceCount, VkPhysicalDevice* pPhysicalDevices);
-typedef void ( *PFN_vkGetPhysicalDeviceFeatures)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceFeatures* pFeatures);
-typedef void ( *PFN_vkGetPhysicalDeviceFormatProperties)(VkPhysicalDevice physicalDevice, VkFormat format, VkFormatProperties* pFormatProperties);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceImageFormatProperties)(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkImageFormatProperties* pImageFormatProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceProperties)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceProperties* pProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceQueueFamilyProperties)(VkPhysicalDevice physicalDevice, uint32_t* pQueueFamilyPropertyCount, VkQueueFamilyProperties* pQueueFamilyProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceMemoryProperties)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceMemoryProperties* pMemoryProperties);
-typedef PFN_vkVoidFunction ( *PFN_vkGetInstanceProcAddr)(VkInstance instance, const char* pName);
-typedef PFN_vkVoidFunction ( *PFN_vkGetDeviceProcAddr)(VkDevice device, const char* pName);
-typedef VkResult ( *PFN_vkCreateDevice)(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice);
-typedef void ( *PFN_vkDestroyDevice)(VkDevice device, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkEnumerateInstanceExtensionProperties)(const char* pLayerName, uint32_t* pPropertyCount, VkExtensionProperties* pProperties);
-typedef VkResult ( *PFN_vkEnumerateDeviceExtensionProperties)(VkPhysicalDevice physicalDevice, const char* pLayerName, uint32_t* pPropertyCount, VkExtensionProperties* pProperties);
-typedef VkResult ( *PFN_vkEnumerateInstanceLayerProperties)(uint32_t* pPropertyCount, VkLayerProperties* pProperties);
-typedef VkResult ( *PFN_vkEnumerateDeviceLayerProperties)(VkPhysicalDevice physicalDevice, uint32_t* pPropertyCount, VkLayerProperties* pProperties);
-typedef void ( *PFN_vkGetDeviceQueue)(VkDevice device, uint32_t queueFamilyIndex, uint32_t queueIndex, VkQueue* pQueue);
-typedef VkResult ( *PFN_vkQueueSubmit)(VkQueue queue, uint32_t submitCount, const VkSubmitInfo* pSubmits, VkFence fence);
-typedef VkResult ( *PFN_vkQueueWaitIdle)(VkQueue queue);
-typedef VkResult ( *PFN_vkDeviceWaitIdle)(VkDevice device);
-typedef VkResult ( *PFN_vkAllocateMemory)(VkDevice device, const VkMemoryAllocateInfo* pAllocateInfo, const VkAllocationCallbacks* pAllocator, VkDeviceMemory* pMemory);
-typedef void ( *PFN_vkFreeMemory)(VkDevice device, VkDeviceMemory memory, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkMapMemory)(VkDevice device, VkDeviceMemory memory, VkDeviceSize offset, VkDeviceSize size, VkMemoryMapFlags flags, void** ppData);
-typedef void ( *PFN_vkUnmapMemory)(VkDevice device, VkDeviceMemory memory);
-typedef VkResult ( *PFN_vkFlushMappedMemoryRanges)(VkDevice device, uint32_t memoryRangeCount, const VkMappedMemoryRange* pMemoryRanges);
-typedef VkResult ( *PFN_vkInvalidateMappedMemoryRanges)(VkDevice device, uint32_t memoryRangeCount, const VkMappedMemoryRange* pMemoryRanges);
-typedef void ( *PFN_vkGetDeviceMemoryCommitment)(VkDevice device, VkDeviceMemory memory, VkDeviceSize* pCommittedMemoryInBytes);
-typedef VkResult ( *PFN_vkBindBufferMemory)(VkDevice device, VkBuffer buffer, VkDeviceMemory memory, VkDeviceSize memoryOffset);
-typedef VkResult ( *PFN_vkBindImageMemory)(VkDevice device, VkImage image, VkDeviceMemory memory, VkDeviceSize memoryOffset);
-typedef void ( *PFN_vkGetBufferMemoryRequirements)(VkDevice device, VkBuffer buffer, VkMemoryRequirements* pMemoryRequirements);
-typedef void ( *PFN_vkGetImageMemoryRequirements)(VkDevice device, VkImage image, VkMemoryRequirements* pMemoryRequirements);
-typedef void ( *PFN_vkGetImageSparseMemoryRequirements)(VkDevice device, VkImage image, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements* pSparseMemoryRequirements);
-typedef void ( *PFN_vkGetPhysicalDeviceSparseImageFormatProperties)(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkSampleCountFlagBits samples, VkImageUsageFlags usage, VkImageTiling tiling, uint32_t* pPropertyCount, VkSparseImageFormatProperties* pProperties);
-typedef VkResult ( *PFN_vkQueueBindSparse)(VkQueue queue, uint32_t bindInfoCount, const VkBindSparseInfo* pBindInfo, VkFence fence);
-typedef VkResult ( *PFN_vkCreateFence)(VkDevice device, const VkFenceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkFence* pFence);
-typedef void ( *PFN_vkDestroyFence)(VkDevice device, VkFence fence, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkResetFences)(VkDevice device, uint32_t fenceCount, const VkFence* pFences);
-typedef VkResult ( *PFN_vkGetFenceStatus)(VkDevice device, VkFence fence);
-typedef VkResult ( *PFN_vkWaitForFences)(VkDevice device, uint32_t fenceCount, const VkFence* pFences, VkBool32 waitAll, uint64_t timeout);
-typedef VkResult ( *PFN_vkCreateSemaphore)(VkDevice device, const VkSemaphoreCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSemaphore* pSemaphore);
-typedef void ( *PFN_vkDestroySemaphore)(VkDevice device, VkSemaphore semaphore, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateEvent)(VkDevice device, const VkEventCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkEvent* pEvent);
-typedef void ( *PFN_vkDestroyEvent)(VkDevice device, VkEvent event, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkGetEventStatus)(VkDevice device, VkEvent event);
-typedef VkResult ( *PFN_vkSetEvent)(VkDevice device, VkEvent event);
-typedef VkResult ( *PFN_vkResetEvent)(VkDevice device, VkEvent event);
-typedef VkResult ( *PFN_vkCreateQueryPool)(VkDevice device, const VkQueryPoolCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkQueryPool* pQueryPool);
-typedef void ( *PFN_vkDestroyQueryPool)(VkDevice device, VkQueryPool queryPool, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkGetQueryPoolResults)(VkDevice device, VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount, size_t dataSize, void* pData, VkDeviceSize stride, VkQueryResultFlags flags);
-typedef VkResult ( *PFN_vkCreateBuffer)(VkDevice device, const VkBufferCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkBuffer* pBuffer);
-typedef void ( *PFN_vkDestroyBuffer)(VkDevice device, VkBuffer buffer, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateBufferView)(VkDevice device, const VkBufferViewCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkBufferView* pView);
-typedef void ( *PFN_vkDestroyBufferView)(VkDevice device, VkBufferView bufferView, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateImage)(VkDevice device, const VkImageCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkImage* pImage);
-typedef void ( *PFN_vkDestroyImage)(VkDevice device, VkImage image, const VkAllocationCallbacks* pAllocator);
-typedef void ( *PFN_vkGetImageSubresourceLayout)(VkDevice device, VkImage image, const VkImageSubresource* pSubresource, VkSubresourceLayout* pLayout);
-typedef VkResult ( *PFN_vkCreateImageView)(VkDevice device, const VkImageViewCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkImageView* pView);
-typedef void ( *PFN_vkDestroyImageView)(VkDevice device, VkImageView imageView, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateShaderModule)(VkDevice device, const VkShaderModuleCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkShaderModule* pShaderModule);
-typedef void ( *PFN_vkDestroyShaderModule)(VkDevice device, VkShaderModule shaderModule, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreatePipelineCache)(VkDevice device, const VkPipelineCacheCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkPipelineCache* pPipelineCache);
-typedef void ( *PFN_vkDestroyPipelineCache)(VkDevice device, VkPipelineCache pipelineCache, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkGetPipelineCacheData)(VkDevice device, VkPipelineCache pipelineCache, size_t* pDataSize, void* pData);
-typedef VkResult ( *PFN_vkMergePipelineCaches)(VkDevice device, VkPipelineCache dstCache, uint32_t srcCacheCount, const VkPipelineCache* pSrcCaches);
-typedef VkResult ( *PFN_vkCreateGraphicsPipelines)(VkDevice device, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkGraphicsPipelineCreateInfo* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines);
-typedef VkResult ( *PFN_vkCreateComputePipelines)(VkDevice device, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkComputePipelineCreateInfo* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines);
-typedef void ( *PFN_vkDestroyPipeline)(VkDevice device, VkPipeline pipeline, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreatePipelineLayout)(VkDevice device, const VkPipelineLayoutCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkPipelineLayout* pPipelineLayout);
-typedef void ( *PFN_vkDestroyPipelineLayout)(VkDevice device, VkPipelineLayout pipelineLayout, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateSampler)(VkDevice device, const VkSamplerCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSampler* pSampler);
-typedef void ( *PFN_vkDestroySampler)(VkDevice device, VkSampler sampler, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateDescriptorSetLayout)(VkDevice device, const VkDescriptorSetLayoutCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorSetLayout* pSetLayout);
-typedef void ( *PFN_vkDestroyDescriptorSetLayout)(VkDevice device, VkDescriptorSetLayout descriptorSetLayout, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateDescriptorPool)(VkDevice device, const VkDescriptorPoolCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorPool* pDescriptorPool);
-typedef void ( *PFN_vkDestroyDescriptorPool)(VkDevice device, VkDescriptorPool descriptorPool, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkResetDescriptorPool)(VkDevice device, VkDescriptorPool descriptorPool, VkDescriptorPoolResetFlags flags);
-typedef VkResult ( *PFN_vkAllocateDescriptorSets)(VkDevice device, const VkDescriptorSetAllocateInfo* pAllocateInfo, VkDescriptorSet* pDescriptorSets);
-typedef VkResult ( *PFN_vkFreeDescriptorSets)(VkDevice device, VkDescriptorPool descriptorPool, uint32_t descriptorSetCount, const VkDescriptorSet* pDescriptorSets);
-typedef void ( *PFN_vkUpdateDescriptorSets)(VkDevice device, uint32_t descriptorWriteCount, const VkWriteDescriptorSet* pDescriptorWrites, uint32_t descriptorCopyCount, const VkCopyDescriptorSet* pDescriptorCopies);
-typedef VkResult ( *PFN_vkCreateFramebuffer)(VkDevice device, const VkFramebufferCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkFramebuffer* pFramebuffer);
-typedef void ( *PFN_vkDestroyFramebuffer)(VkDevice device, VkFramebuffer framebuffer, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateRenderPass)(VkDevice device, const VkRenderPassCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkRenderPass* pRenderPass);
-typedef void ( *PFN_vkDestroyRenderPass)(VkDevice device, VkRenderPass renderPass, const VkAllocationCallbacks* pAllocator);
-typedef void ( *PFN_vkGetRenderAreaGranularity)(VkDevice device, VkRenderPass renderPass, VkExtent2D* pGranularity);
-typedef VkResult ( *PFN_vkCreateCommandPool)(VkDevice device, const VkCommandPoolCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkCommandPool* pCommandPool);
-typedef void ( *PFN_vkDestroyCommandPool)(VkDevice device, VkCommandPool commandPool, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkResetCommandPool)(VkDevice device, VkCommandPool commandPool, VkCommandPoolResetFlags flags);
-typedef VkResult ( *PFN_vkAllocateCommandBuffers)(VkDevice device, const VkCommandBufferAllocateInfo* pAllocateInfo, VkCommandBuffer* pCommandBuffers);
-typedef void ( *PFN_vkFreeCommandBuffers)(VkDevice device, VkCommandPool commandPool, uint32_t commandBufferCount, const VkCommandBuffer* pCommandBuffers);
-typedef VkResult ( *PFN_vkBeginCommandBuffer)(VkCommandBuffer commandBuffer, const VkCommandBufferBeginInfo* pBeginInfo);
-typedef VkResult ( *PFN_vkEndCommandBuffer)(VkCommandBuffer commandBuffer);
-typedef VkResult ( *PFN_vkResetCommandBuffer)(VkCommandBuffer commandBuffer, VkCommandBufferResetFlags flags);
-typedef void ( *PFN_vkCmdBindPipeline)(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline);
-typedef void ( *PFN_vkCmdSetViewport)(VkCommandBuffer commandBuffer, uint32_t firstViewport, uint32_t viewportCount, const VkViewport* pViewports);
-typedef void ( *PFN_vkCmdSetScissor)(VkCommandBuffer commandBuffer, uint32_t firstScissor, uint32_t scissorCount, const VkRect2D* pScissors);
-typedef void ( *PFN_vkCmdSetLineWidth)(VkCommandBuffer commandBuffer, float lineWidth);
-typedef void ( *PFN_vkCmdSetDepthBias)(VkCommandBuffer commandBuffer, float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor);
-typedef void ( *PFN_vkCmdSetBlendConstants)(VkCommandBuffer commandBuffer, const float blendConstants[4]);
-typedef void ( *PFN_vkCmdSetDepthBounds)(VkCommandBuffer commandBuffer, float minDepthBounds, float maxDepthBounds);
-typedef void ( *PFN_vkCmdSetStencilCompareMask)(VkCommandBuffer commandBuffer, VkStencilFaceFlags faceMask, uint32_t compareMask);
-typedef void ( *PFN_vkCmdSetStencilWriteMask)(VkCommandBuffer commandBuffer, VkStencilFaceFlags faceMask, uint32_t writeMask);
-typedef void ( *PFN_vkCmdSetStencilReference)(VkCommandBuffer commandBuffer, VkStencilFaceFlags faceMask, uint32_t reference);
-typedef void ( *PFN_vkCmdBindDescriptorSets)(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t firstSet, uint32_t descriptorSetCount, const VkDescriptorSet* pDescriptorSets, uint32_t dynamicOffsetCount, const uint32_t* pDynamicOffsets);
-typedef void ( *PFN_vkCmdBindIndexBuffer)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkIndexType indexType);
-typedef void ( *PFN_vkCmdBindVertexBuffers)(VkCommandBuffer commandBuffer, uint32_t firstBinding, uint32_t bindingCount, const VkBuffer* pBuffers, const VkDeviceSize* pOffsets);
-typedef void ( *PFN_vkCmdDraw)(VkCommandBuffer commandBuffer, uint32_t vertexCount, uint32_t instanceCount, uint32_t firstVertex, uint32_t firstInstance);
-typedef void ( *PFN_vkCmdDrawIndexed)(VkCommandBuffer commandBuffer, uint32_t indexCount, uint32_t instanceCount, uint32_t firstIndex, int32_t vertexOffset, uint32_t firstInstance);
-typedef void ( *PFN_vkCmdDrawIndirect)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, uint32_t drawCount, uint32_t stride);
-typedef void ( *PFN_vkCmdDrawIndexedIndirect)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, uint32_t drawCount, uint32_t stride);
-typedef void ( *PFN_vkCmdDispatch)(VkCommandBuffer commandBuffer, uint32_t groupCountX, uint32_t groupCountY, uint32_t groupCountZ);
-typedef void ( *PFN_vkCmdDispatchIndirect)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset);
-typedef void ( *PFN_vkCmdCopyBuffer)(VkCommandBuffer commandBuffer, VkBuffer srcBuffer, VkBuffer dstBuffer, uint32_t regionCount, const VkBufferCopy* pRegions);
-typedef void ( *PFN_vkCmdCopyImage)(VkCommandBuffer commandBuffer, VkImage srcImage, VkImageLayout srcImageLayout, VkImage dstImage, VkImageLayout dstImageLayout, uint32_t regionCount, const VkImageCopy* pRegions);
-typedef void ( *PFN_vkCmdBlitImage)(VkCommandBuffer commandBuffer, VkImage srcImage, VkImageLayout srcImageLayout, VkImage dstImage, VkImageLayout dstImageLayout, uint32_t regionCount, const VkImageBlit* pRegions, VkFilter filter);
-typedef void ( *PFN_vkCmdCopyBufferToImage)(VkCommandBuffer commandBuffer, VkBuffer srcBuffer, VkImage dstImage, VkImageLayout dstImageLayout, uint32_t regionCount, const VkBufferImageCopy* pRegions);
-typedef void ( *PFN_vkCmdCopyImageToBuffer)(VkCommandBuffer commandBuffer, VkImage srcImage, VkImageLayout srcImageLayout, VkBuffer dstBuffer, uint32_t regionCount, const VkBufferImageCopy* pRegions);
-typedef void ( *PFN_vkCmdUpdateBuffer)(VkCommandBuffer commandBuffer, VkBuffer dstBuffer, VkDeviceSize dstOffset, VkDeviceSize dataSize, const void* pData);
-typedef void ( *PFN_vkCmdFillBuffer)(VkCommandBuffer commandBuffer, VkBuffer dstBuffer, VkDeviceSize dstOffset, VkDeviceSize size, uint32_t data);
-typedef void ( *PFN_vkCmdClearColorImage)(VkCommandBuffer commandBuffer, VkImage image, VkImageLayout imageLayout, const VkClearColorValue* pColor, uint32_t rangeCount, const VkImageSubresourceRange* pRanges);
-typedef void ( *PFN_vkCmdClearDepthStencilImage)(VkCommandBuffer commandBuffer, VkImage image, VkImageLayout imageLayout, const VkClearDepthStencilValue* pDepthStencil, uint32_t rangeCount, const VkImageSubresourceRange* pRanges);
-typedef void ( *PFN_vkCmdClearAttachments)(VkCommandBuffer commandBuffer, uint32_t attachmentCount, const VkClearAttachment* pAttachments, uint32_t rectCount, const VkClearRect* pRects);
-typedef void ( *PFN_vkCmdResolveImage)(VkCommandBuffer commandBuffer, VkImage srcImage, VkImageLayout srcImageLayout, VkImage dstImage, VkImageLayout dstImageLayout, uint32_t regionCount, const VkImageResolve* pRegions);
-typedef void ( *PFN_vkCmdSetEvent)(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags stageMask);
-typedef void ( *PFN_vkCmdResetEvent)(VkCommandBuffer commandBuffer, VkEvent event, VkPipelineStageFlags stageMask);
-typedef void ( *PFN_vkCmdWaitEvents)(VkCommandBuffer commandBuffer, uint32_t eventCount, const VkEvent* pEvents, VkPipelineStageFlags srcStageMask, VkPipelineStageFlags dstStageMask, uint32_t memoryBarrierCount, const VkMemoryBarrier* pMemoryBarriers, uint32_t bufferMemoryBarrierCount, const VkBufferMemoryBarrier* pBufferMemoryBarriers, uint32_t imageMemoryBarrierCount, const VkImageMemoryBarrier* pImageMemoryBarriers);
-typedef void ( *PFN_vkCmdPipelineBarrier)(VkCommandBuffer commandBuffer, VkPipelineStageFlags srcStageMask, VkPipelineStageFlags dstStageMask, VkDependencyFlags dependencyFlags, uint32_t memoryBarrierCount, const VkMemoryBarrier* pMemoryBarriers, uint32_t bufferMemoryBarrierCount, const VkBufferMemoryBarrier* pBufferMemoryBarriers, uint32_t imageMemoryBarrierCount, const VkImageMemoryBarrier* pImageMemoryBarriers);
-typedef void ( *PFN_vkCmdBeginQuery)(VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t query, VkQueryControlFlags flags);
-typedef void ( *PFN_vkCmdEndQuery)(VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t query);
-typedef void ( *PFN_vkCmdResetQueryPool)(VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount);
-typedef void ( *PFN_vkCmdWriteTimestamp)(VkCommandBuffer commandBuffer, VkPipelineStageFlagBits pipelineStage, VkQueryPool queryPool, uint32_t query);
-typedef void ( *PFN_vkCmdCopyQueryPoolResults)(VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount, VkBuffer dstBuffer, VkDeviceSize dstOffset, VkDeviceSize stride, VkQueryResultFlags flags);
-typedef void ( *PFN_vkCmdPushConstants)(VkCommandBuffer commandBuffer, VkPipelineLayout layout, VkShaderStageFlags stageFlags, uint32_t offset, uint32_t size, const void* pValues);
-typedef void ( *PFN_vkCmdBeginRenderPass)(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, VkSubpassContents contents);
-typedef void ( *PFN_vkCmdNextSubpass)(VkCommandBuffer commandBuffer, VkSubpassContents contents);
-typedef void ( *PFN_vkCmdEndRenderPass)(VkCommandBuffer commandBuffer);
-typedef void ( *PFN_vkCmdExecuteCommands)(VkCommandBuffer commandBuffer, uint32_t commandBufferCount, const VkCommandBuffer* pCommandBuffers);
-
-
- VkResult vkCreateInstance(
-    const VkInstanceCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkInstance* pInstance);
-
- void vkDestroyInstance(
-    VkInstance instance,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkEnumeratePhysicalDevices(
-    VkInstance instance,
-    uint32_t* pPhysicalDeviceCount,
-    VkPhysicalDevice* pPhysicalDevices);
-
- void vkGetPhysicalDeviceFeatures(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceFeatures* pFeatures);
-
- void vkGetPhysicalDeviceFormatProperties(
-    VkPhysicalDevice physicalDevice,
-    VkFormat format,
-    VkFormatProperties* pFormatProperties);
-
- VkResult vkGetPhysicalDeviceImageFormatProperties(
-    VkPhysicalDevice physicalDevice,
-    VkFormat format,
-    VkImageType type,
-    VkImageTiling tiling,
-    VkImageUsageFlags usage,
-    VkImageCreateFlags flags,
-    VkImageFormatProperties* pImageFormatProperties);
-
- void vkGetPhysicalDeviceProperties(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceProperties* pProperties);
-
- void vkGetPhysicalDeviceQueueFamilyProperties(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pQueueFamilyPropertyCount,
-    VkQueueFamilyProperties* pQueueFamilyProperties);
-
- void vkGetPhysicalDeviceMemoryProperties(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceMemoryProperties* pMemoryProperties);
-
- PFN_vkVoidFunction vkGetInstanceProcAddr(
-    VkInstance instance,
-    const char* pName);
-
- PFN_vkVoidFunction vkGetDeviceProcAddr(
-    VkDevice device,
-    const char* pName);
-
- VkResult vkCreateDevice(
-    VkPhysicalDevice physicalDevice,
-    const VkDeviceCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDevice* pDevice);
-
- void vkDestroyDevice(
-    VkDevice device,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkEnumerateInstanceExtensionProperties(
-    const char* pLayerName,
-    uint32_t* pPropertyCount,
-    VkExtensionProperties* pProperties);
-
- VkResult vkEnumerateDeviceExtensionProperties(
-    VkPhysicalDevice physicalDevice,
-    const char* pLayerName,
-    uint32_t* pPropertyCount,
-    VkExtensionProperties* pProperties);
-
- VkResult vkEnumerateInstanceLayerProperties(
-    uint32_t* pPropertyCount,
-    VkLayerProperties* pProperties);
-
- VkResult vkEnumerateDeviceLayerProperties(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pPropertyCount,
-    VkLayerProperties* pProperties);
-
- void vkGetDeviceQueue(
-    VkDevice device,
-    uint32_t queueFamilyIndex,
-    uint32_t queueIndex,
-    VkQueue* pQueue);
-
- VkResult vkQueueSubmit(
-    VkQueue queue,
-    uint32_t submitCount,
-    const VkSubmitInfo* pSubmits,
-    VkFence fence);
-
- VkResult vkQueueWaitIdle(
-    VkQueue queue);
-
- VkResult vkDeviceWaitIdle(
-    VkDevice device);
-
- VkResult vkAllocateMemory(
-    VkDevice device,
-    const VkMemoryAllocateInfo* pAllocateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDeviceMemory* pMemory);
-
- void vkFreeMemory(
-    VkDevice device,
-    VkDeviceMemory memory,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkMapMemory(
-    VkDevice device,
-    VkDeviceMemory memory,
-    VkDeviceSize offset,
-    VkDeviceSize size,
-    VkMemoryMapFlags flags,
-    void** ppData);
-
- void vkUnmapMemory(
-    VkDevice device,
-    VkDeviceMemory memory);
-
- VkResult vkFlushMappedMemoryRanges(
-    VkDevice device,
-    uint32_t memoryRangeCount,
-    const VkMappedMemoryRange* pMemoryRanges);
-
- VkResult vkInvalidateMappedMemoryRanges(
-    VkDevice device,
-    uint32_t memoryRangeCount,
-    const VkMappedMemoryRange* pMemoryRanges);
-
- void vkGetDeviceMemoryCommitment(
-    VkDevice device,
-    VkDeviceMemory memory,
-    VkDeviceSize* pCommittedMemoryInBytes);
-
- VkResult vkBindBufferMemory(
-    VkDevice device,
-    VkBuffer buffer,
-    VkDeviceMemory memory,
-    VkDeviceSize memoryOffset);
-
- VkResult vkBindImageMemory(
-    VkDevice device,
-    VkImage image,
-    VkDeviceMemory memory,
-    VkDeviceSize memoryOffset);
-
- void vkGetBufferMemoryRequirements(
-    VkDevice device,
-    VkBuffer buffer,
-    VkMemoryRequirements* pMemoryRequirements);
-
- void vkGetImageMemoryRequirements(
-    VkDevice device,
-    VkImage image,
-    VkMemoryRequirements* pMemoryRequirements);
-
- void vkGetImageSparseMemoryRequirements(
-    VkDevice device,
-    VkImage image,
-    uint32_t* pSparseMemoryRequirementCount,
-    VkSparseImageMemoryRequirements* pSparseMemoryRequirements);
-
- void vkGetPhysicalDeviceSparseImageFormatProperties(
-    VkPhysicalDevice physicalDevice,
-    VkFormat format,
-    VkImageType type,
-    VkSampleCountFlagBits samples,
-    VkImageUsageFlags usage,
-    VkImageTiling tiling,
-    uint32_t* pPropertyCount,
-    VkSparseImageFormatProperties* pProperties);
-
- VkResult vkQueueBindSparse(
-    VkQueue queue,
-    uint32_t bindInfoCount,
-    const VkBindSparseInfo* pBindInfo,
-    VkFence fence);
-
- VkResult vkCreateFence(
-    VkDevice device,
-    const VkFenceCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkFence* pFence);
-
- void vkDestroyFence(
-    VkDevice device,
-    VkFence fence,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkResetFences(
-    VkDevice device,
-    uint32_t fenceCount,
-    const VkFence* pFences);
-
- VkResult vkGetFenceStatus(
-    VkDevice device,
-    VkFence fence);
-
- VkResult vkWaitForFences(
-    VkDevice device,
-    uint32_t fenceCount,
-    const VkFence* pFences,
-    VkBool32 waitAll,
-    uint64_t timeout);
-
- VkResult vkCreateSemaphore(
-    VkDevice device,
-    const VkSemaphoreCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkSemaphore* pSemaphore);
-
- void vkDestroySemaphore(
-    VkDevice device,
-    VkSemaphore semaphore,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateEvent(
-    VkDevice device,
-    const VkEventCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkEvent* pEvent);
-
- void vkDestroyEvent(
-    VkDevice device,
-    VkEvent event,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkGetEventStatus(
-    VkDevice device,
-    VkEvent event);
-
- VkResult vkSetEvent(
-    VkDevice device,
-    VkEvent event);
-
- VkResult vkResetEvent(
-    VkDevice device,
-    VkEvent event);
-
- VkResult vkCreateQueryPool(
-    VkDevice device,
-    const VkQueryPoolCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkQueryPool* pQueryPool);
-
- void vkDestroyQueryPool(
-    VkDevice device,
-    VkQueryPool queryPool,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkGetQueryPoolResults(
-    VkDevice device,
-    VkQueryPool queryPool,
-    uint32_t firstQuery,
-    uint32_t queryCount,
-    size_t dataSize,
-    void* pData,
-    VkDeviceSize stride,
-    VkQueryResultFlags flags);
-
- VkResult vkCreateBuffer(
-    VkDevice device,
-    const VkBufferCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkBuffer* pBuffer);
-
- void vkDestroyBuffer(
-    VkDevice device,
-    VkBuffer buffer,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateBufferView(
-    VkDevice device,
-    const VkBufferViewCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkBufferView* pView);
-
- void vkDestroyBufferView(
-    VkDevice device,
-    VkBufferView bufferView,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateImage(
-    VkDevice device,
-    const VkImageCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkImage* pImage);
-
- void vkDestroyImage(
-    VkDevice device,
-    VkImage image,
-    const VkAllocationCallbacks* pAllocator);
-
- void vkGetImageSubresourceLayout(
-    VkDevice device,
-    VkImage image,
-    const VkImageSubresource* pSubresource,
-    VkSubresourceLayout* pLayout);
-
- VkResult vkCreateImageView(
-    VkDevice device,
-    const VkImageViewCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkImageView* pView);
-
- void vkDestroyImageView(
-    VkDevice device,
-    VkImageView imageView,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateShaderModule(
-    VkDevice device,
-    const VkShaderModuleCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkShaderModule* pShaderModule);
-
- void vkDestroyShaderModule(
-    VkDevice device,
-    VkShaderModule shaderModule,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreatePipelineCache(
-    VkDevice device,
-    const VkPipelineCacheCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkPipelineCache* pPipelineCache);
-
- void vkDestroyPipelineCache(
-    VkDevice device,
-    VkPipelineCache pipelineCache,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkGetPipelineCacheData(
-    VkDevice device,
-    VkPipelineCache pipelineCache,
-    size_t* pDataSize,
-    void* pData);
-
- VkResult vkMergePipelineCaches(
-    VkDevice device,
-    VkPipelineCache dstCache,
-    uint32_t srcCacheCount,
-    const VkPipelineCache* pSrcCaches);
-
- VkResult vkCreateGraphicsPipelines(
-    VkDevice device,
-    VkPipelineCache pipelineCache,
-    uint32_t createInfoCount,
-    const VkGraphicsPipelineCreateInfo* pCreateInfos,
-    const VkAllocationCallbacks* pAllocator,
-    VkPipeline* pPipelines);
-
- VkResult vkCreateComputePipelines(
-    VkDevice device,
-    VkPipelineCache pipelineCache,
-    uint32_t createInfoCount,
-    const VkComputePipelineCreateInfo* pCreateInfos,
-    const VkAllocationCallbacks* pAllocator,
-    VkPipeline* pPipelines);
-
- void vkDestroyPipeline(
-    VkDevice device,
-    VkPipeline pipeline,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreatePipelineLayout(
-    VkDevice device,
-    const VkPipelineLayoutCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkPipelineLayout* pPipelineLayout);
-
- void vkDestroyPipelineLayout(
-    VkDevice device,
-    VkPipelineLayout pipelineLayout,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateSampler(
-    VkDevice device,
-    const VkSamplerCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkSampler* pSampler);
-
- void vkDestroySampler(
-    VkDevice device,
-    VkSampler sampler,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateDescriptorSetLayout(
-    VkDevice device,
-    const VkDescriptorSetLayoutCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDescriptorSetLayout* pSetLayout);
-
- void vkDestroyDescriptorSetLayout(
-    VkDevice device,
-    VkDescriptorSetLayout descriptorSetLayout,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateDescriptorPool(
-    VkDevice device,
-    const VkDescriptorPoolCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDescriptorPool* pDescriptorPool);
-
- void vkDestroyDescriptorPool(
-    VkDevice device,
-    VkDescriptorPool descriptorPool,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkResetDescriptorPool(
-    VkDevice device,
-    VkDescriptorPool descriptorPool,
-    VkDescriptorPoolResetFlags flags);
-
- VkResult vkAllocateDescriptorSets(
-    VkDevice device,
-    const VkDescriptorSetAllocateInfo* pAllocateInfo,
-    VkDescriptorSet* pDescriptorSets);
-
- VkResult vkFreeDescriptorSets(
-    VkDevice device,
-    VkDescriptorPool descriptorPool,
-    uint32_t descriptorSetCount,
-    const VkDescriptorSet* pDescriptorSets);
-
- void vkUpdateDescriptorSets(
-    VkDevice device,
-    uint32_t descriptorWriteCount,
-    const VkWriteDescriptorSet* pDescriptorWrites,
-    uint32_t descriptorCopyCount,
-    const VkCopyDescriptorSet* pDescriptorCopies);
-
- VkResult vkCreateFramebuffer(
-    VkDevice device,
-    const VkFramebufferCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkFramebuffer* pFramebuffer);
-
- void vkDestroyFramebuffer(
-    VkDevice device,
-    VkFramebuffer framebuffer,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateRenderPass(
-    VkDevice device,
-    const VkRenderPassCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkRenderPass* pRenderPass);
-
- void vkDestroyRenderPass(
-    VkDevice device,
-    VkRenderPass renderPass,
-    const VkAllocationCallbacks* pAllocator);
-
- void vkGetRenderAreaGranularity(
-    VkDevice device,
-    VkRenderPass renderPass,
-    VkExtent2D* pGranularity);
-
- VkResult vkCreateCommandPool(
-    VkDevice device,
-    const VkCommandPoolCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkCommandPool* pCommandPool);
-
- void vkDestroyCommandPool(
-    VkDevice device,
-    VkCommandPool commandPool,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkResetCommandPool(
-    VkDevice device,
-    VkCommandPool commandPool,
-    VkCommandPoolResetFlags flags);
-
- VkResult vkAllocateCommandBuffers(
-    VkDevice device,
-    const VkCommandBufferAllocateInfo* pAllocateInfo,
-    VkCommandBuffer* pCommandBuffers);
-
- void vkFreeCommandBuffers(
-    VkDevice device,
-    VkCommandPool commandPool,
-    uint32_t commandBufferCount,
-    const VkCommandBuffer* pCommandBuffers);
-
- VkResult vkBeginCommandBuffer(
-    VkCommandBuffer commandBuffer,
-    const VkCommandBufferBeginInfo* pBeginInfo);
-
- VkResult vkEndCommandBuffer(
-    VkCommandBuffer commandBuffer);
-
- VkResult vkResetCommandBuffer(
-    VkCommandBuffer commandBuffer,
-    VkCommandBufferResetFlags flags);
-
- void vkCmdBindPipeline(
-    VkCommandBuffer commandBuffer,
-    VkPipelineBindPoint pipelineBindPoint,
-    VkPipeline pipeline);
-
- void vkCmdSetViewport(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstViewport,
-    uint32_t viewportCount,
-    const VkViewport* pViewports);
-
- void vkCmdSetScissor(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstScissor,
-    uint32_t scissorCount,
-    const VkRect2D* pScissors);
-
- void vkCmdSetLineWidth(
-    VkCommandBuffer commandBuffer,
-    float lineWidth);
-
- void vkCmdSetDepthBias(
-    VkCommandBuffer commandBuffer,
-    float depthBiasConstantFactor,
-    float depthBiasClamp,
-    float depthBiasSlopeFactor);
-
- void vkCmdSetBlendConstants(
-    VkCommandBuffer commandBuffer,
-    const float blendConstants[4]);
-
- void vkCmdSetDepthBounds(
-    VkCommandBuffer commandBuffer,
-    float minDepthBounds,
-    float maxDepthBounds);
-
- void vkCmdSetStencilCompareMask(
-    VkCommandBuffer commandBuffer,
-    VkStencilFaceFlags faceMask,
-    uint32_t compareMask);
-
- void vkCmdSetStencilWriteMask(
-    VkCommandBuffer commandBuffer,
-    VkStencilFaceFlags faceMask,
-    uint32_t writeMask);
-
- void vkCmdSetStencilReference(
-    VkCommandBuffer commandBuffer,
-    VkStencilFaceFlags faceMask,
-    uint32_t reference);
-
- void vkCmdBindDescriptorSets(
-    VkCommandBuffer commandBuffer,
-    VkPipelineBindPoint pipelineBindPoint,
-    VkPipelineLayout layout,
-    uint32_t firstSet,
-    uint32_t descriptorSetCount,
-    const VkDescriptorSet* pDescriptorSets,
-    uint32_t dynamicOffsetCount,
-    const uint32_t* pDynamicOffsets);
-
- void vkCmdBindIndexBuffer(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    VkIndexType indexType);
-
- void vkCmdBindVertexBuffers(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstBinding,
-    uint32_t bindingCount,
-    const VkBuffer* pBuffers,
-    const VkDeviceSize* pOffsets);
-
- void vkCmdDraw(
-    VkCommandBuffer commandBuffer,
-    uint32_t vertexCount,
-    uint32_t instanceCount,
-    uint32_t firstVertex,
-    uint32_t firstInstance);
-
- void vkCmdDrawIndexed(
-    VkCommandBuffer commandBuffer,
-    uint32_t indexCount,
-    uint32_t instanceCount,
-    uint32_t firstIndex,
-    int32_t vertexOffset,
-    uint32_t firstInstance);
-
- void vkCmdDrawIndirect(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    uint32_t drawCount,
-    uint32_t stride);
-
- void vkCmdDrawIndexedIndirect(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    uint32_t drawCount,
-    uint32_t stride);
-
- void vkCmdDispatch(
-    VkCommandBuffer commandBuffer,
-    uint32_t groupCountX,
-    uint32_t groupCountY,
-    uint32_t groupCountZ);
-
- void vkCmdDispatchIndirect(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset);
-
- void vkCmdCopyBuffer(
-    VkCommandBuffer commandBuffer,
-    VkBuffer srcBuffer,
-    VkBuffer dstBuffer,
-    uint32_t regionCount,
-    const VkBufferCopy* pRegions);
-
- void vkCmdCopyImage(
-    VkCommandBuffer commandBuffer,
-    VkImage srcImage,
-    VkImageLayout srcImageLayout,
-    VkImage dstImage,
-    VkImageLayout dstImageLayout,
-    uint32_t regionCount,
-    const VkImageCopy* pRegions);
-
- void vkCmdBlitImage(
-    VkCommandBuffer commandBuffer,
-    VkImage srcImage,
-    VkImageLayout srcImageLayout,
-    VkImage dstImage,
-    VkImageLayout dstImageLayout,
-    uint32_t regionCount,
-    const VkImageBlit* pRegions,
-    VkFilter filter);
-
- void vkCmdCopyBufferToImage(
-    VkCommandBuffer commandBuffer,
-    VkBuffer srcBuffer,
-    VkImage dstImage,
-    VkImageLayout dstImageLayout,
-    uint32_t regionCount,
-    const VkBufferImageCopy* pRegions);
-
- void vkCmdCopyImageToBuffer(
-    VkCommandBuffer commandBuffer,
-    VkImage srcImage,
-    VkImageLayout srcImageLayout,
-    VkBuffer dstBuffer,
-    uint32_t regionCount,
-    const VkBufferImageCopy* pRegions);
-
- void vkCmdUpdateBuffer(
-    VkCommandBuffer commandBuffer,
-    VkBuffer dstBuffer,
-    VkDeviceSize dstOffset,
-    VkDeviceSize dataSize,
-    const void* pData);
-
- void vkCmdFillBuffer(
-    VkCommandBuffer commandBuffer,
-    VkBuffer dstBuffer,
-    VkDeviceSize dstOffset,
-    VkDeviceSize size,
-    uint32_t data);
-
- void vkCmdClearColorImage(
-    VkCommandBuffer commandBuffer,
-    VkImage image,
-    VkImageLayout imageLayout,
-    const VkClearColorValue* pColor,
-    uint32_t rangeCount,
-    const VkImageSubresourceRange* pRanges);
-
- void vkCmdClearDepthStencilImage(
-    VkCommandBuffer commandBuffer,
-    VkImage image,
-    VkImageLayout imageLayout,
-    const VkClearDepthStencilValue* pDepthStencil,
-    uint32_t rangeCount,
-    const VkImageSubresourceRange* pRanges);
-
- void vkCmdClearAttachments(
-    VkCommandBuffer commandBuffer,
-    uint32_t attachmentCount,
-    const VkClearAttachment* pAttachments,
-    uint32_t rectCount,
-    const VkClearRect* pRects);
-
- void vkCmdResolveImage(
-    VkCommandBuffer commandBuffer,
-    VkImage srcImage,
-    VkImageLayout srcImageLayout,
-    VkImage dstImage,
-    VkImageLayout dstImageLayout,
-    uint32_t regionCount,
-    const VkImageResolve* pRegions);
-
- void vkCmdSetEvent(
-    VkCommandBuffer commandBuffer,
-    VkEvent event,
-    VkPipelineStageFlags stageMask);
-
- void vkCmdResetEvent(
-    VkCommandBuffer commandBuffer,
-    VkEvent event,
-    VkPipelineStageFlags stageMask);
-
- void vkCmdWaitEvents(
-    VkCommandBuffer commandBuffer,
-    uint32_t eventCount,
-    const VkEvent* pEvents,
-    VkPipelineStageFlags srcStageMask,
-    VkPipelineStageFlags dstStageMask,
-    uint32_t memoryBarrierCount,
-    const VkMemoryBarrier* pMemoryBarriers,
-    uint32_t bufferMemoryBarrierCount,
-    const VkBufferMemoryBarrier* pBufferMemoryBarriers,
-    uint32_t imageMemoryBarrierCount,
-    const VkImageMemoryBarrier* pImageMemoryBarriers);
-
- void vkCmdPipelineBarrier(
-    VkCommandBuffer commandBuffer,
-    VkPipelineStageFlags srcStageMask,
-    VkPipelineStageFlags dstStageMask,
-    VkDependencyFlags dependencyFlags,
-    uint32_t memoryBarrierCount,
-    const VkMemoryBarrier* pMemoryBarriers,
-    uint32_t bufferMemoryBarrierCount,
-    const VkBufferMemoryBarrier* pBufferMemoryBarriers,
-    uint32_t imageMemoryBarrierCount,
-    const VkImageMemoryBarrier* pImageMemoryBarriers);
-
- void vkCmdBeginQuery(
-    VkCommandBuffer commandBuffer,
-    VkQueryPool queryPool,
-    uint32_t query,
-    VkQueryControlFlags flags);
-
- void vkCmdEndQuery(
-    VkCommandBuffer commandBuffer,
-    VkQueryPool queryPool,
-    uint32_t query);
-
- void vkCmdResetQueryPool(
-    VkCommandBuffer commandBuffer,
-    VkQueryPool queryPool,
-    uint32_t firstQuery,
-    uint32_t queryCount);
-
- void vkCmdWriteTimestamp(
-    VkCommandBuffer commandBuffer,
-    VkPipelineStageFlagBits pipelineStage,
-    VkQueryPool queryPool,
-    uint32_t query);
-
- void vkCmdCopyQueryPoolResults(
-    VkCommandBuffer commandBuffer,
-    VkQueryPool queryPool,
-    uint32_t firstQuery,
-    uint32_t queryCount,
-    VkBuffer dstBuffer,
-    VkDeviceSize dstOffset,
-    VkDeviceSize stride,
-    VkQueryResultFlags flags);
-
- void vkCmdPushConstants(
-    VkCommandBuffer commandBuffer,
-    VkPipelineLayout layout,
-    VkShaderStageFlags stageFlags,
-    uint32_t offset,
-    uint32_t size,
-    const void* pValues);
-
- void vkCmdBeginRenderPass(
-    VkCommandBuffer commandBuffer,
-    const VkRenderPassBeginInfo* pRenderPassBegin,
-    VkSubpassContents contents);
-
- void vkCmdNextSubpass(
-    VkCommandBuffer commandBuffer,
-    VkSubpassContents contents);
-
- void vkCmdEndRenderPass(
-    VkCommandBuffer commandBuffer);
-
- void vkCmdExecuteCommands(
-    VkCommandBuffer commandBuffer,
-    uint32_t commandBufferCount,
-    const VkCommandBuffer* pCommandBuffers);
-
-
-
-
-
-
-
-typedef struct VkSamplerYcbcrConversion_T *VkSamplerYcbcrConversion;
-typedef struct VkDescriptorUpdateTemplate_T *VkDescriptorUpdateTemplate;
-
-
-
-
-
-
-typedef enum VkPointClippingBehavior {
-    VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES = 0,
-    VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY = 1,
-    VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR = VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES,
-    VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR = VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY,
-    VK_POINT_CLIPPING_BEHAVIOR_BEGIN_RANGE = VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES,
-    VK_POINT_CLIPPING_BEHAVIOR_END_RANGE = VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY,
-    VK_POINT_CLIPPING_BEHAVIOR_RANGE_SIZE = (VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY - VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES + 1),
-    VK_POINT_CLIPPING_BEHAVIOR_MAX_ENUM = 0x7FFFFFFF
-} VkPointClippingBehavior;
-
-typedef enum VkTessellationDomainOrigin {
-    VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT = 0,
-    VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT = 1,
-    VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR = VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT,
-    VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR = VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT,
-    VK_TESSELLATION_DOMAIN_ORIGIN_BEGIN_RANGE = VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT,
-    VK_TESSELLATION_DOMAIN_ORIGIN_END_RANGE = VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT,
-    VK_TESSELLATION_DOMAIN_ORIGIN_RANGE_SIZE = (VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT - VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT + 1),
-    VK_TESSELLATION_DOMAIN_ORIGIN_MAX_ENUM = 0x7FFFFFFF
-} VkTessellationDomainOrigin;
-
-typedef enum VkSamplerYcbcrModelConversion {
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY = 0,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY = 1,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709 = 2,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601 = 3,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020 = 4,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY_KHR = VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY_KHR = VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709_KHR = VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601_KHR = VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020_KHR = VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_BEGIN_RANGE = VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_END_RANGE = VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020,
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_RANGE_SIZE = (VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020 - VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY + 1),
-    VK_SAMPLER_YCBCR_MODEL_CONVERSION_MAX_ENUM = 0x7FFFFFFF
-} VkSamplerYcbcrModelConversion;
-
-typedef enum VkSamplerYcbcrRange {
-    VK_SAMPLER_YCBCR_RANGE_ITU_FULL = 0,
-    VK_SAMPLER_YCBCR_RANGE_ITU_NARROW = 1,
-    VK_SAMPLER_YCBCR_RANGE_ITU_FULL_KHR = VK_SAMPLER_YCBCR_RANGE_ITU_FULL,
-    VK_SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR = VK_SAMPLER_YCBCR_RANGE_ITU_NARROW,
-    VK_SAMPLER_YCBCR_RANGE_BEGIN_RANGE = VK_SAMPLER_YCBCR_RANGE_ITU_FULL,
-    VK_SAMPLER_YCBCR_RANGE_END_RANGE = VK_SAMPLER_YCBCR_RANGE_ITU_NARROW,
-    VK_SAMPLER_YCBCR_RANGE_RANGE_SIZE = (VK_SAMPLER_YCBCR_RANGE_ITU_NARROW - VK_SAMPLER_YCBCR_RANGE_ITU_FULL + 1),
-    VK_SAMPLER_YCBCR_RANGE_MAX_ENUM = 0x7FFFFFFF
-} VkSamplerYcbcrRange;
-
-typedef enum VkChromaLocation {
-    VK_CHROMA_LOCATION_COSITED_EVEN = 0,
-    VK_CHROMA_LOCATION_MIDPOINT = 1,
-    VK_CHROMA_LOCATION_COSITED_EVEN_KHR = VK_CHROMA_LOCATION_COSITED_EVEN,
-    VK_CHROMA_LOCATION_MIDPOINT_KHR = VK_CHROMA_LOCATION_MIDPOINT,
-    VK_CHROMA_LOCATION_BEGIN_RANGE = VK_CHROMA_LOCATION_COSITED_EVEN,
-    VK_CHROMA_LOCATION_END_RANGE = VK_CHROMA_LOCATION_MIDPOINT,
-    VK_CHROMA_LOCATION_RANGE_SIZE = (VK_CHROMA_LOCATION_MIDPOINT - VK_CHROMA_LOCATION_COSITED_EVEN + 1),
-    VK_CHROMA_LOCATION_MAX_ENUM = 0x7FFFFFFF
-} VkChromaLocation;
-
-typedef enum VkDescriptorUpdateTemplateType {
-    VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET = 0,
-    VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR = 1,
-    VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR = VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET,
-    VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_BEGIN_RANGE = VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET,
-    VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_END_RANGE = VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET,
-    VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_RANGE_SIZE = (VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET - VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET + 1),
-    VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_MAX_ENUM = 0x7FFFFFFF
-} VkDescriptorUpdateTemplateType;
-
-
-typedef enum VkSubgroupFeatureFlagBits {
-    VK_SUBGROUP_FEATURE_BASIC_BIT = 0x00000001,
-    VK_SUBGROUP_FEATURE_VOTE_BIT = 0x00000002,
-    VK_SUBGROUP_FEATURE_ARITHMETIC_BIT = 0x00000004,
-    VK_SUBGROUP_FEATURE_BALLOT_BIT = 0x00000008,
-    VK_SUBGROUP_FEATURE_SHUFFLE_BIT = 0x00000010,
-    VK_SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT = 0x00000020,
-    VK_SUBGROUP_FEATURE_CLUSTERED_BIT = 0x00000040,
-    VK_SUBGROUP_FEATURE_QUAD_BIT = 0x00000080,
-    VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV = 0x00000100,
-    VK_SUBGROUP_FEATURE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkSubgroupFeatureFlagBits;
-typedef VkFlags VkSubgroupFeatureFlags;
-
-typedef enum VkPeerMemoryFeatureFlagBits {
-    VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT = 0x00000001,
-    VK_PEER_MEMORY_FEATURE_COPY_DST_BIT = 0x00000002,
-    VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT = 0x00000004,
-    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT = 0x00000008,
-    VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR = VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT,
-    VK_PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_COPY_DST_BIT,
-    VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT,
-    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT,
-    VK_PEER_MEMORY_FEATURE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkPeerMemoryFeatureFlagBits;
-typedef VkFlags VkPeerMemoryFeatureFlags;
-
-typedef enum VkMemoryAllocateFlagBits {
-    VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT = 0x00000001,
-    VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR = VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT,
-    VK_MEMORY_ALLOCATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkMemoryAllocateFlagBits;
-typedef VkFlags VkMemoryAllocateFlags;
-typedef VkFlags VkCommandPoolTrimFlags;
-typedef VkFlags VkDescriptorUpdateTemplateCreateFlags;
-
-typedef enum VkExternalMemoryHandleTypeFlagBits {
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT = 0x00000008,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT = 0x00000010,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT = 0x00000020,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT = 0x00000040,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT = 0x00000200,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID = 0x00000400,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT = 0x00000080,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT = 0x00000100,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR = VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR = VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR = VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR = VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkExternalMemoryHandleTypeFlagBits;
-typedef VkFlags VkExternalMemoryHandleTypeFlags;
-
-typedef enum VkExternalMemoryFeatureFlagBits {
-    VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT = 0x00000001,
-    VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT = 0x00000002,
-    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT = 0x00000004,
-    VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT,
-    VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT,
-    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT,
-    VK_EXTERNAL_MEMORY_FEATURE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkExternalMemoryFeatureFlagBits;
-typedef VkFlags VkExternalMemoryFeatureFlags;
-
-typedef enum VkExternalFenceHandleTypeFlagBits {
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT = 0x00000008,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT,
-    VK_EXTERNAL_FENCE_HANDLE_TYPE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkExternalFenceHandleTypeFlagBits;
-typedef VkFlags VkExternalFenceHandleTypeFlags;
-
-typedef enum VkExternalFenceFeatureFlagBits {
-    VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT = 0x00000001,
-    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT = 0x00000002,
-    VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT,
-    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT,
-    VK_EXTERNAL_FENCE_FEATURE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkExternalFenceFeatureFlagBits;
-typedef VkFlags VkExternalFenceFeatureFlags;
-
-typedef enum VkFenceImportFlagBits {
-    VK_FENCE_IMPORT_TEMPORARY_BIT = 0x00000001,
-    VK_FENCE_IMPORT_TEMPORARY_BIT_KHR = VK_FENCE_IMPORT_TEMPORARY_BIT,
-    VK_FENCE_IMPORT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkFenceImportFlagBits;
-typedef VkFlags VkFenceImportFlags;
-
-typedef enum VkSemaphoreImportFlagBits {
-    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT = 0x00000001,
-    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR = VK_SEMAPHORE_IMPORT_TEMPORARY_BIT,
-    VK_SEMAPHORE_IMPORT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkSemaphoreImportFlagBits;
-typedef VkFlags VkSemaphoreImportFlags;
-
-typedef enum VkExternalSemaphoreHandleTypeFlagBits {
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT = 0x00000008,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT = 0x00000010,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR = VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR = VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR = VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR = VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR = VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT,
-    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkExternalSemaphoreHandleTypeFlagBits;
-typedef VkFlags VkExternalSemaphoreHandleTypeFlags;
-
-typedef enum VkExternalSemaphoreFeatureFlagBits {
-    VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT = 0x00000001,
-    VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT = 0x00000002,
-    VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR = VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT,
-    VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT,
-    VK_EXTERNAL_SEMAPHORE_FEATURE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
-} VkExternalSemaphoreFeatureFlagBits;
-typedef VkFlags VkExternalSemaphoreFeatureFlags;
-
-typedef struct VkPhysicalDeviceSubgroupProperties {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t subgroupSize;
-    VkShaderStageFlags supportedStages;
-    VkSubgroupFeatureFlags supportedOperations;
-    VkBool32 quadOperationsInAllStages;
-} VkPhysicalDeviceSubgroupProperties;
-
-typedef struct VkBindBufferMemoryInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkBuffer buffer;
-    VkDeviceMemory memory;
-    VkDeviceSize memoryOffset;
-} VkBindBufferMemoryInfo;
-
-typedef struct VkBindImageMemoryInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkImage image;
-    VkDeviceMemory memory;
-    VkDeviceSize memoryOffset;
-} VkBindImageMemoryInfo;
-
-typedef struct VkPhysicalDevice16BitStorageFeatures {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 storageBuffer16BitAccess;
-    VkBool32 uniformAndStorageBuffer16BitAccess;
-    VkBool32 storagePushConstant16;
-    VkBool32 storageInputOutput16;
-} VkPhysicalDevice16BitStorageFeatures;
-
-typedef struct VkMemoryDedicatedRequirements {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 prefersDedicatedAllocation;
-    VkBool32 requiresDedicatedAllocation;
-} VkMemoryDedicatedRequirements;
-
-typedef struct VkMemoryDedicatedAllocateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkImage image;
-    VkBuffer buffer;
-} VkMemoryDedicatedAllocateInfo;
-
-typedef struct VkMemoryAllocateFlagsInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkMemoryAllocateFlags flags;
-    uint32_t deviceMask;
-} VkMemoryAllocateFlagsInfo;
-
-typedef struct VkDeviceGroupRenderPassBeginInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t deviceMask;
-    uint32_t deviceRenderAreaCount;
-    const VkRect2D* pDeviceRenderAreas;
-} VkDeviceGroupRenderPassBeginInfo;
-
-typedef struct VkDeviceGroupCommandBufferBeginInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t deviceMask;
-} VkDeviceGroupCommandBufferBeginInfo;
-
-typedef struct VkDeviceGroupSubmitInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t waitSemaphoreCount;
-    const uint32_t* pWaitSemaphoreDeviceIndices;
-    uint32_t commandBufferCount;
-    const uint32_t* pCommandBufferDeviceMasks;
-    uint32_t signalSemaphoreCount;
-    const uint32_t* pSignalSemaphoreDeviceIndices;
-} VkDeviceGroupSubmitInfo;
-
-typedef struct VkDeviceGroupBindSparseInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t resourceDeviceIndex;
-    uint32_t memoryDeviceIndex;
-} VkDeviceGroupBindSparseInfo;
-
-typedef struct VkBindBufferMemoryDeviceGroupInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t deviceIndexCount;
-    const uint32_t* pDeviceIndices;
-} VkBindBufferMemoryDeviceGroupInfo;
-
-typedef struct VkBindImageMemoryDeviceGroupInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t deviceIndexCount;
-    const uint32_t* pDeviceIndices;
-    uint32_t splitInstanceBindRegionCount;
-    const VkRect2D* pSplitInstanceBindRegions;
-} VkBindImageMemoryDeviceGroupInfo;
-
-typedef struct VkPhysicalDeviceGroupProperties {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t physicalDeviceCount;
-    VkPhysicalDevice physicalDevices[32];
-    VkBool32 subsetAllocation;
-} VkPhysicalDeviceGroupProperties;
-
-typedef struct VkDeviceGroupDeviceCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t physicalDeviceCount;
-    const VkPhysicalDevice* pPhysicalDevices;
-} VkDeviceGroupDeviceCreateInfo;
-
-typedef struct VkBufferMemoryRequirementsInfo2 {
-    VkStructureType sType;
-    const void* pNext;
-    VkBuffer buffer;
-} VkBufferMemoryRequirementsInfo2;
-
-typedef struct VkImageMemoryRequirementsInfo2 {
-    VkStructureType sType;
-    const void* pNext;
-    VkImage image;
-} VkImageMemoryRequirementsInfo2;
-
-typedef struct VkImageSparseMemoryRequirementsInfo2 {
-    VkStructureType sType;
-    const void* pNext;
-    VkImage image;
-} VkImageSparseMemoryRequirementsInfo2;
-
-typedef struct VkMemoryRequirements2 {
-    VkStructureType sType;
-    void* pNext;
-    VkMemoryRequirements memoryRequirements;
-} VkMemoryRequirements2;
-
-typedef VkMemoryRequirements2 VkMemoryRequirements2KHR;
-
-typedef struct VkSparseImageMemoryRequirements2 {
-    VkStructureType sType;
-    void* pNext;
-    VkSparseImageMemoryRequirements memoryRequirements;
-} VkSparseImageMemoryRequirements2;
-
-typedef struct VkPhysicalDeviceFeatures2 {
-    VkStructureType sType;
-    void* pNext;
-    VkPhysicalDeviceFeatures features;
-} VkPhysicalDeviceFeatures2;
-
-typedef struct VkPhysicalDeviceProperties2 {
-    VkStructureType sType;
-    void* pNext;
-    VkPhysicalDeviceProperties properties;
-} VkPhysicalDeviceProperties2;
-
-typedef struct VkFormatProperties2 {
-    VkStructureType sType;
-    void* pNext;
-    VkFormatProperties formatProperties;
-} VkFormatProperties2;
-
-typedef struct VkImageFormatProperties2 {
-    VkStructureType sType;
-    void* pNext;
-    VkImageFormatProperties imageFormatProperties;
-} VkImageFormatProperties2;
-
-typedef struct VkPhysicalDeviceImageFormatInfo2 {
-    VkStructureType sType;
-    const void* pNext;
-    VkFormat format;
-    VkImageType type;
-    VkImageTiling tiling;
-    VkImageUsageFlags usage;
-    VkImageCreateFlags flags;
-} VkPhysicalDeviceImageFormatInfo2;
-
-typedef struct VkQueueFamilyProperties2 {
-    VkStructureType sType;
-    void* pNext;
-    VkQueueFamilyProperties queueFamilyProperties;
-} VkQueueFamilyProperties2;
-
-typedef struct VkPhysicalDeviceMemoryProperties2 {
-    VkStructureType sType;
-    void* pNext;
-    VkPhysicalDeviceMemoryProperties memoryProperties;
-} VkPhysicalDeviceMemoryProperties2;
-
-typedef struct VkSparseImageFormatProperties2 {
-    VkStructureType sType;
-    void* pNext;
-    VkSparseImageFormatProperties properties;
-} VkSparseImageFormatProperties2;
-
-typedef struct VkPhysicalDeviceSparseImageFormatInfo2 {
-    VkStructureType sType;
-    const void* pNext;
-    VkFormat format;
-    VkImageType type;
-    VkSampleCountFlagBits samples;
-    VkImageUsageFlags usage;
-    VkImageTiling tiling;
-} VkPhysicalDeviceSparseImageFormatInfo2;
-
-typedef struct VkPhysicalDevicePointClippingProperties {
-    VkStructureType sType;
-    void* pNext;
-    VkPointClippingBehavior pointClippingBehavior;
-} VkPhysicalDevicePointClippingProperties;
-
-typedef struct VkInputAttachmentAspectReference {
-    uint32_t subpass;
-    uint32_t inputAttachmentIndex;
-    VkImageAspectFlags aspectMask;
-} VkInputAttachmentAspectReference;
-
-typedef struct VkRenderPassInputAttachmentAspectCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t aspectReferenceCount;
-    const VkInputAttachmentAspectReference* pAspectReferences;
-} VkRenderPassInputAttachmentAspectCreateInfo;
-
-typedef struct VkImageViewUsageCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkImageUsageFlags usage;
-} VkImageViewUsageCreateInfo;
-
-typedef struct VkPipelineTessellationDomainOriginStateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkTessellationDomainOrigin domainOrigin;
-} VkPipelineTessellationDomainOriginStateCreateInfo;
-
-typedef struct VkRenderPassMultiviewCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t subpassCount;
-    const uint32_t* pViewMasks;
-    uint32_t dependencyCount;
-    const int32_t* pViewOffsets;
-    uint32_t correlationMaskCount;
-    const uint32_t* pCorrelationMasks;
-} VkRenderPassMultiviewCreateInfo;
-
-typedef struct VkPhysicalDeviceMultiviewFeatures {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 multiview;
-    VkBool32 multiviewGeometryShader;
-    VkBool32 multiviewTessellationShader;
-} VkPhysicalDeviceMultiviewFeatures;
-
-typedef struct VkPhysicalDeviceMultiviewProperties {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxMultiviewViewCount;
-    uint32_t maxMultiviewInstanceIndex;
-} VkPhysicalDeviceMultiviewProperties;
-
-typedef struct VkPhysicalDeviceVariablePointerFeatures {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 variablePointersStorageBuffer;
-    VkBool32 variablePointers;
-} VkPhysicalDeviceVariablePointerFeatures;
-
-typedef struct VkPhysicalDeviceProtectedMemoryFeatures {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 protectedMemory;
-} VkPhysicalDeviceProtectedMemoryFeatures;
-
-typedef struct VkPhysicalDeviceProtectedMemoryProperties {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 protectedNoFault;
-} VkPhysicalDeviceProtectedMemoryProperties;
-
-typedef struct VkDeviceQueueInfo2 {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceQueueCreateFlags flags;
-    uint32_t queueFamilyIndex;
-    uint32_t queueIndex;
-} VkDeviceQueueInfo2;
-
-typedef struct VkProtectedSubmitInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 protectedSubmit;
-} VkProtectedSubmitInfo;
-
-typedef struct VkSamplerYcbcrConversionCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkFormat format;
-    VkSamplerYcbcrModelConversion ycbcrModel;
-    VkSamplerYcbcrRange ycbcrRange;
-    VkComponentMapping components;
-    VkChromaLocation xChromaOffset;
-    VkChromaLocation yChromaOffset;
-    VkFilter chromaFilter;
-    VkBool32 forceExplicitReconstruction;
-} VkSamplerYcbcrConversionCreateInfo;
-
-typedef struct VkSamplerYcbcrConversionInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkSamplerYcbcrConversion conversion;
-} VkSamplerYcbcrConversionInfo;
-
-typedef struct VkBindImagePlaneMemoryInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkImageAspectFlagBits planeAspect;
-} VkBindImagePlaneMemoryInfo;
-
-typedef struct VkImagePlaneMemoryRequirementsInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkImageAspectFlagBits planeAspect;
-} VkImagePlaneMemoryRequirementsInfo;
-
-typedef struct VkPhysicalDeviceSamplerYcbcrConversionFeatures {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 samplerYcbcrConversion;
-} VkPhysicalDeviceSamplerYcbcrConversionFeatures;
-
-typedef struct VkSamplerYcbcrConversionImageFormatProperties {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t combinedImageSamplerDescriptorCount;
-} VkSamplerYcbcrConversionImageFormatProperties;
-
-typedef struct VkDescriptorUpdateTemplateEntry {
-    uint32_t dstBinding;
-    uint32_t dstArrayElement;
-    uint32_t descriptorCount;
-    VkDescriptorType descriptorType;
-    size_t offset;
-    size_t stride;
-} VkDescriptorUpdateTemplateEntry;
-
-typedef struct VkDescriptorUpdateTemplateCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkDescriptorUpdateTemplateCreateFlags flags;
-    uint32_t descriptorUpdateEntryCount;
-    const VkDescriptorUpdateTemplateEntry* pDescriptorUpdateEntries;
-    VkDescriptorUpdateTemplateType templateType;
-    VkDescriptorSetLayout descriptorSetLayout;
-    VkPipelineBindPoint pipelineBindPoint;
-    VkPipelineLayout pipelineLayout;
-    uint32_t set;
-} VkDescriptorUpdateTemplateCreateInfo;
-
-typedef struct VkExternalMemoryProperties {
-    VkExternalMemoryFeatureFlags externalMemoryFeatures;
-    VkExternalMemoryHandleTypeFlags exportFromImportedHandleTypes;
-    VkExternalMemoryHandleTypeFlags compatibleHandleTypes;
-} VkExternalMemoryProperties;
-
-typedef struct VkPhysicalDeviceExternalImageFormatInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlagBits handleType;
-} VkPhysicalDeviceExternalImageFormatInfo;
-
-typedef struct VkExternalImageFormatProperties {
-    VkStructureType sType;
-    void* pNext;
-    VkExternalMemoryProperties externalMemoryProperties;
-} VkExternalImageFormatProperties;
-
-typedef struct VkPhysicalDeviceExternalBufferInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkBufferCreateFlags flags;
-    VkBufferUsageFlags usage;
-    VkExternalMemoryHandleTypeFlagBits handleType;
-} VkPhysicalDeviceExternalBufferInfo;
-
-typedef struct VkExternalBufferProperties {
-    VkStructureType sType;
-    void* pNext;
-    VkExternalMemoryProperties externalMemoryProperties;
-} VkExternalBufferProperties;
-
-typedef struct VkPhysicalDeviceIDProperties {
-    VkStructureType sType;
-    void* pNext;
-    uint8_t deviceUUID[16];
-    uint8_t driverUUID[16];
-    uint8_t deviceLUID[8];
-    uint32_t deviceNodeMask;
-    VkBool32 deviceLUIDValid;
-} VkPhysicalDeviceIDProperties;
-
-typedef struct VkExternalMemoryImageCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlags handleTypes;
-} VkExternalMemoryImageCreateInfo;
-
-typedef struct VkExternalMemoryBufferCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlags handleTypes;
-} VkExternalMemoryBufferCreateInfo;
-
-typedef struct VkExportMemoryAllocateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlags handleTypes;
-} VkExportMemoryAllocateInfo;
-
-typedef struct VkPhysicalDeviceExternalFenceInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalFenceHandleTypeFlagBits handleType;
-} VkPhysicalDeviceExternalFenceInfo;
-
-typedef struct VkExternalFenceProperties {
-    VkStructureType sType;
-    void* pNext;
-    VkExternalFenceHandleTypeFlags exportFromImportedHandleTypes;
-    VkExternalFenceHandleTypeFlags compatibleHandleTypes;
-    VkExternalFenceFeatureFlags externalFenceFeatures;
-} VkExternalFenceProperties;
-
-typedef struct VkExportFenceCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalFenceHandleTypeFlags handleTypes;
-} VkExportFenceCreateInfo;
-
-typedef struct VkExportSemaphoreCreateInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalSemaphoreHandleTypeFlags handleTypes;
-} VkExportSemaphoreCreateInfo;
-
-typedef struct VkPhysicalDeviceExternalSemaphoreInfo {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalSemaphoreHandleTypeFlagBits handleType;
-} VkPhysicalDeviceExternalSemaphoreInfo;
-
-typedef struct VkExternalSemaphoreProperties {
-    VkStructureType sType;
-    void* pNext;
-    VkExternalSemaphoreHandleTypeFlags exportFromImportedHandleTypes;
-    VkExternalSemaphoreHandleTypeFlags compatibleHandleTypes;
-    VkExternalSemaphoreFeatureFlags externalSemaphoreFeatures;
-} VkExternalSemaphoreProperties;
-
-typedef struct VkPhysicalDeviceMaintenance3Properties {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxPerSetDescriptors;
-    VkDeviceSize maxMemoryAllocationSize;
-} VkPhysicalDeviceMaintenance3Properties;
-
-typedef struct VkDescriptorSetLayoutSupport {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 supported;
-} VkDescriptorSetLayoutSupport;
-
-typedef struct VkPhysicalDeviceShaderDrawParameterFeatures {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 shaderDrawParameters;
-} VkPhysicalDeviceShaderDrawParameterFeatures;
-
-
-typedef VkResult ( *PFN_vkEnumerateInstanceVersion)(uint32_t* pApiVersion);
-typedef VkResult ( *PFN_vkBindBufferMemory2)(VkDevice device, uint32_t bindInfoCount, const VkBindBufferMemoryInfo* pBindInfos);
-typedef VkResult ( *PFN_vkBindImageMemory2)(VkDevice device, uint32_t bindInfoCount, const VkBindImageMemoryInfo* pBindInfos);
-typedef void ( *PFN_vkGetDeviceGroupPeerMemoryFeatures)(VkDevice device, uint32_t heapIndex, uint32_t localDeviceIndex, uint32_t remoteDeviceIndex, VkPeerMemoryFeatureFlags* pPeerMemoryFeatures);
-typedef void ( *PFN_vkCmdSetDeviceMask)(VkCommandBuffer commandBuffer, uint32_t deviceMask);
-typedef void ( *PFN_vkCmdDispatchBase)(VkCommandBuffer commandBuffer, uint32_t baseGroupX, uint32_t baseGroupY, uint32_t baseGroupZ, uint32_t groupCountX, uint32_t groupCountY, uint32_t groupCountZ);
-typedef VkResult ( *PFN_vkEnumeratePhysicalDeviceGroups)(VkInstance instance, uint32_t* pPhysicalDeviceGroupCount, VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties);
-typedef void ( *PFN_vkGetImageMemoryRequirements2)(VkDevice device, const VkImageMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements);
-typedef void ( *PFN_vkGetBufferMemoryRequirements2)(VkDevice device, const VkBufferMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements);
-typedef void ( *PFN_vkGetImageSparseMemoryRequirements2)(VkDevice device, const VkImageSparseMemoryRequirementsInfo2* pInfo, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements2* pSparseMemoryRequirements);
-typedef void ( *PFN_vkGetPhysicalDeviceFeatures2)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceFeatures2* pFeatures);
-typedef void ( *PFN_vkGetPhysicalDeviceProperties2)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceProperties2* pProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceFormatProperties2)(VkPhysicalDevice physicalDevice, VkFormat format, VkFormatProperties2* pFormatProperties);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceImageFormatProperties2)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo, VkImageFormatProperties2* pImageFormatProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceQueueFamilyProperties2)(VkPhysicalDevice physicalDevice, uint32_t* pQueueFamilyPropertyCount, VkQueueFamilyProperties2* pQueueFamilyProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceMemoryProperties2)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceMemoryProperties2* pMemoryProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceSparseImageFormatProperties2)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo, uint32_t* pPropertyCount, VkSparseImageFormatProperties2* pProperties);
-typedef void ( *PFN_vkTrimCommandPool)(VkDevice device, VkCommandPool commandPool, VkCommandPoolTrimFlags flags);
-typedef void ( *PFN_vkGetDeviceQueue2)(VkDevice device, const VkDeviceQueueInfo2* pQueueInfo, VkQueue* pQueue);
-typedef VkResult ( *PFN_vkCreateSamplerYcbcrConversion)(VkDevice device, const VkSamplerYcbcrConversionCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSamplerYcbcrConversion* pYcbcrConversion);
-typedef void ( *PFN_vkDestroySamplerYcbcrConversion)(VkDevice device, VkSamplerYcbcrConversion ycbcrConversion, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateDescriptorUpdateTemplate)(VkDevice device, const VkDescriptorUpdateTemplateCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate);
-typedef void ( *PFN_vkDestroyDescriptorUpdateTemplate)(VkDevice device, VkDescriptorUpdateTemplate descriptorUpdateTemplate, const VkAllocationCallbacks* pAllocator);
-typedef void ( *PFN_vkUpdateDescriptorSetWithTemplate)(VkDevice device, VkDescriptorSet descriptorSet, VkDescriptorUpdateTemplate descriptorUpdateTemplate, const void* pData);
-typedef void ( *PFN_vkGetPhysicalDeviceExternalBufferProperties)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo, VkExternalBufferProperties* pExternalBufferProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceExternalFenceProperties)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo, VkExternalFenceProperties* pExternalFenceProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceExternalSemaphoreProperties)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo, VkExternalSemaphoreProperties* pExternalSemaphoreProperties);
-typedef void ( *PFN_vkGetDescriptorSetLayoutSupport)(VkDevice device, const VkDescriptorSetLayoutCreateInfo* pCreateInfo, VkDescriptorSetLayoutSupport* pSupport);
-
-
- VkResult vkEnumerateInstanceVersion(
-    uint32_t* pApiVersion);
-
- VkResult vkBindBufferMemory2(
-    VkDevice device,
-    uint32_t bindInfoCount,
-    const VkBindBufferMemoryInfo* pBindInfos);
-
- VkResult vkBindImageMemory2(
-    VkDevice device,
-    uint32_t bindInfoCount,
-    const VkBindImageMemoryInfo* pBindInfos);
-
- void vkGetDeviceGroupPeerMemoryFeatures(
-    VkDevice device,
-    uint32_t heapIndex,
-    uint32_t localDeviceIndex,
-    uint32_t remoteDeviceIndex,
-    VkPeerMemoryFeatureFlags* pPeerMemoryFeatures);
-
- void vkCmdSetDeviceMask(
-    VkCommandBuffer commandBuffer,
-    uint32_t deviceMask);
-
- void vkCmdDispatchBase(
-    VkCommandBuffer commandBuffer,
-    uint32_t baseGroupX,
-    uint32_t baseGroupY,
-    uint32_t baseGroupZ,
-    uint32_t groupCountX,
-    uint32_t groupCountY,
-    uint32_t groupCountZ);
-
- VkResult vkEnumeratePhysicalDeviceGroups(
-    VkInstance instance,
-    uint32_t* pPhysicalDeviceGroupCount,
-    VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties);
-
- void vkGetImageMemoryRequirements2(
-    VkDevice device,
-    const VkImageMemoryRequirementsInfo2* pInfo,
-    VkMemoryRequirements2* pMemoryRequirements);
-
- void vkGetBufferMemoryRequirements2(
-    VkDevice device,
-    const VkBufferMemoryRequirementsInfo2* pInfo,
-    VkMemoryRequirements2* pMemoryRequirements);
-
- void vkGetImageSparseMemoryRequirements2(
-    VkDevice device,
-    const VkImageSparseMemoryRequirementsInfo2* pInfo,
-    uint32_t* pSparseMemoryRequirementCount,
-    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements);
-
- void vkGetPhysicalDeviceFeatures2(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceFeatures2* pFeatures);
-
- void vkGetPhysicalDeviceProperties2(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceProperties2* pProperties);
-
- void vkGetPhysicalDeviceFormatProperties2(
-    VkPhysicalDevice physicalDevice,
-    VkFormat format,
-    VkFormatProperties2* pFormatProperties);
-
- VkResult vkGetPhysicalDeviceImageFormatProperties2(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo,
-    VkImageFormatProperties2* pImageFormatProperties);
-
- void vkGetPhysicalDeviceQueueFamilyProperties2(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pQueueFamilyPropertyCount,
-    VkQueueFamilyProperties2* pQueueFamilyProperties);
-
- void vkGetPhysicalDeviceMemoryProperties2(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceMemoryProperties2* pMemoryProperties);
-
- void vkGetPhysicalDeviceSparseImageFormatProperties2(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo,
-    uint32_t* pPropertyCount,
-    VkSparseImageFormatProperties2* pProperties);
-
- void vkTrimCommandPool(
-    VkDevice device,
-    VkCommandPool commandPool,
-    VkCommandPoolTrimFlags flags);
-
- void vkGetDeviceQueue2(
-    VkDevice device,
-    const VkDeviceQueueInfo2* pQueueInfo,
-    VkQueue* pQueue);
-
- VkResult vkCreateSamplerYcbcrConversion(
-    VkDevice device,
-    const VkSamplerYcbcrConversionCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkSamplerYcbcrConversion* pYcbcrConversion);
-
- void vkDestroySamplerYcbcrConversion(
-    VkDevice device,
-    VkSamplerYcbcrConversion ycbcrConversion,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateDescriptorUpdateTemplate(
-    VkDevice device,
-    const VkDescriptorUpdateTemplateCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate);
-
- void vkDestroyDescriptorUpdateTemplate(
-    VkDevice device,
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate,
-    const VkAllocationCallbacks* pAllocator);
-
- void vkUpdateDescriptorSetWithTemplate(
-    VkDevice device,
-    VkDescriptorSet descriptorSet,
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate,
-    const void* pData);
-
- void vkGetPhysicalDeviceExternalBufferProperties(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo,
-    VkExternalBufferProperties* pExternalBufferProperties);
-
- void vkGetPhysicalDeviceExternalFenceProperties(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo,
-    VkExternalFenceProperties* pExternalFenceProperties);
-
- void vkGetPhysicalDeviceExternalSemaphoreProperties(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo,
-    VkExternalSemaphoreProperties* pExternalSemaphoreProperties);
-
- void vkGetDescriptorSetLayoutSupport(
-    VkDevice device,
-    const VkDescriptorSetLayoutCreateInfo* pCreateInfo,
-    VkDescriptorSetLayoutSupport* pSupport);
-
-
-
-typedef struct VkSurfaceKHR_T *VkSurfaceKHR;
-
-
-
-
-
-typedef enum VkColorSpaceKHR {
-    VK_COLOR_SPACE_SRGB_NONLINEAR_KHR = 0,
-    VK_COLOR_SPACE_DISPLAY_P3_NONLINEAR_EXT = 1000104001,
-    VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT = 1000104002,
-    VK_COLOR_SPACE_DCI_P3_LINEAR_EXT = 1000104003,
-    VK_COLOR_SPACE_DCI_P3_NONLINEAR_EXT = 1000104004,
-    VK_COLOR_SPACE_BT709_LINEAR_EXT = 1000104005,
-    VK_COLOR_SPACE_BT709_NONLINEAR_EXT = 1000104006,
-    VK_COLOR_SPACE_BT2020_LINEAR_EXT = 1000104007,
-    VK_COLOR_SPACE_HDR10_ST2084_EXT = 1000104008,
-    VK_COLOR_SPACE_DOLBYVISION_EXT = 1000104009,
-    VK_COLOR_SPACE_HDR10_HLG_EXT = 1000104010,
-    VK_COLOR_SPACE_ADOBERGB_LINEAR_EXT = 1000104011,
-    VK_COLOR_SPACE_ADOBERGB_NONLINEAR_EXT = 1000104012,
-    VK_COLOR_SPACE_PASS_THROUGH_EXT = 1000104013,
-    VK_COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT = 1000104014,
-    VK_COLORSPACE_SRGB_NONLINEAR_KHR = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
-    VK_COLOR_SPACE_BEGIN_RANGE_KHR = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
-    VK_COLOR_SPACE_END_RANGE_KHR = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
-    VK_COLOR_SPACE_RANGE_SIZE_KHR = (VK_COLOR_SPACE_SRGB_NONLINEAR_KHR - VK_COLOR_SPACE_SRGB_NONLINEAR_KHR + 1),
-    VK_COLOR_SPACE_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkColorSpaceKHR;
-
-typedef enum VkPresentModeKHR {
-    VK_PRESENT_MODE_IMMEDIATE_KHR = 0,
-    VK_PRESENT_MODE_MAILBOX_KHR = 1,
-    VK_PRESENT_MODE_FIFO_KHR = 2,
-    VK_PRESENT_MODE_FIFO_RELAXED_KHR = 3,
-    VK_PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR = 1000111000,
-    VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR = 1000111001,
-    VK_PRESENT_MODE_BEGIN_RANGE_KHR = VK_PRESENT_MODE_IMMEDIATE_KHR,
-    VK_PRESENT_MODE_END_RANGE_KHR = VK_PRESENT_MODE_FIFO_RELAXED_KHR,
-    VK_PRESENT_MODE_RANGE_SIZE_KHR = (VK_PRESENT_MODE_FIFO_RELAXED_KHR - VK_PRESENT_MODE_IMMEDIATE_KHR + 1),
-    VK_PRESENT_MODE_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkPresentModeKHR;
-
-
-typedef enum VkSurfaceTransformFlagBitsKHR {
-    VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR = 0x00000001,
-    VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR = 0x00000002,
-    VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR = 0x00000004,
-    VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR = 0x00000008,
-    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR = 0x00000010,
-    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR = 0x00000020,
-    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR = 0x00000040,
-    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR = 0x00000080,
-    VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR = 0x00000100,
-    VK_SURFACE_TRANSFORM_FLAG_BITS_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkSurfaceTransformFlagBitsKHR;
-typedef VkFlags VkSurfaceTransformFlagsKHR;
-
-typedef enum VkCompositeAlphaFlagBitsKHR {
-    VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR = 0x00000001,
-    VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR = 0x00000002,
-    VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR = 0x00000004,
-    VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR = 0x00000008,
-    VK_COMPOSITE_ALPHA_FLAG_BITS_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkCompositeAlphaFlagBitsKHR;
-typedef VkFlags VkCompositeAlphaFlagsKHR;
-
-typedef struct VkSurfaceCapabilitiesKHR {
-    uint32_t minImageCount;
-    uint32_t maxImageCount;
-    VkExtent2D currentExtent;
-    VkExtent2D minImageExtent;
-    VkExtent2D maxImageExtent;
-    uint32_t maxImageArrayLayers;
-    VkSurfaceTransformFlagsKHR supportedTransforms;
-    VkSurfaceTransformFlagBitsKHR currentTransform;
-    VkCompositeAlphaFlagsKHR supportedCompositeAlpha;
-    VkImageUsageFlags supportedUsageFlags;
-} VkSurfaceCapabilitiesKHR;
-
-typedef struct VkSurfaceFormatKHR {
-    VkFormat format;
-    VkColorSpaceKHR colorSpace;
-} VkSurfaceFormatKHR;
-
-
-typedef void ( *PFN_vkDestroySurfaceKHR)(VkInstance instance, VkSurfaceKHR surface, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceSurfaceSupportKHR)(VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, VkSurfaceKHR surface, VkBool32* pSupported);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR)(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, VkSurfaceCapabilitiesKHR* pSurfaceCapabilities);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceSurfaceFormatsKHR)(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, uint32_t* pSurfaceFormatCount, VkSurfaceFormatKHR* pSurfaceFormats);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceSurfacePresentModesKHR)(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, uint32_t* pPresentModeCount, VkPresentModeKHR* pPresentModes);
-
-
- void vkDestroySurfaceKHR(
-    VkInstance instance,
-    VkSurfaceKHR surface,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkGetPhysicalDeviceSurfaceSupportKHR(
-    VkPhysicalDevice physicalDevice,
-    uint32_t queueFamilyIndex,
-    VkSurfaceKHR surface,
-    VkBool32* pSupported);
-
- VkResult vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
-    VkPhysicalDevice physicalDevice,
-    VkSurfaceKHR surface,
-    VkSurfaceCapabilitiesKHR* pSurfaceCapabilities);
-
- VkResult vkGetPhysicalDeviceSurfaceFormatsKHR(
-    VkPhysicalDevice physicalDevice,
-    VkSurfaceKHR surface,
-    uint32_t* pSurfaceFormatCount,
-    VkSurfaceFormatKHR* pSurfaceFormats);
-
- VkResult vkGetPhysicalDeviceSurfacePresentModesKHR(
-    VkPhysicalDevice physicalDevice,
-    VkSurfaceKHR surface,
-    uint32_t* pPresentModeCount,
-    VkPresentModeKHR* pPresentModes);
-
-
-
-typedef struct VkSwapchainKHR_T *VkSwapchainKHR;
-
-
-
-
-
-typedef enum VkSwapchainCreateFlagBitsKHR {
-    VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR = 0x00000001,
-    VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR = 0x00000002,
-    VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR = 0x00000004,
-    VK_SWAPCHAIN_CREATE_FLAG_BITS_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkSwapchainCreateFlagBitsKHR;
-typedef VkFlags VkSwapchainCreateFlagsKHR;
-
-typedef enum VkDeviceGroupPresentModeFlagBitsKHR {
-    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR = 0x00000001,
-    VK_DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR = 0x00000002,
-    VK_DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR = 0x00000004,
-    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 0x00000008,
-    VK_DEVICE_GROUP_PRESENT_MODE_FLAG_BITS_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkDeviceGroupPresentModeFlagBitsKHR;
-typedef VkFlags VkDeviceGroupPresentModeFlagsKHR;
-
-typedef struct VkSwapchainCreateInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSwapchainCreateFlagsKHR flags;
-    VkSurfaceKHR surface;
-    uint32_t minImageCount;
-    VkFormat imageFormat;
-    VkColorSpaceKHR imageColorSpace;
-    VkExtent2D imageExtent;
-    uint32_t imageArrayLayers;
-    VkImageUsageFlags imageUsage;
-    VkSharingMode imageSharingMode;
-    uint32_t queueFamilyIndexCount;
-    const uint32_t* pQueueFamilyIndices;
-    VkSurfaceTransformFlagBitsKHR preTransform;
-    VkCompositeAlphaFlagBitsKHR compositeAlpha;
-    VkPresentModeKHR presentMode;
-    VkBool32 clipped;
-    VkSwapchainKHR oldSwapchain;
-} VkSwapchainCreateInfoKHR;
-
-typedef struct VkPresentInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t waitSemaphoreCount;
-    const VkSemaphore* pWaitSemaphores;
-    uint32_t swapchainCount;
-    const VkSwapchainKHR* pSwapchains;
-    const uint32_t* pImageIndices;
-    VkResult* pResults;
-} VkPresentInfoKHR;
-
-typedef struct VkImageSwapchainCreateInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSwapchainKHR swapchain;
-} VkImageSwapchainCreateInfoKHR;
-
-typedef struct VkBindImageMemorySwapchainInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSwapchainKHR swapchain;
-    uint32_t imageIndex;
-} VkBindImageMemorySwapchainInfoKHR;
-
-typedef struct VkAcquireNextImageInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSwapchainKHR swapchain;
-    uint64_t timeout;
-    VkSemaphore semaphore;
-    VkFence fence;
-    uint32_t deviceMask;
-} VkAcquireNextImageInfoKHR;
-
-typedef struct VkDeviceGroupPresentCapabilitiesKHR {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t presentMask[32];
-    VkDeviceGroupPresentModeFlagsKHR modes;
-} VkDeviceGroupPresentCapabilitiesKHR;
-
-typedef struct VkDeviceGroupPresentInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t swapchainCount;
-    const uint32_t* pDeviceMasks;
-    VkDeviceGroupPresentModeFlagBitsKHR mode;
-} VkDeviceGroupPresentInfoKHR;
-
-typedef struct VkDeviceGroupSwapchainCreateInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceGroupPresentModeFlagsKHR modes;
-} VkDeviceGroupSwapchainCreateInfoKHR;
-
-
-typedef VkResult ( *PFN_vkCreateSwapchainKHR)(VkDevice device, const VkSwapchainCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSwapchainKHR* pSwapchain);
-typedef void ( *PFN_vkDestroySwapchainKHR)(VkDevice device, VkSwapchainKHR swapchain, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkGetSwapchainImagesKHR)(VkDevice device, VkSwapchainKHR swapchain, uint32_t* pSwapchainImageCount, VkImage* pSwapchainImages);
-typedef VkResult ( *PFN_vkAcquireNextImageKHR)(VkDevice device, VkSwapchainKHR swapchain, uint64_t timeout, VkSemaphore semaphore, VkFence fence, uint32_t* pImageIndex);
-typedef VkResult ( *PFN_vkQueuePresentKHR)(VkQueue queue, const VkPresentInfoKHR* pPresentInfo);
-typedef VkResult ( *PFN_vkGetDeviceGroupPresentCapabilitiesKHR)(VkDevice device, VkDeviceGroupPresentCapabilitiesKHR* pDeviceGroupPresentCapabilities);
-typedef VkResult ( *PFN_vkGetDeviceGroupSurfacePresentModesKHR)(VkDevice device, VkSurfaceKHR surface, VkDeviceGroupPresentModeFlagsKHR* pModes);
-typedef VkResult ( *PFN_vkGetPhysicalDevicePresentRectanglesKHR)(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, uint32_t* pRectCount, VkRect2D* pRects);
-typedef VkResult ( *PFN_vkAcquireNextImage2KHR)(VkDevice device, const VkAcquireNextImageInfoKHR* pAcquireInfo, uint32_t* pImageIndex);
-
-
- VkResult vkCreateSwapchainKHR(
-    VkDevice device,
-    const VkSwapchainCreateInfoKHR* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkSwapchainKHR* pSwapchain);
-
- void vkDestroySwapchainKHR(
-    VkDevice device,
-    VkSwapchainKHR swapchain,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkGetSwapchainImagesKHR(
-    VkDevice device,
-    VkSwapchainKHR swapchain,
-    uint32_t* pSwapchainImageCount,
-    VkImage* pSwapchainImages);
-
- VkResult vkAcquireNextImageKHR(
-    VkDevice device,
-    VkSwapchainKHR swapchain,
-    uint64_t timeout,
-    VkSemaphore semaphore,
-    VkFence fence,
-    uint32_t* pImageIndex);
-
- VkResult vkQueuePresentKHR(
-    VkQueue queue,
-    const VkPresentInfoKHR* pPresentInfo);
-
- VkResult vkGetDeviceGroupPresentCapabilitiesKHR(
-    VkDevice device,
-    VkDeviceGroupPresentCapabilitiesKHR* pDeviceGroupPresentCapabilities);
-
- VkResult vkGetDeviceGroupSurfacePresentModesKHR(
-    VkDevice device,
-    VkSurfaceKHR surface,
-    VkDeviceGroupPresentModeFlagsKHR* pModes);
-
- VkResult vkGetPhysicalDevicePresentRectanglesKHR(
-    VkPhysicalDevice physicalDevice,
-    VkSurfaceKHR surface,
-    uint32_t* pRectCount,
-    VkRect2D* pRects);
-
- VkResult vkAcquireNextImage2KHR(
-    VkDevice device,
-    const VkAcquireNextImageInfoKHR* pAcquireInfo,
-    uint32_t* pImageIndex);
-
-
-
-typedef struct VkDisplayKHR_T *VkDisplayKHR;
-typedef struct VkDisplayModeKHR_T *VkDisplayModeKHR;
-
-
-
-
-
-typedef enum VkDisplayPlaneAlphaFlagBitsKHR {
-    VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR = 0x00000001,
-    VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR = 0x00000002,
-    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR = 0x00000004,
-    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 0x00000008,
-    VK_DISPLAY_PLANE_ALPHA_FLAG_BITS_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkDisplayPlaneAlphaFlagBitsKHR;
-typedef VkFlags VkDisplayPlaneAlphaFlagsKHR;
-typedef VkFlags VkDisplayModeCreateFlagsKHR;
-typedef VkFlags VkDisplaySurfaceCreateFlagsKHR;
-
-typedef struct VkDisplayPropertiesKHR {
-    VkDisplayKHR display;
-    const char* displayName;
-    VkExtent2D physicalDimensions;
-    VkExtent2D physicalResolution;
-    VkSurfaceTransformFlagsKHR supportedTransforms;
-    VkBool32 planeReorderPossible;
-    VkBool32 persistentContent;
-} VkDisplayPropertiesKHR;
-
-typedef struct VkDisplayModeParametersKHR {
-    VkExtent2D visibleRegion;
-    uint32_t refreshRate;
-} VkDisplayModeParametersKHR;
-
-typedef struct VkDisplayModePropertiesKHR {
-    VkDisplayModeKHR displayMode;
-    VkDisplayModeParametersKHR parameters;
-} VkDisplayModePropertiesKHR;
-
-typedef struct VkDisplayModeCreateInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkDisplayModeCreateFlagsKHR flags;
-    VkDisplayModeParametersKHR parameters;
-} VkDisplayModeCreateInfoKHR;
-
-typedef struct VkDisplayPlaneCapabilitiesKHR {
-    VkDisplayPlaneAlphaFlagsKHR supportedAlpha;
-    VkOffset2D minSrcPosition;
-    VkOffset2D maxSrcPosition;
-    VkExtent2D minSrcExtent;
-    VkExtent2D maxSrcExtent;
-    VkOffset2D minDstPosition;
-    VkOffset2D maxDstPosition;
-    VkExtent2D minDstExtent;
-    VkExtent2D maxDstExtent;
-} VkDisplayPlaneCapabilitiesKHR;
-
-typedef struct VkDisplayPlanePropertiesKHR {
-    VkDisplayKHR currentDisplay;
-    uint32_t currentStackIndex;
-} VkDisplayPlanePropertiesKHR;
-
-typedef struct VkDisplaySurfaceCreateInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkDisplaySurfaceCreateFlagsKHR flags;
-    VkDisplayModeKHR displayMode;
-    uint32_t planeIndex;
-    uint32_t planeStackIndex;
-    VkSurfaceTransformFlagBitsKHR transform;
-    float globalAlpha;
-    VkDisplayPlaneAlphaFlagBitsKHR alphaMode;
-    VkExtent2D imageExtent;
-} VkDisplaySurfaceCreateInfoKHR;
-
-
-typedef VkResult ( *PFN_vkGetPhysicalDeviceDisplayPropertiesKHR)(VkPhysicalDevice physicalDevice, uint32_t* pPropertyCount, VkDisplayPropertiesKHR* pProperties);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR)(VkPhysicalDevice physicalDevice, uint32_t* pPropertyCount, VkDisplayPlanePropertiesKHR* pProperties);
-typedef VkResult ( *PFN_vkGetDisplayPlaneSupportedDisplaysKHR)(VkPhysicalDevice physicalDevice, uint32_t planeIndex, uint32_t* pDisplayCount, VkDisplayKHR* pDisplays);
-typedef VkResult ( *PFN_vkGetDisplayModePropertiesKHR)(VkPhysicalDevice physicalDevice, VkDisplayKHR display, uint32_t* pPropertyCount, VkDisplayModePropertiesKHR* pProperties);
-typedef VkResult ( *PFN_vkCreateDisplayModeKHR)(VkPhysicalDevice physicalDevice, VkDisplayKHR display, const VkDisplayModeCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDisplayModeKHR* pMode);
-typedef VkResult ( *PFN_vkGetDisplayPlaneCapabilitiesKHR)(VkPhysicalDevice physicalDevice, VkDisplayModeKHR mode, uint32_t planeIndex, VkDisplayPlaneCapabilitiesKHR* pCapabilities);
-typedef VkResult ( *PFN_vkCreateDisplayPlaneSurfaceKHR)(VkInstance instance, const VkDisplaySurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface);
-
-
- VkResult vkGetPhysicalDeviceDisplayPropertiesKHR(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pPropertyCount,
-    VkDisplayPropertiesKHR* pProperties);
-
- VkResult vkGetPhysicalDeviceDisplayPlanePropertiesKHR(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pPropertyCount,
-    VkDisplayPlanePropertiesKHR* pProperties);
-
- VkResult vkGetDisplayPlaneSupportedDisplaysKHR(
-    VkPhysicalDevice physicalDevice,
-    uint32_t planeIndex,
-    uint32_t* pDisplayCount,
-    VkDisplayKHR* pDisplays);
-
- VkResult vkGetDisplayModePropertiesKHR(
-    VkPhysicalDevice physicalDevice,
-    VkDisplayKHR display,
-    uint32_t* pPropertyCount,
-    VkDisplayModePropertiesKHR* pProperties);
-
- VkResult vkCreateDisplayModeKHR(
-    VkPhysicalDevice physicalDevice,
-    VkDisplayKHR display,
-    const VkDisplayModeCreateInfoKHR* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDisplayModeKHR* pMode);
-
- VkResult vkGetDisplayPlaneCapabilitiesKHR(
-    VkPhysicalDevice physicalDevice,
-    VkDisplayModeKHR mode,
-    uint32_t planeIndex,
-    VkDisplayPlaneCapabilitiesKHR* pCapabilities);
-
- VkResult vkCreateDisplayPlaneSurfaceKHR(
-    VkInstance instance,
-    const VkDisplaySurfaceCreateInfoKHR* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkSurfaceKHR* pSurface);
-
-
-
-
-
-
-typedef struct VkDisplayPresentInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkRect2D srcRect;
-    VkRect2D dstRect;
-    VkBool32 persistent;
-} VkDisplayPresentInfoKHR;
-
-
-typedef VkResult ( *PFN_vkCreateSharedSwapchainsKHR)(VkDevice device, uint32_t swapchainCount, const VkSwapchainCreateInfoKHR* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkSwapchainKHR* pSwapchains);
-
-
- VkResult vkCreateSharedSwapchainsKHR(
-    VkDevice device,
-    uint32_t swapchainCount,
-    const VkSwapchainCreateInfoKHR* pCreateInfos,
-    const VkAllocationCallbacks* pAllocator,
-    VkSwapchainKHR* pSwapchains);
-# 5146 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef VkRenderPassMultiviewCreateInfo VkRenderPassMultiviewCreateInfoKHR;
-
-typedef VkPhysicalDeviceMultiviewFeatures VkPhysicalDeviceMultiviewFeaturesKHR;
-
-typedef VkPhysicalDeviceMultiviewProperties VkPhysicalDeviceMultiviewPropertiesKHR;
-
-
-
-
-
-
-
-typedef VkPhysicalDeviceFeatures2 VkPhysicalDeviceFeatures2KHR;
-
-typedef VkPhysicalDeviceProperties2 VkPhysicalDeviceProperties2KHR;
-
-typedef VkFormatProperties2 VkFormatProperties2KHR;
-
-typedef VkImageFormatProperties2 VkImageFormatProperties2KHR;
-
-typedef VkPhysicalDeviceImageFormatInfo2 VkPhysicalDeviceImageFormatInfo2KHR;
-
-typedef VkQueueFamilyProperties2 VkQueueFamilyProperties2KHR;
-
-typedef VkPhysicalDeviceMemoryProperties2 VkPhysicalDeviceMemoryProperties2KHR;
-
-typedef VkSparseImageFormatProperties2 VkSparseImageFormatProperties2KHR;
-
-typedef VkPhysicalDeviceSparseImageFormatInfo2 VkPhysicalDeviceSparseImageFormatInfo2KHR;
-
-
-typedef void ( *PFN_vkGetPhysicalDeviceFeatures2KHR)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceFeatures2* pFeatures);
-typedef void ( *PFN_vkGetPhysicalDeviceProperties2KHR)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceProperties2* pProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceFormatProperties2KHR)(VkPhysicalDevice physicalDevice, VkFormat format, VkFormatProperties2* pFormatProperties);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceImageFormatProperties2KHR)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo, VkImageFormatProperties2* pImageFormatProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR)(VkPhysicalDevice physicalDevice, uint32_t* pQueueFamilyPropertyCount, VkQueueFamilyProperties2* pQueueFamilyProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceMemoryProperties2KHR)(VkPhysicalDevice physicalDevice, VkPhysicalDeviceMemoryProperties2* pMemoryProperties);
-typedef void ( *PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo, uint32_t* pPropertyCount, VkSparseImageFormatProperties2* pProperties);
-
-
- void vkGetPhysicalDeviceFeatures2KHR(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceFeatures2* pFeatures);
-
- void vkGetPhysicalDeviceProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceProperties2* pProperties);
-
- void vkGetPhysicalDeviceFormatProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    VkFormat format,
-    VkFormatProperties2* pFormatProperties);
-
- VkResult vkGetPhysicalDeviceImageFormatProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo,
-    VkImageFormatProperties2* pImageFormatProperties);
-
- void vkGetPhysicalDeviceQueueFamilyProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pQueueFamilyPropertyCount,
-    VkQueueFamilyProperties2* pQueueFamilyProperties);
-
- void vkGetPhysicalDeviceMemoryProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    VkPhysicalDeviceMemoryProperties2* pMemoryProperties);
-
- void vkGetPhysicalDeviceSparseImageFormatProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceSparseImageFormatInfo2* pFormatInfo,
-    uint32_t* pPropertyCount,
-    VkSparseImageFormatProperties2* pProperties);
-
-
-
-
-
-
-typedef VkPeerMemoryFeatureFlags VkPeerMemoryFeatureFlagsKHR;
-
-typedef VkPeerMemoryFeatureFlagBits VkPeerMemoryFeatureFlagBitsKHR;
-
-typedef VkMemoryAllocateFlags VkMemoryAllocateFlagsKHR;
-
-typedef VkMemoryAllocateFlagBits VkMemoryAllocateFlagBitsKHR;
-
-
-typedef VkMemoryAllocateFlagsInfo VkMemoryAllocateFlagsInfoKHR;
-
-typedef VkDeviceGroupRenderPassBeginInfo VkDeviceGroupRenderPassBeginInfoKHR;
-
-typedef VkDeviceGroupCommandBufferBeginInfo VkDeviceGroupCommandBufferBeginInfoKHR;
-
-typedef VkDeviceGroupSubmitInfo VkDeviceGroupSubmitInfoKHR;
-
-typedef VkDeviceGroupBindSparseInfo VkDeviceGroupBindSparseInfoKHR;
-
-typedef VkBindBufferMemoryDeviceGroupInfo VkBindBufferMemoryDeviceGroupInfoKHR;
-
-typedef VkBindImageMemoryDeviceGroupInfo VkBindImageMemoryDeviceGroupInfoKHR;
-
-
-typedef void ( *PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR)(VkDevice device, uint32_t heapIndex, uint32_t localDeviceIndex, uint32_t remoteDeviceIndex, VkPeerMemoryFeatureFlags* pPeerMemoryFeatures);
-typedef void ( *PFN_vkCmdSetDeviceMaskKHR)(VkCommandBuffer commandBuffer, uint32_t deviceMask);
-typedef void ( *PFN_vkCmdDispatchBaseKHR)(VkCommandBuffer commandBuffer, uint32_t baseGroupX, uint32_t baseGroupY, uint32_t baseGroupZ, uint32_t groupCountX, uint32_t groupCountY, uint32_t groupCountZ);
-
-
- void vkGetDeviceGroupPeerMemoryFeaturesKHR(
-    VkDevice device,
-    uint32_t heapIndex,
-    uint32_t localDeviceIndex,
-    uint32_t remoteDeviceIndex,
-    VkPeerMemoryFeatureFlags* pPeerMemoryFeatures);
-
- void vkCmdSetDeviceMaskKHR(
-    VkCommandBuffer commandBuffer,
-    uint32_t deviceMask);
-
- void vkCmdDispatchBaseKHR(
-    VkCommandBuffer commandBuffer,
-    uint32_t baseGroupX,
-    uint32_t baseGroupY,
-    uint32_t baseGroupZ,
-    uint32_t groupCountX,
-    uint32_t groupCountY,
-    uint32_t groupCountZ);
-# 5283 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef VkCommandPoolTrimFlags VkCommandPoolTrimFlagsKHR;
-
-
-typedef void ( *PFN_vkTrimCommandPoolKHR)(VkDevice device, VkCommandPool commandPool, VkCommandPoolTrimFlags flags);
-
-
- void vkTrimCommandPoolKHR(
-    VkDevice device,
-    VkCommandPool commandPool,
-    VkCommandPoolTrimFlags flags);
-
-
-
-
-
-
-
-typedef VkPhysicalDeviceGroupProperties VkPhysicalDeviceGroupPropertiesKHR;
-
-typedef VkDeviceGroupDeviceCreateInfo VkDeviceGroupDeviceCreateInfoKHR;
-
-
-typedef VkResult ( *PFN_vkEnumeratePhysicalDeviceGroupsKHR)(VkInstance instance, uint32_t* pPhysicalDeviceGroupCount, VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties);
-
-
- VkResult vkEnumeratePhysicalDeviceGroupsKHR(
-    VkInstance instance,
-    uint32_t* pPhysicalDeviceGroupCount,
-    VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties);
-
-
-
-
-
-
-
-typedef VkExternalMemoryHandleTypeFlags VkExternalMemoryHandleTypeFlagsKHR;
-
-typedef VkExternalMemoryHandleTypeFlagBits VkExternalMemoryHandleTypeFlagBitsKHR;
-
-typedef VkExternalMemoryFeatureFlags VkExternalMemoryFeatureFlagsKHR;
-
-typedef VkExternalMemoryFeatureFlagBits VkExternalMemoryFeatureFlagBitsKHR;
-
-
-typedef VkExternalMemoryProperties VkExternalMemoryPropertiesKHR;
-
-typedef VkPhysicalDeviceExternalImageFormatInfo VkPhysicalDeviceExternalImageFormatInfoKHR;
-
-typedef VkExternalImageFormatProperties VkExternalImageFormatPropertiesKHR;
-
-typedef VkPhysicalDeviceExternalBufferInfo VkPhysicalDeviceExternalBufferInfoKHR;
-
-typedef VkExternalBufferProperties VkExternalBufferPropertiesKHR;
-
-typedef VkPhysicalDeviceIDProperties VkPhysicalDeviceIDPropertiesKHR;
-
-
-typedef void ( *PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo, VkExternalBufferProperties* pExternalBufferProperties);
-
-
- void vkGetPhysicalDeviceExternalBufferPropertiesKHR(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo,
-    VkExternalBufferProperties* pExternalBufferProperties);
-
-
-
-
-
-
-
-typedef VkExternalMemoryImageCreateInfo VkExternalMemoryImageCreateInfoKHR;
-
-typedef VkExternalMemoryBufferCreateInfo VkExternalMemoryBufferCreateInfoKHR;
-
-typedef VkExportMemoryAllocateInfo VkExportMemoryAllocateInfoKHR;
-
-
-
-
-
-
-
-typedef struct VkImportMemoryFdInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlagBits handleType;
-    int fd;
-} VkImportMemoryFdInfoKHR;
-
-typedef struct VkMemoryFdPropertiesKHR {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t memoryTypeBits;
-} VkMemoryFdPropertiesKHR;
-
-typedef struct VkMemoryGetFdInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceMemory memory;
-    VkExternalMemoryHandleTypeFlagBits handleType;
-} VkMemoryGetFdInfoKHR;
-
-
-typedef VkResult ( *PFN_vkGetMemoryFdKHR)(VkDevice device, const VkMemoryGetFdInfoKHR* pGetFdInfo, int* pFd);
-typedef VkResult ( *PFN_vkGetMemoryFdPropertiesKHR)(VkDevice device, VkExternalMemoryHandleTypeFlagBits handleType, int fd, VkMemoryFdPropertiesKHR* pMemoryFdProperties);
-
-
- VkResult vkGetMemoryFdKHR(
-    VkDevice device,
-    const VkMemoryGetFdInfoKHR* pGetFdInfo,
-    int* pFd);
-
- VkResult vkGetMemoryFdPropertiesKHR(
-    VkDevice device,
-    VkExternalMemoryHandleTypeFlagBits handleType,
-    int fd,
-    VkMemoryFdPropertiesKHR* pMemoryFdProperties);
-
-
-
-
-
-
-typedef VkExternalSemaphoreHandleTypeFlags VkExternalSemaphoreHandleTypeFlagsKHR;
-
-typedef VkExternalSemaphoreHandleTypeFlagBits VkExternalSemaphoreHandleTypeFlagBitsKHR;
-
-typedef VkExternalSemaphoreFeatureFlags VkExternalSemaphoreFeatureFlagsKHR;
-
-typedef VkExternalSemaphoreFeatureFlagBits VkExternalSemaphoreFeatureFlagBitsKHR;
-
-
-typedef VkPhysicalDeviceExternalSemaphoreInfo VkPhysicalDeviceExternalSemaphoreInfoKHR;
-
-typedef VkExternalSemaphoreProperties VkExternalSemaphorePropertiesKHR;
-
-
-typedef void ( *PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo, VkExternalSemaphoreProperties* pExternalSemaphoreProperties);
-
-
- void vkGetPhysicalDeviceExternalSemaphorePropertiesKHR(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo,
-    VkExternalSemaphoreProperties* pExternalSemaphoreProperties);
-
-
-
-
-
-
-typedef VkSemaphoreImportFlags VkSemaphoreImportFlagsKHR;
-
-typedef VkSemaphoreImportFlagBits VkSemaphoreImportFlagBitsKHR;
-
-
-typedef VkExportSemaphoreCreateInfo VkExportSemaphoreCreateInfoKHR;
-
-
-
-
-
-
-
-typedef struct VkImportSemaphoreFdInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSemaphore semaphore;
-    VkSemaphoreImportFlags flags;
-    VkExternalSemaphoreHandleTypeFlagBits handleType;
-    int fd;
-} VkImportSemaphoreFdInfoKHR;
-
-typedef struct VkSemaphoreGetFdInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSemaphore semaphore;
-    VkExternalSemaphoreHandleTypeFlagBits handleType;
-} VkSemaphoreGetFdInfoKHR;
-
-
-typedef VkResult ( *PFN_vkImportSemaphoreFdKHR)(VkDevice device, const VkImportSemaphoreFdInfoKHR* pImportSemaphoreFdInfo);
-typedef VkResult ( *PFN_vkGetSemaphoreFdKHR)(VkDevice device, const VkSemaphoreGetFdInfoKHR* pGetFdInfo, int* pFd);
-
-
- VkResult vkImportSemaphoreFdKHR(
-    VkDevice device,
-    const VkImportSemaphoreFdInfoKHR* pImportSemaphoreFdInfo);
-
- VkResult vkGetSemaphoreFdKHR(
-    VkDevice device,
-    const VkSemaphoreGetFdInfoKHR* pGetFdInfo,
-    int* pFd);
-
-
-
-
-
-
-typedef struct VkPhysicalDevicePushDescriptorPropertiesKHR {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxPushDescriptors;
-} VkPhysicalDevicePushDescriptorPropertiesKHR;
-
-
-typedef void ( *PFN_vkCmdPushDescriptorSetKHR)(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t set, uint32_t descriptorWriteCount, const VkWriteDescriptorSet* pDescriptorWrites);
-typedef void ( *PFN_vkCmdPushDescriptorSetWithTemplateKHR)(VkCommandBuffer commandBuffer, VkDescriptorUpdateTemplate descriptorUpdateTemplate, VkPipelineLayout layout, uint32_t set, const void* pData);
-
-
- void vkCmdPushDescriptorSetKHR(
-    VkCommandBuffer commandBuffer,
-    VkPipelineBindPoint pipelineBindPoint,
-    VkPipelineLayout layout,
-    uint32_t set,
-    uint32_t descriptorWriteCount,
-    const VkWriteDescriptorSet* pDescriptorWrites);
-
- void vkCmdPushDescriptorSetWithTemplateKHR(
-    VkCommandBuffer commandBuffer,
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate,
-    VkPipelineLayout layout,
-    uint32_t set,
-    const void* pData);
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceFloat16Int8FeaturesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 shaderFloat16;
-    VkBool32 shaderInt8;
-} VkPhysicalDeviceFloat16Int8FeaturesKHR;
-
-
-
-
-
-
-
-typedef VkPhysicalDevice16BitStorageFeatures VkPhysicalDevice16BitStorageFeaturesKHR;
-
-
-
-
-
-
-
-typedef struct VkRectLayerKHR {
-    VkOffset2D offset;
-    VkExtent2D extent;
-    uint32_t layer;
-} VkRectLayerKHR;
-
-typedef struct VkPresentRegionKHR {
-    uint32_t rectangleCount;
-    const VkRectLayerKHR* pRectangles;
-} VkPresentRegionKHR;
-
-typedef struct VkPresentRegionsKHR {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t swapchainCount;
-    const VkPresentRegionKHR* pRegions;
-} VkPresentRegionsKHR;
-
-
-
-
-typedef VkDescriptorUpdateTemplate VkDescriptorUpdateTemplateKHR;
-
-
-
-
-
-typedef VkDescriptorUpdateTemplateType VkDescriptorUpdateTemplateTypeKHR;
-
-
-typedef VkDescriptorUpdateTemplateCreateFlags VkDescriptorUpdateTemplateCreateFlagsKHR;
-
-
-typedef VkDescriptorUpdateTemplateEntry VkDescriptorUpdateTemplateEntryKHR;
-
-typedef VkDescriptorUpdateTemplateCreateInfo VkDescriptorUpdateTemplateCreateInfoKHR;
-
-
-typedef VkResult ( *PFN_vkCreateDescriptorUpdateTemplateKHR)(VkDevice device, const VkDescriptorUpdateTemplateCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate);
-typedef void ( *PFN_vkDestroyDescriptorUpdateTemplateKHR)(VkDevice device, VkDescriptorUpdateTemplate descriptorUpdateTemplate, const VkAllocationCallbacks* pAllocator);
-typedef void ( *PFN_vkUpdateDescriptorSetWithTemplateKHR)(VkDevice device, VkDescriptorSet descriptorSet, VkDescriptorUpdateTemplate descriptorUpdateTemplate, const void* pData);
-
-
- VkResult vkCreateDescriptorUpdateTemplateKHR(
-    VkDevice device,
-    const VkDescriptorUpdateTemplateCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate);
-
- void vkDestroyDescriptorUpdateTemplateKHR(
-    VkDevice device,
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate,
-    const VkAllocationCallbacks* pAllocator);
-
- void vkUpdateDescriptorSetWithTemplateKHR(
-    VkDevice device,
-    VkDescriptorSet descriptorSet,
-    VkDescriptorUpdateTemplate descriptorUpdateTemplate,
-    const void* pData);
-
-
-
-
-
-
-typedef struct VkAttachmentDescription2KHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkAttachmentDescriptionFlags flags;
-    VkFormat format;
-    VkSampleCountFlagBits samples;
-    VkAttachmentLoadOp loadOp;
-    VkAttachmentStoreOp storeOp;
-    VkAttachmentLoadOp stencilLoadOp;
-    VkAttachmentStoreOp stencilStoreOp;
-    VkImageLayout initialLayout;
-    VkImageLayout finalLayout;
-} VkAttachmentDescription2KHR;
-
-typedef struct VkAttachmentReference2KHR {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t attachment;
-    VkImageLayout layout;
-    VkImageAspectFlags aspectMask;
-} VkAttachmentReference2KHR;
-
-typedef struct VkSubpassDescription2KHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSubpassDescriptionFlags flags;
-    VkPipelineBindPoint pipelineBindPoint;
-    uint32_t viewMask;
-    uint32_t inputAttachmentCount;
-    const VkAttachmentReference2KHR* pInputAttachments;
-    uint32_t colorAttachmentCount;
-    const VkAttachmentReference2KHR* pColorAttachments;
-    const VkAttachmentReference2KHR* pResolveAttachments;
-    const VkAttachmentReference2KHR* pDepthStencilAttachment;
-    uint32_t preserveAttachmentCount;
-    const uint32_t* pPreserveAttachments;
-} VkSubpassDescription2KHR;
-
-typedef struct VkSubpassDependency2KHR {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t srcSubpass;
-    uint32_t dstSubpass;
-    VkPipelineStageFlags srcStageMask;
-    VkPipelineStageFlags dstStageMask;
-    VkAccessFlags srcAccessMask;
-    VkAccessFlags dstAccessMask;
-    VkDependencyFlags dependencyFlags;
-    int32_t viewOffset;
-} VkSubpassDependency2KHR;
-
-typedef struct VkRenderPassCreateInfo2KHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkRenderPassCreateFlags flags;
-    uint32_t attachmentCount;
-    const VkAttachmentDescription2KHR* pAttachments;
-    uint32_t subpassCount;
-    const VkSubpassDescription2KHR* pSubpasses;
-    uint32_t dependencyCount;
-    const VkSubpassDependency2KHR* pDependencies;
-    uint32_t correlatedViewMaskCount;
-    const uint32_t* pCorrelatedViewMasks;
-} VkRenderPassCreateInfo2KHR;
-
-typedef struct VkSubpassBeginInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSubpassContents contents;
-} VkSubpassBeginInfoKHR;
-
-typedef struct VkSubpassEndInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-} VkSubpassEndInfoKHR;
-
-
-typedef VkResult ( *PFN_vkCreateRenderPass2KHR)(VkDevice device, const VkRenderPassCreateInfo2KHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkRenderPass* pRenderPass);
-typedef void ( *PFN_vkCmdBeginRenderPass2KHR)(VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo* pRenderPassBegin, const VkSubpassBeginInfoKHR* pSubpassBeginInfo);
-typedef void ( *PFN_vkCmdNextSubpass2KHR)(VkCommandBuffer commandBuffer, const VkSubpassBeginInfoKHR* pSubpassBeginInfo, const VkSubpassEndInfoKHR* pSubpassEndInfo);
-typedef void ( *PFN_vkCmdEndRenderPass2KHR)(VkCommandBuffer commandBuffer, const VkSubpassEndInfoKHR* pSubpassEndInfo);
-
-
- VkResult vkCreateRenderPass2KHR(
-    VkDevice device,
-    const VkRenderPassCreateInfo2KHR* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkRenderPass* pRenderPass);
-
- void vkCmdBeginRenderPass2KHR(
-    VkCommandBuffer commandBuffer,
-    const VkRenderPassBeginInfo* pRenderPassBegin,
-    const VkSubpassBeginInfoKHR* pSubpassBeginInfo);
-
- void vkCmdNextSubpass2KHR(
-    VkCommandBuffer commandBuffer,
-    const VkSubpassBeginInfoKHR* pSubpassBeginInfo,
-    const VkSubpassEndInfoKHR* pSubpassEndInfo);
-
- void vkCmdEndRenderPass2KHR(
-    VkCommandBuffer commandBuffer,
-    const VkSubpassEndInfoKHR* pSubpassEndInfo);
-
-
-
-
-
-
-typedef struct VkSharedPresentSurfaceCapabilitiesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkImageUsageFlags sharedPresentSupportedUsageFlags;
-} VkSharedPresentSurfaceCapabilitiesKHR;
-
-
-typedef VkResult ( *PFN_vkGetSwapchainStatusKHR)(VkDevice device, VkSwapchainKHR swapchain);
-
-
- VkResult vkGetSwapchainStatusKHR(
-    VkDevice device,
-    VkSwapchainKHR swapchain);
-
-
-
-
-
-
-typedef VkExternalFenceHandleTypeFlags VkExternalFenceHandleTypeFlagsKHR;
-
-typedef VkExternalFenceHandleTypeFlagBits VkExternalFenceHandleTypeFlagBitsKHR;
-
-typedef VkExternalFenceFeatureFlags VkExternalFenceFeatureFlagsKHR;
-
-typedef VkExternalFenceFeatureFlagBits VkExternalFenceFeatureFlagBitsKHR;
-
-
-typedef VkPhysicalDeviceExternalFenceInfo VkPhysicalDeviceExternalFenceInfoKHR;
-
-typedef VkExternalFenceProperties VkExternalFencePropertiesKHR;
-
-
-typedef void ( *PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo, VkExternalFenceProperties* pExternalFenceProperties);
-
-
- void vkGetPhysicalDeviceExternalFencePropertiesKHR(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceExternalFenceInfo* pExternalFenceInfo,
-    VkExternalFenceProperties* pExternalFenceProperties);
-
-
-
-
-
-
-typedef VkFenceImportFlags VkFenceImportFlagsKHR;
-
-typedef VkFenceImportFlagBits VkFenceImportFlagBitsKHR;
-
-
-typedef VkExportFenceCreateInfo VkExportFenceCreateInfoKHR;
-
-
-
-
-
-
-
-typedef struct VkImportFenceFdInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkFence fence;
-    VkFenceImportFlags flags;
-    VkExternalFenceHandleTypeFlagBits handleType;
-    int fd;
-} VkImportFenceFdInfoKHR;
-
-typedef struct VkFenceGetFdInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkFence fence;
-    VkExternalFenceHandleTypeFlagBits handleType;
-} VkFenceGetFdInfoKHR;
-
-
-typedef VkResult ( *PFN_vkImportFenceFdKHR)(VkDevice device, const VkImportFenceFdInfoKHR* pImportFenceFdInfo);
-typedef VkResult ( *PFN_vkGetFenceFdKHR)(VkDevice device, const VkFenceGetFdInfoKHR* pGetFdInfo, int* pFd);
-
-
- VkResult vkImportFenceFdKHR(
-    VkDevice device,
-    const VkImportFenceFdInfoKHR* pImportFenceFdInfo);
-
- VkResult vkGetFenceFdKHR(
-    VkDevice device,
-    const VkFenceGetFdInfoKHR* pGetFdInfo,
-    int* pFd);
-
-
-
-
-
-
-typedef VkPointClippingBehavior VkPointClippingBehaviorKHR;
-
-typedef VkTessellationDomainOrigin VkTessellationDomainOriginKHR;
-
-
-typedef VkPhysicalDevicePointClippingProperties VkPhysicalDevicePointClippingPropertiesKHR;
-
-typedef VkRenderPassInputAttachmentAspectCreateInfo VkRenderPassInputAttachmentAspectCreateInfoKHR;
-
-typedef VkInputAttachmentAspectReference VkInputAttachmentAspectReferenceKHR;
-
-typedef VkImageViewUsageCreateInfo VkImageViewUsageCreateInfoKHR;
-
-typedef VkPipelineTessellationDomainOriginStateCreateInfo VkPipelineTessellationDomainOriginStateCreateInfoKHR;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceSurfaceInfo2KHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkSurfaceKHR surface;
-} VkPhysicalDeviceSurfaceInfo2KHR;
-
-typedef struct VkSurfaceCapabilities2KHR {
-    VkStructureType sType;
-    void* pNext;
-    VkSurfaceCapabilitiesKHR surfaceCapabilities;
-} VkSurfaceCapabilities2KHR;
-
-typedef struct VkSurfaceFormat2KHR {
-    VkStructureType sType;
-    void* pNext;
-    VkSurfaceFormatKHR surfaceFormat;
-} VkSurfaceFormat2KHR;
-
-
-typedef VkResult ( *PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, VkSurfaceCapabilities2KHR* pSurfaceCapabilities);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceSurfaceFormats2KHR)(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, uint32_t* pSurfaceFormatCount, VkSurfaceFormat2KHR* pSurfaceFormats);
-
-
- VkResult vkGetPhysicalDeviceSurfaceCapabilities2KHR(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo,
-    VkSurfaceCapabilities2KHR* pSurfaceCapabilities);
-
- VkResult vkGetPhysicalDeviceSurfaceFormats2KHR(
-    VkPhysicalDevice physicalDevice,
-    const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo,
-    uint32_t* pSurfaceFormatCount,
-    VkSurfaceFormat2KHR* pSurfaceFormats);
-
-
-
-
-
-
-typedef VkPhysicalDeviceVariablePointerFeatures VkPhysicalDeviceVariablePointerFeaturesKHR;
-
-
-
-
-
-
-
-typedef struct VkDisplayProperties2KHR {
-    VkStructureType sType;
-    void* pNext;
-    VkDisplayPropertiesKHR displayProperties;
-} VkDisplayProperties2KHR;
-
-typedef struct VkDisplayPlaneProperties2KHR {
-    VkStructureType sType;
-    void* pNext;
-    VkDisplayPlanePropertiesKHR displayPlaneProperties;
-} VkDisplayPlaneProperties2KHR;
-
-typedef struct VkDisplayModeProperties2KHR {
-    VkStructureType sType;
-    void* pNext;
-    VkDisplayModePropertiesKHR displayModeProperties;
-} VkDisplayModeProperties2KHR;
-
-typedef struct VkDisplayPlaneInfo2KHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkDisplayModeKHR mode;
-    uint32_t planeIndex;
-} VkDisplayPlaneInfo2KHR;
-
-typedef struct VkDisplayPlaneCapabilities2KHR {
-    VkStructureType sType;
-    void* pNext;
-    VkDisplayPlaneCapabilitiesKHR capabilities;
-} VkDisplayPlaneCapabilities2KHR;
-
-
-typedef VkResult ( *PFN_vkGetPhysicalDeviceDisplayProperties2KHR)(VkPhysicalDevice physicalDevice, uint32_t* pPropertyCount, VkDisplayProperties2KHR* pProperties);
-typedef VkResult ( *PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR)(VkPhysicalDevice physicalDevice, uint32_t* pPropertyCount, VkDisplayPlaneProperties2KHR* pProperties);
-typedef VkResult ( *PFN_vkGetDisplayModeProperties2KHR)(VkPhysicalDevice physicalDevice, VkDisplayKHR display, uint32_t* pPropertyCount, VkDisplayModeProperties2KHR* pProperties);
-typedef VkResult ( *PFN_vkGetDisplayPlaneCapabilities2KHR)(VkPhysicalDevice physicalDevice, const VkDisplayPlaneInfo2KHR* pDisplayPlaneInfo, VkDisplayPlaneCapabilities2KHR* pCapabilities);
-
-
- VkResult vkGetPhysicalDeviceDisplayProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pPropertyCount,
-    VkDisplayProperties2KHR* pProperties);
-
- VkResult vkGetPhysicalDeviceDisplayPlaneProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pPropertyCount,
-    VkDisplayPlaneProperties2KHR* pProperties);
-
- VkResult vkGetDisplayModeProperties2KHR(
-    VkPhysicalDevice physicalDevice,
-    VkDisplayKHR display,
-    uint32_t* pPropertyCount,
-    VkDisplayModeProperties2KHR* pProperties);
-
- VkResult vkGetDisplayPlaneCapabilities2KHR(
-    VkPhysicalDevice physicalDevice,
-    const VkDisplayPlaneInfo2KHR* pDisplayPlaneInfo,
-    VkDisplayPlaneCapabilities2KHR* pCapabilities);
-
-
-
-
-
-
-typedef VkMemoryDedicatedRequirements VkMemoryDedicatedRequirementsKHR;
-
-typedef VkMemoryDedicatedAllocateInfo VkMemoryDedicatedAllocateInfoKHR;
-# 5954 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef VkBufferMemoryRequirementsInfo2 VkBufferMemoryRequirementsInfo2KHR;
-
-typedef VkImageMemoryRequirementsInfo2 VkImageMemoryRequirementsInfo2KHR;
-
-typedef VkImageSparseMemoryRequirementsInfo2 VkImageSparseMemoryRequirementsInfo2KHR;
-
-typedef VkSparseImageMemoryRequirements2 VkSparseImageMemoryRequirements2KHR;
-
-
-typedef void ( *PFN_vkGetImageMemoryRequirements2KHR)(VkDevice device, const VkImageMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements);
-typedef void ( *PFN_vkGetBufferMemoryRequirements2KHR)(VkDevice device, const VkBufferMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements);
-typedef void ( *PFN_vkGetImageSparseMemoryRequirements2KHR)(VkDevice device, const VkImageSparseMemoryRequirementsInfo2* pInfo, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements2* pSparseMemoryRequirements);
-
-
- void vkGetImageMemoryRequirements2KHR(
-    VkDevice device,
-    const VkImageMemoryRequirementsInfo2* pInfo,
-    VkMemoryRequirements2* pMemoryRequirements);
-
- void vkGetBufferMemoryRequirements2KHR(
-    VkDevice device,
-    const VkBufferMemoryRequirementsInfo2* pInfo,
-    VkMemoryRequirements2* pMemoryRequirements);
-
- void vkGetImageSparseMemoryRequirements2KHR(
-    VkDevice device,
-    const VkImageSparseMemoryRequirementsInfo2* pInfo,
-    uint32_t* pSparseMemoryRequirementCount,
-    VkSparseImageMemoryRequirements2* pSparseMemoryRequirements);
-
-
-
-
-
-
-typedef struct VkImageFormatListCreateInfoKHR {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t viewFormatCount;
-    const VkFormat* pViewFormats;
-} VkImageFormatListCreateInfoKHR;
-
-
-
-
-typedef VkSamplerYcbcrConversion VkSamplerYcbcrConversionKHR;
-
-
-
-
-
-typedef VkSamplerYcbcrModelConversion VkSamplerYcbcrModelConversionKHR;
-
-typedef VkSamplerYcbcrRange VkSamplerYcbcrRangeKHR;
-
-typedef VkChromaLocation VkChromaLocationKHR;
-
-
-typedef VkSamplerYcbcrConversionCreateInfo VkSamplerYcbcrConversionCreateInfoKHR;
-
-typedef VkSamplerYcbcrConversionInfo VkSamplerYcbcrConversionInfoKHR;
-
-typedef VkBindImagePlaneMemoryInfo VkBindImagePlaneMemoryInfoKHR;
-
-typedef VkImagePlaneMemoryRequirementsInfo VkImagePlaneMemoryRequirementsInfoKHR;
-
-typedef VkPhysicalDeviceSamplerYcbcrConversionFeatures VkPhysicalDeviceSamplerYcbcrConversionFeaturesKHR;
-
-typedef VkSamplerYcbcrConversionImageFormatProperties VkSamplerYcbcrConversionImageFormatPropertiesKHR;
-
-
-typedef VkResult ( *PFN_vkCreateSamplerYcbcrConversionKHR)(VkDevice device, const VkSamplerYcbcrConversionCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSamplerYcbcrConversion* pYcbcrConversion);
-typedef void ( *PFN_vkDestroySamplerYcbcrConversionKHR)(VkDevice device, VkSamplerYcbcrConversion ycbcrConversion, const VkAllocationCallbacks* pAllocator);
-
-
- VkResult vkCreateSamplerYcbcrConversionKHR(
-    VkDevice device,
-    const VkSamplerYcbcrConversionCreateInfo* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkSamplerYcbcrConversion* pYcbcrConversion);
-
- void vkDestroySamplerYcbcrConversionKHR(
-    VkDevice device,
-    VkSamplerYcbcrConversion ycbcrConversion,
-    const VkAllocationCallbacks* pAllocator);
-
-
-
-
-
-
-typedef VkBindBufferMemoryInfo VkBindBufferMemoryInfoKHR;
-
-typedef VkBindImageMemoryInfo VkBindImageMemoryInfoKHR;
-
-
-typedef VkResult ( *PFN_vkBindBufferMemory2KHR)(VkDevice device, uint32_t bindInfoCount, const VkBindBufferMemoryInfo* pBindInfos);
-typedef VkResult ( *PFN_vkBindImageMemory2KHR)(VkDevice device, uint32_t bindInfoCount, const VkBindImageMemoryInfo* pBindInfos);
-
-
- VkResult vkBindBufferMemory2KHR(
-    VkDevice device,
-    uint32_t bindInfoCount,
-    const VkBindBufferMemoryInfo* pBindInfos);
-
- VkResult vkBindImageMemory2KHR(
-    VkDevice device,
-    uint32_t bindInfoCount,
-    const VkBindImageMemoryInfo* pBindInfos);
-
-
-
-
-
-
-typedef VkPhysicalDeviceMaintenance3Properties VkPhysicalDeviceMaintenance3PropertiesKHR;
-
-typedef VkDescriptorSetLayoutSupport VkDescriptorSetLayoutSupportKHR;
-
-
-typedef void ( *PFN_vkGetDescriptorSetLayoutSupportKHR)(VkDevice device, const VkDescriptorSetLayoutCreateInfo* pCreateInfo, VkDescriptorSetLayoutSupport* pSupport);
-
-
- void vkGetDescriptorSetLayoutSupportKHR(
-    VkDevice device,
-    const VkDescriptorSetLayoutCreateInfo* pCreateInfo,
-    VkDescriptorSetLayoutSupport* pSupport);
-
-
-
-
-
-
-typedef void ( *PFN_vkCmdDrawIndirectCountKHR)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride);
-typedef void ( *PFN_vkCmdDrawIndexedIndirectCountKHR)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride);
-
-
- void vkCmdDrawIndirectCountKHR(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    VkBuffer countBuffer,
-    VkDeviceSize countBufferOffset,
-    uint32_t maxDrawCount,
-    uint32_t stride);
-
- void vkCmdDrawIndexedIndirectCountKHR(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    VkBuffer countBuffer,
-    VkDeviceSize countBufferOffset,
-    uint32_t maxDrawCount,
-    uint32_t stride);
-
-
-
-
-
-
-typedef struct VkPhysicalDevice8BitStorageFeaturesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 storageBuffer8BitAccess;
-    VkBool32 uniformAndStorageBuffer8BitAccess;
-    VkBool32 storagePushConstant8;
-} VkPhysicalDevice8BitStorageFeaturesKHR;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceShaderAtomicInt64FeaturesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 shaderBufferInt64Atomics;
-    VkBool32 shaderSharedInt64Atomics;
-} VkPhysicalDeviceShaderAtomicInt64FeaturesKHR;
-# 6144 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkDriverIdKHR {
-    VK_DRIVER_ID_AMD_PROPRIETARY_KHR = 1,
-    VK_DRIVER_ID_AMD_OPEN_SOURCE_KHR = 2,
-    VK_DRIVER_ID_MESA_RADV_KHR = 3,
-    VK_DRIVER_ID_NVIDIA_PROPRIETARY_KHR = 4,
-    VK_DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR = 5,
-    VK_DRIVER_ID_INTEL_OPEN_SOURCE_MESA_KHR = 6,
-    VK_DRIVER_ID_IMAGINATION_PROPRIETARY_KHR = 7,
-    VK_DRIVER_ID_QUALCOMM_PROPRIETARY_KHR = 8,
-    VK_DRIVER_ID_ARM_PROPRIETARY_KHR = 9,
-    VK_DRIVER_ID_GOOGLE_PASTEL_KHR = 10,
-    VK_DRIVER_ID_BEGIN_RANGE_KHR = VK_DRIVER_ID_AMD_PROPRIETARY_KHR,
-    VK_DRIVER_ID_END_RANGE_KHR = VK_DRIVER_ID_GOOGLE_PASTEL_KHR,
-    VK_DRIVER_ID_RANGE_SIZE_KHR = (VK_DRIVER_ID_GOOGLE_PASTEL_KHR - VK_DRIVER_ID_AMD_PROPRIETARY_KHR + 1),
-    VK_DRIVER_ID_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkDriverIdKHR;
-
-typedef struct VkConformanceVersionKHR {
-    uint8_t major;
-    uint8_t minor;
-    uint8_t subminor;
-    uint8_t patch;
-} VkConformanceVersionKHR;
-
-typedef struct VkPhysicalDeviceDriverPropertiesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkDriverIdKHR driverID;
-    char driverName[256];
-    char driverInfo[256];
-    VkConformanceVersionKHR conformanceVersion;
-} VkPhysicalDeviceDriverPropertiesKHR;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceFloatControlsPropertiesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 separateDenormSettings;
-    VkBool32 separateRoundingModeSettings;
-    VkBool32 shaderSignedZeroInfNanPreserveFloat16;
-    VkBool32 shaderSignedZeroInfNanPreserveFloat32;
-    VkBool32 shaderSignedZeroInfNanPreserveFloat64;
-    VkBool32 shaderDenormPreserveFloat16;
-    VkBool32 shaderDenormPreserveFloat32;
-    VkBool32 shaderDenormPreserveFloat64;
-    VkBool32 shaderDenormFlushToZeroFloat16;
-    VkBool32 shaderDenormFlushToZeroFloat32;
-    VkBool32 shaderDenormFlushToZeroFloat64;
-    VkBool32 shaderRoundingModeRTEFloat16;
-    VkBool32 shaderRoundingModeRTEFloat32;
-    VkBool32 shaderRoundingModeRTEFloat64;
-    VkBool32 shaderRoundingModeRTZFloat16;
-    VkBool32 shaderRoundingModeRTZFloat32;
-    VkBool32 shaderRoundingModeRTZFloat64;
-} VkPhysicalDeviceFloatControlsPropertiesKHR;
-# 6212 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkResolveModeFlagBitsKHR {
-    VK_RESOLVE_MODE_NONE_KHR = 0,
-    VK_RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR = 0x00000001,
-    VK_RESOLVE_MODE_AVERAGE_BIT_KHR = 0x00000002,
-    VK_RESOLVE_MODE_MIN_BIT_KHR = 0x00000004,
-    VK_RESOLVE_MODE_MAX_BIT_KHR = 0x00000008,
-    VK_RESOLVE_MODE_FLAG_BITS_MAX_ENUM_KHR = 0x7FFFFFFF
-} VkResolveModeFlagBitsKHR;
-typedef VkFlags VkResolveModeFlagsKHR;
-
-typedef struct VkSubpassDescriptionDepthStencilResolveKHR {
-    VkStructureType sType;
-    const void* pNext;
-    VkResolveModeFlagBitsKHR depthResolveMode;
-    VkResolveModeFlagBitsKHR stencilResolveMode;
-    const VkAttachmentReference2KHR* pDepthStencilResolveAttachment;
-} VkSubpassDescriptionDepthStencilResolveKHR;
-
-typedef struct VkPhysicalDeviceDepthStencilResolvePropertiesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkResolveModeFlagsKHR supportedDepthResolveModes;
-    VkResolveModeFlagsKHR supportedStencilResolveModes;
-    VkBool32 independentResolveNone;
-    VkBool32 independentResolve;
-} VkPhysicalDeviceDepthStencilResolvePropertiesKHR;
-# 6250 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkPhysicalDeviceVulkanMemoryModelFeaturesKHR {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 vulkanMemoryModel;
-    VkBool32 vulkanMemoryModelDeviceScope;
-} VkPhysicalDeviceVulkanMemoryModelFeaturesKHR;
-
-
-
-
-typedef struct VkDebugReportCallbackEXT_T *VkDebugReportCallbackEXT;
-
-
-
-
-
-typedef enum VkDebugReportObjectTypeEXT {
-    VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT = 0,
-    VK_DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT = 1,
-    VK_DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT = 2,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT = 3,
-    VK_DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT = 4,
-    VK_DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT = 5,
-    VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT = 6,
-    VK_DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT = 7,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT = 8,
-    VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT = 9,
-    VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT = 10,
-    VK_DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT = 11,
-    VK_DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT = 12,
-    VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT = 13,
-    VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT = 14,
-    VK_DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT = 15,
-    VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT = 16,
-    VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT = 17,
-    VK_DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT = 18,
-    VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT = 19,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT = 20,
-    VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT = 21,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT = 22,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT = 23,
-    VK_DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT = 24,
-    VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT = 25,
-    VK_DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT = 26,
-    VK_DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT = 27,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT = 28,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR_EXT = 29,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR_EXT = 30,
-    VK_DEBUG_REPORT_OBJECT_TYPE_OBJECT_TABLE_NVX_EXT = 31,
-    VK_DEBUG_REPORT_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NVX_EXT = 32,
-    VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT = 33,
-    VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT = 1000156000,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT = 1000085000,
-    VK_DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV_EXT = 1000165000,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT = VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT,
-    VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT = VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT,
-    VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT = VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT,
-    VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR_EXT = VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT,
-    VK_DEBUG_REPORT_OBJECT_TYPE_BEGIN_RANGE_EXT = VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT,
-    VK_DEBUG_REPORT_OBJECT_TYPE_END_RANGE_EXT = VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT,
-    VK_DEBUG_REPORT_OBJECT_TYPE_RANGE_SIZE_EXT = (VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT - VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT + 1),
-    VK_DEBUG_REPORT_OBJECT_TYPE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDebugReportObjectTypeEXT;
-
-
-typedef enum VkDebugReportFlagBitsEXT {
-    VK_DEBUG_REPORT_INFORMATION_BIT_EXT = 0x00000001,
-    VK_DEBUG_REPORT_WARNING_BIT_EXT = 0x00000002,
-    VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT = 0x00000004,
-    VK_DEBUG_REPORT_ERROR_BIT_EXT = 0x00000008,
-    VK_DEBUG_REPORT_DEBUG_BIT_EXT = 0x00000010,
-    VK_DEBUG_REPORT_FLAG_BITS_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDebugReportFlagBitsEXT;
-typedef VkFlags VkDebugReportFlagsEXT;
-
-typedef VkBool32 ( *PFN_vkDebugReportCallbackEXT)(
-    VkDebugReportFlagsEXT flags,
-    VkDebugReportObjectTypeEXT objectType,
-    uint64_t object,
-    size_t location,
-    int32_t messageCode,
-    const char* pLayerPrefix,
-    const char* pMessage,
-    void* pUserData);
-
-typedef struct VkDebugReportCallbackCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDebugReportFlagsEXT flags;
-    PFN_vkDebugReportCallbackEXT pfnCallback;
-    void* pUserData;
-} VkDebugReportCallbackCreateInfoEXT;
-
-
-typedef VkResult ( *PFN_vkCreateDebugReportCallbackEXT)(VkInstance instance, const VkDebugReportCallbackCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugReportCallbackEXT* pCallback);
-typedef void ( *PFN_vkDestroyDebugReportCallbackEXT)(VkInstance instance, VkDebugReportCallbackEXT callback, const VkAllocationCallbacks* pAllocator);
-typedef void ( *PFN_vkDebugReportMessageEXT)(VkInstance instance, VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objectType, uint64_t object, size_t location, int32_t messageCode, const char* pLayerPrefix, const char* pMessage);
-
-
- VkResult vkCreateDebugReportCallbackEXT(
-    VkInstance instance,
-    const VkDebugReportCallbackCreateInfoEXT* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDebugReportCallbackEXT* pCallback);
-
- void vkDestroyDebugReportCallbackEXT(
-    VkInstance instance,
-    VkDebugReportCallbackEXT callback,
-    const VkAllocationCallbacks* pAllocator);
-
- void vkDebugReportMessageEXT(
-    VkInstance instance,
-    VkDebugReportFlagsEXT flags,
-    VkDebugReportObjectTypeEXT objectType,
-    uint64_t object,
-    size_t location,
-    int32_t messageCode,
-    const char* pLayerPrefix,
-    const char* pMessage);
-# 6391 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkRasterizationOrderAMD {
-    VK_RASTERIZATION_ORDER_STRICT_AMD = 0,
-    VK_RASTERIZATION_ORDER_RELAXED_AMD = 1,
-    VK_RASTERIZATION_ORDER_BEGIN_RANGE_AMD = VK_RASTERIZATION_ORDER_STRICT_AMD,
-    VK_RASTERIZATION_ORDER_END_RANGE_AMD = VK_RASTERIZATION_ORDER_RELAXED_AMD,
-    VK_RASTERIZATION_ORDER_RANGE_SIZE_AMD = (VK_RASTERIZATION_ORDER_RELAXED_AMD - VK_RASTERIZATION_ORDER_STRICT_AMD + 1),
-    VK_RASTERIZATION_ORDER_MAX_ENUM_AMD = 0x7FFFFFFF
-} VkRasterizationOrderAMD;
-
-typedef struct VkPipelineRasterizationStateRasterizationOrderAMD {
-    VkStructureType sType;
-    const void* pNext;
-    VkRasterizationOrderAMD rasterizationOrder;
-} VkPipelineRasterizationStateRasterizationOrderAMD;
-# 6422 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkDebugMarkerObjectNameInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDebugReportObjectTypeEXT objectType;
-    uint64_t object;
-    const char* pObjectName;
-} VkDebugMarkerObjectNameInfoEXT;
-
-typedef struct VkDebugMarkerObjectTagInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDebugReportObjectTypeEXT objectType;
-    uint64_t object;
-    uint64_t tagName;
-    size_t tagSize;
-    const void* pTag;
-} VkDebugMarkerObjectTagInfoEXT;
-
-typedef struct VkDebugMarkerMarkerInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    const char* pMarkerName;
-    float color[4];
-} VkDebugMarkerMarkerInfoEXT;
-
-
-typedef VkResult ( *PFN_vkDebugMarkerSetObjectTagEXT)(VkDevice device, const VkDebugMarkerObjectTagInfoEXT* pTagInfo);
-typedef VkResult ( *PFN_vkDebugMarkerSetObjectNameEXT)(VkDevice device, const VkDebugMarkerObjectNameInfoEXT* pNameInfo);
-typedef void ( *PFN_vkCmdDebugMarkerBeginEXT)(VkCommandBuffer commandBuffer, const VkDebugMarkerMarkerInfoEXT* pMarkerInfo);
-typedef void ( *PFN_vkCmdDebugMarkerEndEXT)(VkCommandBuffer commandBuffer);
-typedef void ( *PFN_vkCmdDebugMarkerInsertEXT)(VkCommandBuffer commandBuffer, const VkDebugMarkerMarkerInfoEXT* pMarkerInfo);
-
-
- VkResult vkDebugMarkerSetObjectTagEXT(
-    VkDevice device,
-    const VkDebugMarkerObjectTagInfoEXT* pTagInfo);
-
- VkResult vkDebugMarkerSetObjectNameEXT(
-    VkDevice device,
-    const VkDebugMarkerObjectNameInfoEXT* pNameInfo);
-
- void vkCmdDebugMarkerBeginEXT(
-    VkCommandBuffer commandBuffer,
-    const VkDebugMarkerMarkerInfoEXT* pMarkerInfo);
-
- void vkCmdDebugMarkerEndEXT(
-    VkCommandBuffer commandBuffer);
-
- void vkCmdDebugMarkerInsertEXT(
-    VkCommandBuffer commandBuffer,
-    const VkDebugMarkerMarkerInfoEXT* pMarkerInfo);
-# 6484 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkDedicatedAllocationImageCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 dedicatedAllocation;
-} VkDedicatedAllocationImageCreateInfoNV;
-
-typedef struct VkDedicatedAllocationBufferCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 dedicatedAllocation;
-} VkDedicatedAllocationBufferCreateInfoNV;
-
-typedef struct VkDedicatedAllocationMemoryAllocateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkImage image;
-    VkBuffer buffer;
-} VkDedicatedAllocationMemoryAllocateInfoNV;
-
-
-
-
-
-
-
-typedef VkFlags VkPipelineRasterizationStateStreamCreateFlagsEXT;
-
-typedef struct VkPhysicalDeviceTransformFeedbackFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 transformFeedback;
-    VkBool32 geometryStreams;
-} VkPhysicalDeviceTransformFeedbackFeaturesEXT;
-
-typedef struct VkPhysicalDeviceTransformFeedbackPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxTransformFeedbackStreams;
-    uint32_t maxTransformFeedbackBuffers;
-    VkDeviceSize maxTransformFeedbackBufferSize;
-    uint32_t maxTransformFeedbackStreamDataSize;
-    uint32_t maxTransformFeedbackBufferDataSize;
-    uint32_t maxTransformFeedbackBufferDataStride;
-    VkBool32 transformFeedbackQueries;
-    VkBool32 transformFeedbackStreamsLinesTriangles;
-    VkBool32 transformFeedbackRasterizationStreamSelect;
-    VkBool32 transformFeedbackDraw;
-} VkPhysicalDeviceTransformFeedbackPropertiesEXT;
-
-typedef struct VkPipelineRasterizationStateStreamCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineRasterizationStateStreamCreateFlagsEXT flags;
-    uint32_t rasterizationStream;
-} VkPipelineRasterizationStateStreamCreateInfoEXT;
-
-
-typedef void ( *PFN_vkCmdBindTransformFeedbackBuffersEXT)(VkCommandBuffer commandBuffer, uint32_t firstBinding, uint32_t bindingCount, const VkBuffer* pBuffers, const VkDeviceSize* pOffsets, const VkDeviceSize* pSizes);
-typedef void ( *PFN_vkCmdBeginTransformFeedbackEXT)(VkCommandBuffer commandBuffer, uint32_t firstCounterBuffer, uint32_t counterBufferCount, const VkBuffer* pCounterBuffers, const VkDeviceSize* pCounterBufferOffsets);
-typedef void ( *PFN_vkCmdEndTransformFeedbackEXT)(VkCommandBuffer commandBuffer, uint32_t firstCounterBuffer, uint32_t counterBufferCount, const VkBuffer* pCounterBuffers, const VkDeviceSize* pCounterBufferOffsets);
-typedef void ( *PFN_vkCmdBeginQueryIndexedEXT)(VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t query, VkQueryControlFlags flags, uint32_t index);
-typedef void ( *PFN_vkCmdEndQueryIndexedEXT)(VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t query, uint32_t index);
-typedef void ( *PFN_vkCmdDrawIndirectByteCountEXT)(VkCommandBuffer commandBuffer, uint32_t instanceCount, uint32_t firstInstance, VkBuffer counterBuffer, VkDeviceSize counterBufferOffset, uint32_t counterOffset, uint32_t vertexStride);
-
-
- void vkCmdBindTransformFeedbackBuffersEXT(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstBinding,
-    uint32_t bindingCount,
-    const VkBuffer* pBuffers,
-    const VkDeviceSize* pOffsets,
-    const VkDeviceSize* pSizes);
-
- void vkCmdBeginTransformFeedbackEXT(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstCounterBuffer,
-    uint32_t counterBufferCount,
-    const VkBuffer* pCounterBuffers,
-    const VkDeviceSize* pCounterBufferOffsets);
-
- void vkCmdEndTransformFeedbackEXT(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstCounterBuffer,
-    uint32_t counterBufferCount,
-    const VkBuffer* pCounterBuffers,
-    const VkDeviceSize* pCounterBufferOffsets);
-
- void vkCmdBeginQueryIndexedEXT(
-    VkCommandBuffer commandBuffer,
-    VkQueryPool queryPool,
-    uint32_t query,
-    VkQueryControlFlags flags,
-    uint32_t index);
-
- void vkCmdEndQueryIndexedEXT(
-    VkCommandBuffer commandBuffer,
-    VkQueryPool queryPool,
-    uint32_t query,
-    uint32_t index);
-
- void vkCmdDrawIndirectByteCountEXT(
-    VkCommandBuffer commandBuffer,
-    uint32_t instanceCount,
-    uint32_t firstInstance,
-    VkBuffer counterBuffer,
-    VkDeviceSize counterBufferOffset,
-    uint32_t counterOffset,
-    uint32_t vertexStride);
-
-
-
-
-
-
-typedef void ( *PFN_vkCmdDrawIndirectCountAMD)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride);
-typedef void ( *PFN_vkCmdDrawIndexedIndirectCountAMD)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride);
-
-
- void vkCmdDrawIndirectCountAMD(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    VkBuffer countBuffer,
-    VkDeviceSize countBufferOffset,
-    uint32_t maxDrawCount,
-    uint32_t stride);
-
- void vkCmdDrawIndexedIndirectCountAMD(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    VkBuffer countBuffer,
-    VkDeviceSize countBufferOffset,
-    uint32_t maxDrawCount,
-    uint32_t stride);
-# 6640 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkTextureLODGatherFormatPropertiesAMD {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 supportsTextureGatherLODBiasAMD;
-} VkTextureLODGatherFormatPropertiesAMD;
-# 6653 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkShaderInfoTypeAMD {
-    VK_SHADER_INFO_TYPE_STATISTICS_AMD = 0,
-    VK_SHADER_INFO_TYPE_BINARY_AMD = 1,
-    VK_SHADER_INFO_TYPE_DISASSEMBLY_AMD = 2,
-    VK_SHADER_INFO_TYPE_BEGIN_RANGE_AMD = VK_SHADER_INFO_TYPE_STATISTICS_AMD,
-    VK_SHADER_INFO_TYPE_END_RANGE_AMD = VK_SHADER_INFO_TYPE_DISASSEMBLY_AMD,
-    VK_SHADER_INFO_TYPE_RANGE_SIZE_AMD = (VK_SHADER_INFO_TYPE_DISASSEMBLY_AMD - VK_SHADER_INFO_TYPE_STATISTICS_AMD + 1),
-    VK_SHADER_INFO_TYPE_MAX_ENUM_AMD = 0x7FFFFFFF
-} VkShaderInfoTypeAMD;
-
-typedef struct VkShaderResourceUsageAMD {
-    uint32_t numUsedVgprs;
-    uint32_t numUsedSgprs;
-    uint32_t ldsSizePerLocalWorkGroup;
-    size_t ldsUsageSizeInBytes;
-    size_t scratchMemUsageInBytes;
-} VkShaderResourceUsageAMD;
-
-typedef struct VkShaderStatisticsInfoAMD {
-    VkShaderStageFlags shaderStageMask;
-    VkShaderResourceUsageAMD resourceUsage;
-    uint32_t numPhysicalVgprs;
-    uint32_t numPhysicalSgprs;
-    uint32_t numAvailableVgprs;
-    uint32_t numAvailableSgprs;
-    uint32_t computeWorkGroupSize[3];
-} VkShaderStatisticsInfoAMD;
-
-
-typedef VkResult ( *PFN_vkGetShaderInfoAMD)(VkDevice device, VkPipeline pipeline, VkShaderStageFlagBits shaderStage, VkShaderInfoTypeAMD infoType, size_t* pInfoSize, void* pInfo);
-
-
- VkResult vkGetShaderInfoAMD(
-    VkDevice device,
-    VkPipeline pipeline,
-    VkShaderStageFlagBits shaderStage,
-    VkShaderInfoTypeAMD infoType,
-    size_t* pInfoSize,
-    void* pInfo);
-# 6703 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkPhysicalDeviceCornerSampledImageFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 cornerSampledImage;
-} VkPhysicalDeviceCornerSampledImageFeaturesNV;
-# 6721 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkExternalMemoryHandleTypeFlagBitsNV {
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV = 0x00000001,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV = 0x00000002,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV = 0x00000004,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV = 0x00000008,
-    VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS_MAX_ENUM_NV = 0x7FFFFFFF
-} VkExternalMemoryHandleTypeFlagBitsNV;
-typedef VkFlags VkExternalMemoryHandleTypeFlagsNV;
-
-typedef enum VkExternalMemoryFeatureFlagBitsNV {
-    VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV = 0x00000001,
-    VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV = 0x00000002,
-    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV = 0x00000004,
-    VK_EXTERNAL_MEMORY_FEATURE_FLAG_BITS_MAX_ENUM_NV = 0x7FFFFFFF
-} VkExternalMemoryFeatureFlagBitsNV;
-typedef VkFlags VkExternalMemoryFeatureFlagsNV;
-
-typedef struct VkExternalImageFormatPropertiesNV {
-    VkImageFormatProperties imageFormatProperties;
-    VkExternalMemoryFeatureFlagsNV externalMemoryFeatures;
-    VkExternalMemoryHandleTypeFlagsNV exportFromImportedHandleTypes;
-    VkExternalMemoryHandleTypeFlagsNV compatibleHandleTypes;
-} VkExternalImageFormatPropertiesNV;
-
-
-typedef VkResult ( *PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV)(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkExternalMemoryHandleTypeFlagsNV externalHandleType, VkExternalImageFormatPropertiesNV* pExternalImageFormatProperties);
-
-
- VkResult vkGetPhysicalDeviceExternalImageFormatPropertiesNV(
-    VkPhysicalDevice physicalDevice,
-    VkFormat format,
-    VkImageType type,
-    VkImageTiling tiling,
-    VkImageUsageFlags usage,
-    VkImageCreateFlags flags,
-    VkExternalMemoryHandleTypeFlagsNV externalHandleType,
-    VkExternalImageFormatPropertiesNV* pExternalImageFormatProperties);
-
-
-
-
-
-
-typedef struct VkExternalMemoryImageCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlagsNV handleTypes;
-} VkExternalMemoryImageCreateInfoNV;
-
-typedef struct VkExportMemoryAllocateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlagsNV handleTypes;
-} VkExportMemoryAllocateInfoNV;
-# 6783 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkValidationCheckEXT {
-    VK_VALIDATION_CHECK_ALL_EXT = 0,
-    VK_VALIDATION_CHECK_SHADERS_EXT = 1,
-    VK_VALIDATION_CHECK_BEGIN_RANGE_EXT = VK_VALIDATION_CHECK_ALL_EXT,
-    VK_VALIDATION_CHECK_END_RANGE_EXT = VK_VALIDATION_CHECK_SHADERS_EXT,
-    VK_VALIDATION_CHECK_RANGE_SIZE_EXT = (VK_VALIDATION_CHECK_SHADERS_EXT - VK_VALIDATION_CHECK_ALL_EXT + 1),
-    VK_VALIDATION_CHECK_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkValidationCheckEXT;
-
-typedef struct VkValidationFlagsEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t disabledValidationCheckCount;
-    const VkValidationCheckEXT* pDisabledValidationChecks;
-} VkValidationFlagsEXT;
-# 6815 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkImageViewASTCDecodeModeEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkFormat decodeMode;
-} VkImageViewASTCDecodeModeEXT;
-
-typedef struct VkPhysicalDeviceASTCDecodeFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 decodeModeSharedExponent;
-} VkPhysicalDeviceASTCDecodeFeaturesEXT;
-# 6834 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkConditionalRenderingFlagBitsEXT {
-    VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 0x00000001,
-    VK_CONDITIONAL_RENDERING_FLAG_BITS_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkConditionalRenderingFlagBitsEXT;
-typedef VkFlags VkConditionalRenderingFlagsEXT;
-
-typedef struct VkConditionalRenderingBeginInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkBuffer buffer;
-    VkDeviceSize offset;
-    VkConditionalRenderingFlagsEXT flags;
-} VkConditionalRenderingBeginInfoEXT;
-
-typedef struct VkPhysicalDeviceConditionalRenderingFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 conditionalRendering;
-    VkBool32 inheritedConditionalRendering;
-} VkPhysicalDeviceConditionalRenderingFeaturesEXT;
-
-typedef struct VkCommandBufferInheritanceConditionalRenderingInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 conditionalRenderingEnable;
-} VkCommandBufferInheritanceConditionalRenderingInfoEXT;
-
-
-typedef void ( *PFN_vkCmdBeginConditionalRenderingEXT)(VkCommandBuffer commandBuffer, const VkConditionalRenderingBeginInfoEXT* pConditionalRenderingBegin);
-typedef void ( *PFN_vkCmdEndConditionalRenderingEXT)(VkCommandBuffer commandBuffer);
-
-
- void vkCmdBeginConditionalRenderingEXT(
-    VkCommandBuffer commandBuffer,
-    const VkConditionalRenderingBeginInfoEXT* pConditionalRenderingBegin);
-
- void vkCmdEndConditionalRenderingEXT(
-    VkCommandBuffer commandBuffer);
-
-
-
-typedef struct VkObjectTableNVX_T *VkObjectTableNVX;
-typedef struct VkIndirectCommandsLayoutNVX_T *VkIndirectCommandsLayoutNVX;
-
-
-
-
-
-typedef enum VkIndirectCommandsTokenTypeNVX {
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NVX = 0,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_DESCRIPTOR_SET_NVX = 1,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NVX = 2,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NVX = 3,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NVX = 4,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NVX = 5,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NVX = 6,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_DISPATCH_NVX = 7,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_BEGIN_RANGE_NVX = VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NVX,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_END_RANGE_NVX = VK_INDIRECT_COMMANDS_TOKEN_TYPE_DISPATCH_NVX,
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_RANGE_SIZE_NVX = (VK_INDIRECT_COMMANDS_TOKEN_TYPE_DISPATCH_NVX - VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NVX + 1),
-    VK_INDIRECT_COMMANDS_TOKEN_TYPE_MAX_ENUM_NVX = 0x7FFFFFFF
-} VkIndirectCommandsTokenTypeNVX;
-
-typedef enum VkObjectEntryTypeNVX {
-    VK_OBJECT_ENTRY_TYPE_DESCRIPTOR_SET_NVX = 0,
-    VK_OBJECT_ENTRY_TYPE_PIPELINE_NVX = 1,
-    VK_OBJECT_ENTRY_TYPE_INDEX_BUFFER_NVX = 2,
-    VK_OBJECT_ENTRY_TYPE_VERTEX_BUFFER_NVX = 3,
-    VK_OBJECT_ENTRY_TYPE_PUSH_CONSTANT_NVX = 4,
-    VK_OBJECT_ENTRY_TYPE_BEGIN_RANGE_NVX = VK_OBJECT_ENTRY_TYPE_DESCRIPTOR_SET_NVX,
-    VK_OBJECT_ENTRY_TYPE_END_RANGE_NVX = VK_OBJECT_ENTRY_TYPE_PUSH_CONSTANT_NVX,
-    VK_OBJECT_ENTRY_TYPE_RANGE_SIZE_NVX = (VK_OBJECT_ENTRY_TYPE_PUSH_CONSTANT_NVX - VK_OBJECT_ENTRY_TYPE_DESCRIPTOR_SET_NVX + 1),
-    VK_OBJECT_ENTRY_TYPE_MAX_ENUM_NVX = 0x7FFFFFFF
-} VkObjectEntryTypeNVX;
-
-
-typedef enum VkIndirectCommandsLayoutUsageFlagBitsNVX {
-    VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NVX = 0x00000001,
-    VK_INDIRECT_COMMANDS_LAYOUT_USAGE_SPARSE_SEQUENCES_BIT_NVX = 0x00000002,
-    VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EMPTY_EXECUTIONS_BIT_NVX = 0x00000004,
-    VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NVX = 0x00000008,
-    VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_MAX_ENUM_NVX = 0x7FFFFFFF
-} VkIndirectCommandsLayoutUsageFlagBitsNVX;
-typedef VkFlags VkIndirectCommandsLayoutUsageFlagsNVX;
-
-typedef enum VkObjectEntryUsageFlagBitsNVX {
-    VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX = 0x00000001,
-    VK_OBJECT_ENTRY_USAGE_COMPUTE_BIT_NVX = 0x00000002,
-    VK_OBJECT_ENTRY_USAGE_FLAG_BITS_MAX_ENUM_NVX = 0x7FFFFFFF
-} VkObjectEntryUsageFlagBitsNVX;
-typedef VkFlags VkObjectEntryUsageFlagsNVX;
-
-typedef struct VkDeviceGeneratedCommandsFeaturesNVX {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 computeBindingPointSupport;
-} VkDeviceGeneratedCommandsFeaturesNVX;
-
-typedef struct VkDeviceGeneratedCommandsLimitsNVX {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t maxIndirectCommandsLayoutTokenCount;
-    uint32_t maxObjectEntryCounts;
-    uint32_t minSequenceCountBufferOffsetAlignment;
-    uint32_t minSequenceIndexBufferOffsetAlignment;
-    uint32_t minCommandsTokenBufferOffsetAlignment;
-} VkDeviceGeneratedCommandsLimitsNVX;
-
-typedef struct VkIndirectCommandsTokenNVX {
-    VkIndirectCommandsTokenTypeNVX tokenType;
-    VkBuffer buffer;
-    VkDeviceSize offset;
-} VkIndirectCommandsTokenNVX;
-
-typedef struct VkIndirectCommandsLayoutTokenNVX {
-    VkIndirectCommandsTokenTypeNVX tokenType;
-    uint32_t bindingUnit;
-    uint32_t dynamicCount;
-    uint32_t divisor;
-} VkIndirectCommandsLayoutTokenNVX;
-
-typedef struct VkIndirectCommandsLayoutCreateInfoNVX {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineBindPoint pipelineBindPoint;
-    VkIndirectCommandsLayoutUsageFlagsNVX flags;
-    uint32_t tokenCount;
-    const VkIndirectCommandsLayoutTokenNVX* pTokens;
-} VkIndirectCommandsLayoutCreateInfoNVX;
-
-typedef struct VkCmdProcessCommandsInfoNVX {
-    VkStructureType sType;
-    const void* pNext;
-    VkObjectTableNVX objectTable;
-    VkIndirectCommandsLayoutNVX indirectCommandsLayout;
-    uint32_t indirectCommandsTokenCount;
-    const VkIndirectCommandsTokenNVX* pIndirectCommandsTokens;
-    uint32_t maxSequencesCount;
-    VkCommandBuffer targetCommandBuffer;
-    VkBuffer sequencesCountBuffer;
-    VkDeviceSize sequencesCountOffset;
-    VkBuffer sequencesIndexBuffer;
-    VkDeviceSize sequencesIndexOffset;
-} VkCmdProcessCommandsInfoNVX;
-
-typedef struct VkCmdReserveSpaceForCommandsInfoNVX {
-    VkStructureType sType;
-    const void* pNext;
-    VkObjectTableNVX objectTable;
-    VkIndirectCommandsLayoutNVX indirectCommandsLayout;
-    uint32_t maxSequencesCount;
-} VkCmdReserveSpaceForCommandsInfoNVX;
-
-typedef struct VkObjectTableCreateInfoNVX {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t objectCount;
-    const VkObjectEntryTypeNVX* pObjectEntryTypes;
-    const uint32_t* pObjectEntryCounts;
-    const VkObjectEntryUsageFlagsNVX* pObjectEntryUsageFlags;
-    uint32_t maxUniformBuffersPerDescriptor;
-    uint32_t maxStorageBuffersPerDescriptor;
-    uint32_t maxStorageImagesPerDescriptor;
-    uint32_t maxSampledImagesPerDescriptor;
-    uint32_t maxPipelineLayouts;
-} VkObjectTableCreateInfoNVX;
-
-typedef struct VkObjectTableEntryNVX {
-    VkObjectEntryTypeNVX type;
-    VkObjectEntryUsageFlagsNVX flags;
-} VkObjectTableEntryNVX;
-
-typedef struct VkObjectTablePipelineEntryNVX {
-    VkObjectEntryTypeNVX type;
-    VkObjectEntryUsageFlagsNVX flags;
-    VkPipeline pipeline;
-} VkObjectTablePipelineEntryNVX;
-
-typedef struct VkObjectTableDescriptorSetEntryNVX {
-    VkObjectEntryTypeNVX type;
-    VkObjectEntryUsageFlagsNVX flags;
-    VkPipelineLayout pipelineLayout;
-    VkDescriptorSet descriptorSet;
-} VkObjectTableDescriptorSetEntryNVX;
-
-typedef struct VkObjectTableVertexBufferEntryNVX {
-    VkObjectEntryTypeNVX type;
-    VkObjectEntryUsageFlagsNVX flags;
-    VkBuffer buffer;
-} VkObjectTableVertexBufferEntryNVX;
-
-typedef struct VkObjectTableIndexBufferEntryNVX {
-    VkObjectEntryTypeNVX type;
-    VkObjectEntryUsageFlagsNVX flags;
-    VkBuffer buffer;
-    VkIndexType indexType;
-} VkObjectTableIndexBufferEntryNVX;
-
-typedef struct VkObjectTablePushConstantEntryNVX {
-    VkObjectEntryTypeNVX type;
-    VkObjectEntryUsageFlagsNVX flags;
-    VkPipelineLayout pipelineLayout;
-    VkShaderStageFlags stageFlags;
-} VkObjectTablePushConstantEntryNVX;
-
-
-typedef void ( *PFN_vkCmdProcessCommandsNVX)(VkCommandBuffer commandBuffer, const VkCmdProcessCommandsInfoNVX* pProcessCommandsInfo);
-typedef void ( *PFN_vkCmdReserveSpaceForCommandsNVX)(VkCommandBuffer commandBuffer, const VkCmdReserveSpaceForCommandsInfoNVX* pReserveSpaceInfo);
-typedef VkResult ( *PFN_vkCreateIndirectCommandsLayoutNVX)(VkDevice device, const VkIndirectCommandsLayoutCreateInfoNVX* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkIndirectCommandsLayoutNVX* pIndirectCommandsLayout);
-typedef void ( *PFN_vkDestroyIndirectCommandsLayoutNVX)(VkDevice device, VkIndirectCommandsLayoutNVX indirectCommandsLayout, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkCreateObjectTableNVX)(VkDevice device, const VkObjectTableCreateInfoNVX* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkObjectTableNVX* pObjectTable);
-typedef void ( *PFN_vkDestroyObjectTableNVX)(VkDevice device, VkObjectTableNVX objectTable, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkRegisterObjectsNVX)(VkDevice device, VkObjectTableNVX objectTable, uint32_t objectCount, const VkObjectTableEntryNVX* const* ppObjectTableEntries, const uint32_t* pObjectIndices);
-typedef VkResult ( *PFN_vkUnregisterObjectsNVX)(VkDevice device, VkObjectTableNVX objectTable, uint32_t objectCount, const VkObjectEntryTypeNVX* pObjectEntryTypes, const uint32_t* pObjectIndices);
-typedef void ( *PFN_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX)(VkPhysicalDevice physicalDevice, VkDeviceGeneratedCommandsFeaturesNVX* pFeatures, VkDeviceGeneratedCommandsLimitsNVX* pLimits);
-
-
- void vkCmdProcessCommandsNVX(
-    VkCommandBuffer commandBuffer,
-    const VkCmdProcessCommandsInfoNVX* pProcessCommandsInfo);
-
- void vkCmdReserveSpaceForCommandsNVX(
-    VkCommandBuffer commandBuffer,
-    const VkCmdReserveSpaceForCommandsInfoNVX* pReserveSpaceInfo);
-
- VkResult vkCreateIndirectCommandsLayoutNVX(
-    VkDevice device,
-    const VkIndirectCommandsLayoutCreateInfoNVX* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkIndirectCommandsLayoutNVX* pIndirectCommandsLayout);
-
- void vkDestroyIndirectCommandsLayoutNVX(
-    VkDevice device,
-    VkIndirectCommandsLayoutNVX indirectCommandsLayout,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkCreateObjectTableNVX(
-    VkDevice device,
-    const VkObjectTableCreateInfoNVX* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkObjectTableNVX* pObjectTable);
-
- void vkDestroyObjectTableNVX(
-    VkDevice device,
-    VkObjectTableNVX objectTable,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkRegisterObjectsNVX(
-    VkDevice device,
-    VkObjectTableNVX objectTable,
-    uint32_t objectCount,
-    const VkObjectTableEntryNVX* const* ppObjectTableEntries,
-    const uint32_t* pObjectIndices);
-
- VkResult vkUnregisterObjectsNVX(
-    VkDevice device,
-    VkObjectTableNVX objectTable,
-    uint32_t objectCount,
-    const VkObjectEntryTypeNVX* pObjectEntryTypes,
-    const uint32_t* pObjectIndices);
-
- void vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX(
-    VkPhysicalDevice physicalDevice,
-    VkDeviceGeneratedCommandsFeaturesNVX* pFeatures,
-    VkDeviceGeneratedCommandsLimitsNVX* pLimits);
-
-
-
-
-
-
-typedef struct VkViewportWScalingNV {
-    float xcoeff;
-    float ycoeff;
-} VkViewportWScalingNV;
-
-typedef struct VkPipelineViewportWScalingStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 viewportWScalingEnable;
-    uint32_t viewportCount;
-    const VkViewportWScalingNV* pViewportWScalings;
-} VkPipelineViewportWScalingStateCreateInfoNV;
-
-
-typedef void ( *PFN_vkCmdSetViewportWScalingNV)(VkCommandBuffer commandBuffer, uint32_t firstViewport, uint32_t viewportCount, const VkViewportWScalingNV* pViewportWScalings);
-
-
- void vkCmdSetViewportWScalingNV(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstViewport,
-    uint32_t viewportCount,
-    const VkViewportWScalingNV* pViewportWScalings);
-
-
-
-
-
-
-typedef VkResult ( *PFN_vkReleaseDisplayEXT)(VkPhysicalDevice physicalDevice, VkDisplayKHR display);
-
-
- VkResult vkReleaseDisplayEXT(
-    VkPhysicalDevice physicalDevice,
-    VkDisplayKHR display);
-
-
-
-
-
-
-
-typedef enum VkSurfaceCounterFlagBitsEXT {
-    VK_SURFACE_COUNTER_VBLANK_EXT = 0x00000001,
-    VK_SURFACE_COUNTER_FLAG_BITS_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkSurfaceCounterFlagBitsEXT;
-typedef VkFlags VkSurfaceCounterFlagsEXT;
-
-typedef struct VkSurfaceCapabilities2EXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t minImageCount;
-    uint32_t maxImageCount;
-    VkExtent2D currentExtent;
-    VkExtent2D minImageExtent;
-    VkExtent2D maxImageExtent;
-    uint32_t maxImageArrayLayers;
-    VkSurfaceTransformFlagsKHR supportedTransforms;
-    VkSurfaceTransformFlagBitsKHR currentTransform;
-    VkCompositeAlphaFlagsKHR supportedCompositeAlpha;
-    VkImageUsageFlags supportedUsageFlags;
-    VkSurfaceCounterFlagsEXT supportedSurfaceCounters;
-} VkSurfaceCapabilities2EXT;
-
-
-typedef VkResult ( *PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT)(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, VkSurfaceCapabilities2EXT* pSurfaceCapabilities);
-
-
- VkResult vkGetPhysicalDeviceSurfaceCapabilities2EXT(
-    VkPhysicalDevice physicalDevice,
-    VkSurfaceKHR surface,
-    VkSurfaceCapabilities2EXT* pSurfaceCapabilities);
-
-
-
-
-
-
-
-typedef enum VkDisplayPowerStateEXT {
-    VK_DISPLAY_POWER_STATE_OFF_EXT = 0,
-    VK_DISPLAY_POWER_STATE_SUSPEND_EXT = 1,
-    VK_DISPLAY_POWER_STATE_ON_EXT = 2,
-    VK_DISPLAY_POWER_STATE_BEGIN_RANGE_EXT = VK_DISPLAY_POWER_STATE_OFF_EXT,
-    VK_DISPLAY_POWER_STATE_END_RANGE_EXT = VK_DISPLAY_POWER_STATE_ON_EXT,
-    VK_DISPLAY_POWER_STATE_RANGE_SIZE_EXT = (VK_DISPLAY_POWER_STATE_ON_EXT - VK_DISPLAY_POWER_STATE_OFF_EXT + 1),
-    VK_DISPLAY_POWER_STATE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDisplayPowerStateEXT;
-
-typedef enum VkDeviceEventTypeEXT {
-    VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT = 0,
-    VK_DEVICE_EVENT_TYPE_BEGIN_RANGE_EXT = VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT,
-    VK_DEVICE_EVENT_TYPE_END_RANGE_EXT = VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT,
-    VK_DEVICE_EVENT_TYPE_RANGE_SIZE_EXT = (VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT - VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT + 1),
-    VK_DEVICE_EVENT_TYPE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDeviceEventTypeEXT;
-
-typedef enum VkDisplayEventTypeEXT {
-    VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT = 0,
-    VK_DISPLAY_EVENT_TYPE_BEGIN_RANGE_EXT = VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT,
-    VK_DISPLAY_EVENT_TYPE_END_RANGE_EXT = VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT,
-    VK_DISPLAY_EVENT_TYPE_RANGE_SIZE_EXT = (VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT - VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT + 1),
-    VK_DISPLAY_EVENT_TYPE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDisplayEventTypeEXT;
-
-typedef struct VkDisplayPowerInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDisplayPowerStateEXT powerState;
-} VkDisplayPowerInfoEXT;
-
-typedef struct VkDeviceEventInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceEventTypeEXT deviceEvent;
-} VkDeviceEventInfoEXT;
-
-typedef struct VkDisplayEventInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDisplayEventTypeEXT displayEvent;
-} VkDisplayEventInfoEXT;
-
-typedef struct VkSwapchainCounterCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkSurfaceCounterFlagsEXT surfaceCounters;
-} VkSwapchainCounterCreateInfoEXT;
-
-
-typedef VkResult ( *PFN_vkDisplayPowerControlEXT)(VkDevice device, VkDisplayKHR display, const VkDisplayPowerInfoEXT* pDisplayPowerInfo);
-typedef VkResult ( *PFN_vkRegisterDeviceEventEXT)(VkDevice device, const VkDeviceEventInfoEXT* pDeviceEventInfo, const VkAllocationCallbacks* pAllocator, VkFence* pFence);
-typedef VkResult ( *PFN_vkRegisterDisplayEventEXT)(VkDevice device, VkDisplayKHR display, const VkDisplayEventInfoEXT* pDisplayEventInfo, const VkAllocationCallbacks* pAllocator, VkFence* pFence);
-typedef VkResult ( *PFN_vkGetSwapchainCounterEXT)(VkDevice device, VkSwapchainKHR swapchain, VkSurfaceCounterFlagBitsEXT counter, uint64_t* pCounterValue);
-
-
- VkResult vkDisplayPowerControlEXT(
-    VkDevice device,
-    VkDisplayKHR display,
-    const VkDisplayPowerInfoEXT* pDisplayPowerInfo);
-
- VkResult vkRegisterDeviceEventEXT(
-    VkDevice device,
-    const VkDeviceEventInfoEXT* pDeviceEventInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkFence* pFence);
-
- VkResult vkRegisterDisplayEventEXT(
-    VkDevice device,
-    VkDisplayKHR display,
-    const VkDisplayEventInfoEXT* pDisplayEventInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkFence* pFence);
-
- VkResult vkGetSwapchainCounterEXT(
-    VkDevice device,
-    VkSwapchainKHR swapchain,
-    VkSurfaceCounterFlagBitsEXT counter,
-    uint64_t* pCounterValue);
-
-
-
-
-
-
-typedef struct VkRefreshCycleDurationGOOGLE {
-    uint64_t refreshDuration;
-} VkRefreshCycleDurationGOOGLE;
-
-typedef struct VkPastPresentationTimingGOOGLE {
-    uint32_t presentID;
-    uint64_t desiredPresentTime;
-    uint64_t actualPresentTime;
-    uint64_t earliestPresentTime;
-    uint64_t presentMargin;
-} VkPastPresentationTimingGOOGLE;
-
-typedef struct VkPresentTimeGOOGLE {
-    uint32_t presentID;
-    uint64_t desiredPresentTime;
-} VkPresentTimeGOOGLE;
-
-typedef struct VkPresentTimesInfoGOOGLE {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t swapchainCount;
-    const VkPresentTimeGOOGLE* pTimes;
-} VkPresentTimesInfoGOOGLE;
-
-
-typedef VkResult ( *PFN_vkGetRefreshCycleDurationGOOGLE)(VkDevice device, VkSwapchainKHR swapchain, VkRefreshCycleDurationGOOGLE* pDisplayTimingProperties);
-typedef VkResult ( *PFN_vkGetPastPresentationTimingGOOGLE)(VkDevice device, VkSwapchainKHR swapchain, uint32_t* pPresentationTimingCount, VkPastPresentationTimingGOOGLE* pPresentationTimings);
-
-
- VkResult vkGetRefreshCycleDurationGOOGLE(
-    VkDevice device,
-    VkSwapchainKHR swapchain,
-    VkRefreshCycleDurationGOOGLE* pDisplayTimingProperties);
-
- VkResult vkGetPastPresentationTimingGOOGLE(
-    VkDevice device,
-    VkSwapchainKHR swapchain,
-    uint32_t* pPresentationTimingCount,
-    VkPastPresentationTimingGOOGLE* pPresentationTimings);
-# 7329 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 perViewPositionAllComponents;
-} VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX;
-# 7342 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkViewportCoordinateSwizzleNV {
-    VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV = 0,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_X_NV = 1,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Y_NV = 2,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Y_NV = 3,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Z_NV = 4,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Z_NV = 5,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_W_NV = 6,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV = 7,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_BEGIN_RANGE_NV = VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_END_RANGE_NV = VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV,
-    VK_VIEWPORT_COORDINATE_SWIZZLE_RANGE_SIZE_NV = (VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV - VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV + 1),
-    VK_VIEWPORT_COORDINATE_SWIZZLE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkViewportCoordinateSwizzleNV;
-
-typedef VkFlags VkPipelineViewportSwizzleStateCreateFlagsNV;
-
-typedef struct VkViewportSwizzleNV {
-    VkViewportCoordinateSwizzleNV x;
-    VkViewportCoordinateSwizzleNV y;
-    VkViewportCoordinateSwizzleNV z;
-    VkViewportCoordinateSwizzleNV w;
-} VkViewportSwizzleNV;
-
-typedef struct VkPipelineViewportSwizzleStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineViewportSwizzleStateCreateFlagsNV flags;
-    uint32_t viewportCount;
-    const VkViewportSwizzleNV* pViewportSwizzles;
-} VkPipelineViewportSwizzleStateCreateInfoNV;
-# 7381 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkDiscardRectangleModeEXT {
-    VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT = 0,
-    VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT = 1,
-    VK_DISCARD_RECTANGLE_MODE_BEGIN_RANGE_EXT = VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT,
-    VK_DISCARD_RECTANGLE_MODE_END_RANGE_EXT = VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT,
-    VK_DISCARD_RECTANGLE_MODE_RANGE_SIZE_EXT = (VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT - VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT + 1),
-    VK_DISCARD_RECTANGLE_MODE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDiscardRectangleModeEXT;
-
-typedef VkFlags VkPipelineDiscardRectangleStateCreateFlagsEXT;
-
-typedef struct VkPhysicalDeviceDiscardRectanglePropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxDiscardRectangles;
-} VkPhysicalDeviceDiscardRectanglePropertiesEXT;
-
-typedef struct VkPipelineDiscardRectangleStateCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineDiscardRectangleStateCreateFlagsEXT flags;
-    VkDiscardRectangleModeEXT discardRectangleMode;
-    uint32_t discardRectangleCount;
-    const VkRect2D* pDiscardRectangles;
-} VkPipelineDiscardRectangleStateCreateInfoEXT;
-
-
-typedef void ( *PFN_vkCmdSetDiscardRectangleEXT)(VkCommandBuffer commandBuffer, uint32_t firstDiscardRectangle, uint32_t discardRectangleCount, const VkRect2D* pDiscardRectangles);
-
-
- void vkCmdSetDiscardRectangleEXT(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstDiscardRectangle,
-    uint32_t discardRectangleCount,
-    const VkRect2D* pDiscardRectangles);
-
-
-
-
-
-
-
-typedef enum VkConservativeRasterizationModeEXT {
-    VK_CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT = 0,
-    VK_CONSERVATIVE_RASTERIZATION_MODE_OVERESTIMATE_EXT = 1,
-    VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT = 2,
-    VK_CONSERVATIVE_RASTERIZATION_MODE_BEGIN_RANGE_EXT = VK_CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT,
-    VK_CONSERVATIVE_RASTERIZATION_MODE_END_RANGE_EXT = VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT,
-    VK_CONSERVATIVE_RASTERIZATION_MODE_RANGE_SIZE_EXT = (VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT - VK_CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT + 1),
-    VK_CONSERVATIVE_RASTERIZATION_MODE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkConservativeRasterizationModeEXT;
-
-typedef VkFlags VkPipelineRasterizationConservativeStateCreateFlagsEXT;
-
-typedef struct VkPhysicalDeviceConservativeRasterizationPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    float primitiveOverestimationSize;
-    float maxExtraPrimitiveOverestimationSize;
-    float extraPrimitiveOverestimationSizeGranularity;
-    VkBool32 primitiveUnderestimation;
-    VkBool32 conservativePointAndLineRasterization;
-    VkBool32 degenerateTrianglesRasterized;
-    VkBool32 degenerateLinesRasterized;
-    VkBool32 fullyCoveredFragmentShaderInputVariable;
-    VkBool32 conservativeRasterizationPostDepthCoverage;
-} VkPhysicalDeviceConservativeRasterizationPropertiesEXT;
-
-typedef struct VkPipelineRasterizationConservativeStateCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineRasterizationConservativeStateCreateFlagsEXT flags;
-    VkConservativeRasterizationModeEXT conservativeRasterizationMode;
-    float extraPrimitiveOverestimationSize;
-} VkPipelineRasterizationConservativeStateCreateInfoEXT;
-# 7468 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkXYColorEXT {
-    float x;
-    float y;
-} VkXYColorEXT;
-
-typedef struct VkHdrMetadataEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkXYColorEXT displayPrimaryRed;
-    VkXYColorEXT displayPrimaryGreen;
-    VkXYColorEXT displayPrimaryBlue;
-    VkXYColorEXT whitePoint;
-    float maxLuminance;
-    float minLuminance;
-    float maxContentLightLevel;
-    float maxFrameAverageLightLevel;
-} VkHdrMetadataEXT;
-
-
-typedef void ( *PFN_vkSetHdrMetadataEXT)(VkDevice device, uint32_t swapchainCount, const VkSwapchainKHR* pSwapchains, const VkHdrMetadataEXT* pMetadata);
-
-
- void vkSetHdrMetadataEXT(
-    VkDevice device,
-    uint32_t swapchainCount,
-    const VkSwapchainKHR* pSwapchains,
-    const VkHdrMetadataEXT* pMetadata);
-# 7509 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkDebugUtilsMessengerEXT_T *VkDebugUtilsMessengerEXT;
-
-
-
-
-typedef VkFlags VkDebugUtilsMessengerCallbackDataFlagsEXT;
-typedef VkFlags VkDebugUtilsMessengerCreateFlagsEXT;
-
-typedef enum VkDebugUtilsMessageSeverityFlagBitsEXT {
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT = 0x00000001,
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT = 0x00000010,
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT = 0x00000100,
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 0x00001000,
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_FLAG_BITS_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDebugUtilsMessageSeverityFlagBitsEXT;
-typedef VkFlags VkDebugUtilsMessageSeverityFlagsEXT;
-
-typedef enum VkDebugUtilsMessageTypeFlagBitsEXT {
-    VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT = 0x00000001,
-    VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT = 0x00000002,
-    VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 0x00000004,
-    VK_DEBUG_UTILS_MESSAGE_TYPE_FLAG_BITS_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDebugUtilsMessageTypeFlagBitsEXT;
-typedef VkFlags VkDebugUtilsMessageTypeFlagsEXT;
-
-typedef struct VkDebugUtilsObjectNameInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkObjectType objectType;
-    uint64_t objectHandle;
-    const char* pObjectName;
-} VkDebugUtilsObjectNameInfoEXT;
-
-typedef struct VkDebugUtilsObjectTagInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkObjectType objectType;
-    uint64_t objectHandle;
-    uint64_t tagName;
-    size_t tagSize;
-    const void* pTag;
-} VkDebugUtilsObjectTagInfoEXT;
-
-typedef struct VkDebugUtilsLabelEXT {
-    VkStructureType sType;
-    const void* pNext;
-    const char* pLabelName;
-    float color[4];
-} VkDebugUtilsLabelEXT;
-
-typedef struct VkDebugUtilsMessengerCallbackDataEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDebugUtilsMessengerCallbackDataFlagsEXT flags;
-    const char* pMessageIdName;
-    int32_t messageIdNumber;
-    const char* pMessage;
-    uint32_t queueLabelCount;
-    const VkDebugUtilsLabelEXT* pQueueLabels;
-    uint32_t cmdBufLabelCount;
-    const VkDebugUtilsLabelEXT* pCmdBufLabels;
-    uint32_t objectCount;
-    const VkDebugUtilsObjectNameInfoEXT* pObjects;
-} VkDebugUtilsMessengerCallbackDataEXT;
-
-typedef VkBool32 ( *PFN_vkDebugUtilsMessengerCallbackEXT)(
-    VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
-    VkDebugUtilsMessageTypeFlagsEXT messageTypes,
-    const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
-    void* pUserData);
-
-typedef struct VkDebugUtilsMessengerCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDebugUtilsMessengerCreateFlagsEXT flags;
-    VkDebugUtilsMessageSeverityFlagsEXT messageSeverity;
-    VkDebugUtilsMessageTypeFlagsEXT messageType;
-    PFN_vkDebugUtilsMessengerCallbackEXT pfnUserCallback;
-    void* pUserData;
-} VkDebugUtilsMessengerCreateInfoEXT;
-
-
-typedef VkResult ( *PFN_vkSetDebugUtilsObjectNameEXT)(VkDevice device, const VkDebugUtilsObjectNameInfoEXT* pNameInfo);
-typedef VkResult ( *PFN_vkSetDebugUtilsObjectTagEXT)(VkDevice device, const VkDebugUtilsObjectTagInfoEXT* pTagInfo);
-typedef void ( *PFN_vkQueueBeginDebugUtilsLabelEXT)(VkQueue queue, const VkDebugUtilsLabelEXT* pLabelInfo);
-typedef void ( *PFN_vkQueueEndDebugUtilsLabelEXT)(VkQueue queue);
-typedef void ( *PFN_vkQueueInsertDebugUtilsLabelEXT)(VkQueue queue, const VkDebugUtilsLabelEXT* pLabelInfo);
-typedef void ( *PFN_vkCmdBeginDebugUtilsLabelEXT)(VkCommandBuffer commandBuffer, const VkDebugUtilsLabelEXT* pLabelInfo);
-typedef void ( *PFN_vkCmdEndDebugUtilsLabelEXT)(VkCommandBuffer commandBuffer);
-typedef void ( *PFN_vkCmdInsertDebugUtilsLabelEXT)(VkCommandBuffer commandBuffer, const VkDebugUtilsLabelEXT* pLabelInfo);
-typedef VkResult ( *PFN_vkCreateDebugUtilsMessengerEXT)(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pMessenger);
-typedef void ( *PFN_vkDestroyDebugUtilsMessengerEXT)(VkInstance instance, VkDebugUtilsMessengerEXT messenger, const VkAllocationCallbacks* pAllocator);
-typedef void ( *PFN_vkSubmitDebugUtilsMessageEXT)(VkInstance instance, VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageTypes, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData);
-
-
- VkResult vkSetDebugUtilsObjectNameEXT(
-    VkDevice device,
-    const VkDebugUtilsObjectNameInfoEXT* pNameInfo);
-
- VkResult vkSetDebugUtilsObjectTagEXT(
-    VkDevice device,
-    const VkDebugUtilsObjectTagInfoEXT* pTagInfo);
-
- void vkQueueBeginDebugUtilsLabelEXT(
-    VkQueue queue,
-    const VkDebugUtilsLabelEXT* pLabelInfo);
-
- void vkQueueEndDebugUtilsLabelEXT(
-    VkQueue queue);
-
- void vkQueueInsertDebugUtilsLabelEXT(
-    VkQueue queue,
-    const VkDebugUtilsLabelEXT* pLabelInfo);
-
- void vkCmdBeginDebugUtilsLabelEXT(
-    VkCommandBuffer commandBuffer,
-    const VkDebugUtilsLabelEXT* pLabelInfo);
-
- void vkCmdEndDebugUtilsLabelEXT(
-    VkCommandBuffer commandBuffer);
-
- void vkCmdInsertDebugUtilsLabelEXT(
-    VkCommandBuffer commandBuffer,
-    const VkDebugUtilsLabelEXT* pLabelInfo);
-
- VkResult vkCreateDebugUtilsMessengerEXT(
-    VkInstance instance,
-    const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkDebugUtilsMessengerEXT* pMessenger);
-
- void vkDestroyDebugUtilsMessengerEXT(
-    VkInstance instance,
-    VkDebugUtilsMessengerEXT messenger,
-    const VkAllocationCallbacks* pAllocator);
-
- void vkSubmitDebugUtilsMessageEXT(
-    VkInstance instance,
-    VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
-    VkDebugUtilsMessageTypeFlagsEXT messageTypes,
-    const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData);
-
-
-
-
-
-
-
-typedef enum VkSamplerReductionModeEXT {
-    VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT = 0,
-    VK_SAMPLER_REDUCTION_MODE_MIN_EXT = 1,
-    VK_SAMPLER_REDUCTION_MODE_MAX_EXT = 2,
-    VK_SAMPLER_REDUCTION_MODE_BEGIN_RANGE_EXT = VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT,
-    VK_SAMPLER_REDUCTION_MODE_END_RANGE_EXT = VK_SAMPLER_REDUCTION_MODE_MAX_EXT,
-    VK_SAMPLER_REDUCTION_MODE_RANGE_SIZE_EXT = (VK_SAMPLER_REDUCTION_MODE_MAX_EXT - VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT + 1),
-    VK_SAMPLER_REDUCTION_MODE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkSamplerReductionModeEXT;
-
-typedef struct VkSamplerReductionModeCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkSamplerReductionModeEXT reductionMode;
-} VkSamplerReductionModeCreateInfoEXT;
-
-typedef struct VkPhysicalDeviceSamplerFilterMinmaxPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 filterMinmaxSingleComponentFormats;
-    VkBool32 filterMinmaxImageComponentMapping;
-} VkPhysicalDeviceSamplerFilterMinmaxPropertiesEXT;
-# 7701 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkPhysicalDeviceInlineUniformBlockFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 inlineUniformBlock;
-    VkBool32 descriptorBindingInlineUniformBlockUpdateAfterBind;
-} VkPhysicalDeviceInlineUniformBlockFeaturesEXT;
-
-typedef struct VkPhysicalDeviceInlineUniformBlockPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxInlineUniformBlockSize;
-    uint32_t maxPerStageDescriptorInlineUniformBlocks;
-    uint32_t maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks;
-    uint32_t maxDescriptorSetInlineUniformBlocks;
-    uint32_t maxDescriptorSetUpdateAfterBindInlineUniformBlocks;
-} VkPhysicalDeviceInlineUniformBlockPropertiesEXT;
-
-typedef struct VkWriteDescriptorSetInlineUniformBlockEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t dataSize;
-    const void* pData;
-} VkWriteDescriptorSetInlineUniformBlockEXT;
-
-typedef struct VkDescriptorPoolInlineUniformBlockCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t maxInlineUniformBlockBindings;
-} VkDescriptorPoolInlineUniformBlockCreateInfoEXT;
-# 7742 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkSampleLocationEXT {
-    float x;
-    float y;
-} VkSampleLocationEXT;
-
-typedef struct VkSampleLocationsInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkSampleCountFlagBits sampleLocationsPerPixel;
-    VkExtent2D sampleLocationGridSize;
-    uint32_t sampleLocationsCount;
-    const VkSampleLocationEXT* pSampleLocations;
-} VkSampleLocationsInfoEXT;
-
-typedef struct VkAttachmentSampleLocationsEXT {
-    uint32_t attachmentIndex;
-    VkSampleLocationsInfoEXT sampleLocationsInfo;
-} VkAttachmentSampleLocationsEXT;
-
-typedef struct VkSubpassSampleLocationsEXT {
-    uint32_t subpassIndex;
-    VkSampleLocationsInfoEXT sampleLocationsInfo;
-} VkSubpassSampleLocationsEXT;
-
-typedef struct VkRenderPassSampleLocationsBeginInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t attachmentInitialSampleLocationsCount;
-    const VkAttachmentSampleLocationsEXT* pAttachmentInitialSampleLocations;
-    uint32_t postSubpassSampleLocationsCount;
-    const VkSubpassSampleLocationsEXT* pPostSubpassSampleLocations;
-} VkRenderPassSampleLocationsBeginInfoEXT;
-
-typedef struct VkPipelineSampleLocationsStateCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 sampleLocationsEnable;
-    VkSampleLocationsInfoEXT sampleLocationsInfo;
-} VkPipelineSampleLocationsStateCreateInfoEXT;
-
-typedef struct VkPhysicalDeviceSampleLocationsPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkSampleCountFlags sampleLocationSampleCounts;
-    VkExtent2D maxSampleLocationGridSize;
-    float sampleLocationCoordinateRange[2];
-    uint32_t sampleLocationSubPixelBits;
-    VkBool32 variableSampleLocations;
-} VkPhysicalDeviceSampleLocationsPropertiesEXT;
-
-typedef struct VkMultisamplePropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkExtent2D maxSampleLocationGridSize;
-} VkMultisamplePropertiesEXT;
-
-
-typedef void ( *PFN_vkCmdSetSampleLocationsEXT)(VkCommandBuffer commandBuffer, const VkSampleLocationsInfoEXT* pSampleLocationsInfo);
-typedef void ( *PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT)(VkPhysicalDevice physicalDevice, VkSampleCountFlagBits samples, VkMultisamplePropertiesEXT* pMultisampleProperties);
-
-
- void vkCmdSetSampleLocationsEXT(
-    VkCommandBuffer commandBuffer,
-    const VkSampleLocationsInfoEXT* pSampleLocationsInfo);
-
- void vkGetPhysicalDeviceMultisamplePropertiesEXT(
-    VkPhysicalDevice physicalDevice,
-    VkSampleCountFlagBits samples,
-    VkMultisamplePropertiesEXT* pMultisampleProperties);
-
-
-
-
-
-
-
-typedef enum VkBlendOverlapEXT {
-    VK_BLEND_OVERLAP_UNCORRELATED_EXT = 0,
-    VK_BLEND_OVERLAP_DISJOINT_EXT = 1,
-    VK_BLEND_OVERLAP_CONJOINT_EXT = 2,
-    VK_BLEND_OVERLAP_BEGIN_RANGE_EXT = VK_BLEND_OVERLAP_UNCORRELATED_EXT,
-    VK_BLEND_OVERLAP_END_RANGE_EXT = VK_BLEND_OVERLAP_CONJOINT_EXT,
-    VK_BLEND_OVERLAP_RANGE_SIZE_EXT = (VK_BLEND_OVERLAP_CONJOINT_EXT - VK_BLEND_OVERLAP_UNCORRELATED_EXT + 1),
-    VK_BLEND_OVERLAP_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkBlendOverlapEXT;
-
-typedef struct VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 advancedBlendCoherentOperations;
-} VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT;
-
-typedef struct VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t advancedBlendMaxColorAttachments;
-    VkBool32 advancedBlendIndependentBlend;
-    VkBool32 advancedBlendNonPremultipliedSrcColor;
-    VkBool32 advancedBlendNonPremultipliedDstColor;
-    VkBool32 advancedBlendCorrelatedOverlap;
-    VkBool32 advancedBlendAllOperations;
-} VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT;
-
-typedef struct VkPipelineColorBlendAdvancedStateCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 srcPremultiplied;
-    VkBool32 dstPremultiplied;
-    VkBlendOverlapEXT blendOverlap;
-} VkPipelineColorBlendAdvancedStateCreateInfoEXT;
-
-
-
-
-
-
-
-typedef VkFlags VkPipelineCoverageToColorStateCreateFlagsNV;
-
-typedef struct VkPipelineCoverageToColorStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineCoverageToColorStateCreateFlagsNV flags;
-    VkBool32 coverageToColorEnable;
-    uint32_t coverageToColorLocation;
-} VkPipelineCoverageToColorStateCreateInfoNV;
-# 7876 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkCoverageModulationModeNV {
-    VK_COVERAGE_MODULATION_MODE_NONE_NV = 0,
-    VK_COVERAGE_MODULATION_MODE_RGB_NV = 1,
-    VK_COVERAGE_MODULATION_MODE_ALPHA_NV = 2,
-    VK_COVERAGE_MODULATION_MODE_RGBA_NV = 3,
-    VK_COVERAGE_MODULATION_MODE_BEGIN_RANGE_NV = VK_COVERAGE_MODULATION_MODE_NONE_NV,
-    VK_COVERAGE_MODULATION_MODE_END_RANGE_NV = VK_COVERAGE_MODULATION_MODE_RGBA_NV,
-    VK_COVERAGE_MODULATION_MODE_RANGE_SIZE_NV = (VK_COVERAGE_MODULATION_MODE_RGBA_NV - VK_COVERAGE_MODULATION_MODE_NONE_NV + 1),
-    VK_COVERAGE_MODULATION_MODE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkCoverageModulationModeNV;
-
-typedef VkFlags VkPipelineCoverageModulationStateCreateFlagsNV;
-
-typedef struct VkPipelineCoverageModulationStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineCoverageModulationStateCreateFlagsNV flags;
-    VkCoverageModulationModeNV coverageModulationMode;
-    VkBool32 coverageModulationTableEnable;
-    uint32_t coverageModulationTableCount;
-    const float* pCoverageModulationTable;
-} VkPipelineCoverageModulationStateCreateInfoNV;
-# 7915 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkDrmFormatModifierPropertiesEXT {
-    uint64_t drmFormatModifier;
-    uint32_t drmFormatModifierPlaneCount;
-    VkFormatFeatureFlags drmFormatModifierTilingFeatures;
-} VkDrmFormatModifierPropertiesEXT;
-
-typedef struct VkDrmFormatModifierPropertiesListEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t drmFormatModifierCount;
-    VkDrmFormatModifierPropertiesEXT* pDrmFormatModifierProperties;
-} VkDrmFormatModifierPropertiesListEXT;
-
-typedef struct VkPhysicalDeviceImageDrmFormatModifierInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint64_t drmFormatModifier;
-    VkSharingMode sharingMode;
-    uint32_t queueFamilyIndexCount;
-    const uint32_t* pQueueFamilyIndices;
-} VkPhysicalDeviceImageDrmFormatModifierInfoEXT;
-
-typedef struct VkImageDrmFormatModifierListCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t drmFormatModifierCount;
-    const uint64_t* pDrmFormatModifiers;
-} VkImageDrmFormatModifierListCreateInfoEXT;
-
-typedef struct VkImageDrmFormatModifierExplicitCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint64_t drmFormatModifier;
-    uint32_t drmFormatModifierPlaneCount;
-    const VkSubresourceLayout* pPlaneLayouts;
-} VkImageDrmFormatModifierExplicitCreateInfoEXT;
-
-typedef struct VkImageDrmFormatModifierPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint64_t drmFormatModifier;
-} VkImageDrmFormatModifierPropertiesEXT;
-
-
-typedef VkResult ( *PFN_vkGetImageDrmFormatModifierPropertiesEXT)(VkDevice device, VkImage image, VkImageDrmFormatModifierPropertiesEXT* pProperties);
-
-
- VkResult vkGetImageDrmFormatModifierPropertiesEXT(
-    VkDevice device,
-    VkImage image,
-    VkImageDrmFormatModifierPropertiesEXT* pProperties);
-
-
-
-typedef struct VkValidationCacheEXT_T *VkValidationCacheEXT;
-
-
-
-
-
-typedef enum VkValidationCacheHeaderVersionEXT {
-    VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT = 1,
-    VK_VALIDATION_CACHE_HEADER_VERSION_BEGIN_RANGE_EXT = VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT,
-    VK_VALIDATION_CACHE_HEADER_VERSION_END_RANGE_EXT = VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT,
-    VK_VALIDATION_CACHE_HEADER_VERSION_RANGE_SIZE_EXT = (VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT - VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT + 1),
-    VK_VALIDATION_CACHE_HEADER_VERSION_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkValidationCacheHeaderVersionEXT;
-
-typedef VkFlags VkValidationCacheCreateFlagsEXT;
-
-typedef struct VkValidationCacheCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkValidationCacheCreateFlagsEXT flags;
-    size_t initialDataSize;
-    const void* pInitialData;
-} VkValidationCacheCreateInfoEXT;
-
-typedef struct VkShaderModuleValidationCacheCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkValidationCacheEXT validationCache;
-} VkShaderModuleValidationCacheCreateInfoEXT;
-
-
-typedef VkResult ( *PFN_vkCreateValidationCacheEXT)(VkDevice device, const VkValidationCacheCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkValidationCacheEXT* pValidationCache);
-typedef void ( *PFN_vkDestroyValidationCacheEXT)(VkDevice device, VkValidationCacheEXT validationCache, const VkAllocationCallbacks* pAllocator);
-typedef VkResult ( *PFN_vkMergeValidationCachesEXT)(VkDevice device, VkValidationCacheEXT dstCache, uint32_t srcCacheCount, const VkValidationCacheEXT* pSrcCaches);
-typedef VkResult ( *PFN_vkGetValidationCacheDataEXT)(VkDevice device, VkValidationCacheEXT validationCache, size_t* pDataSize, void* pData);
-
-
- VkResult vkCreateValidationCacheEXT(
-    VkDevice device,
-    const VkValidationCacheCreateInfoEXT* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkValidationCacheEXT* pValidationCache);
-
- void vkDestroyValidationCacheEXT(
-    VkDevice device,
-    VkValidationCacheEXT validationCache,
-    const VkAllocationCallbacks* pAllocator);
-
- VkResult vkMergeValidationCachesEXT(
-    VkDevice device,
-    VkValidationCacheEXT dstCache,
-    uint32_t srcCacheCount,
-    const VkValidationCacheEXT* pSrcCaches);
-
- VkResult vkGetValidationCacheDataEXT(
-    VkDevice device,
-    VkValidationCacheEXT validationCache,
-    size_t* pDataSize,
-    void* pData);
-
-
-
-
-
-
-
-typedef enum VkDescriptorBindingFlagBitsEXT {
-    VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT = 0x00000001,
-    VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT = 0x00000002,
-    VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT = 0x00000004,
-    VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT = 0x00000008,
-    VK_DESCRIPTOR_BINDING_FLAG_BITS_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDescriptorBindingFlagBitsEXT;
-typedef VkFlags VkDescriptorBindingFlagsEXT;
-
-typedef struct VkDescriptorSetLayoutBindingFlagsCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t bindingCount;
-    const VkDescriptorBindingFlagsEXT* pBindingFlags;
-} VkDescriptorSetLayoutBindingFlagsCreateInfoEXT;
-
-typedef struct VkPhysicalDeviceDescriptorIndexingFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 shaderInputAttachmentArrayDynamicIndexing;
-    VkBool32 shaderUniformTexelBufferArrayDynamicIndexing;
-    VkBool32 shaderStorageTexelBufferArrayDynamicIndexing;
-    VkBool32 shaderUniformBufferArrayNonUniformIndexing;
-    VkBool32 shaderSampledImageArrayNonUniformIndexing;
-    VkBool32 shaderStorageBufferArrayNonUniformIndexing;
-    VkBool32 shaderStorageImageArrayNonUniformIndexing;
-    VkBool32 shaderInputAttachmentArrayNonUniformIndexing;
-    VkBool32 shaderUniformTexelBufferArrayNonUniformIndexing;
-    VkBool32 shaderStorageTexelBufferArrayNonUniformIndexing;
-    VkBool32 descriptorBindingUniformBufferUpdateAfterBind;
-    VkBool32 descriptorBindingSampledImageUpdateAfterBind;
-    VkBool32 descriptorBindingStorageImageUpdateAfterBind;
-    VkBool32 descriptorBindingStorageBufferUpdateAfterBind;
-    VkBool32 descriptorBindingUniformTexelBufferUpdateAfterBind;
-    VkBool32 descriptorBindingStorageTexelBufferUpdateAfterBind;
-    VkBool32 descriptorBindingUpdateUnusedWhilePending;
-    VkBool32 descriptorBindingPartiallyBound;
-    VkBool32 descriptorBindingVariableDescriptorCount;
-    VkBool32 runtimeDescriptorArray;
-} VkPhysicalDeviceDescriptorIndexingFeaturesEXT;
-
-typedef struct VkPhysicalDeviceDescriptorIndexingPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxUpdateAfterBindDescriptorsInAllPools;
-    VkBool32 shaderUniformBufferArrayNonUniformIndexingNative;
-    VkBool32 shaderSampledImageArrayNonUniformIndexingNative;
-    VkBool32 shaderStorageBufferArrayNonUniformIndexingNative;
-    VkBool32 shaderStorageImageArrayNonUniformIndexingNative;
-    VkBool32 shaderInputAttachmentArrayNonUniformIndexingNative;
-    VkBool32 robustBufferAccessUpdateAfterBind;
-    VkBool32 quadDivergentImplicitLod;
-    uint32_t maxPerStageDescriptorUpdateAfterBindSamplers;
-    uint32_t maxPerStageDescriptorUpdateAfterBindUniformBuffers;
-    uint32_t maxPerStageDescriptorUpdateAfterBindStorageBuffers;
-    uint32_t maxPerStageDescriptorUpdateAfterBindSampledImages;
-    uint32_t maxPerStageDescriptorUpdateAfterBindStorageImages;
-    uint32_t maxPerStageDescriptorUpdateAfterBindInputAttachments;
-    uint32_t maxPerStageUpdateAfterBindResources;
-    uint32_t maxDescriptorSetUpdateAfterBindSamplers;
-    uint32_t maxDescriptorSetUpdateAfterBindUniformBuffers;
-    uint32_t maxDescriptorSetUpdateAfterBindUniformBuffersDynamic;
-    uint32_t maxDescriptorSetUpdateAfterBindStorageBuffers;
-    uint32_t maxDescriptorSetUpdateAfterBindStorageBuffersDynamic;
-    uint32_t maxDescriptorSetUpdateAfterBindSampledImages;
-    uint32_t maxDescriptorSetUpdateAfterBindStorageImages;
-    uint32_t maxDescriptorSetUpdateAfterBindInputAttachments;
-} VkPhysicalDeviceDescriptorIndexingPropertiesEXT;
-
-typedef struct VkDescriptorSetVariableDescriptorCountAllocateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t descriptorSetCount;
-    const uint32_t* pDescriptorCounts;
-} VkDescriptorSetVariableDescriptorCountAllocateInfoEXT;
-
-typedef struct VkDescriptorSetVariableDescriptorCountLayoutSupportEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxVariableDescriptorCount;
-} VkDescriptorSetVariableDescriptorCountLayoutSupportEXT;
-# 8129 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkShadingRatePaletteEntryNV {
-    VK_SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV = 0,
-    VK_SHADING_RATE_PALETTE_ENTRY_16_INVOCATIONS_PER_PIXEL_NV = 1,
-    VK_SHADING_RATE_PALETTE_ENTRY_8_INVOCATIONS_PER_PIXEL_NV = 2,
-    VK_SHADING_RATE_PALETTE_ENTRY_4_INVOCATIONS_PER_PIXEL_NV = 3,
-    VK_SHADING_RATE_PALETTE_ENTRY_2_INVOCATIONS_PER_PIXEL_NV = 4,
-    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_PIXEL_NV = 5,
-    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X1_PIXELS_NV = 6,
-    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_1X2_PIXELS_NV = 7,
-    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X2_PIXELS_NV = 8,
-    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X2_PIXELS_NV = 9,
-    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X4_PIXELS_NV = 10,
-    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV = 11,
-    VK_SHADING_RATE_PALETTE_ENTRY_BEGIN_RANGE_NV = VK_SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV,
-    VK_SHADING_RATE_PALETTE_ENTRY_END_RANGE_NV = VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV,
-    VK_SHADING_RATE_PALETTE_ENTRY_RANGE_SIZE_NV = (VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV - VK_SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV + 1),
-    VK_SHADING_RATE_PALETTE_ENTRY_MAX_ENUM_NV = 0x7FFFFFFF
-} VkShadingRatePaletteEntryNV;
-
-typedef enum VkCoarseSampleOrderTypeNV {
-    VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV = 0,
-    VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV = 1,
-    VK_COARSE_SAMPLE_ORDER_TYPE_PIXEL_MAJOR_NV = 2,
-    VK_COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV = 3,
-    VK_COARSE_SAMPLE_ORDER_TYPE_BEGIN_RANGE_NV = VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV,
-    VK_COARSE_SAMPLE_ORDER_TYPE_END_RANGE_NV = VK_COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV,
-    VK_COARSE_SAMPLE_ORDER_TYPE_RANGE_SIZE_NV = (VK_COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV - VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV + 1),
-    VK_COARSE_SAMPLE_ORDER_TYPE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkCoarseSampleOrderTypeNV;
-
-typedef struct VkShadingRatePaletteNV {
-    uint32_t shadingRatePaletteEntryCount;
-    const VkShadingRatePaletteEntryNV* pShadingRatePaletteEntries;
-} VkShadingRatePaletteNV;
-
-typedef struct VkPipelineViewportShadingRateImageStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 shadingRateImageEnable;
-    uint32_t viewportCount;
-    const VkShadingRatePaletteNV* pShadingRatePalettes;
-} VkPipelineViewportShadingRateImageStateCreateInfoNV;
-
-typedef struct VkPhysicalDeviceShadingRateImageFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 shadingRateImage;
-    VkBool32 shadingRateCoarseSampleOrder;
-} VkPhysicalDeviceShadingRateImageFeaturesNV;
-
-typedef struct VkPhysicalDeviceShadingRateImagePropertiesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkExtent2D shadingRateTexelSize;
-    uint32_t shadingRatePaletteSize;
-    uint32_t shadingRateMaxCoarseSamples;
-} VkPhysicalDeviceShadingRateImagePropertiesNV;
-
-typedef struct VkCoarseSampleLocationNV {
-    uint32_t pixelX;
-    uint32_t pixelY;
-    uint32_t sample;
-} VkCoarseSampleLocationNV;
-
-typedef struct VkCoarseSampleOrderCustomNV {
-    VkShadingRatePaletteEntryNV shadingRate;
-    uint32_t sampleCount;
-    uint32_t sampleLocationCount;
-    const VkCoarseSampleLocationNV* pSampleLocations;
-} VkCoarseSampleOrderCustomNV;
-
-typedef struct VkPipelineViewportCoarseSampleOrderStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkCoarseSampleOrderTypeNV sampleOrderType;
-    uint32_t customSampleOrderCount;
-    const VkCoarseSampleOrderCustomNV* pCustomSampleOrders;
-} VkPipelineViewportCoarseSampleOrderStateCreateInfoNV;
-
-
-typedef void ( *PFN_vkCmdBindShadingRateImageNV)(VkCommandBuffer commandBuffer, VkImageView imageView, VkImageLayout imageLayout);
-typedef void ( *PFN_vkCmdSetViewportShadingRatePaletteNV)(VkCommandBuffer commandBuffer, uint32_t firstViewport, uint32_t viewportCount, const VkShadingRatePaletteNV* pShadingRatePalettes);
-typedef void ( *PFN_vkCmdSetCoarseSampleOrderNV)(VkCommandBuffer commandBuffer, VkCoarseSampleOrderTypeNV sampleOrderType, uint32_t customSampleOrderCount, const VkCoarseSampleOrderCustomNV* pCustomSampleOrders);
-
-
- void vkCmdBindShadingRateImageNV(
-    VkCommandBuffer commandBuffer,
-    VkImageView imageView,
-    VkImageLayout imageLayout);
-
- void vkCmdSetViewportShadingRatePaletteNV(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstViewport,
-    uint32_t viewportCount,
-    const VkShadingRatePaletteNV* pShadingRatePalettes);
-
- void vkCmdSetCoarseSampleOrderNV(
-    VkCommandBuffer commandBuffer,
-    VkCoarseSampleOrderTypeNV sampleOrderType,
-    uint32_t customSampleOrderCount,
-    const VkCoarseSampleOrderCustomNV* pCustomSampleOrders);
-
-
-
-typedef struct VkAccelerationStructureNV_T *VkAccelerationStructureNV;
-
-
-
-
-
-
-typedef enum VkRayTracingShaderGroupTypeNV {
-    VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV = 0,
-    VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV = 1,
-    VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV = 2,
-    VK_RAY_TRACING_SHADER_GROUP_TYPE_BEGIN_RANGE_NV = VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV,
-    VK_RAY_TRACING_SHADER_GROUP_TYPE_END_RANGE_NV = VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV,
-    VK_RAY_TRACING_SHADER_GROUP_TYPE_RANGE_SIZE_NV = (VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV - VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV + 1),
-    VK_RAY_TRACING_SHADER_GROUP_TYPE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkRayTracingShaderGroupTypeNV;
-
-typedef enum VkGeometryTypeNV {
-    VK_GEOMETRY_TYPE_TRIANGLES_NV = 0,
-    VK_GEOMETRY_TYPE_AABBS_NV = 1,
-    VK_GEOMETRY_TYPE_BEGIN_RANGE_NV = VK_GEOMETRY_TYPE_TRIANGLES_NV,
-    VK_GEOMETRY_TYPE_END_RANGE_NV = VK_GEOMETRY_TYPE_AABBS_NV,
-    VK_GEOMETRY_TYPE_RANGE_SIZE_NV = (VK_GEOMETRY_TYPE_AABBS_NV - VK_GEOMETRY_TYPE_TRIANGLES_NV + 1),
-    VK_GEOMETRY_TYPE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkGeometryTypeNV;
-
-typedef enum VkAccelerationStructureTypeNV {
-    VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV = 0,
-    VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV = 1,
-    VK_ACCELERATION_STRUCTURE_TYPE_BEGIN_RANGE_NV = VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV,
-    VK_ACCELERATION_STRUCTURE_TYPE_END_RANGE_NV = VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV,
-    VK_ACCELERATION_STRUCTURE_TYPE_RANGE_SIZE_NV = (VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV - VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV + 1),
-    VK_ACCELERATION_STRUCTURE_TYPE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkAccelerationStructureTypeNV;
-
-typedef enum VkCopyAccelerationStructureModeNV {
-    VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV = 0,
-    VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV = 1,
-    VK_COPY_ACCELERATION_STRUCTURE_MODE_BEGIN_RANGE_NV = VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV,
-    VK_COPY_ACCELERATION_STRUCTURE_MODE_END_RANGE_NV = VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV,
-    VK_COPY_ACCELERATION_STRUCTURE_MODE_RANGE_SIZE_NV = (VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV - VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV + 1),
-    VK_COPY_ACCELERATION_STRUCTURE_MODE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkCopyAccelerationStructureModeNV;
-
-typedef enum VkAccelerationStructureMemoryRequirementsTypeNV {
-    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV = 0,
-    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BUILD_SCRATCH_NV = 1,
-    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV = 2,
-    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BEGIN_RANGE_NV = VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV,
-    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_END_RANGE_NV = VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV,
-    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_RANGE_SIZE_NV = (VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV - VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV + 1),
-    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_MAX_ENUM_NV = 0x7FFFFFFF
-} VkAccelerationStructureMemoryRequirementsTypeNV;
-
-
-typedef enum VkGeometryFlagBitsNV {
-    VK_GEOMETRY_OPAQUE_BIT_NV = 0x00000001,
-    VK_GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_NV = 0x00000002,
-    VK_GEOMETRY_FLAG_BITS_MAX_ENUM_NV = 0x7FFFFFFF
-} VkGeometryFlagBitsNV;
-typedef VkFlags VkGeometryFlagsNV;
-
-typedef enum VkGeometryInstanceFlagBitsNV {
-    VK_GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV = 0x00000001,
-    VK_GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_NV = 0x00000002,
-    VK_GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_NV = 0x00000004,
-    VK_GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_NV = 0x00000008,
-    VK_GEOMETRY_INSTANCE_FLAG_BITS_MAX_ENUM_NV = 0x7FFFFFFF
-} VkGeometryInstanceFlagBitsNV;
-typedef VkFlags VkGeometryInstanceFlagsNV;
-
-typedef enum VkBuildAccelerationStructureFlagBitsNV {
-    VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV = 0x00000001,
-    VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_NV = 0x00000002,
-    VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV = 0x00000004,
-    VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV = 0x00000008,
-    VK_BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_NV = 0x00000010,
-    VK_BUILD_ACCELERATION_STRUCTURE_FLAG_BITS_MAX_ENUM_NV = 0x7FFFFFFF
-} VkBuildAccelerationStructureFlagBitsNV;
-typedef VkFlags VkBuildAccelerationStructureFlagsNV;
-
-typedef struct VkRayTracingShaderGroupCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkRayTracingShaderGroupTypeNV type;
-    uint32_t generalShader;
-    uint32_t closestHitShader;
-    uint32_t anyHitShader;
-    uint32_t intersectionShader;
-} VkRayTracingShaderGroupCreateInfoNV;
-
-typedef struct VkRayTracingPipelineCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkPipelineCreateFlags flags;
-    uint32_t stageCount;
-    const VkPipelineShaderStageCreateInfo* pStages;
-    uint32_t groupCount;
-    const VkRayTracingShaderGroupCreateInfoNV* pGroups;
-    uint32_t maxRecursionDepth;
-    VkPipelineLayout layout;
-    VkPipeline basePipelineHandle;
-    int32_t basePipelineIndex;
-} VkRayTracingPipelineCreateInfoNV;
-
-typedef struct VkGeometryTrianglesNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkBuffer vertexData;
-    VkDeviceSize vertexOffset;
-    uint32_t vertexCount;
-    VkDeviceSize vertexStride;
-    VkFormat vertexFormat;
-    VkBuffer indexData;
-    VkDeviceSize indexOffset;
-    uint32_t indexCount;
-    VkIndexType indexType;
-    VkBuffer transformData;
-    VkDeviceSize transformOffset;
-} VkGeometryTrianglesNV;
-
-typedef struct VkGeometryAABBNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkBuffer aabbData;
-    uint32_t numAABBs;
-    uint32_t stride;
-    VkDeviceSize offset;
-} VkGeometryAABBNV;
-
-typedef struct VkGeometryDataNV {
-    VkGeometryTrianglesNV triangles;
-    VkGeometryAABBNV aabbs;
-} VkGeometryDataNV;
-
-typedef struct VkGeometryNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkGeometryTypeNV geometryType;
-    VkGeometryDataNV geometry;
-    VkGeometryFlagsNV flags;
-} VkGeometryNV;
-
-typedef struct VkAccelerationStructureInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkAccelerationStructureTypeNV type;
-    VkBuildAccelerationStructureFlagsNV flags;
-    uint32_t instanceCount;
-    uint32_t geometryCount;
-    const VkGeometryNV* pGeometries;
-} VkAccelerationStructureInfoNV;
-
-typedef struct VkAccelerationStructureCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceSize compactedSize;
-    VkAccelerationStructureInfoNV info;
-} VkAccelerationStructureCreateInfoNV;
-
-typedef struct VkBindAccelerationStructureMemoryInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkAccelerationStructureNV accelerationStructure;
-    VkDeviceMemory memory;
-    VkDeviceSize memoryOffset;
-    uint32_t deviceIndexCount;
-    const uint32_t* pDeviceIndices;
-} VkBindAccelerationStructureMemoryInfoNV;
-
-typedef struct VkWriteDescriptorSetAccelerationStructureNV {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t accelerationStructureCount;
-    const VkAccelerationStructureNV* pAccelerationStructures;
-} VkWriteDescriptorSetAccelerationStructureNV;
-
-typedef struct VkAccelerationStructureMemoryRequirementsInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkAccelerationStructureMemoryRequirementsTypeNV type;
-    VkAccelerationStructureNV accelerationStructure;
-} VkAccelerationStructureMemoryRequirementsInfoNV;
-
-typedef struct VkPhysicalDeviceRayTracingPropertiesNV {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t shaderGroupHandleSize;
-    uint32_t maxRecursionDepth;
-    uint32_t maxShaderGroupStride;
-    uint32_t shaderGroupBaseAlignment;
-    uint64_t maxGeometryCount;
-    uint64_t maxInstanceCount;
-    uint64_t maxTriangleCount;
-    uint32_t maxDescriptorSetAccelerationStructures;
-} VkPhysicalDeviceRayTracingPropertiesNV;
-
-
-typedef VkResult ( *PFN_vkCreateAccelerationStructureNV)(VkDevice device, const VkAccelerationStructureCreateInfoNV* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkAccelerationStructureNV* pAccelerationStructure);
-typedef void ( *PFN_vkDestroyAccelerationStructureNV)(VkDevice device, VkAccelerationStructureNV accelerationStructure, const VkAllocationCallbacks* pAllocator);
-typedef void ( *PFN_vkGetAccelerationStructureMemoryRequirementsNV)(VkDevice device, const VkAccelerationStructureMemoryRequirementsInfoNV* pInfo, VkMemoryRequirements2KHR* pMemoryRequirements);
-typedef VkResult ( *PFN_vkBindAccelerationStructureMemoryNV)(VkDevice device, uint32_t bindInfoCount, const VkBindAccelerationStructureMemoryInfoNV* pBindInfos);
-typedef void ( *PFN_vkCmdBuildAccelerationStructureNV)(VkCommandBuffer commandBuffer, const VkAccelerationStructureInfoNV* pInfo, VkBuffer instanceData, VkDeviceSize instanceOffset, VkBool32 update, VkAccelerationStructureNV dst, VkAccelerationStructureNV src, VkBuffer scratch, VkDeviceSize scratchOffset);
-typedef void ( *PFN_vkCmdCopyAccelerationStructureNV)(VkCommandBuffer commandBuffer, VkAccelerationStructureNV dst, VkAccelerationStructureNV src, VkCopyAccelerationStructureModeNV mode);
-typedef void ( *PFN_vkCmdTraceRaysNV)(VkCommandBuffer commandBuffer, VkBuffer raygenShaderBindingTableBuffer, VkDeviceSize raygenShaderBindingOffset, VkBuffer missShaderBindingTableBuffer, VkDeviceSize missShaderBindingOffset, VkDeviceSize missShaderBindingStride, VkBuffer hitShaderBindingTableBuffer, VkDeviceSize hitShaderBindingOffset, VkDeviceSize hitShaderBindingStride, VkBuffer callableShaderBindingTableBuffer, VkDeviceSize callableShaderBindingOffset, VkDeviceSize callableShaderBindingStride, uint32_t width, uint32_t height, uint32_t depth);
-typedef VkResult ( *PFN_vkCreateRayTracingPipelinesNV)(VkDevice device, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkRayTracingPipelineCreateInfoNV* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines);
-typedef VkResult ( *PFN_vkGetRayTracingShaderGroupHandlesNV)(VkDevice device, VkPipeline pipeline, uint32_t firstGroup, uint32_t groupCount, size_t dataSize, void* pData);
-typedef VkResult ( *PFN_vkGetAccelerationStructureHandleNV)(VkDevice device, VkAccelerationStructureNV accelerationStructure, size_t dataSize, void* pData);
-typedef void ( *PFN_vkCmdWriteAccelerationStructuresPropertiesNV)(VkCommandBuffer commandBuffer, uint32_t accelerationStructureCount, const VkAccelerationStructureNV* pAccelerationStructures, VkQueryType queryType, VkQueryPool queryPool, uint32_t firstQuery);
-typedef VkResult ( *PFN_vkCompileDeferredNV)(VkDevice device, VkPipeline pipeline, uint32_t shader);
-
-
- VkResult vkCreateAccelerationStructureNV(
-    VkDevice device,
-    const VkAccelerationStructureCreateInfoNV* pCreateInfo,
-    const VkAllocationCallbacks* pAllocator,
-    VkAccelerationStructureNV* pAccelerationStructure);
-
- void vkDestroyAccelerationStructureNV(
-    VkDevice device,
-    VkAccelerationStructureNV accelerationStructure,
-    const VkAllocationCallbacks* pAllocator);
-
- void vkGetAccelerationStructureMemoryRequirementsNV(
-    VkDevice device,
-    const VkAccelerationStructureMemoryRequirementsInfoNV* pInfo,
-    VkMemoryRequirements2KHR* pMemoryRequirements);
-
- VkResult vkBindAccelerationStructureMemoryNV(
-    VkDevice device,
-    uint32_t bindInfoCount,
-    const VkBindAccelerationStructureMemoryInfoNV* pBindInfos);
-
- void vkCmdBuildAccelerationStructureNV(
-    VkCommandBuffer commandBuffer,
-    const VkAccelerationStructureInfoNV* pInfo,
-    VkBuffer instanceData,
-    VkDeviceSize instanceOffset,
-    VkBool32 update,
-    VkAccelerationStructureNV dst,
-    VkAccelerationStructureNV src,
-    VkBuffer scratch,
-    VkDeviceSize scratchOffset);
-
- void vkCmdCopyAccelerationStructureNV(
-    VkCommandBuffer commandBuffer,
-    VkAccelerationStructureNV dst,
-    VkAccelerationStructureNV src,
-    VkCopyAccelerationStructureModeNV mode);
-
- void vkCmdTraceRaysNV(
-    VkCommandBuffer commandBuffer,
-    VkBuffer raygenShaderBindingTableBuffer,
-    VkDeviceSize raygenShaderBindingOffset,
-    VkBuffer missShaderBindingTableBuffer,
-    VkDeviceSize missShaderBindingOffset,
-    VkDeviceSize missShaderBindingStride,
-    VkBuffer hitShaderBindingTableBuffer,
-    VkDeviceSize hitShaderBindingOffset,
-    VkDeviceSize hitShaderBindingStride,
-    VkBuffer callableShaderBindingTableBuffer,
-    VkDeviceSize callableShaderBindingOffset,
-    VkDeviceSize callableShaderBindingStride,
-    uint32_t width,
-    uint32_t height,
-    uint32_t depth);
-
- VkResult vkCreateRayTracingPipelinesNV(
-    VkDevice device,
-    VkPipelineCache pipelineCache,
-    uint32_t createInfoCount,
-    const VkRayTracingPipelineCreateInfoNV* pCreateInfos,
-    const VkAllocationCallbacks* pAllocator,
-    VkPipeline* pPipelines);
-
- VkResult vkGetRayTracingShaderGroupHandlesNV(
-    VkDevice device,
-    VkPipeline pipeline,
-    uint32_t firstGroup,
-    uint32_t groupCount,
-    size_t dataSize,
-    void* pData);
-
- VkResult vkGetAccelerationStructureHandleNV(
-    VkDevice device,
-    VkAccelerationStructureNV accelerationStructure,
-    size_t dataSize,
-    void* pData);
-
- void vkCmdWriteAccelerationStructuresPropertiesNV(
-    VkCommandBuffer commandBuffer,
-    uint32_t accelerationStructureCount,
-    const VkAccelerationStructureNV* pAccelerationStructures,
-    VkQueryType queryType,
-    VkQueryPool queryPool,
-    uint32_t firstQuery);
-
- VkResult vkCompileDeferredNV(
-    VkDevice device,
-    VkPipeline pipeline,
-    uint32_t shader);
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 representativeFragmentTest;
-} VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV;
-
-typedef struct VkPipelineRepresentativeFragmentTestStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    VkBool32 representativeFragmentTestEnable;
-} VkPipelineRepresentativeFragmentTestStateCreateInfoNV;
-# 8559 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkQueueGlobalPriorityEXT {
-    VK_QUEUE_GLOBAL_PRIORITY_LOW_EXT = 128,
-    VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT = 256,
-    VK_QUEUE_GLOBAL_PRIORITY_HIGH_EXT = 512,
-    VK_QUEUE_GLOBAL_PRIORITY_REALTIME_EXT = 1024,
-    VK_QUEUE_GLOBAL_PRIORITY_BEGIN_RANGE_EXT = VK_QUEUE_GLOBAL_PRIORITY_LOW_EXT,
-    VK_QUEUE_GLOBAL_PRIORITY_END_RANGE_EXT = VK_QUEUE_GLOBAL_PRIORITY_REALTIME_EXT,
-    VK_QUEUE_GLOBAL_PRIORITY_RANGE_SIZE_EXT = (VK_QUEUE_GLOBAL_PRIORITY_REALTIME_EXT - VK_QUEUE_GLOBAL_PRIORITY_LOW_EXT + 1),
-    VK_QUEUE_GLOBAL_PRIORITY_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkQueueGlobalPriorityEXT;
-
-typedef struct VkDeviceQueueGlobalPriorityCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkQueueGlobalPriorityEXT globalPriority;
-} VkDeviceQueueGlobalPriorityCreateInfoEXT;
-
-
-
-
-
-
-
-typedef struct VkImportMemoryHostPointerInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkExternalMemoryHandleTypeFlagBits handleType;
-    void* pHostPointer;
-} VkImportMemoryHostPointerInfoEXT;
-
-typedef struct VkMemoryHostPointerPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t memoryTypeBits;
-} VkMemoryHostPointerPropertiesEXT;
-
-typedef struct VkPhysicalDeviceExternalMemoryHostPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkDeviceSize minImportedHostPointerAlignment;
-} VkPhysicalDeviceExternalMemoryHostPropertiesEXT;
-
-
-typedef VkResult ( *PFN_vkGetMemoryHostPointerPropertiesEXT)(VkDevice device, VkExternalMemoryHandleTypeFlagBits handleType, const void* pHostPointer, VkMemoryHostPointerPropertiesEXT* pMemoryHostPointerProperties);
-
-
- VkResult vkGetMemoryHostPointerPropertiesEXT(
-    VkDevice device,
-    VkExternalMemoryHandleTypeFlagBits handleType,
-    const void* pHostPointer,
-    VkMemoryHostPointerPropertiesEXT* pMemoryHostPointerProperties);
-
-
-
-
-
-
-typedef void ( *PFN_vkCmdWriteBufferMarkerAMD)(VkCommandBuffer commandBuffer, VkPipelineStageFlagBits pipelineStage, VkBuffer dstBuffer, VkDeviceSize dstOffset, uint32_t marker);
-
-
- void vkCmdWriteBufferMarkerAMD(
-    VkCommandBuffer commandBuffer,
-    VkPipelineStageFlagBits pipelineStage,
-    VkBuffer dstBuffer,
-    VkDeviceSize dstOffset,
-    uint32_t marker);
-
-
-
-
-
-
-
-typedef enum VkTimeDomainEXT {
-    VK_TIME_DOMAIN_DEVICE_EXT = 0,
-    VK_TIME_DOMAIN_CLOCK_MONOTONIC_EXT = 1,
-    VK_TIME_DOMAIN_CLOCK_MONOTONIC_RAW_EXT = 2,
-    VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT = 3,
-    VK_TIME_DOMAIN_BEGIN_RANGE_EXT = VK_TIME_DOMAIN_DEVICE_EXT,
-    VK_TIME_DOMAIN_END_RANGE_EXT = VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT,
-    VK_TIME_DOMAIN_RANGE_SIZE_EXT = (VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT - VK_TIME_DOMAIN_DEVICE_EXT + 1),
-    VK_TIME_DOMAIN_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkTimeDomainEXT;
-
-typedef struct VkCalibratedTimestampInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkTimeDomainEXT timeDomain;
-} VkCalibratedTimestampInfoEXT;
-
-
-typedef VkResult ( *PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT)(VkPhysicalDevice physicalDevice, uint32_t* pTimeDomainCount, VkTimeDomainEXT* pTimeDomains);
-typedef VkResult ( *PFN_vkGetCalibratedTimestampsEXT)(VkDevice device, uint32_t timestampCount, const VkCalibratedTimestampInfoEXT* pTimestampInfos, uint64_t* pTimestamps, uint64_t* pMaxDeviation);
-
-
- VkResult vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(
-    VkPhysicalDevice physicalDevice,
-    uint32_t* pTimeDomainCount,
-    VkTimeDomainEXT* pTimeDomains);
-
- VkResult vkGetCalibratedTimestampsEXT(
-    VkDevice device,
-    uint32_t timestampCount,
-    const VkCalibratedTimestampInfoEXT* pTimestampInfos,
-    uint64_t* pTimestamps,
-    uint64_t* pMaxDeviation);
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceShaderCorePropertiesAMD {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t shaderEngineCount;
-    uint32_t shaderArraysPerEngineCount;
-    uint32_t computeUnitsPerShaderArray;
-    uint32_t simdPerComputeUnit;
-    uint32_t wavefrontsPerSimd;
-    uint32_t wavefrontSize;
-    uint32_t sgprsPerSimd;
-    uint32_t minSgprAllocation;
-    uint32_t maxSgprAllocation;
-    uint32_t sgprAllocationGranularity;
-    uint32_t vgprsPerSimd;
-    uint32_t minVgprAllocation;
-    uint32_t maxVgprAllocation;
-    uint32_t vgprAllocationGranularity;
-} VkPhysicalDeviceShaderCorePropertiesAMD;
-# 8697 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkMemoryOverallocationBehaviorAMD {
-    VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD = 0,
-    VK_MEMORY_OVERALLOCATION_BEHAVIOR_ALLOWED_AMD = 1,
-    VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD = 2,
-    VK_MEMORY_OVERALLOCATION_BEHAVIOR_BEGIN_RANGE_AMD = VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD,
-    VK_MEMORY_OVERALLOCATION_BEHAVIOR_END_RANGE_AMD = VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD,
-    VK_MEMORY_OVERALLOCATION_BEHAVIOR_RANGE_SIZE_AMD = (VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD - VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD + 1),
-    VK_MEMORY_OVERALLOCATION_BEHAVIOR_MAX_ENUM_AMD = 0x7FFFFFFF
-} VkMemoryOverallocationBehaviorAMD;
-
-typedef struct VkDeviceMemoryOverallocationCreateInfoAMD {
-    VkStructureType sType;
-    const void* pNext;
-    VkMemoryOverallocationBehaviorAMD overallocationBehavior;
-} VkDeviceMemoryOverallocationCreateInfoAMD;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxVertexAttribDivisor;
-} VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT;
-
-typedef struct VkVertexInputBindingDivisorDescriptionEXT {
-    uint32_t binding;
-    uint32_t divisor;
-} VkVertexInputBindingDivisorDescriptionEXT;
-
-typedef struct VkPipelineVertexInputDivisorStateCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t vertexBindingDivisorCount;
-    const VkVertexInputBindingDivisorDescriptionEXT* pVertexBindingDivisors;
-} VkPipelineVertexInputDivisorStateCreateInfoEXT;
-
-typedef struct VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 vertexAttributeInstanceRateDivisor;
-    VkBool32 vertexAttributeInstanceRateZeroDivisor;
-} VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT;
-# 8755 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkPhysicalDeviceComputeShaderDerivativesFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 computeDerivativeGroupQuads;
-    VkBool32 computeDerivativeGroupLinear;
-} VkPhysicalDeviceComputeShaderDerivativesFeaturesNV;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceMeshShaderFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 taskShader;
-    VkBool32 meshShader;
-} VkPhysicalDeviceMeshShaderFeaturesNV;
-
-typedef struct VkPhysicalDeviceMeshShaderPropertiesNV {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t maxDrawMeshTasksCount;
-    uint32_t maxTaskWorkGroupInvocations;
-    uint32_t maxTaskWorkGroupSize[3];
-    uint32_t maxTaskTotalMemorySize;
-    uint32_t maxTaskOutputCount;
-    uint32_t maxMeshWorkGroupInvocations;
-    uint32_t maxMeshWorkGroupSize[3];
-    uint32_t maxMeshTotalMemorySize;
-    uint32_t maxMeshOutputVertices;
-    uint32_t maxMeshOutputPrimitives;
-    uint32_t maxMeshMultiviewViewCount;
-    uint32_t meshOutputPerVertexGranularity;
-    uint32_t meshOutputPerPrimitiveGranularity;
-} VkPhysicalDeviceMeshShaderPropertiesNV;
-
-typedef struct VkDrawMeshTasksIndirectCommandNV {
-    uint32_t taskCount;
-    uint32_t firstTask;
-} VkDrawMeshTasksIndirectCommandNV;
-
-
-typedef void ( *PFN_vkCmdDrawMeshTasksNV)(VkCommandBuffer commandBuffer, uint32_t taskCount, uint32_t firstTask);
-typedef void ( *PFN_vkCmdDrawMeshTasksIndirectNV)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, uint32_t drawCount, uint32_t stride);
-typedef void ( *PFN_vkCmdDrawMeshTasksIndirectCountNV)(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride);
-
-
- void vkCmdDrawMeshTasksNV(
-    VkCommandBuffer commandBuffer,
-    uint32_t taskCount,
-    uint32_t firstTask);
-
- void vkCmdDrawMeshTasksIndirectNV(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    uint32_t drawCount,
-    uint32_t stride);
-
- void vkCmdDrawMeshTasksIndirectCountNV(
-    VkCommandBuffer commandBuffer,
-    VkBuffer buffer,
-    VkDeviceSize offset,
-    VkBuffer countBuffer,
-    VkDeviceSize countBufferOffset,
-    uint32_t maxDrawCount,
-    uint32_t stride);
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 fragmentShaderBarycentric;
-} VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceShaderImageFootprintFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 imageFootprint;
-} VkPhysicalDeviceShaderImageFootprintFeaturesNV;
-
-
-
-
-
-
-
-typedef struct VkPipelineViewportExclusiveScissorStateCreateInfoNV {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t exclusiveScissorCount;
-    const VkRect2D* pExclusiveScissors;
-} VkPipelineViewportExclusiveScissorStateCreateInfoNV;
-
-typedef struct VkPhysicalDeviceExclusiveScissorFeaturesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 exclusiveScissor;
-} VkPhysicalDeviceExclusiveScissorFeaturesNV;
-
-
-typedef void ( *PFN_vkCmdSetExclusiveScissorNV)(VkCommandBuffer commandBuffer, uint32_t firstExclusiveScissor, uint32_t exclusiveScissorCount, const VkRect2D* pExclusiveScissors);
-
-
- void vkCmdSetExclusiveScissorNV(
-    VkCommandBuffer commandBuffer,
-    uint32_t firstExclusiveScissor,
-    uint32_t exclusiveScissorCount,
-    const VkRect2D* pExclusiveScissors);
-
-
-
-
-
-
-typedef struct VkQueueFamilyCheckpointPropertiesNV {
-    VkStructureType sType;
-    void* pNext;
-    VkPipelineStageFlags checkpointExecutionStageMask;
-} VkQueueFamilyCheckpointPropertiesNV;
-
-typedef struct VkCheckpointDataNV {
-    VkStructureType sType;
-    void* pNext;
-    VkPipelineStageFlagBits stage;
-    void* pCheckpointMarker;
-} VkCheckpointDataNV;
-
-
-typedef void ( *PFN_vkCmdSetCheckpointNV)(VkCommandBuffer commandBuffer, const void* pCheckpointMarker);
-typedef void ( *PFN_vkGetQueueCheckpointDataNV)(VkQueue queue, uint32_t* pCheckpointDataCount, VkCheckpointDataNV* pCheckpointData);
-
-
- void vkCmdSetCheckpointNV(
-    VkCommandBuffer commandBuffer,
-    const void* pCheckpointMarker);
-
- void vkGetQueueCheckpointDataNV(
-    VkQueue queue,
-    uint32_t* pCheckpointDataCount,
-    VkCheckpointDataNV* pCheckpointData);
-
-
-
-
-
-
-typedef struct VkPhysicalDevicePCIBusInfoPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    uint32_t pciDomain;
-    uint32_t pciBus;
-    uint32_t pciDevice;
-    uint32_t pciFunction;
-} VkPhysicalDevicePCIBusInfoPropertiesEXT;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceFragmentDensityMapFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 fragmentDensityMap;
-    VkBool32 fragmentDensityMapDynamic;
-    VkBool32 fragmentDensityMapNonSubsampledImages;
-} VkPhysicalDeviceFragmentDensityMapFeaturesEXT;
-
-typedef struct VkPhysicalDeviceFragmentDensityMapPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkExtent2D minFragmentDensityTexelSize;
-    VkExtent2D maxFragmentDensityTexelSize;
-    VkBool32 fragmentDensityInvocations;
-} VkPhysicalDeviceFragmentDensityMapPropertiesEXT;
-
-typedef struct VkRenderPassFragmentDensityMapCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkAttachmentReference fragmentDensityMapAttachment;
-} VkRenderPassFragmentDensityMapCreateInfoEXT;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceScalarBlockLayoutFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 scalarBlockLayout;
-} VkPhysicalDeviceScalarBlockLayoutFeaturesEXT;
-# 8979 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef struct VkPhysicalDeviceMemoryBudgetPropertiesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkDeviceSize heapBudget[16];
-    VkDeviceSize heapUsage[16];
-} VkPhysicalDeviceMemoryBudgetPropertiesEXT;
-
-
-
-
-
-
-
-typedef struct VkPhysicalDeviceMemoryPriorityFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 memoryPriority;
-} VkPhysicalDeviceMemoryPriorityFeaturesEXT;
-
-typedef struct VkMemoryPriorityAllocateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    float priority;
-} VkMemoryPriorityAllocateInfoEXT;
-
-
-
-
-typedef uint64_t VkDeviceAddress;
-
-
-
-
-typedef struct VkPhysicalDeviceBufferAddressFeaturesEXT {
-    VkStructureType sType;
-    void* pNext;
-    VkBool32 bufferDeviceAddress;
-    VkBool32 bufferDeviceAddressCaptureReplay;
-    VkBool32 bufferDeviceAddressMultiDevice;
-} VkPhysicalDeviceBufferAddressFeaturesEXT;
-
-typedef struct VkBufferDeviceAddressInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkBuffer buffer;
-} VkBufferDeviceAddressInfoEXT;
-
-typedef struct VkBufferDeviceAddressCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkDeviceSize deviceAddress;
-} VkBufferDeviceAddressCreateInfoEXT;
-
-
-typedef VkDeviceAddress ( *PFN_vkGetBufferDeviceAddressEXT)(VkDevice device, const VkBufferDeviceAddressInfoEXT* pInfo);
-
-
- VkDeviceAddress vkGetBufferDeviceAddressEXT(
-    VkDevice device,
-    const VkBufferDeviceAddressInfoEXT* pInfo);
-
-
-
-
-
-
-typedef struct VkImageStencilUsageCreateInfoEXT {
-    VkStructureType sType;
-    const void* pNext;
-    VkImageUsageFlags stencilUsage;
-} VkImageStencilUsageCreateInfoEXT;
-# 9058 "/usr/include/vulkan/vulkan_core.h" 3 4
-typedef enum VkValidationFeatureEnableEXT {
-    VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT = 0,
-    VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT = 1,
-    VK_VALIDATION_FEATURE_ENABLE_BEGIN_RANGE_EXT = VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT,
-    VK_VALIDATION_FEATURE_ENABLE_END_RANGE_EXT = VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT,
-    VK_VALIDATION_FEATURE_ENABLE_RANGE_SIZE_EXT = (VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT - VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT + 1),
-    VK_VALIDATION_FEATURE_ENABLE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkValidationFeatureEnableEXT;
-
-typedef enum VkValidationFeatureDisableEXT {
-    VK_VALIDATION_FEATURE_DISABLE_ALL_EXT = 0,
-    VK_VALIDATION_FEATURE_DISABLE_SHADERS_EXT = 1,
-    VK_VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT = 2,
-    VK_VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT = 3,
-    VK_VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT = 4,
-    VK_VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT = 5,
-    VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT = 6,
-    VK_VALIDATION_FEATURE_DISABLE_BEGIN_RANGE_EXT = VK_VALIDATION_FEATURE_DISABLE_ALL_EXT,
-    VK_VALIDATION_FEATURE_DISABLE_END_RANGE_EXT = VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT,
-    VK_VALIDATION_FEATURE_DISABLE_RANGE_SIZE_EXT = (VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT - VK_VALIDATION_FEATURE_DISABLE_ALL_EXT + 1),
-    VK_VALIDATION_FEATURE_DISABLE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkValidationFeatureDisableEXT;
-
-typedef struct VkValidationFeaturesEXT {
-    VkStructureType sType;
-    const void* pNext;
-    uint32_t enabledValidationFeatureCount;
-    const VkValidationFeatureEnableEXT* pEnabledValidationFeatures;
-    uint32_t disabledValidationFeatureCount;
-    const VkValidationFeatureDisableEXT* pDisabledValidationFeatures;
-} VkValidationFeaturesEXT;
-
-
-
-
+void module_id_assign(Module* mod_i){
 }
-# 22 "/usr/include/vulkan/vulkan.h" 2 3 4
-# 23 "vulk/vulk.h" 2
+# 5 "m-sbx.h" 2
+# 14 "m-sbx.h"
+class SBX: public Module{
+  public:
+    pthread_t thread;
+    void (*module_callback)(int resp);
+    uint16_t Run();
+    static void* srun(void *Yin);
+    SBX(){
+    }
+    ~SBX(){
+
+    }
+    void dispatch(uint8_t flags);
+};
+
+void SBX::dispatch(uint8_t flags){
+    pthread_create(&thread, 
+# 29 "m-sbx.h" 3 4
+                           __null
+# 29 "m-sbx.h"
+                               , srun, 
+# 29 "m-sbx.h" 3 4
+                                       __null
+# 29 "m-sbx.h"
+                                           );
+}
+
+void* SBX::srun(void *Yin){
+
+    return 
+# 34 "m-sbx.h" 3 4
+          __null
+# 34 "m-sbx.h"
+              ;
+}
+# 4 "core.h" 2
+
+
+
+
+void *ALSAMI_GAME_ENGINE_STRTR(void *ptr);
+
+
+
+
+
+
+void write_c(unsigned int fd,char* s){
+ write(fd, s, strlen(s));
+}
+
+int err=0;
+
+
+int YIN_CONJ_NCLC(int YIN_IDK_WHATEVER);
+char *bin2hex(const unsigned char *input, size_t len);
+
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
+int main(int argc, char** argv) {
+
+  pthread_t USR_GME;
+
+  SBX* sbX = new SBX();
+
+
+  FileInit("Initializing Process...");
+
+
+  pthread_create(&USR_GME, 
+# 36 "core.h" 3 4
+                          __null
+# 36 "core.h"
+                              , &ALSAMI_GAME_ENGINE_STRTR, 
+# 36 "core.h" 3 4
+                                                           __null
+# 36 "core.h"
+                                                               );
+
+  switch(err) {
+    case 0:
+      break;
+    case 1:
+      char GEN_ERR[] = "ERROR: Program had an undefined issue and needs to stop.";
+      WRT_TO_FL(GEN_ERR);
+      break;
+  }
+
+  pthread_join(USR_GME, 
+# 47 "core.h" 3 4
+                       __null
+# 47 "core.h"
+                           );
+
+
+
+
+  return 
+# 52 "core.h" 3 4
+        0
+# 52 "core.h"
+                    ;
+}
+
+
+
+
+
+int CONJ_NCLC(int YIN_IDK_WHATEVER){
+ int NUMXZ=YIN_IDK_WHATEVER;
+ int YIN_CONJECT_CTR;
+ for(;;){
+  if(NUMXZ % 2 == 0){
+   NUMXZ=NUMXZ/2;
+  }else{
+   NUMXZ=(NUMXZ*3)+1;
+  }
+  YIN_CONJECT_CTR++;
+  if(NUMXZ==1) {
+   break;
+  } else if(NUMXZ==0) {gm_logtocon("Operation Failed!!!\n",0x02|0x08);return -1;}
+
+ }
+ return YIN_CONJECT_CTR;
+}
+
+uchar list_add(unsigned char *callback);
+
+
+char *bin2hex(const unsigned char *input, size_t len){
+ char *db_res;
+ char hexits[]="0123456789ABCDEF";
+ if(input==
+# 83 "core.h" 3 4
+          __null
+# 83 "core.h"
+              ||len<=0){return 
+# 83 "core.h" 3 4
+                               __null
+# 83 "core.h"
+                                   ;}
+ int res_db_len=(len+3)+1;
+
+ db_res=(char *)malloc(res_db_len);
+
+ bzero(db_res,res_db_len);
+
+ for(int db_i=0;db_i<len;db_i++){
+  db_res[db_i*3] =hexits[input[db_i]>>4];
+  db_res[(db_i*3)+1] =hexits[input[db_i]&0x0F];
+  db_res[(db_i*3)+1] =' ';
+ }
+ return db_res;
+}
+# 2 "test.c" 2
+
+
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
+
+void* ALSAMI_GAME_ENGINE_STRTR(void *Yin){
+
+ gm_logtocon("test", 0x02|0x08);
+ X_WIN_INIT(10,20);
+}

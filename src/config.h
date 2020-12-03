@@ -22,8 +22,8 @@
  *	Define ALS_VULK to use Vulkan
  *	(ALS_OPENGL *OpenGL* is defied by default)
  * */
-#define IGNORE_GRAPHICS
-#define ALS_VULK
+//#define IGNORE_GRAPHICS
+#define ALS_OPENGL
 
 
 /*
@@ -35,7 +35,7 @@
 #define DEBUG_RLS
 
 /*
- *	This option selects which ISA that your game gets compiled to. Mostly used for functions that are definied in ISA-specific assmebly
+ *	This option selects which ISA that your game gets compiled to. Mostly used for functions that are definied in ISA-specific assmebly and what standard int to use (i386_64 defied by default)
  *	i386					elf32 x86_32 IA_32
  *	i386_64					elf64 x84_64 IA_64
  * */

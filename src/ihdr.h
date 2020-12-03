@@ -1,5 +1,5 @@
-#ifndef ALSAMI_GAME_ENGINE_INTEGRATED_HDR
-#define ALSAMI_GAME_ENGINE_INTEGRATED_HDR
+#ifndef ALSGM_INTEGRATED_HDR
+#define ALSGM_INTEGRATED_HDR
 
 // The Config File has full authority to decide what is libraries are used
 // Config File
@@ -31,7 +31,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-/*Pthread (The Library for Multithreading), requires you to use the compiler option -lpthread to link the library*/
+/*Pthread (The Library for multithreading), requires you to use the compiler option -lpthread to link the library*/
 #include <string.h>
 #include <pthread.h>
 
@@ -40,6 +40,8 @@
 #include <assert.h>
 #endif
 
+// For better portability and for sanity
+#include <stdint.h>
 
 #include <stdarg.h>
 #include <sys/types.h>
@@ -62,29 +64,37 @@ typedef unsigned char uchar;
 #define GAME_ENGINE_LGR_COMPLNT_CORE_MODULE 40
 #define GAME_ENGINE_LFT_CMPLNT_CORE_MODULE 39
 
-// Loggger Rquest from anything
+// Logger Request from anything
 #define GAME_ENGINE_RQ_ANY 13
 
-// For the sake of santiy
+// For the sake of sanity
 
 
 #define unt unsigned int
 
+uint8_t gm_logtocon(const char* msg, uint8_t flags);
 
 /*Local Links*/
 
 
-/* Dyanic Array Handling Headers */
+/* Dynamic Array Handling Headers */
+// i ain't that good at c++, so I'll keep tarray out for now
 //#include "tarray.h"
 #include "darray.h"
 
+#include "window.h"
+
 #include "logfiles.h"
+#include "queue.h"
 #include "logcon.h"
+#include "sprites.hpp"
+
 #ifdef ALS_OPENGL
 // see config.h if you dont know what this is or want to use vulkan instead
 #include "glgraphics.h"
 #endif
 #include "coremod.h"
+#include "aar.h"
 // Excluded for now
 //#include "appevent.h"
 
@@ -94,14 +104,21 @@ typedef unsigned char uchar;
 
 #endif
 
-//#include "logcls.h"
-//#include "logobj.h"
+#ifdef i386
+#define isa_mint uint32_t
+#endif
+#ifdef i386_64
+#define isa_mint uint64_t
+#else
+// I know
+#define isa_mint uint64_t
+#endif
 
 
 /*
  *	TODO:
  *		- Order the Header files properly
- *		- Add a good explination for every header file
+ *		- Add a good explanation for every header file
  * */
 
 #define BIT(x) (1<<x)

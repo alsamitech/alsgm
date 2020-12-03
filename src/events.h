@@ -1,5 +1,5 @@
-#ifndef YIN_YIN_YIN_EVNT_HNDLR
-#define YIN_YIN_YIN_EVNT_HNDLR
+#ifndef ALSGM_EVENT_HANDLER_H
+#define ALSGM_EVENT_HANDLER_H
 #include "ihdr.h"
 
 /*

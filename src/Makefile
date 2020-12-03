@@ -1,5 +1,5 @@
-CC=g++
-CFlags= -o2 -lpthread -lX11 -lGL
+CC=c++
+CFlags= -o2 -lvulkan -lpthread -lGL -lX11
 RESULTS=completesrc.c plain nodeadcode
 
 # While yes, you can change the comiler, GCC is reccomended

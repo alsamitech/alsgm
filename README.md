@@ -52,8 +52,6 @@ https://vulkan.lunarg.com/sdk/home#linux
 =======
 	ALSGM has 2 types of modules, core modules and expandability modules. Core modules are things like the Event System, the Logging System, and the Interface with OpenGL or Vulkan. These are all considered extremly critical for the stable operation of aslgm. These are all loaded before the Application's entry point is spun off onto a new process. Also, ALSGM has a differnt kind of module called expandability modules. These modules, while also loaded before the app spins off into it's own process, are considred much less critical, have a less privliges than the core modules, but also can have more integration with things that are not strictly part of the app/engine
 
-![](docs/processes.jpg)
-
 Assumed Timeline:
 	1. November - Finish the core components, and do some basic Vulkan and OpenGL implmentation, and expand documentation
 	2. December - The enginerring part, take the (essentially) template for the game engine and turn it into a full engine and fully document every function, variable

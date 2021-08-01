@@ -23,7 +23,7 @@ Premable:
 * GLFW Headers (if vulkan selected in config.h file)
 * GLU To interact with both OpenGL and X11. (if opengl selected in config.h file) 
 * Pthread and `sys/` files (This makes alsgm POSIX-Exclusive)
-* While not a dependency, It is importnat to note that ALSGM uses a fork of ALSGM, Version 1.4 for networking
+* While not a dependency, It is important to note that ALSGM uses a fork of ALSGM, Version 1.4 for networking
 
 
 

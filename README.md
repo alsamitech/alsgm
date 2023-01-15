@@ -1,3 +1,5 @@
+*Note: This project is no longer being worked on in any major fashion, QOL updates will still occur, but the library interface will remain as it currently is*
+
 # _AlsGM_ Game Engine
 
 This is a game engine that I am working on as one of my projects. (TLDR: this is meant to be a simple game engine that still does a good job of abstracting away most of the complexity involved in low-level graphics!)
@@ -47,8 +49,8 @@ Premable:
 
 The Spec for an alsgm-compatible engine is available at `docs/spec`
 
-Vulkan SDK:
-https://vulkan.lunarg.com/sdk/home#linux
+[Vulkan SDK For Linux-Based Systems](https://vulkan.lunarg.com/sdk/home#linux)
+
 =======
 	ALSGM has 2 types of modules, core modules and expandability modules. Core modules are things like the Event System, the Logging System, and the Interface with OpenGL or Vulkan. These are all considered extremly critical for the stable operation of aslgm. These are all loaded before the Application's entry point is spun off onto a new process. Also, ALSGM has a differnt kind of module called expandability modules. These modules, while also loaded before the app spins off into it's own process, are considred much less critical, have a less privliges than the core modules, but also can have more integration with things that are not strictly part of the app/engine
 
@@ -67,9 +69,6 @@ Learning Resources:
 Note Before Contributing:
 Please read the CONTRIBUTING file before pull-reqesting alsgm. While it is not required, it is __highly__ reccomended to do so as it will give you a ton of good advice
 
-Official Public Mirror (GitHub):
-  https://github.com/alsamitech/alsgm
+[Official Public Mirror (GitHub)](https://github.com/alsamitech/alsgm)
 
-__if you want a good alternative of alsgm for Windows, see https://github.com/thecherno/Hazel__
-
->>> NOTE: Don't ask why there are so many  mentions of the word "Yin", it's a long story that I don't feel like explaining.
+__if you want a good alternative of alsgm for Windows, see [Hazel](https://github.com/thecherno/Hazel)__
